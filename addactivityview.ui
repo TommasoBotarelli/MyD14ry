@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddActivityView</class>
+ <widget class="QDialog" name="AddActivityView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>353</width>
+    <height>452</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Aggiungi attività</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>331</width>
+     <height>421</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="NameLabel">
+          <property name="text">
+           <string>Nome attività</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="NameEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="DateLabel">
+          <property name="text">
+           <string>Data</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="StartDateEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="DeadlineDateLabel">
+          <property name="text">
+           <string>Data di scadenza</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="DeadlineDateEdit"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="SubActivityLabel">
+      <property name="text">
+       <string>Sotto attività</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="SubActivityListWidget"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="AddSubActivityButton">
+      <property name="text">
+       <string>Aggiungi sotto attività</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="NoteLabel">
+      <property name="text">
+       <string>Note</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="NoteEdit"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="AddActivityButton">
+      <property name="text">
+       <string>Aggiungi attività</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
