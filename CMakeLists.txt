@@ -40,7 +40,7 @@ else ()
           mainwindow.cpp
           mainwindow.h
           mainwindow.ui
-          )
+          QListWidgetProduct.cpp QListWidgetProduct.h QListWidgetEvent.cpp QListWidgetEvent.h QListWidgetActivity.cpp QListWidgetActivity.h QListWidgetShoppingList.cpp QListWidgetShoppingList.h QListWidgetSubActivity.cpp QListWidgetSubActivity.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

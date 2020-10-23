@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QListWidgetItem>
+#include <QListWidgetItem>  //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
