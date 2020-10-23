@@ -52,7 +52,10 @@ else ()
           QListWidgetSubActivity.h
           Activity.cpp
           Activity.h
-          Subject.h)
+          Subject.h
+          Observer.h
+          SubActivity.cpp
+          SubActivity.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
