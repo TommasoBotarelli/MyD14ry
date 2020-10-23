@@ -55,7 +55,7 @@ else ()
           Subject.h
           Observer.h
           SubActivity.cpp
-          SubActivity.h)
+          SubActivity.h Event.cpp Event.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

@@ -3,3 +3,20 @@
 //
 
 #include "SubActivity.h"
+
+
+void SubActivity::setTask(const QString &task) {
+    SubActivityActivity::task = task;
+}
+
+const QString &SubActivity::getTask() const {
+    return task;
+}
+
+bool SubActivity::isCompleted() const {
+    return completed;
+}
+
+void SubActivity::setCompleted(bool completed) {
+    SubActivity::completed = completed;
+}

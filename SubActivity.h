@@ -10,13 +10,19 @@
 class SubActivity {
 
 public:
+
     void setTask(const Qstring &task);
+
     const QString &getTask() const;
+
     bool isCompleted() const;
+
     void setCompleted(bool completed);
 
 private:
+
     Qstring task;
+
     bool completed;
 
 };
