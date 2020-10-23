@@ -6,8 +6,7 @@
 #define MYD14RY_QLISTWIDGETEVENT_H
 
 #include <QListWidgetItem>
-
-//TODO inclusione del file di header del tipo dell'oggetto
+#include "Event.h"
 
 class QListWidgetEvent : public QListWidgetItem {
 

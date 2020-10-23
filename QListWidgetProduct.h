@@ -6,8 +6,7 @@
 #define MYD14RY_QLISTWIDGETPRODUCT_H
 
 #include <QListWidgetItem>
-
-//TODO inclusione del file di header del tipo dell'oggetto
+#include "ShoppingProduct.h"
 
 class QListWidgetProduct : public QListWidgetItem {
 

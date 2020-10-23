@@ -8,6 +8,7 @@
 #include <QDate>
 #include <QTime>
 
+
 class Event {
 public:
     const QString &getTask() const;
@@ -18,34 +19,34 @@ public:
 
     void setDate(const QDate &date);
 
-    void setStartTime(const Qtime &starTime);
-
-    void setEndTime(const Qtime &endTime);
-
-    const Qtime &getStartTime() const;
-
-    const Qtime &getEndTime() const;
+    bool isAllDay() const;
 
     void setAllDay(bool allDay);
 
-    const bool &getAllDay() const;
+    const QTime &getStartTime() const;
 
-    void setNote(const Qstring &note);
+    void setStartTime(const QTime &startTime);
 
-    const Qstring &getNote() const;
+    const QTime &getEndTime() const;
+
+    void setEndTime(const QTime &endTime);
+
+    const QString &getNote() const;
+
+    void setNote(const QString &note);
 
 private:
-    Qstring task;
+    QString task;
 
-    Qstring note;
+    QDate date;
 
     bool allDay;
 
-    Qdate date;
+    QTime startTime;
 
-    Qtime startTime;
+    QTime endTime;
 
-    Qtime endTime;
+    QString note;
 
 };
 
