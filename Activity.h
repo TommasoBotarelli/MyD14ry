@@ -10,8 +10,9 @@
 #include <QTime>
 #include "Subject.h"
 #include <memory>
+#include "Observer.h"
+#include "SubActivity.h"
 
-//TODO includere subactivity e observer
 
 class Activity : public Subject {
 
@@ -38,15 +39,15 @@ public:
 
     std::list<SubActivity *> &getSubActivities();
 
-    void addsubActivity(SubActivity *subActivity);
-
-    void removeSubActivity(SubActivity *subActivity);
+    void addsubActivity(SubActivity &subActivity);
 
     void addObserver(Observer *o) override;
 
     void removeObserver(Observer *o) override;
 
-    void notify() override;
+    void notify() const override;
+
+    //TODO capire se abbiamo bisogno di un distruttore per eliminare subActivities senza memoryleak
 
 private:
     QString task;
@@ -54,7 +55,7 @@ private:
     QDate deadlineDate;
     bool completed;
     QString note;
-    std::list<std::unique_ptr<SubActivity>> subActivities;
+    std::list<std::unique_ptr<SubActivity> > subActivities;
     std::list<Observer *> observers;
 };
 

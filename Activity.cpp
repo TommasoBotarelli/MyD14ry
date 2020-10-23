@@ -4,7 +4,6 @@
 
 #include "Activity.h"
 
-//TODO aggiungere definizioni
 
 const QString &Activity::getTask() const {
     return task;
@@ -47,27 +46,31 @@ void Activity::setNote(const QString &note) {
 }
 
 std::list<SubActivity *> &Activity::getSubActivities() {
-    return <#initializer#>;
+    std::list<SubActivity *> list;
+
+    for (auto i : subActivities)
+        list.push_back((*i)->get());
+
+    return &list;
 }
 
 
-void Activity::addsubActivity(SubActivity *subActivity) {
-
-}
-
-void Activity::removeSubActivity(SubActivity *subActivity) {
-
+void Activity::addsubActivity(SubActivity &subActivity) {
+    std::unique_ptr<SubActivity> subA = std::make_unique(subActivity);  //FIXME controllare se la sintassi è giusta
+    subActivities.push_back(subA);
 }
 
 void Activity::addObserver(Observer *o) {
-
+    observers.push_back(o);
 }
 
 void Activity::removeObserver(Observer *o) {
-
+    observers.remove(o);
 }
 
-void Activity::notify() {
-
+void Activity::notify() const {
+    for (auto i : observers)
+        (*i)->update();
 }
+
 

@@ -5,7 +5,7 @@
 #ifndef MYD14RY_SUBJECT_H
 #define MYD14RY_SUBJECT_H
 
-//TODO aggiungi inclusione observer
+#include "Observer.h"
 
 class Subject {
 
@@ -16,7 +16,7 @@ public:
 
     virtual void removeObserver(Observer *o) = 0;
 
-    virtual void notify() = 0;
+    virtual void notify() const = 0;
 };
 
 
