@@ -6,8 +6,7 @@
 #define MYD14RY_QLISTWIDGETACTIVITY_H
 
 #include <QListWidgetItem>
-
-//TODO inclusione del file di header del tipo dell'oggetto
+#include "Activity.h"
 
 class QListWidgetActivity : public QListWidgetItem {
 

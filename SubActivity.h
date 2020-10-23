@@ -4,14 +4,15 @@
 
 #ifndef MYD14RY_SUBACTIVITY_H
 #define MYD14RY_SUBACTIVITY_H
-#include <Qstring>
+
+#include <QString>
 
 
 class SubActivity {
 
 public:
 
-    void setTask(const Qstring &task);
+    void setTask(const QString &task);
 
     const QString &getTask() const;
 
@@ -21,7 +22,7 @@ public:
 
 private:
 
-    Qstring task;
+    QString task;
 
     bool completed;
 

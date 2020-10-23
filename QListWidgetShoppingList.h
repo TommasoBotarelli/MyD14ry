@@ -5,9 +5,8 @@
 #ifndef MYD14RY_QLISTWIDGETSHOPPINGLIST_H
 #define MYD14RY_QLISTWIDGETSHOPPINGLIST_H
 
-#inlcude <QListWidgetItem>
-
-//TODO inclusione del file di header del tipo dell'oggetto
+#include <QListWidgetItem>
+#include "ShoppingList.h"
 
 class QListWidgetShoppingList : public QListWidgetItem {
 

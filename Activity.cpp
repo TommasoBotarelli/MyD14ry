@@ -48,7 +48,7 @@ void Activity::setNote(const QString &note) {
 std::list<SubActivity *> &Activity::getSubActivities() {
     std::list<SubActivity *> list;
 
-    for (auto i : subActivities)
+    for (auto i : Activity::subActivities)
         list.push_back((*i)->get());
 
     return &list;

@@ -59,7 +59,7 @@ else ()
           Event.cpp
           Event.h
           ShoppingProduct.cpp
-          ShoppingProduct.h)
+          ShoppingProduct.h ShoppingList.cpp ShoppingList.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

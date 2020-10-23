@@ -6,7 +6,7 @@
 
 
 void SubActivity::setTask(const QString &task) {
-    SubActivityActivity::task = task;
+    SubActivity::task = task;
 }
 
 const QString &SubActivity::getTask() const {
