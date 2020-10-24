@@ -48,16 +48,16 @@ void Activity::setNote(const QString &note) {
 std::list<SubActivity *> &Activity::getSubActivities() {
     std::list<SubActivity *> list;
 
-    for (auto i : Activity::subActivities)
-        list.push_back((*i)->get());
+    for (auto i = subActivities.begin(); i != subActivities.end(); ++i)
+        list.push_back(i->get());
 
-    return &list;
+    return list;
 }
 
-
-void Activity::addsubActivity(SubActivity &subActivity) {
-    std::unique_ptr<SubActivity> subA = std::make_unique(subActivity);  //FIXME controllare se la sintassi è giusta
-    subActivities.push_back(subA);
+void Activity::addsubActivity(std::unique_ptr<SubActivity> subActivity) {
+    if (subActivity != nullptr) {
+        subActivities.push_back(std::move(subActivity));
+    }
 }
 
 void Activity::addObserver(Observer *o) {
@@ -70,7 +70,7 @@ void Activity::removeObserver(Observer *o) {
 
 void Activity::notify() const {
     for (auto i : observers)
-        (*i)->update();
+        (*i).update();
 }
 
 
