@@ -11,3 +11,32 @@ const QString &ShoppingList::getNameList() const {
 void ShoppingList::setNameList(const QString &nameList) {
     ShoppingList::nameList = nameList;
 }
+
+std::list<ShoppingProduct *> ShoppingList::getProducts() {
+    std::list<ShoppingProduct *> list;
+
+    for (auto i = products.begin(); i != products.end(); ++i)
+        list.push_back(i->get());
+
+    return list;
+}
+
+void ShoppingList::addProduct(std::unique_ptr<ShoppingProduct> product) {
+    if ( product!= nullptr) {
+        products.push_back(std::move(product));
+    }
+}
+
+void ShoppingList::addObserver(Observer *o) {
+    observers.push_back(o);
+}
+
+void ShoppingList::removeObserver(Observer *o) {
+    observers.remove(o);
+}
+
+void ShoppingList::notify() const {
+    for (auto i : observers)
+        (*i).update();
+}
+

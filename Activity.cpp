@@ -54,7 +54,7 @@ std::list<SubActivity *> Activity::getSubActivities() {
     return list;
 }
 
-void Activity::addsubActivity(std::unique_ptr<SubActivity> subActivity) {
+void Activity::addSubActivity(std::unique_ptr<SubActivity> subActivity) {
     if (subActivity != nullptr) {
         subActivities.push_back(std::move(subActivity));
     }
