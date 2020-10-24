@@ -6,6 +6,7 @@
 #define MYD14RY_SHOPPINGLIST_H
 
 #include <QString>
+#include <memory>
 #include<list>
 #include "Subject.h"
 #include "ShoppingProduct.h"
