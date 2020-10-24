@@ -5,6 +5,7 @@ AddActivityView::AddActivityView(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
+    ui->StartDateEdit->setDate(QDate::currentDate());
 }
 
 AddActivityView::~AddActivityView() {
@@ -12,7 +13,7 @@ AddActivityView::~AddActivityView() {
 }
 
 void AddActivityView::on_AddActivityButton_clicked() {
-    //TODO funzione che prende i dati dai relativi widgete e richiama il controller
+    //TODO funzione che prende i dati dai relativi widget e richiama il controller per creare attività
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {

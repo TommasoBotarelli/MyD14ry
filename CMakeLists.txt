@@ -66,7 +66,6 @@ else ()
           ActivityListController.h
           ActivityController.cpp
           ActivityController.h
-          ShoppingList.h
           ActivityList.cpp
           ActivityList.h
           ListOfShoppingList.cpp
