@@ -10,6 +10,7 @@
 #include "Subject.h"
 #include "ShoppingProduct.h"
 
+
 class ShoppingList : public Subject {
 public:
     std::list<Observer*> observers;
