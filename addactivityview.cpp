@@ -12,9 +12,38 @@ AddActivityView::~AddActivityView() {
 }
 
 void AddActivityView::on_AddActivityButton_clicked() {
-
+    //TODO funzione che prende i dati dai relativi widgete e richiama il controller
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
+    std::unique_ptr<SubActivity> subA;
+    ActivityController(activity, subA.get());
 
+    //TODO finire funzione che apre la finestra di aggiunta di una sotto attività
+
+}
+
+void AddActivityView::update() {
+    list.clear();
+
+    for (auto i : activity->getSubActivities()) {
+        QListWidgetSubActivity subA;
+        subA.setText((*i).getTask());
+
+        if ((*i).isCompleted())
+            subA.setCheckState(Qt::Checked);
+        else
+            subA.setCheckState(Qt::Unchecked);
+
+        subA.setSubActivity(*i);
+        list.addItem(subA);
+    }
+}
+
+void AddActivityView::attach() {
+    activity->addObserver(this);
+}
+
+void AddActivityView::detach() {
+    activity->removeObserver(this);
 }

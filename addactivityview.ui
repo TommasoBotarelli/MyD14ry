@@ -30,7 +30,7 @@
         <item>
          <widget class="QLabel" name="NameLabel">
           <property name="text">
-           <string>Nome attività</string>
+           <string>Nome attività:</string>
           </property>
          </widget>
         </item>
@@ -58,7 +58,7 @@
         <item>
          <widget class="QLabel" name="DeadlineDateLabel">
           <property name="text">
-           <string>Data di scadenza</string>
+           <string>Data di scadenza:</string>
           </property>
          </widget>
         </item>

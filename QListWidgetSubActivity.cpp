@@ -7,3 +7,7 @@
 SubActivity *QListWidgetSubActivity::getSubActivity() {
     return subActivity;
 }
+
+void QListWidgetSubActivity::setSubActivity(SubActivity *subA) {
+    subActivity = subA;
+}

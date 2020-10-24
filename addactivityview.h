@@ -2,18 +2,39 @@
 #define ADDACTIVITYVIEW_H
 
 #include <QDialog>
+#include <QListWidget>
+#include <QDate>
+#include <QString>
+#include "Observer.h"
+#include "QListWidgetSubActivity.h"
+#include "ActivityListController.h"
+#include "ActivityController.h"
 
 namespace Ui {
     class AddActivityView;
 }
 
-class AddActivityView : public QDialog {
+class AddActivityView : public Observer, public QDialog {
 Q_OBJECT
 
 public:
-    explicit AddActivityView(QWidget *parent = nullptr);
+    AddActivityView(Activity *activity, ActivityListController *controller, QWidget *parent = nullptr);
 
     ~AddActivityView();
+
+    QDate getDate();
+
+    QDate getDeadlineDate();
+
+    QString getTask();
+
+    QString getNote();
+
+    void update() override;
+
+    void attach() override;
+
+    void detach() override;
 
 private slots:
 
@@ -23,6 +44,12 @@ private slots:
 
 private:
     Ui::AddActivityView *ui;
+
+    QListWidget list;
+
+    Activity *activity;
+
+    ActivityListController *controller;
 };
 
 #endif // ADDACTIVITYVIEW_H

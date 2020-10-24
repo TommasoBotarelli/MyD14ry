@@ -14,6 +14,8 @@ class QListWidgetSubActivity : public QListWidgetItem {
 public:
     SubActivity *getSubActivity();
 
+    void setSubActivity(SubActivity *activity);
+
 private:
     SubActivity *subActivity;
 };

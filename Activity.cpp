@@ -58,6 +58,7 @@ void Activity::addsubActivity(std::unique_ptr<SubActivity> subActivity) {
     if (subActivity != nullptr) {
         subActivities.push_back(std::move(subActivity));
     }
+    notify();
 }
 
 void Activity::addObserver(Observer *o) {

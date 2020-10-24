@@ -61,7 +61,7 @@ else ()
           ShoppingProduct.cpp
           ShoppingProduct.h
           ShoppingList.cpp
-          ShoppingList.h)
+          ShoppingList.h ActivityListController.cpp ActivityListController.h ActivityController.cpp ActivityController.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
