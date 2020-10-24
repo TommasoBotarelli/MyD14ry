@@ -45,7 +45,7 @@ void Activity::setNote(const QString &note) {
     Activity::note = note;
 }
 
-std::list<SubActivity *> &Activity::getSubActivities() {
+std::list<SubActivity *> Activity::getSubActivities() {
     std::list<SubActivity *> list;
 
     for (auto i = subActivities.begin(); i != subActivities.end(); ++i)
@@ -71,6 +71,14 @@ void Activity::removeObserver(Observer *o) {
 void Activity::notify() const {
     for (auto i : observers)
         (*i).update();
+}
+
+Activity::~Activity() {
+    for (auto i : observers)
+        i->detach();
+
+    if (!subActivities.empty())
+        subActivities.erase(subActivities.begin(), subActivities.end());
 }
 
 

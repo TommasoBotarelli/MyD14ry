@@ -37,7 +37,7 @@ public:
 
     void setNote(const QString &note);
 
-    std::list<SubActivity *> &getSubActivities();
+    std::list<SubActivity *> getSubActivities();
 
     void addsubActivity(std::unique_ptr<SubActivity> subActivity);
 
@@ -46,6 +46,8 @@ public:
     void removeObserver(Observer *o) override;
 
     void notify() const override;
+
+    ~Activity() override;
 
     //TODO capire se abbiamo bisogno di un distruttore per eliminare subActivities senza memoryleak
 
