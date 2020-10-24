@@ -33,8 +33,9 @@ std::list<Event*> Calendar::getListOfDay(QDate date) {
     std::list<Event *> list;
 
     for(auto i= Events.begin();i!=Events.end();i++){
-        list.push_back(i->get());
+        if((*i)->getDate()==date){
+            list.push_back(i->get());
+        }
     }
-
     return list;
 }
