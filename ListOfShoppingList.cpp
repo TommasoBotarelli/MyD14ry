@@ -7,6 +7,7 @@ void ListOfShoppingList::addShoppingList(std::unique_ptr<ShoppingList> shoppingL
     if (shoppingList != nullptr) {
         ShoppingLists.push_back(std::move(shoppingList));
     }
+    notify();
 }
 
 void ListOfShoppingList::removeShoppingList(std::unique_ptr<ShoppingList> shoppingList) {
