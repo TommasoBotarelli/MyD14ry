@@ -49,8 +49,6 @@ public:
 
     ~Activity() override;
 
-    //TODO capire se abbiamo bisogno di un distruttore per eliminare subActivities senza memoryleak
-
 private:
     QString task;
     QDate date;
