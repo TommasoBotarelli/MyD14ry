@@ -61,7 +61,13 @@ else ()
           ShoppingProduct.cpp
           ShoppingProduct.h
           ShoppingList.cpp
-          ShoppingList.h ListOfShoppingList.cpp ListOfShoppingList.h Calendar.cpp Calendar.h)
+          ShoppingList.h
+          ActivityList.cpp
+          ActivityList.h
+          ListOfShoppingList.cpp
+          ListOfShoppingList.h
+          Calendar.cpp
+          Calendar.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
