@@ -39,7 +39,7 @@ public:
 
     std::list<SubActivity *> getSubActivities();
 
-    void addsubActivity(std::unique_ptr<SubActivity> subActivity);
+    void addSubActivity(std::unique_ptr<SubActivity> subActivity);
 
     void addObserver(Observer *o) override;
 
