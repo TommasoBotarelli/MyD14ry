@@ -3,6 +3,7 @@
 //
 
 #include "Activity.h"
+#include <memory>
 
 
 const QString &Activity::getTask() const {
@@ -54,9 +55,9 @@ std::list<SubActivity *> Activity::getSubActivities() {
     return list;
 }
 
-void Activity::addSubActivity(std::unique_ptr<SubActivity> subActivity) {
+void Activity::addSubActivity(SubActivity *subActivity) {
     if (subActivity != nullptr) {
-        subActivities.push_back(std::move(subActivity));
+        subActivities.push_back(std::make_unique<SubActivity>(*subActivity));
     }
     notify();
 }
@@ -82,8 +83,5 @@ Activity::~Activity() {
         subActivities.erase(subActivities.begin(), subActivities.end());
 }
 
-Activity::Activity(const Activity &original) {
-    //TODO finire costruttore di copia, attenzione unique_ptr!!!
-}
 
 

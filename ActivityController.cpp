@@ -9,7 +9,7 @@ void ActivityController::setData(QString task, bool completed) {
     subActivity->setTask(task);
     subActivity->setCompleted(completed);
 
-    activity->addSubActivity(std::move(std::make_unique<SubActivity>(*subActivity)));
+    activity->addSubActivity(subActivity);
 
 }
 

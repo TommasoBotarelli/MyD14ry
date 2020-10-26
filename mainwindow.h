@@ -8,13 +8,14 @@
 #include <ActivityListController.h>
 #include "ActivityList.h"
 #include "Activity.h"
+#include "Observer.h"
 //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:

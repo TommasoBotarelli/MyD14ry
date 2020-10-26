@@ -16,7 +16,8 @@ AddActivityView::~AddActivityView() {
 }
 
 void AddActivityView::on_AddActivityButton_clicked() {
-    //TODO funzione che prende i dati dai relativi widget e richiama il controller per creare attività
+    controller->setData(getTask(), getDate(), getDeadlineDate(), false, getNote());
+    (*this).close();
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
@@ -49,20 +50,19 @@ void AddActivityView::detach() {
     activity->removeObserver(this);
 }
 
-//metodi getter che prelevano informazioni dai widget
 
 QDate AddActivityView::getDate() {
-    return QDate();
+    return ui->StartDateEdit->date();
 }
 
 QDate AddActivityView::getDeadlineDate() {
-    return QDate();
+    return ui->DeadlineDateEdit->date();
 }
 
 QString AddActivityView::getTask() {
-    return QString();
+    return ui->NameEdit->displayText();
 }
 
 QString AddActivityView::getNote() {
-    return QString();
+    return ui->NoteEdit->toPlainText();
 }

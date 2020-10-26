@@ -13,7 +13,7 @@
 
 class ActivityList: public Subject {
 public:
-    void addActivity(std::unique_ptr<Activity> activity);
+    void addActivity(Activity *activity);
 
     std::list<Activity*> getActivity();
 
@@ -27,15 +27,11 @@ public:
 
     void notify() const override;
 
-
+    ~ActivityList() override;
 
 private:
     std::list<Activity *> activities;
     std::list<Observer *> observers;
-
-
-
-
 
 };
 
