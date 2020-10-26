@@ -17,7 +17,7 @@ public:
 
     std::list<Activity*> getActivity();
 
-    void removeActivity(std::unique_ptr<Activity> activity);
+    void removeActivity(Activity *activity);
 
     std::list<Activity*> getListOfDay(QDate date);
 
@@ -30,8 +30,8 @@ public:
 
 
 private:
-    std::list<std::unique_ptr<Activity>> activities;
-    std::list<Observer*> observers;
+    std::list<Activity *> activities;
+    std::list<Observer *> observers;
 
 
 

@@ -19,8 +19,8 @@ void ActivityList::addActivity(std::unique_ptr<Activity> activity) {
     }
 }
 
-void ActivityList::removeActivity(std::unique_ptr<Activity> activity) {
-    if(activity != nullptr){
+void ActivityList::removeActivity(Activity *activity) {
+    if (activity != nullptr) {
         activities.remove(activity);
     }
 }
