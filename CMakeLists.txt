@@ -71,7 +71,9 @@ else ()
           ListOfShoppingList.cpp
           ListOfShoppingList.h
           Calendar.cpp
-          Calendar.h)
+          Calendar.h
+          addactivityview.h
+          addactivityview.cpp)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

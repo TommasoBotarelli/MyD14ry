@@ -15,8 +15,11 @@ void ActivityListController::setData(QString task, QDate date, QDate deadlineDat
 
     activity->setCompleted(completed);
     activity->setNote(note);
+
+
+    activityList->addActivity(std::move(std::make_unique<Activity>(*activity)));
 }
 
 void ActivityListController::remove() {
-    activity->
+    //TODO finire funzione
 }

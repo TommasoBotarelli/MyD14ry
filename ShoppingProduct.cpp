@@ -8,14 +8,14 @@ const QString &ShoppingProduct::getName() const {
     return name;
 }
 
-void ShoppingProduct::setName(const QString &name) {
-    ShoppingProduct::name = name;
+void ShoppingProduct::setName(const QString &n) {
+    ShoppingProduct::name = n;
 }
 
 bool ShoppingProduct::isCatched() const {
     return catched;
 }
 
-void ShoppingProduct::setCatched(bool catched) {
-    ShoppingProduct::catched = catched;
+void ShoppingProduct::setCatched(bool c) {
+    ShoppingProduct::catched = c;
 }

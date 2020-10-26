@@ -2,7 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
 #include <QListWidgetItem>
+#include <addactivityview.h>
+#include <ActivityListController.h>
+#include "ActivityList.h"
+#include "Activity.h"
 //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
 QT_BEGIN_NAMESPACE

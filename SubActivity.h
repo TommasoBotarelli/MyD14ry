@@ -12,6 +12,14 @@ class SubActivity {
 
 public:
 
+    SubActivity() = default;
+
+    SubActivity(const SubActivity &original);
+
+    SubActivity &operator=(const SubActivity &) = delete;
+
+    ~SubActivity() = default;
+
     void setTask(const QString &task);
 
     const QString &getTask() const;

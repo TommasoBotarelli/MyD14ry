@@ -82,4 +82,8 @@ Activity::~Activity() {
         subActivities.erase(subActivities.begin(), subActivities.end());
 }
 
+Activity::Activity(const Activity &original) {
+    //TODO finire costruttore di copia, attenzione unique_ptr!!!
+}
+
 

@@ -17,6 +17,11 @@
 class Activity : public Subject {
 
 public:
+
+    Activity() = default;
+
+    Activity(const Activity &original);
+
     const QString &getTask() const;
 
     void setTask(const QString &task);
