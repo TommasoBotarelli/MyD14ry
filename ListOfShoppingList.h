@@ -25,8 +25,6 @@ public:
 
     std::list <ShoppingList *> getList();
 
-private:
-
     std::list<std::unique_ptr<ShoppingList> > ShoppingLists;
 
     std::list<Observer *> observers;

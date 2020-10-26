@@ -27,8 +27,6 @@ public:
 
     void notify() const override;
 
-private:
-
     std::list<std::unique_ptr<Event> > Events;
 
     std::list<Observer *> observers;
