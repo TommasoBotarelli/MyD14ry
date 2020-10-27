@@ -8,8 +8,8 @@ const QString &ShoppingList::getNameList() const {
     return nameList;
 }
 
-void ShoppingList::setNameList(const QString &nameList) {
-    ShoppingList::nameList = nameList;
+void ShoppingList::setNameList(const QString &name) {
+    ShoppingList::nameList = name;
 }
 
 std::list<ShoppingProduct *> ShoppingList::getProducts() {

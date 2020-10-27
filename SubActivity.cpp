@@ -20,3 +20,9 @@ bool SubActivity::isCompleted() const {
 void SubActivity::setCompleted(bool completed) {
     SubActivity::completed = completed;
 }
+
+SubActivity::SubActivity(const SubActivity &original) {
+    task = original.getTask();
+    completed = original.isCompleted();
+}
+

@@ -3,6 +3,7 @@
 //
 
 #include "Activity.h"
+#include <memory>
 
 
 const QString &Activity::getTask() const {
@@ -10,7 +11,10 @@ const QString &Activity::getTask() const {
 }
 
 void Activity::setTask(const QString &task) {
-    Activity::task = task;
+    if (task == "")
+        Activity::task = "Attività";
+    else
+        Activity::task = task;
 }
 
 const QDate &Activity::getDate() const {
@@ -25,8 +29,11 @@ const QDate &Activity::getDeadlineDate() const {
     return deadlineDate;
 }
 
-void Activity::setDeadlineDate(const QDate &deadlineDate) {
-    Activity::deadlineDate = deadlineDate;
+void Activity::setDeadlineDate(const QDate &deadDate) {
+    if (deadDate < Activity::date)
+        Activity::deadlineDate = date;
+    else
+        Activity::deadlineDate = deadDate;
 }
 
 bool Activity::isCompleted() const {
@@ -54,9 +61,9 @@ std::list<SubActivity *> Activity::getSubActivities() {
     return list;
 }
 
-void Activity::addSubActivity(std::unique_ptr<SubActivity> subActivity) {
+void Activity::addSubActivity(SubActivity *subActivity) {
     if (subActivity != nullptr) {
-        subActivities.push_back(std::move(subActivity));
+        subActivities.push_back(std::move(std::make_unique<SubActivity>(*subActivity)));
     }
     notify();
 }
@@ -81,5 +88,6 @@ Activity::~Activity() {
     if (!subActivities.empty())
         subActivities.erase(subActivities.begin(), subActivities.end());
 }
+
 
 

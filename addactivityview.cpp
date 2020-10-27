@@ -1,11 +1,14 @@
 #include "addactivityview.h"
 #include "ui_addactivityview.h"
 
+//TODO FINIRE METODI GETTER
+
 AddActivityView::AddActivityView(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
     ui->StartDateEdit->setDate(QDate::currentDate());
+    ui->DeadlineDateEdit->setDate(QDate::currentDate());
 }
 
 AddActivityView::~AddActivityView() {
@@ -13,31 +16,29 @@ AddActivityView::~AddActivityView() {
 }
 
 void AddActivityView::on_AddActivityButton_clicked() {
-    //TODO funzione che prende i dati dai relativi widget e richiama il controller per creare attività
+    controller->setData(getTask(), getDate(), getDeadlineDate(), false, getNote());
+    (*this).close();
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
-    std::unique_ptr<SubActivity> subA;
-    ActivityController(activity, subA.get());
-
     //TODO finire funzione che apre la finestra di aggiunta di una sotto attività
 
 }
 
 void AddActivityView::update() {
-    list.clear();
+    ui->SubActivityListWidget->clear();
 
     for (auto i : activity->getSubActivities()) {
-        QListWidgetSubActivity subA;
-        subA.setText((*i).getTask());
+        auto subA = new QListWidgetSubActivity();//FIXME controllare se giusto
+        subA->setText((*i).getTask());
 
         if ((*i).isCompleted())
-            subA.setCheckState(Qt::Checked);
+            subA->setCheckState(Qt::Checked);
         else
-            subA.setCheckState(Qt::Unchecked);
+            subA->setCheckState(Qt::Unchecked);
 
-        subA.setSubActivity(*i);
-        list.addItem(subA);
+        subA->setSubActivity(i);
+        ui->SubActivityListWidget->addItem(subA);
     }
 }
 
@@ -47,4 +48,21 @@ void AddActivityView::attach() {
 
 void AddActivityView::detach() {
     activity->removeObserver(this);
+}
+
+
+QDate AddActivityView::getDate() {
+    return ui->StartDateEdit->date();
+}
+
+QDate AddActivityView::getDeadlineDate() {
+    return ui->DeadlineDateEdit->date();
+}
+
+QString AddActivityView::getTask() {
+    return ui->NameEdit->displayText();
+}
+
+QString AddActivityView::getNote() {
+    return ui->NoteEdit->toPlainText();
 }

@@ -15,8 +15,13 @@ void ActivityListController::setData(QString task, QDate date, QDate deadlineDat
 
     activity->setCompleted(completed);
     activity->setNote(note);
+
+
+    activityList->addActivity(activity);
 }
 
 void ActivityListController::remove() {
-    activity->
+    activityList->removeActivity(activity);
+
+    delete activity;
 }

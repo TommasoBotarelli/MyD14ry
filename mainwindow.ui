@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QMainWindow" name="MyD14ry">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>MyD14ry</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -105,12 +105,12 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionActivity">
    <property name="text">
-    <string>Activity</string>
+    <string>Attività</string>
    </property>
   </action>
   <action name="actionEvent">
    <property name="text">
-    <string>Event</string>
+    <string>Evento</string>
    </property>
   </action>
   <action name="actionLista_della_spesa">

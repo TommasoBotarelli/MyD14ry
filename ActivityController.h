@@ -11,7 +11,7 @@
 
 class ActivityController {
 public:
-    ActivityController(Activity *a, SubActivity *subA) : activity(a), subActivity(subA) {};
+    ActivityController(Activity *a, SubActivity *subA) : activity(a), subActivity(subA) {}
 
     void setData(QString task, bool completed);
 

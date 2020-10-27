@@ -8,21 +8,23 @@ std::list<Activity *> ActivityList::getActivity() {
     std::list<Activity *> list;
 
     for (auto i = activities.begin(); i != activities.end(); ++i)
-        list.push_back(i->get());
+        list.push_back(*i);
 
     return list;
 }
 
-void ActivityList::addActivity(std::unique_ptr<Activity> activity) {
-    if ( activity!= nullptr) {
-        activities.push_back(std::move(activity));
+void ActivityList::addActivity(Activity *activity) {
+    if (activity != nullptr) {
+        activities.push_back(activity);
     }
+    notify();
 }
 
-void ActivityList::removeActivity(std::unique_ptr<Activity> activity) {
-    if(activity != nullptr){
+void ActivityList::removeActivity(Activity *activity) {
+    if (activity != nullptr) {
         activities.remove(activity);
     }
+    notify();
 }
 
 void ActivityList::addObserver(Observer *o) {
@@ -38,12 +40,16 @@ void ActivityList::notify() const {
         (*i).update();
 }
 
-std::list<Activity *> ActivityList::getListOfDay(QDate date) {
-    std::list<Activity *> list;
-
-    for (auto i = activities.begin(); i != activities.end(); ++i){
-        if((*i)->getDate()==date)
-            list.push_back(i->get());
+void ActivityList::getListOfDay(QDate date, std::list <Activity*>& l) {
+    for (auto i : l) {
+        if ((*i).getDate() == date)
+            l.push_back(i);
     }
-    return list;
+}
+
+ActivityList::~ActivityList() {
+    activities.clear();
+
+    for (auto i : observers)
+        i->detach();
 }

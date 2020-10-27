@@ -13,13 +13,13 @@
 
 class ActivityList: public Subject {
 public:
-    void addActivity(std::unique_ptr<Activity> activity);
+    void addActivity(Activity *activity);
 
     std::list<Activity*> getActivity();
 
-    void removeActivity(std::unique_ptr<Activity> activity);
+    void removeActivity(Activity *activity);
 
-    std::list<Activity*> getListOfDay(QDate date);
+    void getListOfDay(QDate date, std::list<Activity*>& l);
 
     void addObserver(Observer *o) override;
 
@@ -27,15 +27,11 @@ public:
 
     void notify() const override;
 
-
+    ~ActivityList() override;
 
 private:
-    std::list<std::unique_ptr<Activity>> activities;
-    std::list<Observer*> observers;
-
-
-
-
+    std::list<Activity *> activities;
+    std::list<Observer *> observers;
 
 };
 

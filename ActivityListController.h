@@ -9,8 +9,10 @@
 #include "Activity.h"
 #include "ActivityList.h"
 
-class ActivityListController : public Activity, public ActivityList {
+class ActivityListController {
 public:
+    ActivityListController(Activity *a, ActivityList *aL) : activity(a), activityList(aL) {}
+
     void setData(QString task, QDate date, QDate deadlineDate, bool completed, QString note);
 
     void remove();

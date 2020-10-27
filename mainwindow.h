@@ -2,20 +2,34 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
 #include <QListWidgetItem>
+#include <addactivityview.h>
+#include <ActivityListController.h>
+#include "ActivityList.h"
+#include "Activity.h"
+#include "Observer.h"
+#include "QListWidgetActivity.h"
+
 //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
 
     ~MainWindow();
+
+    void update() override;
+
+    void attach() override;
+
+    void detach() override;
 
 private slots:
 
@@ -37,6 +51,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    ActivityList *activityList;
+
+
 };
 
 #endif // MAINWINDOW_H

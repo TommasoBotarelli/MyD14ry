@@ -14,13 +14,13 @@ namespace Ui {
     class AddActivityView;
 }
 
-class AddActivityView : public Observer, public QDialog {
+class AddActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    AddActivityView(Activity *activity, ActivityListController *controller, QWidget *parent = nullptr);
+    explicit AddActivityView(QWidget *parent = nullptr);
 
-    ~AddActivityView();
+    ~AddActivityView() override;
 
     QDate getDate();
 
@@ -35,6 +35,14 @@ public:
     void attach() override;
 
     void detach() override;
+
+    void setActivity(Activity *activity) {
+        AddActivityView::activity = activity;
+    }
+
+    void setController(ActivityListController *controller) {
+        AddActivityView::controller = controller;
+    }
 
 private slots:
 

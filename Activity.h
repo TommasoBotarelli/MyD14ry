@@ -10,6 +10,7 @@
 #include <QTime>
 #include "Subject.h"
 #include <memory>
+#include <utility>
 #include "Observer.h"
 #include "SubActivity.h"
 
@@ -17,6 +18,9 @@
 class Activity : public Subject {
 
 public:
+
+    Activity() = default;
+
     const QString &getTask() const;
 
     void setTask(const QString &task);
@@ -39,7 +43,7 @@ public:
 
     std::list<SubActivity *> getSubActivities();
 
-    void addSubActivity(std::unique_ptr<SubActivity> subActivity);
+    void addSubActivity(SubActivity *subActivity);
 
     void addObserver(Observer *o) override;
 
