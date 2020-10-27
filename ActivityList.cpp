@@ -40,15 +40,11 @@ void ActivityList::notify() const {
         (*i).update();
 }
 
-std::list<Activity *> ActivityList::getListOfDay(QDate date) {
-    std::list<Activity *> list;
-
-    for (auto i = activities.begin(); i != activities.end(); ++i) {
-        if ((*i)->getDate() == date)
-            list.push_back((*i));
+void ActivityList::getListOfDay(QDate date, std::list <Activity*>& l) {
+    for (auto i : l) {
+        if ((*i).getDate() == date)
+            l.push_back(i);
     }
-
-    return list;
 }
 
 ActivityList::~ActivityList() {

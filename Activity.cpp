@@ -11,7 +11,10 @@ const QString &Activity::getTask() const {
 }
 
 void Activity::setTask(const QString &task) {
-    Activity::task = task;
+    if (task == "")
+        Activity::task = "Attività";
+    else
+        Activity::task = task;
 }
 
 const QDate &Activity::getDate() const {
@@ -26,8 +29,11 @@ const QDate &Activity::getDeadlineDate() const {
     return deadlineDate;
 }
 
-void Activity::setDeadlineDate(const QDate &deadlineDate) {
-    Activity::deadlineDate = deadlineDate;
+void Activity::setDeadlineDate(const QDate &deadDate) {
+    if (deadDate < Activity::date)
+        Activity::deadlineDate = date;
+    else
+        Activity::deadlineDate = deadDate;
 }
 
 bool Activity::isCompleted() const {

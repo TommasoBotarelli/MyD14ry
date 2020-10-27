@@ -13,7 +13,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_actionActivity_triggered() {
     activityList = new ActivityList();
-    activityList->addObserver(this);
+    attach();
 
     auto a = new Activity();
 
@@ -58,7 +58,11 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::update() {
     ui->listWidget->clear();
 
-    for (auto i : activityList->getListOfDay(ui->calendarWidget->selectedDate())) {
+    std::list<Activity*> list;
+
+    activityList->getListOfDay(ui->calendarWidget->selectedDate(), list);
+
+    for (auto i : list) {
         auto aL = new QListWidgetActivity();
         aL->setText(i->getTask());
 
