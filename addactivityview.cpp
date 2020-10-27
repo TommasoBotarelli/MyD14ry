@@ -26,7 +26,7 @@ void AddActivityView::on_AddSubActivityButton_clicked() {
 }
 
 void AddActivityView::update() {
-    list.clear();
+    ui->SubActivityListWidget->clear();
 
     for (auto i : activity->getSubActivities()) {
         auto subA = new QListWidgetSubActivity();//FIXME controllare se giusto
@@ -38,7 +38,7 @@ void AddActivityView::update() {
             subA->setCheckState(Qt::Unchecked);
 
         subA->setSubActivity(i);
-        list.addItem(subA);
+        ui->SubActivityListWidget->addItem(subA);
     }
 }
 

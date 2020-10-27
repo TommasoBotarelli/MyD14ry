@@ -13,6 +13,8 @@ class QListWidgetActivity : public QListWidgetItem {
 public:
     Activity *getActivity();
 
+    void setActivity(Activity *activity);
+
 private:
     Activity *activity;
 };

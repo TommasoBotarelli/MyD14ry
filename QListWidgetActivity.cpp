@@ -7,3 +7,7 @@
 Activity *QListWidgetActivity::getActivity() {
     return activity;
 }
+
+void QListWidgetActivity::setActivity(Activity *activity) {
+    QListWidgetActivity::activity = activity;
+}

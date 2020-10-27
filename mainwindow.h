@@ -9,6 +9,8 @@
 #include "ActivityList.h"
 #include "Activity.h"
 #include "Observer.h"
+#include "QListWidgetActivity.h"
+
 //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +24,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
 
     ~MainWindow();
+
+    void update() override;
+
+    void attach() override;
+
+    void detach() override;
 
 private slots:
 
@@ -43,6 +51,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    ActivityList *activityList;
+
+
 };
 
 #endif // MAINWINDOW_H
