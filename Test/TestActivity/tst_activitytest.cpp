@@ -19,6 +19,8 @@ private slots:
 
     void testSetterGetter();
 
+    void testAddSubactivity();
+
 };
 
 ActivityTest::ActivityTest() {
@@ -56,6 +58,26 @@ void ActivityTest::testSetterGetter() {
     QVERIFY (activity.getNote() == "ciao MARCO come stai? Qua tutto bene!");
     activity.setNote("");
     QVERIFY (activity.getNote() == "");
+}
+
+void ActivityTest::testAddSubactivity() {
+    Activity activity;
+    SubActivity subA;
+    subA.setTask("Pagare bollette");
+    subA.setCompleted(true);
+    SubActivity subB;
+    subB.setTask("Studiare inglese");
+    subB.setCompleted(false);
+
+    activity.addSubActivity(&subA);
+    activity.addSubActivity(&subB);
+    QVERIFY ((activity.getSubActivities()).size() == 2);
+    QVERIFY ((*activity.getSubActivities().begin())->getTask() == "Pagare bollette");
+    QVERIFY ((*activity.getSubActivities().begin())->isCompleted());
+
+    auto i = std::next(activity.getSubActivities().begin(), 1);
+    QVERIFY ((*i)->getTask() == "Studiare inglese");
+    QVERIFY ((*i)->isCompleted() == false);
 }
 
 
