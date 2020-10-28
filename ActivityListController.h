@@ -6,8 +6,10 @@
 #define MYD14RY_ACTIVITYLISTCONTROLLER_H
 
 #include <QString>
+#include <QListWidget>
 #include "Activity.h"
 #include "ActivityList.h"
+#include "QListWidgetActivity.h"
 
 class ActivityListController {
 public:
@@ -16,6 +18,8 @@ public:
     void setData(QString task, QDate date, QDate deadlineDate, bool completed, QString note);
 
     void remove();
+
+    void searchActivityOfDay(QDate date, QListWidget &list);
 
 private:
     Activity *activity;

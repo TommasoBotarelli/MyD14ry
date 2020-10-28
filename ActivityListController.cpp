@@ -25,3 +25,25 @@ void ActivityListController::remove() {
 
     delete activity;
 }
+
+void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {
+    std::list<Activity *> actList;
+
+    activityList->getListOfDay(date, actList);
+
+    list.clear();
+
+    for (auto i : actList) {
+        auto a = new QListWidgetActivity;
+
+        a->setActivity(i);
+        a->setText((*i).getTask());
+
+        if ((*i).isCompleted())
+            a->setCheckState(Qt::Checked);
+        else
+            a->setCheckState(Qt::Unchecked);
+
+        list.addItem(a);
+    }
+}
