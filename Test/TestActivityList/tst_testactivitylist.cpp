@@ -1,7 +1,7 @@
 #include <QtTest>
-#include "/home/marco/CLionProjects/MyD14ry/Activity.h"
-#include "/home/marco/CLionProjects/MyD14ry/ActivityList.h"
-#include "/home/marco/CLionProjects/MyD14ry/SubActivity.h"
+#include "/Users/tommaso/CLionProjects/MyD14ry/Activity.h"
+#include "/Users/tommaso/CLionProjects/MyD14ry/ActivityList.h"
+#include "/Users/tommaso/CLionProjects/MyD14ry/SubActivity.h"
 
 // add necessary includes here
 
@@ -49,20 +49,20 @@ void TestActivityList::testAddGetActivity() {
 
 void TestActivityList::testRemoveActivity() {
     ActivityList actList;
-    Activity *a1;
-    Activity *a2;
+    Activity a1;
+    Activity a2;
 
-    a1->setTask("Attività 1");
-    a2->setTask("Attività 2");
+    a1.setTask("Attività 1");
+    a2.setTask("Attività 2");
 
-    actList.addActivity(a1);
-    actList.addActivity(a2);
+    actList.addActivity(&a1);
+    actList.addActivity(&a2);
 
-    actList.removeActivity(a2);
+    actList.removeActivity(&a2);
     QVERIFY (actList.getActivity().size() == 1);
 
-    actList.removeActivity(a1);
-    QVERIFY (actList.getActivity().empty() == 0);
+    actList.removeActivity(&a1);
+    QVERIFY (actList.getActivity().empty());
 
 }
 

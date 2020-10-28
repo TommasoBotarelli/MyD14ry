@@ -17,12 +17,12 @@ enable_testing(true)
 
 add_executable(TestActivityList
         tst_testactivitylist.cpp
-        /home/marco/CLionProjects/MyD14ry/Activity.h
-        /home/marco/CLionProjects/MyD14ry/Activity.cpp
-        /home/marco/CLionProjects/MyD14ry/ActivityList.h
-        /home/marco/CLionProjects/MyD14ry/ActivityList.cpp
-        /home/marco/CLionProjects/MyD14ry/SubActivity.h
-        /home/marco/CLionProjects/MyD14ry/SubActivity.cpp
+        /Users/tommaso/CLionProjects/MyD14ry/Activity.h
+        /Users/tommaso/CLionProjects/MyD14ry/Activity.cpp
+        /Users/tommaso/CLionProjects/MyD14ry/ActivityList.h
+        /Users/tommaso/CLionProjects/MyD14ry/ActivityList.cpp
+        /Users/tommaso/CLionProjects/MyD14ry/SubActivity.h
+        /Users/tommaso/CLionProjects/MyD14ry/SubActivity.cpp
         )
 add_test(NAME TestActivityList COMMAND TestActivityList)
 
