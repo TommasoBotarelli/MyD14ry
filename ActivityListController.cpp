@@ -7,11 +7,7 @@
 void ActivityListController::setData(QString task, QDate date, QDate deadlineDate, bool completed, QString note) {
     activity->setTask(task);
     activity->setDate(date);
-
-    if (deadlineDate < date)
-        activity->setDeadlineDate(date);
-    else
-        activity->setDeadlineDate(deadlineDate);
+    activity->setDeadlineDate(deadlineDate);
 
     activity->setCompleted(completed);
     activity->setNote(note);

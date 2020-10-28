@@ -17,10 +17,10 @@ enable_testing(true)
 
 add_executable(ActivityTest
         tst_activitytest.cpp
-        /home/tommaso/Scrivania/MyD14ry/Activity.h
-        /home/tommaso/Scrivania/MyD14ry/Activity.cpp
-        /home/tommaso/Scrivania/MyD14ry/SubActivity.h
-        /home/tommaso/Scrivania/MyD14ry/SubActivity.cpp
+        /home/marco/CLionProjects/MyD14ry/Activity.h
+        /home/marco/CLionProjects/MyD14ry/Activity.cpp
+        /home/marco/CLionProjects/MyD14ry/SubActivity.h
+        /home/marco/CLionProjects/MyD14ry/SubActivity.cpp
         )
 add_test(NAME ActivityTest COMMAND ActivityTest)
 
