@@ -1,13 +1,11 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "/home/marco/CLionProjects/MyD14ry/Activity.h"
-#include "/home/marco/CLionProjects/MyD14ry/ActivityList.h"
-#include "/home/marco/CLionProjects/MyD14ry/ActivityListController.h"
+#include "/home/tommaso/Scrivania/MyD14ry/Activity.h"
+#include "/home/tommaso/Scrivania/MyD14ry/ActivityList.h"
 // add necessary includes here
 
-class TestActivtyListController : public QObject
-{
+class TestActivtyListController : public QObject {
     Q_OBJECT
 
 public:

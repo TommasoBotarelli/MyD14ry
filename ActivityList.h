@@ -20,7 +20,7 @@ public:
 
     void removeActivity(Activity *activity);
 
-    void getListOfDay(QDate date, std::list<Activity*>& l);
+    std::list<Activity *> &getListOfDay(QDate date);
 
     void addObserver(Observer *o) override;
 

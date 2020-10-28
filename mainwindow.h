@@ -21,16 +21,15 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(ActivityList *actList, QWidget *parent = nullptr);
 
-    ~MainWindow();
+    ~MainWindow() override;
 
     void update() override;
 
     void attach() override;
 
     void detach() override;
-
 private slots:
 
     void on_actionActivity_triggered();
@@ -53,6 +52,8 @@ private:
     Ui::MainWindow *ui;
 
     ActivityList *activityList;
+
+    ActivityListController *activityListController;
 
 
 };
