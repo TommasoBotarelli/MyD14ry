@@ -19,7 +19,7 @@ private slots:
 
     void testSetterGetter();
 
-    void testAddSubactivity();
+    void testAddGetSubactivity();
 
 };
 
@@ -79,6 +79,7 @@ void ActivityTest::testAddSubactivity() {
     QVERIFY ((*i)->getTask() == "Studiare inglese");
     QVERIFY ((*i)->isCompleted() == false);
 }
+
 
 
 QTEST_APPLESS_MAIN(ActivityTest)
