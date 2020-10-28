@@ -1,7 +1,7 @@
 #include <QtTest>
-#include "/home/marco/CLionProjects/MyD14ry/Activity.h"
-#include "/home/marco/CLionProjects/MyD14ry/SubActivity.h"
-#include "/home/marco/CLionProjects/MyD14ry/ActivityController.h"
+#include "../../Activity.h"
+#include "../../SubActivity.h"
+#include "../../ActivityController.h"
 
 // add necessary includes here
 
