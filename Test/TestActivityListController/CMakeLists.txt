@@ -4,6 +4,8 @@ project(TestActivityListController LANGUAGES CXX)
 
 
 find_package(Qt5Test REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -17,6 +19,8 @@ enable_testing(true)
 
 add_executable(TestActivityListController
         tst_testactivtylistcontroller.cpp
+        /home/marco/CLionProjects/MyD14ry/QListWidgetActivity.h
+        /home/marco/CLionProjects/MyD14ry/QListWidgetActivity.cpp
         /home/marco/CLionProjects/MyD14ry/SubActivity.h
         /home/marco/CLionProjects/MyD14ry/SubActivity.cpp
         /home/marco/CLionProjects/MyD14ry/ActivityList.h
@@ -28,5 +32,5 @@ add_executable(TestActivityListController
 
 add_test(NAME TestActivityListController COMMAND TestActivityListController)
 
-target_link_libraries(TestActivityListController PRIVATE Qt5::Test)
+target_link_libraries(TestActivityListController PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)
 

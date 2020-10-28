@@ -4,6 +4,7 @@
 #include "/home/marco/CLionProjects/MyD14ry/Activity.h"
 #include "/home/marco/CLionProjects/MyD14ry/ActivityList.h"
 #include "/home/marco/CLionProjects/MyD14ry/ActivityListController.h"
+
 // add necessary includes here
 
 class TestActivtyListController : public QObject
@@ -17,9 +18,9 @@ public:
 
 private slots:
 
-    void setData();
+    void TestSetData();
 
-    void remove();
+    void Testremove();
 
 };
 
@@ -33,48 +34,26 @@ TestActivtyListController::~TestActivtyListController()
 
 }
 
-void TestActivtyListController::setData() {
-    Activity activityA;
-    Activity activityB;
+void TestActivtyListController::TestSetData() {
+    Activity activity;
     ActivityList activityList;
+    ActivityListController alC(&activity, &activityList);
 
-    activityA.setTask("Cinema");
-    activityA.setDate(QDate::currentDate());
-    activityA.setCompleted(true);
-
-    activityB.setTask("Meeting");
-    activityB.setDate(QDate::currentDate());
-    activityB.setCompleted(false);
-
-    activityList.addActivity(&activityA);
-    activityList.addActivity(&activityB);
-    QVERIFY ((activityList.getActivity().size())==2);
-    QVERIFY ((*activityList.getActivity().begin())->getTask()=="Cinema");
-    QVERIFY ((*activityList.getActivity().begin())->isCompleted());
-
-    auto i=std::next(activityList.getActivity().begin(),1);
-    QVERIFY ((*i)->getTask()=="Meeting");
-    QVERIFY ((*i)->isCompleted()==false);
+    alC.setData("Test",QDate::currentDate(),QDate::currentDate(),true,"TestNOTE");
+    QVERIFY((*activityList.getActivity().begin())->getTask()=="Test");
 
 }
 
-void TestActivtyListController::remove() {
-    Activity activityA;
-    Activity activityB;
+void TestActivtyListController::Testremove() {
     ActivityList activityList;
+    Activity activity;
+    ActivityListController alC(&activity, &activityList);
 
-    activityA.setTask("Spesa");
-    activityB.setTask("Allenamento");
-    activityA.setDate(QDate::currentDate());
-    activityList.addActivity(&activityA);
-    activityList.addActivity(&activityB);
+    activityList.addActivity(&activity);
+    alC.remove();
+    QVERIFY(activityList.getActivity().empty());
 
-    activityList.removeActivity(&activityA);
-    QVERIFY ((activityList.getActivity().size())==1);
-    QVERIFY((&activityA)== nullptr);
-
-    activityList.removeActivity(&activityB);
-    QVERIFY ((activityList.getActivity().size())==0);
+    //TODO VERIFICARE CHE VENGA CHIAMATO IL DISTRUTTORE
 }
 
 QTEST_APPLESS_MAIN(TestActivtyListController)
