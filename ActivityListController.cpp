@@ -19,7 +19,7 @@ void ActivityListController::setData(QString task, QDate date, QDate deadlineDat
 void ActivityListController::remove() {
     activityList->removeActivity(activity);
 
-    //delete activity;
+    //delete activity; FIXME
 }
 
 void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {

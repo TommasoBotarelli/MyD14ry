@@ -15,9 +15,9 @@ public:
 
 private slots:
 
-    void setData();
+    void TestSetData();
 
-    void remove();
+    void Testremove();
 
 };
 

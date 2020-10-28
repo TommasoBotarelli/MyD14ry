@@ -15,8 +15,6 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
 enable_testing(true)
 
 add_executable(TestActivityListController
@@ -35,5 +33,5 @@ add_executable(TestActivityListController
 
 add_test(NAME TestActivityListController COMMAND TestActivityListController)
 
-target_link_libraries(TestActivityListController PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(TestActivityListController PRIVATE Qt5::Test)
 
