@@ -1,22 +1,23 @@
 #include <QtTest>
 #include "/home/tommaso/Scrivania/MyD14ry/Activity.h"
-#include "/home/tommaso/Scrivania/MyD14ry/Activity.cpp"
+#include "/home/tommaso/Scrivania/MyD14ry/ActivityList.h"
+#include "/home/tommaso/Scrivania/MyD14ry/SubActivity.h"
 
 // add necessary includes here
 
 class TestActivityList : public QObject {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     TestActivityList();
 
     ~TestActivityList();
 
-private
-    slots:
-            void
+private slots:
 
-    test_case1();
+    void testAddGetActivity();
+
+    void testRemoveActivity();
 
 };
 
@@ -28,7 +29,40 @@ TestActivityList::~TestActivityList() {
 
 }
 
-void TestActivityList::test_case1() {
+void TestActivityList::testAddGetActivity() {
+    ActivityList actList;
+    Activity a1;
+    Activity a2;
+
+    a1.setTask("Attività 1");
+    a2.setTask("Attività 2");
+
+    actList.addActivity(&a1);
+    actList.addActivity(&a2);
+
+    QVERIFY (actList.getActivity().size() == 2);
+    QVERIFY ((*actList.getActivity().begin())->getTask() == "Attività 1");
+
+    auto i = std::next(actList.getActivity().begin(), 1);
+    QVERIFY ((*i)->getTask() == "Attività 2");
+}
+
+void TestActivityList::testRemoveActivity() {
+    ActivityList actList;
+    Activity *a1;
+    Activity *a2;
+
+    a1->setTask("Attività 1");
+    a2->setTask("Attività 2");
+
+    actList.addActivity(a1);
+    actList.addActivity(a2);
+
+    actList.removeActivity(a2);
+    QVERIFY (actList.getActivity().size() == 1);
+
+    actList.removeActivity(a1);
+    QVERIFY (actList.getActivity().empty() == 0);
 
 }
 

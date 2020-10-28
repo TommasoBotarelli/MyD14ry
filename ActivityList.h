@@ -7,6 +7,7 @@
 #include "Observer.h"
 #include "Activity.h"
 #include "Subject.h"
+#include "SubActivity.h"
 #include <list>
 #include<memory>
 #include <QDate>
