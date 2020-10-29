@@ -9,6 +9,9 @@ const QString &Event::getTask() const {
 }
 
 void Event::setTask(const QString &task) {
+    if (task=="")
+        Event::task="Evento";
+    else
     Event::task = task;
 }
 
@@ -41,6 +44,11 @@ const QTime &Event::getEndTime() const {
 }
 
 void Event::setEndTime(const QTime &endTime) {
+    if (endTime<=Event::startTime) {
+      QTime eTime=startTime.addSecs(3600);
+        Event::endTime = eTime;
+    }
+    else
     Event::endTime = endTime;
 }
 
