@@ -21,8 +21,12 @@ void AddActivityView::on_AddActivityButton_clicked() {
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
-    //TODO finire funzione che apre la finestra di aggiunta di una sotto attività
+    auto subA = new SubActivity();
 
+    auto c = new ActivityController(activity, subA);
+
+    auto dialog = new AddSubActivityDialog(c);
+    dialog->exec();
 }
 
 void AddActivityView::update() {

@@ -74,6 +74,8 @@ else ()
           Calendar.h
           addactivityview.h
           addactivityview.cpp
+          addsubactivitydialog.h
+          addsubactivitydialog.cpp
           )
 endif ()
 

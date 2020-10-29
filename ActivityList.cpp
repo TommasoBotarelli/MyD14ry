@@ -21,8 +21,20 @@ void ActivityList::addActivity(Activity *activity) {
 }
 
 void ActivityList::removeActivity(Activity *activity) {
+
     if (activity != nullptr) {
-        activities.remove(activity);
+
+        auto i = activities.begin();
+
+        while (i != activities.end()) {
+
+            if ((*i)->getTask() == activity->getTask()) {
+                activities.remove(activity);
+                delete (*i);
+            }
+
+            std::next(i, 1);
+        }
     }
     notify();
 }

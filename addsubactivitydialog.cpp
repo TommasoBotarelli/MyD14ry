@@ -1,8 +1,8 @@
 #include "addsubactivitydialog.h"
 #include "ui_addsubactivitydialog.h"
 
-AddSubActivityDialog::AddSubActivityDialog(QWidget *parent) :
-        QDialog(parent),
+AddSubActivityDialog::AddSubActivityDialog(ActivityController *c, QWidget *parent) :
+        controller(c), QDialog(parent),
         ui(new Ui::AddSubActivityDialog) {
     ui->setupUi(this);
 }
@@ -12,5 +12,11 @@ AddSubActivityDialog::~AddSubActivityDialog() {
 }
 
 void AddSubActivityDialog::on_AddButton_clicked() {
+    controller->setData(getTask(), false);
 
+    this->close();
+}
+
+QString AddSubActivityDialog::getTask() {
+    return ui->NameEdit->text();
 }

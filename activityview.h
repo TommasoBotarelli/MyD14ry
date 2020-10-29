@@ -2,6 +2,9 @@
 #define ACTIVITYVIEW_H
 
 #include <QDialog>
+#include <QListWidgetItem>
+#include "SubActivity.h"
+#include "ActivityController.h"
 
 namespace Ui {
     class ActivityView;

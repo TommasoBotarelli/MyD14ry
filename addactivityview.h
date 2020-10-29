@@ -9,6 +9,7 @@
 #include "QListWidgetSubActivity.h"
 #include "ActivityListController.h"
 #include "ActivityController.h"
+#include "addsubactivitydialog.h"
 
 namespace Ui {
     class AddActivityView;

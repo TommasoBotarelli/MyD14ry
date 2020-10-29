@@ -16,6 +16,10 @@ void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
 }
 
 void ActivityView::on_AddSubactivityButton_clicked() {
+    auto subA = new SubActivity();
+
+    auto c = new ActivityController(activi);
+
 
 }
 
