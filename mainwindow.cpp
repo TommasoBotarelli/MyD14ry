@@ -18,7 +18,7 @@ void MainWindow::on_actionActivity_triggered() {
 
     activityListController = new ActivityListController(&activityList, a);
 
-    auto dialog = new AddActivityView(*a);
+    auto dialog = new AddActivityView(a);
     dialog->setController(activityListController);
 
     dialog->exec();
@@ -34,7 +34,7 @@ void MainWindow::on_actionLista_della_spesa_triggered() {
 }
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date) {
-
+    update();
 }
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {

@@ -3,7 +3,7 @@
 
 //TODO FINIRE METODI GETTER
 
-AddActivityView::AddActivityView(Activity &a, QWidget *parent) :
+AddActivityView::AddActivityView(Activity *a, QWidget *parent) :
         activity(a), QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
@@ -13,6 +13,8 @@ AddActivityView::AddActivityView(Activity &a, QWidget *parent) :
 }
 
 AddActivityView::~AddActivityView() {
+    detach();
+
     delete ui;
 }
 
@@ -24,7 +26,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
 void AddActivityView::on_AddSubActivityButton_clicked() {
     auto subA = new SubActivity();
 
-    auto c = new ActivityController(&activity, subA);
+    auto c = new ActivityController(activity, subA);
 
     auto dialog = new AddSubActivityDialog(c);
     dialog->exec();
@@ -33,26 +35,22 @@ void AddActivityView::on_AddSubActivityButton_clicked() {
 void AddActivityView::update() {
     ui->SubActivityListWidget->clear();
 
-    for (auto i : activity.getSubActivities()) {
-        auto subA = new QListWidgetSubActivity();//FIXME controllare se giusto
+    for (auto i : activity->getSubActivities()) {
+        auto subA = new QListWidgetSubActivity();
+
         subA->setText((*i).getTask());
-
-        if ((*i).isCompleted())
-            subA->setCheckState(Qt::Checked);
-        else
-            subA->setCheckState(Qt::Unchecked);
-
         subA->setSubActivity(i);
+
         ui->SubActivityListWidget->addItem(subA);
     }
 }
 
 void AddActivityView::attach() {
-    activity.addObserver(this);
+    activity->addObserver(this);
 }
 
 void AddActivityView::detach() {
-    activity.removeObserver(this);
+    activity->removeObserver(this);
 }
 
 

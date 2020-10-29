@@ -76,6 +76,8 @@ else ()
           addactivityview.cpp
           addsubactivitydialog.h
           addsubactivitydialog.cpp
+          activityview.h
+          activityview.cpp
           )
 endif ()
 

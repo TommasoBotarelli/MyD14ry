@@ -11,6 +11,7 @@
 #include "Observer.h"
 #include "QListWidgetActivity.h"
 #include "addsubactivitydialog.h"
+#include "activityview.h"
 
 //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
