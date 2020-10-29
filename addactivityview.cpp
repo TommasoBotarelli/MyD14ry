@@ -3,12 +3,13 @@
 
 //TODO FINIRE METODI GETTER
 
-AddActivityView::AddActivityView(QWidget *parent) :
-        QDialog(parent),
+AddActivityView::AddActivityView(Activity &a, QWidget *parent) :
+        activity(a), QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
     ui->StartDateEdit->setDate(QDate::currentDate());
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
+    attach();
 }
 
 AddActivityView::~AddActivityView() {
@@ -23,7 +24,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
 void AddActivityView::on_AddSubActivityButton_clicked() {
     auto subA = new SubActivity();
 
-    auto c = new ActivityController(activity, subA);
+    auto c = new ActivityController(&activity, subA);
 
     auto dialog = new AddSubActivityDialog(c);
     dialog->exec();
@@ -32,7 +33,7 @@ void AddActivityView::on_AddSubActivityButton_clicked() {
 void AddActivityView::update() {
     ui->SubActivityListWidget->clear();
 
-    for (auto i : activity->getSubActivities()) {
+    for (auto i : activity.getSubActivities()) {
         auto subA = new QListWidgetSubActivity();//FIXME controllare se giusto
         subA->setText((*i).getTask());
 
@@ -47,11 +48,11 @@ void AddActivityView::update() {
 }
 
 void AddActivityView::attach() {
-    activity->addObserver(this);
+    activity.addObserver(this);
 }
 
 void AddActivityView::detach() {
-    activity->removeObserver(this);
+    activity.removeObserver(this);
 }
 
 

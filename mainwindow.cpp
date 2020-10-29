@@ -18,8 +18,7 @@ void MainWindow::on_actionActivity_triggered() {
 
     activityListController = new ActivityListController(&activityList, a);
 
-    auto dialog = new AddActivityView();
-    dialog->setActivity(a);
+    auto dialog = new AddActivityView(*a);
     dialog->setController(activityListController);
 
     dialog->exec();
