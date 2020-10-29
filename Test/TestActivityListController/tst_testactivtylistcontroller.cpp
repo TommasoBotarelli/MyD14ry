@@ -22,6 +22,8 @@ private slots:
 
     void Testremove();
 
+    void TestSearchActivityOfDay();
+
 };
 
 TestActivtyListController::TestActivtyListController()
@@ -56,6 +58,18 @@ void TestActivtyListController::Testremove() {
     //TODO VERIFICARE CHE VENGA CHIAMATO IL DISTRUTTORE
 }
 
+void TestActivtyListController::TestSearchActivityOfDay() {
+    Activity activity;
+    ActivityList activityList;
+    ActivityListController alC(&activity,&activityList);
+    QListWidget List;
+
+    activity.setDate(QDate::currentDate());
+    activity.setTask("Test");
+
+    alC.searchActivityOfDay(QDate::currentDate(),List);
+
+}
 QTEST_APPLESS_MAIN(TestActivtyListController)
 
 #include "tst_testactivtylistcontroller.moc"

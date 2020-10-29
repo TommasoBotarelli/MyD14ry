@@ -60,7 +60,7 @@ void ActivityTest::testSetterGetter() {
     QVERIFY (activity.getNote() == "");
 }
 
-void ActivityTest::testAddSubactivity() {
+void ActivityTest::testAddGetSubactivity() {
     Activity activity;
     SubActivity subA;
     subA.setTask("Pagare bollette");
