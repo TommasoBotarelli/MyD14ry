@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    explicit MainWindow(ActivityList *actList, QWidget *parent = nullptr);
+    explicit MainWindow(ActivityList &actList, QWidget *parent = nullptr);
 
     ~MainWindow() override;
 
@@ -51,7 +51,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    ActivityList *activityList;
+    ActivityList activityList;
 
     ActivityListController *activityListController;
 

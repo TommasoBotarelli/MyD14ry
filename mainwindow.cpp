@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(ActivityList *actList, QWidget *parent)
+MainWindow::MainWindow(ActivityList &actList, QWidget *parent)
         : activityList(actList), QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     attach();
@@ -14,11 +14,9 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_actionActivity_triggered() {
 
-    attach();
-
     auto a = new Activity();
 
-    activityListController = new ActivityListController(a, activityList);
+    activityListController = new ActivityListController(&activityList, a);
 
     auto dialog = new AddActivityView();
     dialog->setActivity(a);
@@ -64,7 +62,7 @@ void MainWindow::update() {
 }
 
 void MainWindow::attach() {
-    activityList->addObserver(this);  //TODO SERVE ALTRI OBSERVER!!
+    activityList.addObserver(this);  //TODO SERVE ALTRI OBSERVER!!
 }
 
 void MainWindow::detach() {

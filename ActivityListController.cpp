@@ -39,3 +39,7 @@ void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) 
         list.addItem(a);
     }
 }
+
+void ActivityListController::setActivity(Activity *activity) {
+    ActivityListController::activity = activity;
+}

@@ -1,14 +1,14 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "/home/marco/CLionProjects/MyD14ry/Activity.h"
-#include "/home/marco/CLionProjects/MyD14ry/SubActivity.h"
+#include "../../Activity.h"
+#include "../../SubActivity.h"
 
 
 // add necessary includes here
 
 class ActivityTest : public QObject {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     ActivityTest();
@@ -60,7 +60,7 @@ void ActivityTest::testSetterGetter() {
     QVERIFY (activity.getNote() == "");
 }
 
-void ActivityTest::testAddSubactivity() {
+void ActivityTest::testAddGetSubactivity() {
     Activity activity;
     SubActivity subA;
     subA.setTask("Pagare bollette");

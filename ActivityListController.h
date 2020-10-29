@@ -13,7 +13,7 @@
 
 class ActivityListController {
 public:
-    ActivityListController(Activity *a, ActivityList *aL) : activity(a), activityList(aL) {}
+    explicit ActivityListController(ActivityList *aL, Activity *a = nullptr) : activityList(aL), activity(a) {}
 
     void setData(QString task, QDate date, QDate deadlineDate, bool completed, QString note);
 
@@ -21,10 +21,12 @@ public:
 
     void searchActivityOfDay(QDate date, QListWidget &list);
 
-private:
-    Activity *activity;
+    void setActivity(Activity *activity);
 
+private:
     ActivityList *activityList;
+
+    Activity *activity;
 };
 
 
