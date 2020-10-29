@@ -7,3 +7,6 @@
 Event *QListWidgetEvent::getEvent() {
     return event;
 }
+void QListWidgetEvent::setEvent(Event *event) {
+    QListWidgetEvent::event = event;
+}
