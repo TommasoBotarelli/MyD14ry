@@ -19,19 +19,18 @@ enable_testing(true)
 
 add_executable(TestActivityListController
         tst_testactivtylistcontroller.cpp
-        /home/tommaso/Scrivania/MyD14ry/Activity.h
-        /home/tommaso/Scrivania/MyD14ry/Activity.cpp
-        /home/tommaso/Scrivania/MyD14ry/SubActivity.h
-        /home/tommaso/Scrivania/MyD14ry/SubActivity.cpp
-        /home/tommaso/Scrivania/MyD14ry/ActivityList.h
-        /home/tommaso/Scrivania/MyD14ry/ActivityList.cpp
-        /home/tommaso/Scrivania/MyD14ry/ActivityListController.h
-        /home/tommaso/Scrivania/MyD14ry/ActivityListController.cpp
-        /home/tommaso/Scrivania/MyD14ry/QListWidgetActivity.h
-        /home/tommaso/Scrivania/MyD14ry/QListWidgetActivity.cpp
-        )
+       ../../QListWidgetActivity.h
+        ../../QListWidgetActivity.cpp
+        ../../SubActivity.h
+        ../../SubActivity.cpp
+       ../../ActivityList.h
+       ../../ActivityList.cpp
+       ../../Activity.h
+        ../../Activity.cpp
+        ../../ActivityListController.h
+        ../../ActivityListController.cpp)
 
 add_test(NAME TestActivityListController COMMAND TestActivityListController)
 
-target_link_libraries(TestActivityListController PRIVATE Qt5::Test)
+target_link_libraries(TestActivityListController PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)
 
