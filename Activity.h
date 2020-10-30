@@ -59,7 +59,7 @@ private:
     QDate deadlineDate;
     bool completed;
     QString note;
-    std::list<std::unique_ptr<SubActivity> > subActivities;
+    std::list<std::shared_ptr<SubActivity>> subActivities;
     std::list<Observer *> observers;
 };
 

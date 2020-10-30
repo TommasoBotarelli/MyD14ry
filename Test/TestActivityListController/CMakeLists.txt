@@ -19,16 +19,16 @@ enable_testing(true)
 
 add_executable(TestActivityListController
         tst_testactivtylistcontroller.cpp
-        /home/marco/CLionProjects/MyD14ry/QListWidgetActivity.h
-        /home/marco/CLionProjects/MyD14ry/QListWidgetActivity.cpp
-        /home/marco/CLionProjects/MyD14ry/SubActivity.h
-        /home/marco/CLionProjects/MyD14ry/SubActivity.cpp
-        /home/marco/CLionProjects/MyD14ry/ActivityList.h
-        /home/marco/CLionProjects/MyD14ry/ActivityList.cpp
-        /home/marco/CLionProjects/MyD14ry/Activity.h
-        /home/marco/CLionProjects/MyD14ry/Activity.cpp
-        /home/marco/CLionProjects/MyD14ry/ActivityListController.h
-        /home/marco/CLionProjects/MyD14ry/ActivityListController.cpp)
+       ../../QListWidgetActivity.h
+        ../../QListWidgetActivity.cpp
+        ../../SubActivity.h
+        ../../SubActivity.cpp
+       ../../ActivityList.h
+       ../../ActivityList.cpp
+       ../../Activity.h
+        ../../Activity.cpp
+        ../../ActivityListController.h
+        ../../ActivityListController.cpp)
 
 add_test(NAME TestActivityListController COMMAND TestActivityListController)
 

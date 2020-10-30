@@ -21,8 +21,20 @@ void ActivityList::addActivity(Activity *activity) {
 }
 
 void ActivityList::removeActivity(Activity *activity) {
+
     if (activity != nullptr) {
-        activities.remove(activity);
+
+        auto i = activities.begin();
+
+        while (i != activities.end()) {
+
+            if ((*i)->getTask() == activity->getTask()) {
+                activities.remove(activity);
+                delete (*i);
+            }
+
+            std::next(i, 1);
+        }
     }
     notify();
 }
@@ -40,11 +52,15 @@ void ActivityList::notify() const {
         (*i).update();
 }
 
-void ActivityList::getListOfDay(QDate date, std::list <Activity*>& l) {
-    for (auto i : l) {
-        if ((*i).getDate() == date)
-            l.push_back(i);
+std::list<Activity *> &ActivityList::getListOfDay(QDate date) {
+    auto list = new std::list<Activity *>;
+
+    for (auto i : activities) {
+        if (i->getDate() == date)
+            list->push_back(i);
     }
+
+    return *list;
 }
 
 ActivityList::~ActivityList() {

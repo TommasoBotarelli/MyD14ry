@@ -1,8 +1,8 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "/home/marco/CLionProjects/MyD14ry/Activity.h"
-#include "/home/marco/CLionProjects/MyD14ry/SubActivity.h"
+#include "../../Activity.h"
+#include "../../SubActivity.h"
 
 
 // add necessary includes here

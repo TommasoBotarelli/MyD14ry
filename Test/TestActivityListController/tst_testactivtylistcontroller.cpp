@@ -1,9 +1,9 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "/home/marco/CLionProjects/MyD14ry/Activity.h"
-#include "/home/marco/CLionProjects/MyD14ry/ActivityList.h"
-#include "/home/marco/CLionProjects/MyD14ry/ActivityListController.h"
+#include "../../Activity.h"
+#include "../../ActivityList.h"
+#include "../../ActivityListController.h"
 
 // add necessary includes here
 

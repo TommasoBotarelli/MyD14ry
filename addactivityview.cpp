@@ -3,15 +3,18 @@
 
 //TODO FINIRE METODI GETTER
 
-AddActivityView::AddActivityView(QWidget *parent) :
-        QDialog(parent),
+AddActivityView::AddActivityView(Activity *a, QWidget *parent) :
+        activity(a), QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
     ui->StartDateEdit->setDate(QDate::currentDate());
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
+    attach();
 }
 
 AddActivityView::~AddActivityView() {
+    detach();
+
     delete ui;
 }
 
@@ -21,23 +24,23 @@ void AddActivityView::on_AddActivityButton_clicked() {
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
-    //TODO finire funzione che apre la finestra di aggiunta di una sotto attività
+    auto subA = new SubActivity();
 
+    auto c = new ActivityController(activity, subA);
+
+    auto dialog = new AddSubActivityDialog(c);
+    dialog->exec();
 }
 
 void AddActivityView::update() {
     ui->SubActivityListWidget->clear();
 
     for (auto i : activity->getSubActivities()) {
-        auto subA = new QListWidgetSubActivity();//FIXME controllare se giusto
+        auto subA = new QListWidgetSubActivity();
+
         subA->setText((*i).getTask());
-
-        if ((*i).isCompleted())
-            subA->setCheckState(Qt::Checked);
-        else
-            subA->setCheckState(Qt::Unchecked);
-
         subA->setSubActivity(i);
+
         ui->SubActivityListWidget->addItem(subA);
     }
 }
