@@ -38,11 +38,24 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date) {
 }
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
+    if (QListWidgetActivity *actItem = dynamic_cast<QListWidgetActivity *>(item)) {
 
+        activityListController = new ActivityListController(&activityList, actItem->getActivity());
+
+        auto dialog = new ActivityView(actItem->getActivity(), activityListController);
+        dialog->exec();
+
+    }
 }
 
 void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
+    if (QListWidgetActivity *actItem = dynamic_cast<QListWidgetActivity *>(item)) {
 
+        if (actItem->checkState() == Qt::Checked)
+            actItem->getActivity()->setCompleted(true);
+
+        update();
+    }
 }
 
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {

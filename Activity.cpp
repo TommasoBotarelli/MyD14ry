@@ -82,8 +82,10 @@ void Activity::notify() const {
 }
 
 Activity::~Activity() {
-    for (auto i : observers)
-        i->detach();
+    if (!observers.empty()) {
+        for (auto i : observers)
+            i->detach();
+    }
 
     if (!subActivities.empty())
         subActivities.erase(subActivities.begin(), subActivities.end());

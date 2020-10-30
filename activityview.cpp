@@ -26,10 +26,14 @@ ActivityView::~ActivityView() {
     delete ui;
 }
 
-void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetSubActivity *item) {
-    if (item->checkState() == Qt::Checked)
-        item->getSubActivity()->setCompleted(true);
-    update();
+void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
+    if (QListWidgetSubActivity *subAitem = dynamic_cast<QListWidgetSubActivity *>(item)) {
+
+        if (subAitem->checkState() == Qt::Checked)
+            subAitem->getSubActivity()->setCompleted(true);
+
+        update();
+    }
 }
 
 void ActivityView::on_AddSubactivityButton_clicked() {
