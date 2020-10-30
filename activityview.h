@@ -24,7 +24,7 @@ public:
 
 private slots:
 
-    void on_SubActivityListWidget_itemChanged(QListWidgetSubActivity *item);
+    void on_SubActivityListWidget_itemChanged(QListWidgetItem *item);
 
     void on_AddSubactivityButton_clicked();
 
