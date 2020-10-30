@@ -58,13 +58,11 @@ void TestActivityList::testRemoveActivity() {
     actList.addActivity(&a1);
     actList.addActivity(&a2);
 
-    auto list = actList.getActivity();
-
     actList.removeActivity(&a2);
-    QVERIFY(list.size() == 1);
+    QVERIFY (actList.getActivity().size() == 1);
 
     actList.removeActivity(&a1);
-    QVERIFY(list.empty());
+    QVERIFY (actList.getActivity().empty());
 
 }
 
