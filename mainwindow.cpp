@@ -1,9 +1,10 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow) {
+MainWindow::MainWindow(ActivityList &actList, QWidget *parent)
+        : activityList(actList), QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    attach();
 }
 
 MainWindow::~MainWindow() {
@@ -12,16 +13,13 @@ MainWindow::~MainWindow() {
 
 
 void MainWindow::on_actionActivity_triggered() {
-    activityList = new ActivityList();
-    attach();
 
     auto a = new Activity();
 
-    auto c = new ActivityListController(a, activityList);
+    activityListController = new ActivityListController(&activityList, a);
 
-    auto dialog = new AddActivityView();
-    dialog->setActivity(a);
-    dialog->setController(c);
+    auto dialog = new AddActivityView(a);
+    dialog->setController(activityListController);
 
     dialog->exec();
 
@@ -36,15 +34,28 @@ void MainWindow::on_actionLista_della_spesa_triggered() {
 }
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date) {
-
+    update();
 }
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
+    if (QListWidgetActivity *actItem = dynamic_cast<QListWidgetActivity *>(item)) {
 
+        activityListController = new ActivityListController(&activityList, actItem->getActivity());
+
+        auto dialog = new ActivityView(actItem->getActivity(), activityListController);
+        dialog->exec();
+
+    }
 }
 
 void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
+    if (QListWidgetActivity *actItem = dynamic_cast<QListWidgetActivity *>(item)) {
 
+        if (actItem->checkState() == Qt::Checked)
+            actItem->getActivity()->setCompleted(true);
+
+        update();
+    }
 }
 
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
@@ -58,26 +69,12 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::update() {
     ui->listWidget->clear();
 
-    std::list<Activity*> list;
+    activityListController->searchActivityOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget);
 
-    activityList->getListOfDay(ui->calendarWidget->selectedDate(), list);
-
-    for (auto i : list) {
-        auto aL = new QListWidgetActivity();
-        aL->setText(i->getTask());
-
-        if (i->isCompleted())
-            aL->setCheckState(Qt::Checked);
-        else
-            aL->setCheckState(Qt::Unchecked);
-
-        aL->setActivity(i);
-        ui->listWidget->addItem(aL);
-    }
 }
 
 void MainWindow::attach() {
-    activityList->addObserver(this);  //TODO SERVE ALTRI OBSERVER!!
+    activityList.addObserver(this);  //TODO SERVE ALTRI OBSERVER!!
 }
 
 void MainWindow::detach() {

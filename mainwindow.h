@@ -10,6 +10,8 @@
 #include "Activity.h"
 #include "Observer.h"
 #include "QListWidgetActivity.h"
+#include "addsubactivitydialog.h"
+#include "activityview.h"
 
 //FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
 
@@ -21,16 +23,15 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(ActivityList &actList, QWidget *parent = nullptr);
 
-    ~MainWindow();
+    ~MainWindow() override;
 
     void update() override;
 
     void attach() override;
 
     void detach() override;
-
 private slots:
 
     void on_actionActivity_triggered();
@@ -52,7 +53,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    ActivityList *activityList;
+    ActivityList activityList;
+
+    ActivityListController *activityListController;
 
 
 };

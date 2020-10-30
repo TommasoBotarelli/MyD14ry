@@ -63,7 +63,7 @@ std::list<SubActivity *> Activity::getSubActivities() {
 
 void Activity::addSubActivity(SubActivity *subActivity) {
     if (subActivity != nullptr) {
-        subActivities.push_back(std::move(std::make_unique<SubActivity>(*subActivity)));
+        subActivities.push_back(std::make_shared<SubActivity>(*subActivity));
     }
     notify();
 }
@@ -82,8 +82,10 @@ void Activity::notify() const {
 }
 
 Activity::~Activity() {
-    for (auto i : observers)
-        i->detach();
+    if (!observers.empty()) {
+        for (auto i : observers)
+            i->detach();
+    }
 
     if (!subActivities.empty())
         subActivities.erase(subActivities.begin(), subActivities.end());

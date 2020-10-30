@@ -74,7 +74,13 @@ else ()
           Calendar.h
           addactivityview.h
           addactivityview.cpp
-          CalendarController.cpp CalendarController.h)
+          CalendarController.cpp
+          CalendarController.h
+          addsubactivitydialog.h
+          addsubactivitydialog.cpp
+          activityview.h
+          activityview.cpp
+          )
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

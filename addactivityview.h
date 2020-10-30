@@ -9,6 +9,8 @@
 #include "QListWidgetSubActivity.h"
 #include "ActivityListController.h"
 #include "ActivityController.h"
+#include "addsubactivitydialog.h"
+#include "memory"
 
 namespace Ui {
     class AddActivityView;
@@ -18,7 +20,7 @@ class AddActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit AddActivityView(QWidget *parent = nullptr);
+    explicit AddActivityView(Activity *a, QWidget *parent = nullptr);
 
     ~AddActivityView() override;
 
@@ -36,10 +38,6 @@ public:
 
     void detach() override;
 
-    void setActivity(Activity *activity) {
-        AddActivityView::activity = activity;
-    }
-
     void setController(ActivityListController *controller) {
         AddActivityView::controller = controller;
     }
@@ -52,8 +50,6 @@ private slots:
 
 private:
     Ui::AddActivityView *ui;
-
-    QListWidget list;
 
     Activity *activity;
 

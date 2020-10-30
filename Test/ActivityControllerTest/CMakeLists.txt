@@ -17,12 +17,12 @@ enable_testing(true)
 
 add_executable(ActivityControllerTest
         tst_activitycontrollertest.cpp
-        /Users/tommaso/CLionProjects/MyD14ry/Activity.h
-        /Users/tommaso/CLionProjects/MyD14ry/Activity.cpp
-        /Users/tommaso/CLionProjects/MyD14ry/SubActivity.h
-        /Users/tommaso/CLionProjects/MyD14ry/SubActivity.cpp
-        /Users/tommaso/CLionProjects/MyD14ry/ActivityController.h
-        /Users/tommaso/CLionProjects/MyD14ry/ActivityController.cpp
+        ../../Activity.h
+        ../../Activity.cpp
+        ../../SubActivity.h
+        ../../SubActivity.cpp
+        ../../ActivityController.h
+        ../../ActivityController.cpp
         )
 add_test(NAME ActivityControllerTest COMMAND ActivityControllerTest)
 
