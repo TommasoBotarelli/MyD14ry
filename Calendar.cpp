@@ -11,6 +11,15 @@ void Calendar::addEvent(Event *event) {
     notify();
 }
 
+std::list<Event *> Calendar::getEvent() {
+    std::list<Event *> list;
+
+    for (auto i = Events.begin(); i != Events.end(); ++i)
+        list.push_back(*i);
+
+    return list;
+}
+
 void Calendar::removeEvent(Event *event) {
     if(event!= nullptr){
         Events.remove(event);

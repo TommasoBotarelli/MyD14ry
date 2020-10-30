@@ -17,6 +17,8 @@ public:
 
     void addEvent(Event *event);
 
+    std::list<Event*> getEvent();
+
     void removeEvent(Event *event);
 
     void removeObserver(Observer *o) override;
