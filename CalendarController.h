@@ -14,6 +14,7 @@
 
 class CalendarController{
 public:
+    explicit CalendarController(Calendar *c, Event *e = nullptr) : calendar(c), event(e) {}
     void setData(QString task, QDate date, QString note, QTime startTime, QTime endTime, bool allDay);
     void searchEventOfDay(QDate date, QListWidget &list);
     void remove();
