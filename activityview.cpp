@@ -47,6 +47,8 @@ void ActivityView::on_AddSubactivityButton_clicked() {
 
 void ActivityView::on_DeleteButton_clicked() {
     controller->remove();
+
+    this->close();
 }
 
 

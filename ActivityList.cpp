@@ -28,15 +28,15 @@ void ActivityList::removeActivity(Activity *activity) {
 
         while (i != activities.end()) {
 
-            if ((*i)->getTask() == activity->getTask()) {
-                activities.remove(activity);
+            if (&(**i) == activity) {
                 delete (*i);
+                //activities.erase(i);
             }
 
-            std::next(i, 1);
+            i = std::next(i, 1);
         }
+        notify();
     }
-    notify();
 }
 
 void ActivityList::addObserver(Observer *o) {

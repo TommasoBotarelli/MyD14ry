@@ -78,5 +78,5 @@ void MainWindow::attach() {
 }
 
 void MainWindow::detach() {
-
+    activityList.removeObserver(this);
 }
