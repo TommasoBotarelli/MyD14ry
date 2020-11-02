@@ -5,15 +5,26 @@
 #include "Calendar.h"
 
 
-void Calendar::addEvent(std::unique_ptr<Event> event) {
+void Calendar::addEvent(Event *event) {
     if(event!= nullptr)
-        Events.push_back(std::move(event));
+        Events.push_back(event);
     notify();
 }
 
-void Calendar::removeEvent(std::unique_ptr<Event> event) {
-    if(event!= nullptr)
+std::list<Event *> Calendar::getEvent() {
+    std::list<Event *> list;
+
+    for (auto i = Events.begin(); i != Events.end(); ++i)
+        list.push_back(*i);
+
+    return list;
+}
+
+void Calendar::removeEvent(Event *event) {
+    if(event!= nullptr){
         Events.remove(event);
+    }
+    notify();
 }
 
 void Calendar::addObserver(Observer *o) {
@@ -29,12 +40,14 @@ void Calendar::notify() const {
         (*i).update();
 }
 
-std::list<Event*> Calendar::getListOfDay(QDate date) {
-    std::list<Event *> list;
+std::list<Event*> &Calendar::getListOfDay(QDate date) {
+    auto list = new std::list<Event*>;
 
-    for(auto i= Events.begin();i!=Events.end();i++){
-        if((*i)->getDate()==date)
-            list.push_back(i->get());
+    for (auto i : Events) {
+        if (i->getDate() == date)
+            list->push_back(i);
     }
-    return list;
-}
+    return *list;
+    }
+
+

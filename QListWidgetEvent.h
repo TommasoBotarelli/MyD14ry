@@ -12,7 +12,7 @@ class QListWidgetEvent : public QListWidgetItem {
 
 public:
     Event *getEvent();
-
+    void setEvent(Event *event);
 private:
     Event *event;
 };

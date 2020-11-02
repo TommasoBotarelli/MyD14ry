@@ -74,6 +74,8 @@ else ()
           Calendar.h
           addactivityview.h
           addactivityview.cpp
+          CalendarController.cpp
+          CalendarController.h
           addsubactivitydialog.h
           addsubactivitydialog.cpp
           activityview.h
