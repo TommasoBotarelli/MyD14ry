@@ -25,7 +25,7 @@ public:
 
     void addObserver(Observer *o) override;
 
-    void getListOfDay(QDate date, std::list<Event*>& l);
+    std::list<Event*> &getListOfDay(QDate date);
 
     void notify() const override;
 

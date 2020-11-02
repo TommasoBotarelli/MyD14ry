@@ -40,10 +40,14 @@ void Calendar::notify() const {
         (*i).update();
 }
 
-void Calendar::getListOfDay(QDate date, std::list<Event *> &l) {
-    for (auto i : l) {
-        if ((*i).getDate() == date)
-            l.push_back(i);
+std::list<Event*> &Calendar::getListOfDay(QDate date) {
+    auto list = new std::list<Event*>;
+
+    for (auto i : Events) {
+        if (i->getDate() == date)
+            list->push_back(i);
     }
-}
+    return *list;
+    }
+
 

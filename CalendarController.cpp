@@ -11,16 +11,14 @@ void CalendarController::setData(QString task, QDate date, QString note, QTime s
     event->setStartTime(startTime);
     event->setEndTime(endTime);
     event->setAllDay(allDay);
+
+    calendar->addEvent(event);
 }
 
 void CalendarController::searchEventOfDay(QDate date, QListWidget &list) {
-    std::list<Event *> evList;
-
-   calendar->getListOfDay(date,evList);
-
     list.clear();
 
-    for (auto i : evList) {
+    for (auto i : calendar->getListOfDay(date)) {
         auto a = new QListWidgetEvent;
 
         a->setEvent(i);

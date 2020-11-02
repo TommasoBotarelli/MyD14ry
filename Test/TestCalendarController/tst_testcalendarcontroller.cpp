@@ -19,9 +19,9 @@ public:
     ~TestCalendarController() override;
 
 private slots:
-   // void testSetData();
+    void testSetData();
     void testSearchEventOfDay();
-    //void testRemove();
+    void testRemove();
 
 };
 
@@ -35,7 +35,14 @@ TestCalendarController::~TestCalendarController()
 
 }
 
+void TestCalendarController::testSetData() {
+    Event event;
+    Calendar calendar;
+    CalendarController CC(&calendar,&event);
 
+    CC.setData("Task",QDate::currentDate(),"uuuuuuuuuu",QTime::currentTime(),QTime::currentTime(),true);
+    QVERIFY((*calendar.getEvent().begin())->getTask()=="Task");
+}
 
 void TestCalendarController::testSearchEventOfDay() {
     Event event;
@@ -49,6 +56,10 @@ void TestCalendarController::testSearchEventOfDay() {
 
     CC.searchEventOfDay(QDate::currentDate(),List);
     QVERIFY(List.count()==1);
+}
+
+void TestCalendarController::testRemove() {
+    //TODO RIVEDERE E IMPLEMENTARE REMOVE
 }
 
 QTEST_MAIN(TestCalendarController)
