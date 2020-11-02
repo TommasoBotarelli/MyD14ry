@@ -19,8 +19,8 @@ public:
     ~TestCalendarController() override;
 
 private slots:
-    void testSetData();
-    //void testSearchEventOfDay();
+   // void testSetData();
+    void testSearchEventOfDay();
     //void testRemove();
 
 };
@@ -35,16 +35,22 @@ TestCalendarController::~TestCalendarController()
 
 }
 
-void TestCalendarController::testSetData() {
+
+
+void TestCalendarController::testSearchEventOfDay() {
     Event event;
     Calendar calendar;
-    CalendarController CC(&calendar,&event);
+    CalendarController CC(&calendar, &event);
+    QListWidget List;
 
-    CC.setData("Task", QDate::currentDate(), "bla bla bla", QTime::currentTime(), QTime::currentTime(),true);
-    QVERIFY((*calendar.getEvent().begin())->getTask()=="Task");
+    event.setDate(QDate::currentDate());
+    event.setTask("Test");
+    calendar.addEvent(&event);
+
+    CC.searchEventOfDay(QDate::currentDate(),List);
+    QVERIFY(List.count()==1);
 }
 
-
-QTEST_APPLESS_MAIN(TestCalendarController)
+QTEST_MAIN(TestCalendarController)
 
 #include "tst_testcalendarcontroller.moc"
