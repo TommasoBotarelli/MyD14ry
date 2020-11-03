@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include "QListWidgetSubActivity.h"
 #include "ActivityListController.h"
+#include "mainwindow.h"
 
 namespace Ui {
     class ActivityView;
@@ -28,9 +29,9 @@ private slots:
 
     void on_AddSubactivityButton_clicked();
 
-    //void on_pushButton_clicked();     //FIXME
-
     void on_DeleteButton_clicked();
+
+    void on_CompletedCheckBox_stateChanged(int arg1);
 
 public:
     void update() override;

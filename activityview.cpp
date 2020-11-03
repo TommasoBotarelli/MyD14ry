@@ -29,8 +29,10 @@ ActivityView::~ActivityView() {
 void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
     if (QListWidgetSubActivity *subAitem = dynamic_cast<QListWidgetSubActivity *>(item)) {
 
-        if (subAitem->checkState() == Qt::Checked)
+        if (subAitem->checkState() == 2)
             subAitem->getSubActivity()->setCompleted(true);
+        else if (subAitem->checkState() == 0)
+            subAitem->getSubActivity()->setCompleted(false);
 
         update();
     }
@@ -53,6 +55,10 @@ void ActivityView::on_DeleteButton_clicked() {
 
 
 void ActivityView::update() {
+
+    if (activity->isCompleted())
+        ui->CompletedCheckBox->setCheckState(Qt::Checked);
+
     ui->SubActivityListWidget->clear();
 
     for (auto i : activity->getSubActivities()) {
@@ -78,3 +84,13 @@ void ActivityView::attach() {
 void ActivityView::detach() {
     activity->removeObserver(this);
 }
+
+void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
+    if (arg1 == 0)
+        activity->setCompleted(false);
+
+    if (arg1 == 2)
+        activity->setCompleted(true);
+}
+
+

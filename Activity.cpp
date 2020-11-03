@@ -82,11 +82,6 @@ void Activity::notify() const {
 }
 
 Activity::~Activity() {
-    if (!observers.empty()) {
-        for (auto i : observers)
-            i->detach();    //FIXME CAUSA SIGSEGV
-    }
-
     if (!subActivities.empty())
         subActivities.erase(subActivities.begin(), subActivities.end());
 }

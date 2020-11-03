@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
-    ActivityList activityList;
+    auto activityList = new ActivityList;
 
     MainWindow w(activityList);
     w.show();

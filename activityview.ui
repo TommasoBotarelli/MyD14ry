@@ -63,10 +63,16 @@
       </item>
       <item>
        <widget class="QCheckBox" name="CompletedCheckBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="text">
          <string>Completata</string>
         </property>
         <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
          <bool>false</bool>
         </property>
        </widget>
@@ -85,7 +91,14 @@
      </layout>
     </item>
     <item>
-     <widget class="QListWidget" name="SubActivityListWidget"/>
+     <widget class="QListWidget" name="SubActivityListWidget">
+      <property name="editTriggers">
+       <set>QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QPushButton" name="AddSubactivityButton">
