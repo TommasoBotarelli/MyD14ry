@@ -18,10 +18,10 @@ void ActivityListController::setData(QString task, QDate date, QDate deadlineDat
 
 void ActivityListController::remove() {
     activityList->removeActivity(activity);
+    activity = nullptr;
 }
 
 void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {
-    list.clear();
 
     for (auto i : (activityList->getListOfDay(date))) {
         auto a = new QListWidgetActivity;

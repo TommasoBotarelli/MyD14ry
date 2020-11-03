@@ -20,7 +20,7 @@ class AddActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit AddActivityView(Activity *a, QWidget *parent = nullptr);
+    explicit AddActivityView(Activity *a, ActivityListController *actListC, QWidget *parent = nullptr);
 
     ~AddActivityView() override;
 

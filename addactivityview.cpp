@@ -3,8 +3,8 @@
 
 //TODO FINIRE METODI GETTER
 
-AddActivityView::AddActivityView(Activity *a, QWidget *parent) :
-        activity(a), QDialog(parent),
+AddActivityView::AddActivityView(Activity *a, ActivityListController *actListC, QWidget *parent) :
+        activity(a), controller(actListC), QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
     ui->StartDateEdit->setDate(QDate::currentDate());
@@ -19,8 +19,15 @@ AddActivityView::~AddActivityView() {
 }
 
 void AddActivityView::on_AddActivityButton_clicked() {
-    controller->setData(getTask(), getDate(), getDeadlineDate(), false, getNote());
-    (*this).close();
+
+    if (getTask() == "")
+        ui->NameEdit->setText("INSERISCI ATTIVITÀ!!!");
+
+    if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
+        controller->setData(getTask(), getDate(), getDeadlineDate(), false, getNote());
+        (*this).close();
+    }
+
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
