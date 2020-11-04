@@ -21,10 +21,20 @@ std::list<Event *> Calendar::getEvent() {
 }
 
 void Calendar::removeEvent(Event *event) {
-    if(event!= nullptr){
-        Events.remove(event);
+    if (event != nullptr) {
+
+        auto i = Events.begin();
+
+        while (i != Events.end()) {
+
+            if (&(**i) == event) {
+                delete event;
+            }
+
+            i = std::next(i, 1);
+        }
+        notify();
     }
-    notify();
 }
 
 void Calendar::addObserver(Observer *o) {
@@ -48,6 +58,6 @@ std::list<Event*> &Calendar::getListOfDay(QDate date) {
             list->push_back(i);
     }
     return *list;
-    }
+}
 
 

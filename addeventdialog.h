@@ -12,7 +12,7 @@ class AddEventDialog : public QDialog {
 Q_OBJECT
 
 public:
-    explicit AddEventDialog(CalendarController *c, QWidget *parent = nullptr);
+    explicit AddEventDialog(CalendarController *c, Event *e, QWidget *parent = nullptr);
 
     const QString getTask();
 
@@ -32,12 +32,14 @@ private slots:
 
     void on_AddButton_clicked();
 
-    void on_checkBox_stateChanged(int arg1);
+    void on_AllDayCheckBox_stateChanged(int arg1);
 
 private:
     Ui::AddEventDialog *ui;
 
     CalendarController *controller;
+
+    Event *event;
 };
 
 #endif // ADDEVENTDIALOG_H

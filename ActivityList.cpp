@@ -29,8 +29,7 @@ void ActivityList::removeActivity(Activity *activity) {
         while (i != activities.end()) {
 
             if (&(**i) == activity) {
-                delete *i;
-                //delete activity;
+                delete activity;
                 //activities.remove(*i);
             }
 

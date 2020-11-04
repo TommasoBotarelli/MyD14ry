@@ -1,8 +1,8 @@
 #include "addeventdialog.h"
 #include "ui_addeventdialog.h"
 
-AddEventDialog::AddEventDialog(CalendarController *c, QWidget *parent) :
-        controller(c), QDialog(parent),
+AddEventDialog::AddEventDialog(CalendarController *c, Event *e, QWidget *parent) :
+        controller(c), event(e), QDialog(parent),
         ui(new Ui::AddEventDialog) {
     ui->setupUi(this);
 
@@ -17,7 +17,7 @@ AddEventDialog::~AddEventDialog() {
 
 void AddEventDialog::on_AddButton_clicked() {
     if (ui->AllDayCheckBox->isChecked())
-        on_checkBox_stateChanged(2);
+        on_AllDayCheckBox_stateChanged(2);
 
     if (getTask() == "")
         ui->NameLineEdit->setText("INSERISCI EVENTO!!!");
@@ -30,13 +30,17 @@ void AddEventDialog::on_AddButton_clicked() {
     }
 }
 
-void AddEventDialog::on_checkBox_stateChanged(int arg1) {
+void AddEventDialog::on_AllDayCheckBox_stateChanged(int arg1) {
     if (arg1 == 2) {
+        event->setAllDay(true);
         QTime startTime(0, 0);
         QTime endTime(23, 59);
         ui->StartTimeEdit->setTime(startTime);
         ui->EndTimeEdit->setTime(endTime);
     }
+
+    if (arg1 == 0)
+        event->setAllDay(false);
 }
 
 const QString AddEventDialog::getTask() {
