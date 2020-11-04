@@ -29,8 +29,9 @@ void ActivityList::removeActivity(Activity *activity) {
         while (i != activities.end()) {
 
             if (&(**i) == activity) {
-                //activities.erase(i);
-                delete activity;
+                delete *i;
+                //delete activity;
+                //activities.remove(*i);
             }
 
             i = std::next(i, 1);

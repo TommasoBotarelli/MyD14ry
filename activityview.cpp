@@ -48,8 +48,8 @@ void ActivityView::on_AddSubactivityButton_clicked() {
 }
 
 void ActivityView::on_DeleteButton_clicked() {
+    detach();
     controller->remove();
-
     this->close();
 }
 
