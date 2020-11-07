@@ -80,6 +80,10 @@ else ()
           addsubactivitydialog.cpp
           activityview.h
           activityview.cpp
+          addeventdialog.h
+          addeventdialog.cpp
+          eventview.h
+          eventview.cpp
           )
 endif ()
 

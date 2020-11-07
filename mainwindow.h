@@ -4,16 +4,24 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QListWidgetItem>
-#include <addactivityview.h>
-#include <ActivityListController.h>
-#include "ActivityList.h"
-#include "Activity.h"
 #include "Observer.h"
+
+//ATTIVITÀ
+#include "Activity.h"
+#include "ActivityList.h"
+#include "addactivityview.h"
+#include "ActivityListController.h"
 #include "QListWidgetActivity.h"
 #include "addsubactivitydialog.h"
 #include "activityview.h"
 
-//FIXME una volta introdotti i qlistwidgetitem specifici eliminare questa inclusione
+//EVENTO
+#include "Event.h"
+#include "CalendarController.h"
+#include "Calendar.h"
+#include "QListWidgetEvent.h"
+#include "addeventdialog.h"
+#include "eventview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,7 +31,7 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    explicit MainWindow(ActivityList *actList, QWidget *parent = nullptr);
+    explicit MainWindow(ActivityList *actList, Calendar *cal, QWidget *parent = nullptr);
 
     ~MainWindow() override;
 
@@ -57,8 +65,11 @@ private:
 
     ActivityList *activityList;
 
+    Calendar *calendar;
+
     ActivityListController *activityListController;
 
+    CalendarController *calendarController;
 
 };
 

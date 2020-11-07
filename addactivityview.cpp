@@ -25,6 +25,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
 
     if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
         controller->setData(getTask(), getDate(), getDeadlineDate(), false, getNote());
+        detach();
         (*this).close();
     }
 

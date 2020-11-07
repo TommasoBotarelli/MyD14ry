@@ -1,8 +1,9 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(ActivityList *actList, QWidget *parent)
-        : activityList(actList), QMainWindow(parent), ui(new Ui::MainWindow) {
+MainWindow::MainWindow(ActivityList *actList, Calendar *cal, QWidget *parent)
+        : activityList(actList),
+          calendar(cal), QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     attach();
 }
@@ -25,7 +26,12 @@ void MainWindow::on_actionActivity_triggered() {
 }
 
 void MainWindow::on_actionEvent_triggered() {
+    auto e = new Event();
 
+    calendarController = new CalendarController(calendar, e);
+
+    auto dialog = new AddEventDialog(calendarController, e);
+    dialog->exec();
 }
 
 void MainWindow::on_actionLista_della_spesa_triggered() {
@@ -60,6 +66,13 @@ void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
 }
 
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
+    if (QListWidgetEvent *eventItem = dynamic_cast<QListWidgetEvent * >(item)) {
+
+        calendarController = new CalendarController(calendar, eventItem->getEvent());
+
+        auto dialog = new EventView(eventItem->getEvent(), calendarController);
+        dialog->exec();
+    }
 
 }
 
@@ -73,14 +86,21 @@ void MainWindow::update() {
         activityListController->searchActivityOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget);
     }
 
+    if (!calendar->getEvent().empty()) {
+        ui->listWidget_2->clear();
+        calendarController->searchEventOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget_2);
+    }
+
 }
 
 void MainWindow::attach() {
     activityList->addObserver(this);  //TODO SERVE ALTRI OBSERVER!!
+    calendar->addObserver(this);
 }
 
 void MainWindow::detach() {
     activityList->removeObserver(this);
+    calendar->removeObserver(this);
 }
 
 void MainWindow::on_RefreshButton_clicked() {

@@ -2,6 +2,8 @@
 #define EVENTVIEW_H
 
 #include <QDialog>
+#include "Event.h"
+#include "CalendarController.h"
 
 namespace Ui {
     class EventView;
@@ -11,9 +13,9 @@ class EventView : public QDialog {
 Q_OBJECT
 
 public:
-    explicit EventView(QWidget *parent = nullptr);
+    explicit EventView(Event *e, CalendarController *c, QWidget *parent = nullptr);
 
-    ~EventView();
+    ~EventView() override;
 
 private slots:
 
@@ -21,6 +23,10 @@ private slots:
 
 private:
     Ui::EventView *ui;
+
+    Event *event;
+
+    CalendarController *controller;
 };
 
 #endif // EVENTVIEW_H
