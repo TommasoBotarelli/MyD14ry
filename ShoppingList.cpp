@@ -16,12 +16,12 @@ std::list<ShoppingProduct *> ShoppingList::getProducts() {
     std::list<ShoppingProduct *> list;
 
     for (auto i = products.begin(); i != products.end(); ++i)
-        list.push_back(i->get());
+        list.push_back(*i);
 
     return list;
 }
 
-void ShoppingList::addProduct(std::unique_ptr<ShoppingProduct> product) {
+void ShoppingList::addProduct(ShoppingProduct *product) {
     if ( product!= nullptr) {
         products.push_back(std::move(product));
     }

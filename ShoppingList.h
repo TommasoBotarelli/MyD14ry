@@ -26,13 +26,13 @@ public:
 
     void setNameList(const QString &nameList);
 
-    void addProduct(std::unique_ptr<ShoppingProduct> product);
+    void addProduct(ShoppingProduct *product);
 
     std::list<ShoppingProduct*> getProducts();
 
 private:
     QString nameList;
-    std::list<std::unique_ptr<ShoppingProduct>> products;
+    std::list<ShoppingProduct*> products;
 
 };
 
