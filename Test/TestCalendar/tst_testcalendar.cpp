@@ -36,8 +36,8 @@ void TestCalendar::testAddGetEvent() {
     e1.setTask("Compleanno");
     e2.setTask("Halloween");
 
-    calendar.addEvent(& e1);
-    calendar.addEvent(& e2);
+    calendar.addEvent(&e1);
+    calendar.addEvent(&e2);
 
     QVERIFY(calendar.getEvent().size()==2);
     QVERIFY((*calendar.getEvent().begin())->getTask()=="Compleanno");
@@ -61,7 +61,7 @@ void TestCalendar::testRemoveEvent() {
     QVERIFY(calendar.getEvent().size()==1);
 
     calendar.removeEvent(&e2);
-    QVERIFY(calendar.getEvent().size()==0);
+    QVERIFY(calendar.getEvent().empty());
 
 }
 

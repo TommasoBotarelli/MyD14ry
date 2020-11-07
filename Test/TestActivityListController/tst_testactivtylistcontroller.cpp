@@ -9,7 +9,7 @@
 
 class TestActivtyListController : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     TestActivtyListController();
@@ -20,7 +20,9 @@ private slots:
 
     void TestSetData();
 
-    void Testremove();
+    // void TestRemove(); //TODO rivedere funzione remove
+
+    void TestSearchActivityOfDay();
 
 };
 
@@ -37,25 +39,28 @@ TestActivtyListController::~TestActivtyListController()
 void TestActivtyListController::TestSetData() {
     Activity activity;
     ActivityList activityList;
-    ActivityListController alC(&activity, &activityList);
+    ActivityListController alC(&activityList, &activity);
 
     alC.setData("Test",QDate::currentDate(),QDate::currentDate(),true,"TestNOTE");
     QVERIFY((*activityList.getActivity().begin())->getTask()=="Test");
 
 }
 
-void TestActivtyListController::Testremove() {
-    ActivityList activityList;
+void TestActivtyListController::TestSearchActivityOfDay() {
     Activity activity;
-    ActivityListController alC(&activity, &activityList);
+    ActivityList activityList;
+    ActivityListController alC(&activityList, &activity);
+    QListWidget List;
 
+    activity.setDate(QDate::currentDate());
+    activity.setTask("Test");
     activityList.addActivity(&activity);
-    alC.remove();
-    QVERIFY(activityList.getActivity().empty());
 
-    //TODO VERIFICARE CHE VENGA CHIAMATO IL DISTRUTTORE
+    alC.searchActivityOfDay(QDate::currentDate(),List);
+    QVERIFY(List.count()==1);
+
 }
-
-QTEST_APPLESS_MAIN(TestActivtyListController)
+QTEST_MAIN(TestActivtyListController)
 
 #include "tst_testactivtylistcontroller.moc"
+
