@@ -92,6 +92,8 @@ else ()
           addshoppingproductdialog.cpp
           addshoppinglistdialog.h
           addshoppinglistdialog.cpp
+          shoppinglistview.h
+          shoppinglistview.cpp
           )
 endif ()
 

@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(ActivityList *actList, Calendar *cal, QWidget *parent)
+MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL, QWidget *parent)
         : activityList(actList),
-          calendar(cal), QMainWindow(parent), ui(new Ui::MainWindow) {
+          calendar(cal),
+          shopList(sL),
+          QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     attach();
 }
@@ -35,7 +37,12 @@ void MainWindow::on_actionEvent_triggered() {
 }
 
 void MainWindow::on_actionLista_della_spesa_triggered() {
+    auto s = new ShoppingList();
 
+    shopListController = new ListOfShoppingListController(s, shopList);
+
+    auto dialog = new AddShoppingListDialog(s, shopListController);
+    dialog->exec();
 }
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date) {
@@ -52,7 +59,7 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
-                delete activityListController;      //FIXME controllare se tutto ok e cambiare a tutti i metodi che usano il new
+                delete activityListController;
             }
         }
 
@@ -81,7 +88,7 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
-                delete calendarController;      //FIXME controllare se tutto ok e cambiare a tutti i metodi che usano il new
+                delete calendarController;
             }
         }
     }
@@ -89,7 +96,19 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
 }
 
 void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
+    if (QListWidgetShoppingList *shopListItem = dynamic_cast<QListWidgetShoppingList * >(item)) {
 
+        shopListController = new ListOfShoppingListController(shopListItem->getShoppingList(), shopList);
+
+        auto dialog = new ShoppingListView(shopListItem->getShoppingList(), shopListController);
+
+        while (dialog->exec()) {
+            if (dialog->close()) {
+                delete dialog;
+                delete shopListController;
+            }
+        }
+    }
 }
 
 void MainWindow::update() {
@@ -102,16 +121,24 @@ void MainWindow::update() {
         ui->listWidget_2->clear();
         calendarController->searchEventOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget_2);
     }
+
+    if (!shopList->getList().empty()) {
+        ui->listWidget_3->clear();
+        shopListController->getLists(*ui->listWidget_3);
+    }
+
 }
 
 void MainWindow::attach() {
-    activityList->addObserver(this);  //TODO SERVE ALTRI OBSERVER!!
+    activityList->addObserver(this);
     calendar->addObserver(this);
+    shopList->addObserver(this);
 }
 
 void MainWindow::detach() {
     activityList->removeObserver(this);
     calendar->removeObserver(this);
+    shopList->removeObserver(this);
 }
 
 void MainWindow::on_RefreshButton_clicked() {

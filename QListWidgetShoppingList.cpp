@@ -7,3 +7,7 @@
 ShoppingList *QListWidgetShoppingList::getShoppingList() {
     return shoppingList;
 }
+
+void QListWidgetShoppingList::setShoppingList(ShoppingList *sL) {
+    shoppingList = sL;
+}

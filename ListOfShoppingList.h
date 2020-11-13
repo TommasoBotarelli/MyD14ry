@@ -25,7 +25,11 @@ public:
 
     std::list<ShoppingList *> &getList();
 
-    std::list <ShoppingList*> ShoppingLists;
+    ~ListOfShoppingList() override;
+
+private:
+
+    std::list<ShoppingList *> ShoppingLists;
 
     std::list<Observer *> observers;
 

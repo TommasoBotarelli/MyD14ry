@@ -13,6 +13,8 @@ class QListWidgetShoppingList : public QListWidgetItem {
 public:
     ShoppingList *getShoppingList();
 
+    void setShoppingList(ShoppingList *sL);
+
 private:
     ShoppingList *shoppingList;
 };

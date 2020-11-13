@@ -14,7 +14,9 @@
 
 class ShoppingList : public Subject {
 public:
-    std::list<Observer*> observers;
+    std::list<Observer *> observers;
+
+    ShoppingList() = default;
 
     void notify() const override;
 
@@ -34,7 +36,7 @@ public:
 
 private:
     QString nameList;
-    std::list<ShoppingProduct *> products;
+    std::list<std::shared_ptr<ShoppingProduct>> products;
 
 };
 

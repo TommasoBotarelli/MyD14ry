@@ -16,15 +16,16 @@ std::list<ShoppingProduct *> ShoppingList::getProducts() {
     std::list<ShoppingProduct *> list;
 
     for (auto i = products.begin(); i != products.end(); ++i)
-        list.push_back(*i);
+        list.push_back(i->get());
 
     return list;
 }
 
 void ShoppingList::addProduct(ShoppingProduct *product) {
     if ( product!= nullptr) {
-        products.push_back(product);
+        products.push_back(std::make_shared<ShoppingProduct>(*product));
     }
+    notify();
 }
 
 void ShoppingList::addObserver(Observer *o) {
@@ -41,9 +42,7 @@ void ShoppingList::notify() const {
 }
 
 ShoppingList::~ShoppingList() {
-    products.clear();
-
-    for (auto i : observers)
-        i->detach();
+    if (!products.empty())
+        products.erase(products.begin(), products.end());
 }
 

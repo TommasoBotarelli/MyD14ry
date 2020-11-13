@@ -8,15 +8,22 @@
 #include "ShoppingList.h"
 #include "ListOfShoppingList.h"
 #include <QString>
+#include <QListWidget>
+#include "QListWidgetShoppingList.h"
 
 class ListOfShoppingListController {
 
 public:
-    ListOfShoppingListController(ShoppingList *s,ListOfShoppingList *listOfShopList):shoppingList(s),listOfShoppingList(listOfShopList){}
+    ListOfShoppingListController(ShoppingList *s, ListOfShoppingList *listOfShopList) : shoppingList(s),
+                                                                                        listOfShoppingList(
+                                                                                                listOfShopList) {}
 
     void setData(QString name);
 
     void remove();
+
+    void getLists(QListWidget &list);
+
 private:
     ListOfShoppingList *listOfShoppingList;
 

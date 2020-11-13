@@ -23,6 +23,15 @@
 #include "addeventdialog.h"
 #include "eventview.h"
 
+//LISTA DELLA SPESA
+#include "ShoppingList.h"
+#include "ListOfShoppingListController.h"
+#include "ListOfShoppingList.h"
+#include "QListWidgetShoppingList.h"
+#include "addshoppinglistdialog.h"
+#include "shoppinglistview.h"
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -31,7 +40,7 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    explicit MainWindow(ActivityList *actList, Calendar *cal, QWidget *parent = nullptr);
+    explicit MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL, QWidget *parent = nullptr);
 
     ~MainWindow() override;
 
@@ -67,9 +76,13 @@ private:
 
     Calendar *calendar;
 
+    ListOfShoppingList *shopList;
+
     ActivityListController *activityListController;
 
     CalendarController *calendarController;
+
+    ListOfShoppingListController *shopListController;
 
 };
 

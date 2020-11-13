@@ -12,4 +12,16 @@ void ListOfShoppingListController::setData(QString name) {
 
 void ListOfShoppingListController::remove() {
     listOfShoppingList->removeShoppingList(shoppingList);
+    shoppingList = nullptr;
+}
+
+void ListOfShoppingListController::getLists(QListWidget &list) {
+    for (auto i : (listOfShoppingList->getList())) {
+        auto a = new QListWidgetShoppingList();
+
+        a->setShoppingList(i);
+        a->setText((*i).getNameList());
+
+        list.addItem(a);
+    }
 }
