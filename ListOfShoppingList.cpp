@@ -4,6 +4,10 @@
 #include "ListOfShoppingList.h"
 
 void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
+    ShoppingLists.push_back(shoppingList);
+}
+
+void ListOfShoppingList::removeShoppingList(ShoppingList *shoppingList) {
     if (shoppingList != nullptr) {
 
         auto i = ShoppingLists.begin();
@@ -12,19 +16,12 @@ void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
 
             if (&(**i) == shoppingList) {
                 delete shoppingList;
-                //activities.remove(*i);
             }
 
             i = std::next(i, 1);
         }
         notify();
     }
-    notify();
-}
-
-void ListOfShoppingList::removeShoppingList(ShoppingList *shoppingList) {
-    if(shoppingList!= nullptr)
-        ShoppingLists.remove(shoppingList);
 }
 
 void ListOfShoppingList::addObserver(Observer *o) {

@@ -84,7 +84,15 @@ else ()
           addeventdialog.cpp
           eventview.h
           eventview.cpp
-          ShoppingListController.cpp ShoppingListController.h ListOfShoppingListController.cpp ListOfShoppingListController.h)
+          ShoppingListController.cpp
+          ShoppingListController.h
+          ListOfShoppingListController.cpp
+          ListOfShoppingListController.h
+          addshoppingproductdialog.h
+          addshoppingproductdialog.cpp
+          addshoppinglistdialog.h
+          addshoppinglistdialog.cpp
+          )
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

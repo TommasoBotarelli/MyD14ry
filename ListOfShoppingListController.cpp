@@ -4,9 +4,8 @@
 
 #include "ListOfShoppingListController.h"
 
-void ListOfShoppingListController::setData(QString name, QString product) {
+void ListOfShoppingListController::setData(QString name) {
     shoppingList->setNameList(name);
-    shoppingList->getProducts();
 
     listOfShoppingList->addShoppingList(shoppingList);
 }

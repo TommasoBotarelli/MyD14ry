@@ -37,7 +37,13 @@ void AddActivityView::on_AddSubActivityButton_clicked() {
     auto c = new ActivityController(activity, subA);
 
     auto dialog = new AddSubActivityDialog(c);
-    dialog->exec();
+
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+            delete c;
+        }
+    }
 }
 
 void AddActivityView::update() {
@@ -77,3 +83,4 @@ QString AddActivityView::getTask() {
 QString AddActivityView::getNote() {
     return ui->NoteEdit->toPlainText();
 }
+

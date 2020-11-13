@@ -4,9 +4,9 @@
 
 #include "ShoppingListController.h"
 
-void ShoppingListController::setData(QString nameProduct, bool catched) {
+void ShoppingListController::setData(QString nameProduct, bool c) {
     shoppingProduct->setName(nameProduct);
-    shoppingProduct->setCatched(catched);
+    shoppingProduct->setCatched(c);
 
     shoppingList->addProduct(shoppingProduct);
 }

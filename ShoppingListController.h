@@ -15,7 +15,7 @@ class ShoppingListController {
 public:
     ShoppingListController(ShoppingList *s,ShoppingProduct *shopProd): shoppingList(s),shoppingProduct(shopProd){}
 
-    void setData(QString nameProduct,bool catched);
+    void setData(QString nameProduct, bool c = false);
 
 private:
     ShoppingList *shoppingList;
