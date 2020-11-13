@@ -5,7 +5,19 @@
 
 void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
     if (shoppingList != nullptr) {
-        ShoppingLists.push_back(std::move(shoppingList));
+
+        auto i = ShoppingLists.begin();
+
+        while (i != ShoppingLists.end()) {
+
+            if (&(**i) == shoppingList) {
+                delete shoppingList;
+                //activities.remove(*i);
+            }
+
+            i = std::next(i, 1);
+        }
+        notify();
     }
     notify();
 }
