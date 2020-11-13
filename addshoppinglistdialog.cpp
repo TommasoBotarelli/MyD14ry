@@ -9,14 +9,35 @@ AddShoppingListDialog::AddShoppingListDialog(ShoppingList *sL, ListOfShoppingLis
 }
 
 AddShoppingListDialog::~AddShoppingListDialog() {
+    detach();
+
     delete ui;
 }
 
 void AddShoppingListDialog::on_AddShoppingProductButton_clicked() {
+    auto product = new ShoppingProduct();
 
+    auto c = new ShoppingListController(shopList, product);
+
+    auto dialog = new AddShoppingProductDialog(c);
+
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+            delete c;
+        }
+    }
 }
 
 void AddShoppingListDialog::on_AddShoppingListButton_clicked() {
+    if (getName() == "")
+        ui->NameEdit->setText("INSERISCI NOME LISTA!!!");
+
+    if (getName() != "INSERISCI NOME LISTA!!!" && getName() != "") {
+        controller->setData(getName());
+        detach();
+        this->close();
+    }
 
 }
 
@@ -41,4 +62,8 @@ void AddShoppingListDialog::attach() {
 
 void AddShoppingListDialog::detach() {
     shopList->removeObserver(this);
+}
+
+QString AddShoppingListDialog::getName() {
+    return ui->NameEdit->text();
 }
