@@ -13,9 +13,9 @@
 class ListOfShoppingList : public Subject {
 public:
 
-    void addShoppingList(std::unique_ptr<ShoppingList> shoppingList);
+    void addShoppingList(ShoppingList *shoppingList);
 
-    void removeShoppingList(std::unique_ptr<ShoppingList> shoppingList);
+    void removeShoppingList(ShoppingList *shoppingList);
 
     void addObserver(Observer *o) override;
 
@@ -25,7 +25,7 @@ public:
 
     std::list <ShoppingList *> getList();
 
-    std::list<std::unique_ptr<ShoppingList> > ShoppingLists;
+    std::list <ShoppingList*> ShoppingLists;
 
     std::list<Observer *> observers;
 

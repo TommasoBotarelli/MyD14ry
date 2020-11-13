@@ -3,14 +3,14 @@
 
 #include "ListOfShoppingList.h"
 
-void ListOfShoppingList::addShoppingList(std::unique_ptr<ShoppingList> shoppingList) {
+void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
     if (shoppingList != nullptr) {
         ShoppingLists.push_back(std::move(shoppingList));
     }
     notify();
 }
 
-void ListOfShoppingList::removeShoppingList(std::unique_ptr<ShoppingList> shoppingList) {
+void ListOfShoppingList::removeShoppingList(ShoppingList *shoppingList) {
     if(shoppingList!= nullptr)
         ShoppingLists.remove(shoppingList);
 }
@@ -32,7 +32,7 @@ std::list<ShoppingList *> ListOfShoppingList::getList() {
     std::list<ShoppingList *> list;
 
     for (auto i = ShoppingLists.begin(); i != ShoppingLists.end(); ++i)
-        list.push_back(i->get());
+        list.push_back(*i);
 
     return list;
 }
