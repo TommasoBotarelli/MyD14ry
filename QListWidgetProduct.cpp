@@ -7,3 +7,7 @@
 ShoppingProduct *QListWidgetProduct::getShoppingProduct() {
     return shoppingproduct;
 }
+
+void QListWidgetProduct::setProduct(ShoppingProduct *sP) {
+    shoppingproduct = sP;
+}
