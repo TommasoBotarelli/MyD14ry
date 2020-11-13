@@ -28,12 +28,12 @@ void ListOfShoppingList::notify() const {
         (*i).update();
 }
 
-std::list<ShoppingList *> ListOfShoppingList::getList() {
-    std::list<ShoppingList *> list;
+std::list<ShoppingList *> &ListOfShoppingList::getList() {
+    auto list = new std::list<ShoppingList *>;
 
-    for (auto i = ShoppingLists.begin(); i != ShoppingLists.end(); ++i)
-        list.push_back(*i);
+    for (auto i : ShoppingLists)
+        list->push_back(i);
 
-    return list;
+    return *list;
 }
 

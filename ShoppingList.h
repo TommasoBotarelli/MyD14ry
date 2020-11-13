@@ -28,11 +28,13 @@ public:
 
     void addProduct(ShoppingProduct *product);
 
-    std::list<ShoppingProduct*> getProducts();
+    std::list<ShoppingProduct *> getProducts();
+
+    ~ShoppingList() override;
 
 private:
     QString nameList;
-    std::list<ShoppingProduct*> products;
+    std::list<ShoppingProduct *> products;
 
 };
 

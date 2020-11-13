@@ -12,9 +12,6 @@ EventView::EventView(Event *e, CalendarController *c, QWidget *parent) :
     ui->EndTimeEdit->setTime(event->getEndTime());
     ui->NoteEdit->setText(event->getNote());
 
-    if (event->isAllDay())
-        ui->AllDayCheckBox->setCheckState(Qt::Checked);
-
 }
 
 EventView::~EventView() {

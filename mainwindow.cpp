@@ -48,7 +48,13 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
         activityListController = new ActivityListController(activityList, actItem->getActivity());
 
         auto dialog = new ActivityView(actItem->getActivity(), activityListController);
-        dialog->exec();
+
+        while (dialog->exec()) {
+            if (dialog->close()) {
+                delete dialog;
+                delete activityListController;      //FIXME controllare se tutto ok e cambiare a tutti i metodi che usano il new
+            }
+        }
 
     }
 }
@@ -71,7 +77,13 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
         calendarController = new CalendarController(calendar, eventItem->getEvent());
 
         auto dialog = new EventView(eventItem->getEvent(), calendarController);
-        dialog->exec();
+
+        while (dialog->exec()) {
+            if (dialog->close()) {
+                delete dialog;
+                delete calendarController;      //FIXME controllare se tutto ok e cambiare a tutti i metodi che usano il new
+            }
+        }
     }
 
 }
@@ -90,7 +102,6 @@ void MainWindow::update() {
         ui->listWidget_2->clear();
         calendarController->searchEventOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget_2);
     }
-
 }
 
 void MainWindow::attach() {

@@ -50,16 +50,6 @@
        </layout>
       </item>
       <item>
-       <widget class="QCheckBox" name="AllDayCheckBox">
-        <property name="text">
-         <string>Tutto Il giorno</string>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="StartTimeLabel">

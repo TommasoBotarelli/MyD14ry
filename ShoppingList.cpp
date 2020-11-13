@@ -23,7 +23,7 @@ std::list<ShoppingProduct *> ShoppingList::getProducts() {
 
 void ShoppingList::addProduct(ShoppingProduct *product) {
     if ( product!= nullptr) {
-        products.push_back(std::move(product));
+        products.push_back(product);
     }
 }
 
@@ -38,5 +38,12 @@ void ShoppingList::removeObserver(Observer *o) {
 void ShoppingList::notify() const {
     for (auto i : observers)
         (*i).update();
+}
+
+ShoppingList::~ShoppingList() {
+    products.clear();
+
+    for (auto i : observers)
+        i->detach();
 }
 

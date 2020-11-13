@@ -23,7 +23,7 @@ public:
 
     void notify() const override;
 
-    std::list <ShoppingList *> getList();
+    std::list<ShoppingList *> &getList();
 
     std::list <ShoppingList*> ShoppingLists;
 
