@@ -1,7 +1,6 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include <QTime>
 #include "../../Event.h"
 #include "../../Calendar.h"
 #include "../../CalendarController.h"
@@ -40,7 +39,7 @@ void TestCalendarController::testSetData() {
     Calendar calendar;
     CalendarController CC(&calendar,&event);
 
-    CC.setData("Task",QDate::currentDate(),"uuuuuuuuuu",QTime::currentTime(),QTime::currentTime(),true);
+    CC.setData("Task",QDate::currentDate(),"Prova nota",QTime::currentTime(),QTime::currentTime(),true);
     QVERIFY((*calendar.getEvent().begin())->getTask()=="Task");
 }
 
