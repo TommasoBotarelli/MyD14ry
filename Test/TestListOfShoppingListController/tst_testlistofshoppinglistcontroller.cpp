@@ -1,5 +1,8 @@
 #include <QtTest>
 #include "../../ListOfShoppingListController.h"
+#include "../../QListWidgetProduct.h"
+#include "../../ShoppingProduct.h"
+#include "../../QListWidgetShoppingList.h"
 #include "../../ListOfShoppingList.h"
 #include "../../ShoppingList.h"
 
@@ -16,7 +19,7 @@ public:
 private slots:
     void testSetData();
 
-    //void testRemove();
+    void testRemove();
 
 };
 
@@ -36,11 +39,23 @@ void TestListOfShoppingListController::testSetData() {
 
     ListOfShoppingListController LOSLC(&shoppingList,&listOfShoppingList);
 
-    LOSLC.setData("testName","testProduct");
+    LOSLC.setData("testName");
     QVERIFY((*listOfShoppingList.getList().begin())->getNameList()=="testName");
 }
 
-//void TestListOfShoppingListController::testRemove() {}
-QTEST_APPLESS_MAIN(TestListOfShoppingListController)
+void TestListOfShoppingListController::testRemove() {
+    ListOfShoppingList listOfShoppingList;
+    ShoppingList shoppingList;
+
+    ListOfShoppingListController LOSLC(&shoppingList,&listOfShoppingList);
+
+    listOfShoppingList.addShoppingList(&shoppingList);
+
+    LOSLC.remove();
+
+    QVERIFY(listOfShoppingList.getList().empty());
+
+}
+QTEST_MAIN(TestListOfShoppingListController)
 
 #include "tst_testlistofshoppinglistcontroller.moc"

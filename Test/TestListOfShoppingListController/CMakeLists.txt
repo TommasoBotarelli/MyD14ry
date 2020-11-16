@@ -4,6 +4,8 @@ project(TestListOfShoppingListController LANGUAGES CXX)
 
 
 find_package(Qt5Test REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -17,13 +19,19 @@ enable_testing(true)
 
 add_executable(TestListOfShoppingListController
         tst_testlistofshoppinglistcontroller.cpp
+        ../../QListWidgetShoppingList.cpp
+        ../../QListWidgetShoppingList.h
+        ../../QListWidgetProduct.cpp
+        ../../QListWidgetProduct.h
         ../../ListOfShoppingListController.cpp
         ../../ListOfShoppingListController.h
         ../../ShoppingList.cpp
         ../../ShoppingList.h
+        ../../ShoppingProduct.cpp
+        ../../ShoppingProduct.h
         ../../ListOfShoppingList.cpp
         ../../ListOfShoppingList.h)
 add_test(NAME TestListOfShoppingListController COMMAND TestListOfShoppingListController)
 
-target_link_libraries(TestListOfShoppingListController PRIVATE Qt5::Test)
+target_link_libraries(TestListOfShoppingListController PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)
 

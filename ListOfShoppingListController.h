@@ -11,6 +11,7 @@
 #include <QListWidget>
 #include "QListWidgetShoppingList.h"
 
+
 class ListOfShoppingListController {
 
 public:
