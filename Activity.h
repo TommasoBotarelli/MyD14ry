@@ -41,7 +41,7 @@ public:
 
     void setNote(const QString &note);
 
-    std::list<SubActivity *> getSubActivities();
+    std::list<SubActivity *> &getSubActivities();
 
     void addSubActivity(SubActivity *subActivity);
 

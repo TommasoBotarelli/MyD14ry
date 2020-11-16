@@ -12,12 +12,11 @@ class QListWidgetProduct : public QListWidgetItem {
 
 public:
     ShoppingProduct *getShoppingProduct();
-    void setShoppingProduct(ShoppingProduct *shoppingProduct);
 
     void setProduct(ShoppingProduct *sP);
 
 private:
-    ShoppingProduct *shoppingProduct;
+    ShoppingProduct *shoppingproduct;
 };
 
 

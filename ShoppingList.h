@@ -7,15 +7,14 @@
 
 #include <QString>
 #include <memory>
-#include<list>
+#include <list>
+#include <utility>
 #include "Subject.h"
-#include "Observer.h"
 #include "ShoppingProduct.h"
 
 
 class ShoppingList : public Subject {
 public:
-
     ShoppingList() = default;
 
     void notify() const override;
@@ -30,14 +29,15 @@ public:
 
     void addProduct(ShoppingProduct *product);
 
-    std::list<ShoppingProduct *> getProducts();
+    std::list<ShoppingProduct *> &getProducts();
 
     ~ShoppingList() override;
 
 private:
+
     QString nameList;
-    std::list<std::shared_ptr<ShoppingProduct>> products;
     std::list<Observer *> observers;
+    std::list<std::shared_ptr<ShoppingProduct>> products;
 
 };
 

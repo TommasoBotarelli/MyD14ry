@@ -14,7 +14,9 @@
 class ListOfShoppingListController {
 
 public:
-    ListOfShoppingListController(ShoppingList *s, ListOfShoppingList *listOfShopList) : shoppingList(s),listOfShoppingList(listOfShopList) {}
+    ListOfShoppingListController(ShoppingList *s, ListOfShoppingList *listOfShopList) : shoppingList(s),
+                                                                                        listOfShoppingList(
+                                                                                                listOfShopList) {}
 
     void setData(QString name);
 

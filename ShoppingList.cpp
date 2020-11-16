@@ -3,6 +3,7 @@
 //
 
 #include "ShoppingList.h"
+#include <memory>
 
 const QString &ShoppingList::getNameList() const {
     return nameList;
@@ -12,13 +13,13 @@ void ShoppingList::setNameList(const QString &name) {
     ShoppingList::nameList = name;
 }
 
-std::list<ShoppingProduct *> ShoppingList::getProducts() {
-    std::list<ShoppingProduct *> list;
+std::list<ShoppingProduct *> &ShoppingList::getProducts() {
+    auto list = new std::list<ShoppingProduct *>;
 
     for (auto i = products.begin(); i != products.end(); ++i)
-        list.push_back(i->get());
+        list->push_back(i->get());
 
-    return list;
+    return *list;
 }
 
 void ShoppingList::addProduct(ShoppingProduct *product) {

@@ -45,7 +45,7 @@ void AddShoppingListDialog::update() {
     ui->ShoppingProductListWidget->clear();
 
     for (auto i : shopList->getProducts()) {
-        auto qProduct = new QListWidgetProduct;
+        auto qProduct = new QListWidgetProduct();
 
         qProduct->setText((*i).getName());
         qProduct->setProduct(i);

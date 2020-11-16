@@ -52,13 +52,13 @@ void Activity::setNote(const QString &note) {
     Activity::note = note;
 }
 
-std::list<SubActivity *> Activity::getSubActivities() {   //FIXME Forse meglio riferimento?
-    std::list<SubActivity *> list;
+std::list<SubActivity *> &Activity::getSubActivities() {
+    auto list = new std::list<SubActivity *>;
 
     for (auto i = subActivities.begin(); i != subActivities.end(); ++i)
-        list.push_back(i->get());
+        list->push_back(i->get());
 
-    return list;
+    return *list;
 }
 
 void Activity::addSubActivity(SubActivity *subActivity) {

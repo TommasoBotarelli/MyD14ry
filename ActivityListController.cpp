@@ -24,17 +24,19 @@ void ActivityListController::remove() {
 void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {
 
     for (auto i : (activityList->getListOfDay(date))) {
-        auto a = new QListWidgetActivity;
+        if (i != nullptr) {
+            auto a = new QListWidgetActivity;
 
-        a->setActivity(i);
-        a->setText((*i).getTask());
+            a->setActivity(i);
+            a->setText((*i).getTask());
 
-        if ((*i).isCompleted())
-            a->setCheckState(Qt::Checked);
-        else
-            a->setCheckState(Qt::Unchecked);
+            if ((*i).isCompleted())
+                a->setCheckState(Qt::Checked);
+            else
+                a->setCheckState(Qt::Unchecked);
 
-        list.addItem(a);
+            list.addItem(a);
+        }
     }
 }
 

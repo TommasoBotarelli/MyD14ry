@@ -38,10 +38,6 @@ public:
 
     void detach() override;
 
-    void setController(ActivityListController *controller) {
-        AddActivityView::controller = controller;
-    }
-
 private slots:
 
     void on_AddActivityButton_clicked();

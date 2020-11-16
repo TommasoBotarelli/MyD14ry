@@ -33,6 +33,7 @@ void MainWindow::on_actionEvent_triggered() {
     calendarController = new CalendarController(calendar, e);
 
     auto dialog = new AddEventDialog(calendarController, e);
+
     dialog->exec();
 }
 
@@ -42,6 +43,7 @@ void MainWindow::on_actionLista_della_spesa_triggered() {
     shopListController = new ListOfShoppingListController(s, shopList);
 
     auto dialog = new AddShoppingListDialog(s, shopListController);
+
     dialog->exec();
 }
 

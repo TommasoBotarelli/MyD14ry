@@ -17,11 +17,14 @@ void ListOfShoppingListController::remove() {
 
 void ListOfShoppingListController::getLists(QListWidget &list) {
     for (auto i : (listOfShoppingList->getList())) {
-        auto a = new QListWidgetShoppingList;
+        if (i != nullptr) {
 
-        a->setShoppingList(i);
-        a->setText((*i).getNameList());
+            auto a = new QListWidgetShoppingList();
 
-        list.addItem(a);
+            a->setShoppingList(i);
+            a->setText((*i).getNameList());
+
+            list.addItem(a);
+        }
     }
 }

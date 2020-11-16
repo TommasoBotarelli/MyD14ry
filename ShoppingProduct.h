@@ -9,14 +9,11 @@
 
 class ShoppingProduct {
 public:
-
     ShoppingProduct() = default;
 
     ShoppingProduct(const ShoppingProduct &original);
 
     ShoppingProduct &operator=(const ShoppingProduct &) = delete;
-
-    ~ShoppingProduct() = default;
 
     const QString &getName() const;
 
@@ -26,8 +23,11 @@ public:
 
     void setCatched(bool catched);
 
+    ~ShoppingProduct() = default;
+
 private:
     QString name;
+
     bool catched;
 
 };
