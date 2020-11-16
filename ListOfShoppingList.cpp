@@ -4,7 +4,9 @@
 #include "ListOfShoppingList.h"
 
 void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
-    ShoppingLists.push_back(shoppingList);
+    if (shoppingList != nullptr) {
+        ShoppingLists.push_back(shoppingList);
+    }
     notify();
 }
 

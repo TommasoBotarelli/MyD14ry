@@ -16,6 +16,11 @@ bool ShoppingProduct::isCatched() const {
     return catched;
 }
 
-void ShoppingProduct::setCatched(bool c) {
-    ShoppingProduct::catched = c;
+void ShoppingProduct::setCatched(bool catched) {
+    ShoppingProduct::catched = catched;
+}
+
+ShoppingProduct::ShoppingProduct(const ShoppingProduct &original) {
+    name = original.getName();
+    catched = original.isCatched();
 }

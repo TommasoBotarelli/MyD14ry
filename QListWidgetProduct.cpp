@@ -5,9 +5,13 @@
 #include "QListWidgetProduct.h"
 
 ShoppingProduct *QListWidgetProduct::getShoppingProduct() {
-    return shoppingproduct;
+    return shoppingProduct;
+}
+
+void QListWidgetProduct::setShoppingProduct(ShoppingProduct *proD) {
+    shoppingProduct = proD;
 }
 
 void QListWidgetProduct::setProduct(ShoppingProduct *sP) {
-    shoppingproduct = sP;
+    shoppingProduct = sP;
 }

@@ -9,12 +9,12 @@
 #include <memory>
 #include<list>
 #include "Subject.h"
+#include "Observer.h"
 #include "ShoppingProduct.h"
 
 
 class ShoppingList : public Subject {
 public:
-    std::list<Observer *> observers;
 
     ShoppingList() = default;
 
@@ -37,6 +37,7 @@ public:
 private:
     QString nameList;
     std::list<std::shared_ptr<ShoppingProduct>> products;
+    std::list<Observer *> observers;
 
 };
 

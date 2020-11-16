@@ -9,6 +9,15 @@
 
 class ShoppingProduct {
 public:
+
+    ShoppingProduct() = default;
+
+    ShoppingProduct(const ShoppingProduct &original);
+
+    ShoppingProduct &operator=(const ShoppingProduct &) = delete;
+
+    ~ShoppingProduct() = default;
+
     const QString &getName() const;
 
     void setName(const QString &name);

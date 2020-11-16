@@ -9,11 +9,14 @@
 #include <memory>
 #include "ShoppingList.h"
 #include "Observer.h"
+#include "ShoppingProduct.h"
 
 class ListOfShoppingList : public Subject {
 public:
 
     void addShoppingList(ShoppingList *shoppingList);
+
+    std::list<ShoppingList *> &getList();
 
     void removeShoppingList(ShoppingList *shoppingList);
 
@@ -22,8 +25,6 @@ public:
     void removeObserver(Observer *o) override;
 
     void notify() const override;
-
-    std::list<ShoppingList *> &getList();
 
     ~ListOfShoppingList() override;
 
