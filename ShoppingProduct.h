@@ -13,7 +13,7 @@ public:
 
     ShoppingProduct(const ShoppingProduct &original);
 
-    ShoppingProduct &operator=(const ShoppingProduct &) = delete;
+    //ShoppingProduct &operator=(const ShoppingProduct &) = delete;
 
     const QString &getName() const;
 
@@ -21,7 +21,7 @@ public:
 
     bool isCatched() const;
 
-    void setCatched(bool catched);
+    void setCatched(bool c);
 
     ~ShoppingProduct() = default;
 
