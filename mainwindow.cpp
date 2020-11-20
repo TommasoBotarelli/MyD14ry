@@ -114,23 +114,24 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 }
 
 void MainWindow::update() {
+    ui->listWidget->clear();
     if (!activityList->getActivity().empty()) {
-        ui->listWidget->clear();
         activityListController->searchActivityOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget);
     }
 
+    ui->listWidget_2->clear();
     if (!calendar->getEvent().empty()) {
-        ui->listWidget_2->clear();
         calendarController->searchEventOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget_2);
     }
 
+    ui->listWidget_3->clear();
     if (!shopList->getList().empty()) {
-        ui->listWidget_3->clear();
         shopListController->getLists(*ui->listWidget_3);
     }
 
     QDate day(ui->calendarWidget->yearShown(), ui->calendarWidget->monthShown(), 1);
     QTextCharFormat format;
+    QTextCharFormat defaultFormat;
     format.setBackground(Qt::green);
     int d = day.day();
 
@@ -138,6 +139,8 @@ void MainWindow::update() {
 
         if (!activityList->getListOfDay(day).empty() || !calendar->getListOfDay(day).empty())
             ui->calendarWidget->setDateTextFormat(day, format);
+        else
+            ui->calendarWidget->setDateTextFormat(day, defaultFormat);
 
         day.setDate(ui->calendarWidget->yearShown(), ui->calendarWidget->monthShown(), d++);
     }

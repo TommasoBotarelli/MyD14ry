@@ -61,7 +61,20 @@ void TestCalendarController::testSearchEventOfDay() {
 }
 
 void TestCalendarController::testRemove() {
-    //TODO RIVEDERE E IMPLEMENTARE REMOVE
+    auto e1 = new Event();
+    auto e2 = new Event();
+
+    auto c = new Calendar;
+    c->addEvent(e1);
+    c->addEvent(e2);
+
+    CalendarController controller1(c, e1);
+    controller1.remove();
+    QVERIFY(c->getEvent().size() == 1);
+
+    CalendarController controller2(c, e2);
+    controller2.remove();
+    QVERIFY(c->getEvent().empty());
 }
 
 QTEST_MAIN(TestCalendarController)

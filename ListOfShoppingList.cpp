@@ -10,21 +10,14 @@ void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
 
 void ListOfShoppingList::removeShoppingList(ShoppingList *shoppingList) {
 
-    if (shoppingList != nullptr) {
-
-        auto i = ShoppingLists.begin();
-
-        while (i != ShoppingLists.end()) {
-
-            if (&(**i) == shoppingList) {
-                delete shoppingList;
-                *i = nullptr;
-            }
-
-            i = std::next(i, 1);
+    for (auto i : ShoppingLists){
+        if (&(*i) == &(*shoppingList)){
+            ShoppingLists.remove(shoppingList);
+            delete shoppingList;
+            break;
         }
-        notify();
     }
+    notify();
 }
 
 void ListOfShoppingList::addObserver(Observer *o) {

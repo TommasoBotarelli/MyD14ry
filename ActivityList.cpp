@@ -20,23 +20,15 @@ void ActivityList::addActivity(Activity *activity) {
     notify();
 }
 
-void ActivityList::removeActivity(Activity *activity) {
-
-    if (activity != nullptr) {
-
-        auto i = activities.begin();
-
-        while (i != activities.end()) {
-
-            if (&(**i) == activity) {
-                delete activity;
-                //activities.remove(*i);
-            }
-
-            i = std::next(i, 1);
+void ActivityList::removeActivity(Activity* activity) {
+    for (auto i :activities){
+        if (&(*i) == &(*activity)){
+            activities.remove(activity);
+            delete activity;
+            break;
         }
-        notify();
     }
+    notify();
 }
 
 void ActivityList::addObserver(Observer *o) {

@@ -21,20 +21,14 @@ std::list<Event *> Calendar::getEvent() {
 }
 
 void Calendar::removeEvent(Event *event) {
-    if (event != nullptr) {
-
-        auto i = Events.begin();
-
-        while (i != Events.end()) {
-
-            if (&(**i) == event) {
-                delete event;
-            }
-
-            i = std::next(i, 1);
+    for (auto i : Events){
+        if (&(*i) == &(*event)){
+            Events.remove(event);
+            delete event;
+            break;
         }
-        notify();
     }
+    notify();
 }
 
 void Calendar::addObserver(Observer *o) {

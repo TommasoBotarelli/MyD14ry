@@ -51,22 +51,20 @@ void TestListOfShoppingList::testAddGetShoppingList()
 void TestListOfShoppingList::testRemoveShoppingList()
 {
     ListOfShoppingList listOfShoppingList;
-    ShoppingList sh1;
-    ShoppingList sh2;
+    auto sh1 = new ShoppingList;
+    auto sh2 = new ShoppingList;
 
-    sh1.setNameList("Test1");
-    sh2.setNameList("Test2");
+    sh1->setNameList("Test1");
+    sh2->setNameList("Test2");
 
-    listOfShoppingList.addShoppingList(&sh1);
-    listOfShoppingList.addShoppingList(&sh2);
+    listOfShoppingList.addShoppingList(sh1);
+    listOfShoppingList.addShoppingList(sh2);
 
-    auto list = listOfShoppingList.getList();
+    listOfShoppingList.removeShoppingList(sh2);
+    QVERIFY(listOfShoppingList.getList().size() == 1);
 
-    listOfShoppingList.removeShoppingList(&sh2);
-    QVERIFY(list.size() == 1);
-
-    listOfShoppingList.removeShoppingList(&sh1);
-    QVERIFY(list.empty());
+    listOfShoppingList.removeShoppingList(sh1);
+    QVERIFY(listOfShoppingList.getList().empty());
 
 }
 

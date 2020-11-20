@@ -53,6 +53,8 @@ public:
 
     ~Activity() override;
 
+    bool operator == (Activity& activity);
+
 private:
     QString task;
     QDate date;

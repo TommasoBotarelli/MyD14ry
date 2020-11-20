@@ -20,7 +20,7 @@ private slots:
 
     void TestSetData();
 
-    // void TestRemove(); //TODO rivedere funzione remove
+    void TestRemove();
 
     void TestSearchActivityOfDay();
 
@@ -59,6 +59,24 @@ void TestActivtyListController::TestSearchActivityOfDay() {
     alC.searchActivityOfDay(QDate::currentDate(),List);
     QVERIFY(List.count()==1);
 
+}
+
+void TestActivtyListController::TestRemove(){
+    auto activityList = new ActivityList;
+    auto activity1 = new Activity;
+    auto activity2 = new Activity;
+
+    activityList->addActivity(activity1);
+    activityList->addActivity(activity2);
+
+    ActivityListController controller(activityList, activity1);
+
+    controller.remove();
+    QVERIFY(activityList->getActivity().size() == 1);
+
+    controller.setActivity(activity2);
+    controller.remove();
+    QVERIFY(activityList->getActivity().empty());
 }
 QTEST_MAIN(TestActivtyListController)
 

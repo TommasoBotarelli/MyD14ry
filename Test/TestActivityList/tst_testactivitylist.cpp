@@ -49,22 +49,20 @@ void TestActivityList::testAddGetActivity() {
 
 void TestActivityList::testRemoveActivity() {
     ActivityList actList;
-    Activity a1;
-    Activity a2;
+    auto a1 = new Activity();
+    auto a2 = new Activity();
 
-    a1.setTask("Attività 1");
-    a2.setTask("Attività 2");
+    a1->setTask("Attività 1");
+    a2->setTask("Attività 2");
 
-    actList.addActivity(&a1);
-    actList.addActivity(&a2);
+    actList.addActivity(a1);
+    actList.addActivity(a2);
 
-    auto list = actList.getActivity();
+    actList.removeActivity(a2);
+    QVERIFY(actList.getActivity().size() == 1);
 
-    actList.removeActivity(&a2);
-    QVERIFY(list.size() == 1);
-
-    actList.removeActivity(&a1);
-    QVERIFY(list.empty());
+    actList.removeActivity(a1);
+    QVERIFY(actList.getActivity().empty());
 
 }
 
