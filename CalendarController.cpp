@@ -5,13 +5,14 @@
 #include "CalendarController.h"
 
 void CalendarController::setData(QString task, QDate date, QString note, QTime startTime, QTime endTime, bool allDay) {
-    QTime start(0, 0);
-    QTime end(23, 59);
+   QTime start(0, 0);
+   QTime end(23, 59);
 
     if (startTime == start && endTime == end)
         event->setTask(task + "(Tutto il giorno)");
     else
         event->setTask(task + "(" + startTime.toString() + " - " + endTime.toString() + ")");
+
 
     event->setDate(date);
     event->setNote(note);
