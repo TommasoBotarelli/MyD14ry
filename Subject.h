@@ -12,6 +12,8 @@ class Subject {
 public:
     virtual ~Subject() {};
 
+    Subject() {};
+
     virtual void addObserver(Observer *o) = 0;
 
     virtual void removeObserver(Observer *o) = 0;

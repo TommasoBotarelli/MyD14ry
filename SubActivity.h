@@ -16,7 +16,7 @@ public:
 
     SubActivity(const SubActivity &original);
 
-    SubActivity &operator=(const SubActivity &) = delete;
+    //SubActivity &operator=(const SubActivity &) = delete;
 
     ~SubActivity() = default;
 

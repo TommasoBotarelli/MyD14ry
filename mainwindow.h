@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QListWidgetItem>
 #include "Observer.h"
+#include <QCalendar>
+#include <QTextCharFormat>
 
 //ATTIVITÀ
 #include "Activity.h"
@@ -68,6 +70,8 @@ private slots:
     void on_listWidget_3_itemDoubleClicked(QListWidgetItem *item);
 
     void on_RefreshButton_clicked();
+
+    void on_calendarWidget_currentPageChanged(int year, int month);
 
 private:
     Ui::MainWindow *ui;

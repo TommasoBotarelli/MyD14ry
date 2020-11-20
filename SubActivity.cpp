@@ -5,8 +5,8 @@
 #include "SubActivity.h"
 
 
-void SubActivity::setTask(const QString &task) {
-    SubActivity::task = task;
+void SubActivity::setTask(const QString &t) {
+    task = t;
 }
 
 const QString &SubActivity::getTask() const {

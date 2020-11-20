@@ -43,8 +43,8 @@ void ListOfShoppingList::notify() const {
 std::list<ShoppingList *> &ListOfShoppingList::getList() {
     auto list = new std::list<ShoppingList *>;
 
-    for (auto i = ShoppingLists.begin(); i != ShoppingLists.end(); ++i)
-        list->push_back(*i);
+    for (auto i : ShoppingLists)
+        list->push_back(i);
 
     return *list;
 }

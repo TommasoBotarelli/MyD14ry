@@ -129,6 +129,19 @@ void MainWindow::update() {
         shopListController->getLists(*ui->listWidget_3);
     }
 
+    QDate day(ui->calendarWidget->yearShown(), ui->calendarWidget->monthShown(), 1);
+    QTextCharFormat format;
+    format.setBackground(Qt::green);
+    int d = day.day();
+
+    while (d != day.daysInMonth()) {
+
+        if (!activityList->getListOfDay(day).empty() || !calendar->getListOfDay(day).empty())
+            ui->calendarWidget->setDateTextFormat(day, format);
+
+        day.setDate(ui->calendarWidget->yearShown(), ui->calendarWidget->monthShown(), d++);
+    }
+
 }
 
 void MainWindow::attach() {
@@ -144,5 +157,9 @@ void MainWindow::detach() {
 }
 
 void MainWindow::on_RefreshButton_clicked() {
+    update();
+}
+
+void MainWindow::on_calendarWidget_currentPageChanged(int year, int month) {
     update();
 }
