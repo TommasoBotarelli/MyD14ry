@@ -19,8 +19,9 @@ public:
 private slots:
     void testSetData();
 
-    void testRemove();
+   // void testRemove();
 
+    void testGetList();
 };
 
 TestListOfShoppingListController::TestListOfShoppingListController()
@@ -43,7 +44,21 @@ void TestListOfShoppingListController::testSetData() {
     QVERIFY((*listOfShoppingList.getList().begin())->getNameList()=="testName");
 }
 
-void TestListOfShoppingListController::testRemove() {
+void TestListOfShoppingListController::testGetList() {
+    ListOfShoppingList listOfShoppingList;
+    ShoppingList shoppingList;
+    ShoppingList shoppingList1;
+    ListOfShoppingListController LOSLC(&shoppingList,&listOfShoppingList);
+    QListWidget list;
+
+    listOfShoppingList.addShoppingList(&shoppingList);
+    listOfShoppingList.addShoppingList(&shoppingList1);
+
+    LOSLC.getLists(list);
+    QVERIFY(list.count()==2);
+
+}
+/*void TestListOfShoppingListController::testRemove() {
     ListOfShoppingList listOfShoppingList;
     ShoppingList shoppingList;
 
@@ -55,7 +70,8 @@ void TestListOfShoppingListController::testRemove() {
 
     QVERIFY(listOfShoppingList.getList().empty());
 
-}
+}*/
+
 QTEST_MAIN(TestListOfShoppingListController)
 
 #include "tst_testlistofshoppinglistcontroller.moc"

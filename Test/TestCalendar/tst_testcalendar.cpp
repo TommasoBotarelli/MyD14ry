@@ -54,8 +54,8 @@ void TestCalendar::testRemoveEvent() {
     e1.setTask("Natale");
     e2.setTask("Pasqua");
 
-    calendar.addEvent(& e1);
-    calendar.addEvent(& e2);
+    calendar.addEvent(&e1);
+    calendar.addEvent(&e2);
 
     calendar.removeEvent(&e1);
     QVERIFY(calendar.getEvent().size()==1);
