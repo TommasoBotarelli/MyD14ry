@@ -39,8 +39,11 @@ void TestCalendarController::testSetData() {
     Calendar calendar;
     CalendarController CC(&calendar,&event);
 
-    CC.setData("Task",QDate::currentDate(),"Prova nota",QTime::currentTime(),QTime::currentTime(),true);
-    QVERIFY((*calendar.getEvent().begin())->getTask()=="Task");
+    QTime time(10,30);
+    QTime time2(12,00);
+
+    CC.setData("Task",QDate::currentDate(),"nota",time,time2,false);
+    QVERIFY((*calendar.getEvent().begin())->getTask()==("Task("+ time.toString()+" - "+time2.toString()+")"));
 }
 
 void TestCalendarController::testSearchEventOfDay() {
