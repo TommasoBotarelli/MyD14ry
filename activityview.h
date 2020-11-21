@@ -7,8 +7,8 @@
 #include "ActivityController.h"
 #include "addsubactivitydialog.h"
 #include "Observer.h"
-#include "QListWidgetSubActivity.h"
 #include "ActivityListController.h"
+#include "QListWidgetTemplate.h"
 
 namespace Ui {
     class ActivityView;

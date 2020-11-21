@@ -1,8 +1,6 @@
 #include <QtTest>
 #include "../../ListOfShoppingListController.h"
-#include "../../QListWidgetProduct.h"
 #include "../../ShoppingProduct.h"
-#include "../../QListWidgetShoppingList.h"
 #include "../../ListOfShoppingList.h"
 #include "../../ShoppingList.h"
 

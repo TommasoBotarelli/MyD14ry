@@ -25,8 +25,6 @@ add_executable(TestCalendarController
         ../../Calendar.cpp
         ../../CalendarController.h
         ../../CalendarController.cpp
-        ../../QListWidgetEvent.cpp
-        ../../QListWidgetEvent.h
         )
 
 

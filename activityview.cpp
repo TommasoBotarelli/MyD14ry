@@ -27,12 +27,12 @@ ActivityView::~ActivityView() {
 }
 
 void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
-    if (QListWidgetSubActivity *subAitem = dynamic_cast<QListWidgetSubActivity *>(item)) {
+    if (QListWidgetTemplate<SubActivity> *subAitem = dynamic_cast<QListWidgetTemplate<SubActivity> *>(item)) {
 
         if (subAitem->checkState() == 2)
-            subAitem->getSubActivity()->setCompleted(true);
+            subAitem->get()->setCompleted(true);
         else if (subAitem->checkState() == 0)
-            subAitem->getSubActivity()->setCompleted(false);
+            subAitem->get()->setCompleted(false);
 
         update();
     }
@@ -44,7 +44,16 @@ void ActivityView::on_AddSubactivityButton_clicked() {
     auto actController = new ActivityController(activity, subA);
 
     auto dialog = new AddSubActivityDialog(actController);
-    dialog->exec();
+
+    while (dialog->exec()) {
+
+        if (dialog->close()) {
+
+            delete dialog;
+            delete actController;
+        }
+    }
+
 }
 
 void ActivityView::on_DeleteButton_clicked() {
@@ -62,7 +71,7 @@ void ActivityView::update() {
     ui->SubActivityListWidget->clear();
 
     for (auto i : activity->getSubActivities()) {
-        auto subA = new QListWidgetSubActivity();
+        auto subA = new QListWidgetTemplate<SubActivity>;
 
         subA->setText((*i).getTask());
 
@@ -71,7 +80,7 @@ void ActivityView::update() {
         else
             subA->setCheckState(Qt::Unchecked);
 
-        subA->setSubActivity(i);
+        subA->set(i);
 
         ui->SubActivityListWidget->addItem(subA);
     }

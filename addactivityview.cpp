@@ -1,7 +1,6 @@
 #include "addactivityview.h"
 #include "ui_addactivityview.h"
 
-//TODO FINIRE METODI GETTER
 
 AddActivityView::AddActivityView(Activity *a, ActivityListController *actListC, QWidget *parent) :
         activity(a), controller(actListC), QDialog(parent),
@@ -39,7 +38,9 @@ void AddActivityView::on_AddSubActivityButton_clicked() {
     auto dialog = new AddSubActivityDialog(c);
 
     while (dialog->exec()) {
+
         if (dialog->close()) {
+
             delete dialog;
             delete c;
         }
@@ -50,10 +51,10 @@ void AddActivityView::update() {
     ui->SubActivityListWidget->clear();
 
     for (auto i : activity->getSubActivities()) {
-        auto subA = new QListWidgetSubActivity();
+        auto subA = new QListWidgetTemplate<SubActivity>;
 
         subA->setText((*i).getTask());
-        subA->setSubActivity(i);
+        subA->set(i);
 
         ui->SubActivityListWidget->addItem(subA);
     }

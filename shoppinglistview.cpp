@@ -19,12 +19,12 @@ ShoppingListView::~ShoppingListView() {
 }
 
 void ShoppingListView::on_ShoppingProductListWidget_itemChanged(QListWidgetItem *item) {
-    if (QListWidgetProduct *itemProduct = dynamic_cast<QListWidgetProduct *>(item)) {
+    if (QListWidgetTemplate<ShoppingProduct> *itemProduct = dynamic_cast <QListWidgetTemplate<ShoppingProduct> *>(item)) {
 
         if (itemProduct->checkState() == 2)
-            itemProduct->getShoppingProduct()->setCatched(true);
+            itemProduct->get()->setCatched(true);
         else if (itemProduct->checkState() == 0)
-            itemProduct->getShoppingProduct()->setCatched(false);
+            itemProduct->get()->setCatched(false);
 
         update();
     }
@@ -55,7 +55,7 @@ void ShoppingListView::update() {
     ui->ShoppingProductListWidget->clear();
 
     for (auto i : shopList->getProducts()) {
-        auto itemProduct = new QListWidgetProduct();
+        auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
 
         itemProduct->setText((*i).getName());
 
@@ -64,7 +64,7 @@ void ShoppingListView::update() {
         else
             itemProduct->setCheckState(Qt::Unchecked);
 
-        itemProduct->setProduct(i);
+        itemProduct->set(i);
 
         ui->ShoppingProductListWidget->addItem(itemProduct);
     }

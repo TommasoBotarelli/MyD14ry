@@ -9,7 +9,6 @@
 #include "ListOfShoppingList.h"
 #include <QString>
 #include <QListWidget>
-#include "QListWidgetShoppingList.h"
 #include "QListWidgetTemplate.h"
 
 

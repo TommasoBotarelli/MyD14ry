@@ -5,10 +5,10 @@
 #include "Observer.h"
 #include <QListWidgetItem>
 #include "ListOfShoppingListController.h"
-#include "QListWidgetProduct.h"
 #include "ShoppingListController.h"
 #include "ShoppingProduct.h"
 #include "addshoppingproductdialog.h"
+#include "QListWidgetTemplate.h"
 
 namespace Ui {
     class ShoppingListView;

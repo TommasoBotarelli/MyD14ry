@@ -10,7 +10,6 @@
 #include <QTime>
 #include "Event.h"
 #include "Calendar.h"
-#include "QListWidgetEvent.h"
 #include "QListWidgetTemplate.h"
 
 class CalendarController{

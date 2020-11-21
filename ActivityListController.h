@@ -9,7 +9,6 @@
 #include <QListWidget>
 #include "Activity.h"
 #include "ActivityList.h"
-#include "QListWidgetActivity.h"
 #include "QListWidgetTemplate.h"
 
 class ActivityListController {

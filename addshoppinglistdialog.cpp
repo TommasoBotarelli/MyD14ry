@@ -45,10 +45,10 @@ void AddShoppingListDialog::update() {
     ui->ShoppingProductListWidget->clear();
 
     for (auto i : shopList->getProducts()) {
-        auto qProduct = new QListWidgetProduct();
+        auto qProduct = new QListWidgetTemplate<ShoppingProduct>;
 
         qProduct->setText((*i).getName());
-        qProduct->setProduct(i);
+        qProduct->set(i);
 
         ui->ShoppingProductListWidget->addItem(qProduct);
     }

@@ -40,16 +40,6 @@ else ()
           mainwindow.cpp
           mainwindow.h
           mainwindow.ui
-          QListWidgetProduct.cpp
-          QListWidgetProduct.h
-          QListWidgetEvent.cpp
-          QListWidgetEvent.h
-          QListWidgetActivity.cpp
-          QListWidgetActivity.h
-          QListWidgetShoppingList.cpp
-          QListWidgetShoppingList.h
-          QListWidgetSubActivity.cpp
-          QListWidgetSubActivity.h
           Activity.cpp
           Activity.h
           Subject.h

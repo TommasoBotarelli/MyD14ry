@@ -6,11 +6,11 @@
 #include <QDate>
 #include <QString>
 #include "Observer.h"
-#include "QListWidgetSubActivity.h"
 #include "ActivityListController.h"
 #include "ActivityController.h"
 #include "addsubactivitydialog.h"
 #include "memory"
+#include "QListWidgetTemplate.h"
 
 namespace Ui {
     class AddActivityView;

@@ -13,7 +13,6 @@
 #include "ActivityList.h"
 #include "addactivityview.h"
 #include "ActivityListController.h"
-#include "QListWidgetActivity.h"
 #include "addsubactivitydialog.h"
 #include "activityview.h"
 
@@ -21,7 +20,6 @@
 #include "Event.h"
 #include "CalendarController.h"
 #include "Calendar.h"
-#include "QListWidgetEvent.h"
 #include "addeventdialog.h"
 #include "eventview.h"
 
@@ -29,7 +27,6 @@
 #include "ShoppingList.h"
 #include "ListOfShoppingListController.h"
 #include "ListOfShoppingList.h"
-#include "QListWidgetShoppingList.h"
 #include "addshoppinglistdialog.h"
 #include "shoppinglistview.h"
 

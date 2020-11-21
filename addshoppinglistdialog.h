@@ -5,7 +5,6 @@
 #include "Observer.h"
 #include "ShoppingList.h"
 #include "ListOfShoppingListController.h"
-#include "QListWidgetProduct.h"
 #include "ShoppingListController.h"
 #include "addshoppingproductdialog.h"
 

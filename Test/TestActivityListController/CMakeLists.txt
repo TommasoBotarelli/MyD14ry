@@ -19,8 +19,6 @@ enable_testing(true)
 
 add_executable(TestActivityListController
         tst_testactivtylistcontroller.cpp
-       ../../QListWidgetActivity.h
-        ../../QListWidgetActivity.cpp
         ../../SubActivity.h
         ../../SubActivity.cpp
        ../../ActivityList.h

@@ -19,10 +19,6 @@ enable_testing(true)
 
 add_executable(TestListOfShoppingListController
         tst_testlistofshoppinglistcontroller.cpp
-        ../../QListWidgetShoppingList.cpp
-        ../../QListWidgetShoppingList.h
-        ../../QListWidgetProduct.cpp
-        ../../QListWidgetProduct.h
         ../../ListOfShoppingListController.cpp
         ../../ListOfShoppingListController.h
         ../../ShoppingList.cpp
