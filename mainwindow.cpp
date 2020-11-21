@@ -23,7 +23,12 @@ void MainWindow::on_actionActivity_triggered() {
 
     auto dialog = new AddActivityView(a, activityListController);
 
-    dialog->exec();
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+            delete activityListController;
+        }
+    }
 
 }
 
@@ -34,7 +39,12 @@ void MainWindow::on_actionEvent_triggered() {
 
     auto dialog = new AddEventDialog(calendarController, e);
 
-    dialog->exec();
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+            delete calendarController;
+        }
+    }
 }
 
 void MainWindow::on_actionLista_della_spesa_triggered() {
@@ -44,7 +54,12 @@ void MainWindow::on_actionLista_della_spesa_triggered() {
 
     auto dialog = new AddShoppingListDialog(s, shopListController);
 
-    dialog->exec();
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+            delete shopListController;
+        }
+    }
 }
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date) {
