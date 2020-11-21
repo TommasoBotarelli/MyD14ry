@@ -67,11 +67,11 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date) {
 }
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
-    if (QListWidgetActivity *actItem = dynamic_cast<QListWidgetActivity *>(item)) {
+    if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
 
-        activityListController = new ActivityListController(activityList, actItem->getActivity());
+        activityListController = new ActivityListController(activityList, actItem->get());
 
-        auto dialog = new ActivityView(actItem->getActivity(), activityListController);
+        auto dialog = new ActivityView(actItem->get(), activityListController);
 
         while (dialog->exec()) {
             if (dialog->close()) {
@@ -84,23 +84,23 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
 }
 
 void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
-    if (QListWidgetActivity *actItem = dynamic_cast<QListWidgetActivity *>(item)) {
+    if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
 
         if (actItem->checkState() == 2)
-            actItem->getActivity()->setCompleted(true);
+            actItem->get()->setCompleted(true);
         else if (actItem->checkState() == 0)
-            actItem->getActivity()->setCompleted(false);
+            actItem->get()->setCompleted(false);
 
         update();
     }
 }
 
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
-    if (QListWidgetEvent *eventItem = dynamic_cast<QListWidgetEvent * >(item)) {
+    if (QListWidgetTemplate<Event> *eventItem = dynamic_cast<QListWidgetTemplate<Event> * >(item)) {
 
-        calendarController = new CalendarController(calendar, eventItem->getEvent());
+        calendarController = new CalendarController(calendar, eventItem->get());
 
-        auto dialog = new EventView(eventItem->getEvent(), calendarController);
+        auto dialog = new EventView(eventItem->get(), calendarController);
 
         while (dialog->exec()) {
             if (dialog->close()) {
@@ -113,11 +113,11 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
 }
 
 void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
-    if (QListWidgetShoppingList *shopListItem = dynamic_cast<QListWidgetShoppingList * >(item)) {
+    if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
 
-        shopListController = new ListOfShoppingListController(shopListItem->getShoppingList(), shopList);
+        shopListController = new ListOfShoppingListController(shopListItem->get(), shopList);
 
-        auto dialog = new ShoppingListView(shopListItem->getShoppingList(), shopListController);
+        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
 
         while (dialog->exec()) {
             if (dialog->close()) {

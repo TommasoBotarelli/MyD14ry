@@ -25,9 +25,9 @@ void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) 
 
     for (auto i : (activityList->getListOfDay(date))) {
         if (i != nullptr) {
-            auto a = new QListWidgetActivity;
+            auto a = new QListWidgetTemplate<Activity>;
 
-            a->setActivity(i);
+            a->set(i);
             a->setText((*i).getTask());
 
             if ((*i).isCompleted())

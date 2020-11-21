@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QListWidgetItem>
 #include "Observer.h"
-#include <QCalendar>
 #include <QTextCharFormat>
+#include "QListWidgetTemplate.h"
 
 //ATTIVITÀ
 #include "Activity.h"

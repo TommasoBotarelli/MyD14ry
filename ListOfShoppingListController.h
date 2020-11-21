@@ -10,6 +10,7 @@
 #include <QString>
 #include <QListWidget>
 #include "QListWidgetShoppingList.h"
+#include "QListWidgetTemplate.h"
 
 
 class ListOfShoppingListController {

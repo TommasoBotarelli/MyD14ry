@@ -27,9 +27,9 @@ void CalendarController::searchEventOfDay(QDate date, QListWidget &list) {
     list.clear();
 
     for (auto i : calendar->getListOfDay(date)) {
-        auto a = new QListWidgetEvent;
+        auto a = new QListWidgetTemplate<Event>;
 
-        a->setEvent(i);
+        a->set(i);
         a->setText((*i).getTask());
 
         if ((*i).isAllDay())
