@@ -64,13 +64,10 @@
       <item>
        <widget class="QCheckBox" name="CompletedCheckBox">
         <property name="enabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Completata</string>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
         </property>
         <property name="checked">
          <bool>false</bool>

@@ -67,6 +67,8 @@ void ActivityView::update() {
 
     if (activity->isCompleted())
         ui->CompletedCheckBox->setCheckState(Qt::Checked);
+    else
+        ui->CompletedCheckBox->setCheckState(Qt::Unchecked);
 
     ui->SubActivityListWidget->clear();
 

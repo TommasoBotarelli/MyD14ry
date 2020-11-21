@@ -32,11 +32,6 @@ void CalendarController::searchEventOfDay(QDate date, QListWidget &list) {
         a->set(i);
         a->setText((*i).getTask());
 
-        if ((*i).isAllDay())
-            a->setCheckState(Qt::Checked);
-        else
-            a->setCheckState(Qt::Unchecked);
-
         list.addItem(a);
     }
 }
