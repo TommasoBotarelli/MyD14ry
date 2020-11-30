@@ -84,19 +84,3 @@ void Activity::notify() const {
 Activity::~Activity() {
     subActivities.clear();
 }
-
-bool Activity::operator==(Activity& activity) {
-    if (activity.isCompleted() == this->isCompleted() &&
-    activity.getTask() == this->getTask() &&
-    activity.getNote() == this->getNote() &&
-    activity.getDate() == this->getDate() &&
-    activity.getDeadlineDate() == this->getDeadlineDate() &&
-    activity.getSubActivities().size() == this->getSubActivities().size())
-        return true;
-
-    else
-        return false;
-}
-
-
-
