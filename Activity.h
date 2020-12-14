@@ -41,9 +41,9 @@ public:
 
     void setNote(const QString &note);
 
-    std::list<SubActivity *> &getSubActivities();
+    std::list<SubActivity> &getSubActivities();
 
-    void addSubActivity(SubActivity *subActivity);
+    void addSubActivity(SubActivity &subActivity);
 
     void addObserver(Observer *o) override;
 
@@ -61,7 +61,7 @@ private:
     QDate deadlineDate;
     bool completed;
     QString note;
-    std::list<std::shared_ptr<SubActivity>> subActivities;
+    std::list<SubActivity> subActivities;
     std::list<Observer *> observers;
 };
 

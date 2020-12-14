@@ -52,19 +52,14 @@ void Activity::setNote(const QString &note) {
     Activity::note = note;
 }
 
-std::list<SubActivity *> &Activity::getSubActivities() {
-    auto list = new std::list<SubActivity *>;
+std::list<SubActivity> &Activity::getSubActivities() {   //FIXME
 
-    for (auto i = subActivities.begin(); i != subActivities.end(); ++i)
-        list->push_back(i->get());
-
-    return *list;
 }
 
-void Activity::addSubActivity(SubActivity *subActivity) {
-    if (subActivity != nullptr) {
-        subActivities.push_back(std::make_shared<SubActivity>(*subActivity));
-    }
+void Activity::addSubActivity(SubActivity &subActivity) {
+
+    subActivities.push_back(subActivity);
+
     notify();
 }
 
