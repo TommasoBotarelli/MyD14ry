@@ -41,7 +41,7 @@ public:
 
     void setNote(const QString &note);
 
-    std::list<SubActivity> &getSubActivities();
+    void getSubActivities(std::list<SubActivity> &subAList);
 
     void addSubActivity(SubActivity &subActivity);
 
@@ -53,7 +53,7 @@ public:
 
     ~Activity() override;
 
-    bool operator == (Activity& activity);
+    bool operator==(const Activity &activity);
 
 private:
     QString task;

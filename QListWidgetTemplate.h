@@ -10,16 +10,18 @@
 template<typename T>
 class QListWidgetTemplate : public QListWidgetItem {
 public:
-    void set(T *d) {
+    void set(T &d) {
         data = d;
     }
 
     T *get() {
-        return data;
+        T *p;
+        p = &data;
+        return p;
     }
 
 private:
-    T *data;
+    T data;
 };
 
 

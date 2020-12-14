@@ -52,8 +52,10 @@ void Activity::setNote(const QString &note) {
     Activity::note = note;
 }
 
-std::list<SubActivity> &Activity::getSubActivities() {   //FIXME
-
+void Activity::getSubActivities(std::list<SubActivity> &subAList) {   //FIXME
+    for (auto i : subActivities) {
+        subAList.push_back(i);
+    }
 }
 
 void Activity::addSubActivity(SubActivity &subActivity) {
@@ -80,13 +82,20 @@ Activity::~Activity() {
     subActivities.clear();
 }
 
-bool Activity::operator==(Activity& activity) {
+bool Activity::operator==(const Activity &activity) {
+
+    /*std::list<SubActivity> list1;
+    std::list<SubActivity> list2;
+    activity.getSubActivities(list1);
+    this->getSubActivities(list2);*/
+
+
     if (activity.isCompleted() == this->isCompleted() &&
-    activity.getTask() == this->getTask() &&
-    activity.getNote() == this->getNote() &&
-    activity.getDate() == this->getDate() &&
-    activity.getDeadlineDate() == this->getDeadlineDate() &&
-    activity.getSubActivities().size() == this->getSubActivities().size())
+        activity.getTask() == this->getTask() &&
+        activity.getNote() == this->getNote() &&
+        activity.getDate() == this->getDate() &&
+        activity.getDeadlineDate() == this->getDeadlineDate() /*&&
+    list1.size() == list2.size()*/)
         return true;
 
     else

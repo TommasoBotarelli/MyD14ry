@@ -29,7 +29,7 @@ void CalendarController::searchEventOfDay(QDate date, QListWidget &list) {
     for (auto i : calendar->getListOfDay(date)) {
         auto a = new QListWidgetTemplate<Event>;
 
-        a->set(i);
+        a->set(*i);
         a->setText((*i).getTask());
 
         list.addItem(a);

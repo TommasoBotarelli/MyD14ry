@@ -1,8 +1,8 @@
 #include "addsubactivitydialog.h"
 #include "ui_addsubactivitydialog.h"
 
-AddSubActivityDialog::AddSubActivityDialog(ActivityController *c, QWidget *parent) :
-        controller(c), QDialog(parent),
+AddSubActivityDialog::AddSubActivityDialog(Activity *act, ActivityListController *c, QWidget *parent) :
+        activity(act), controller(c), QDialog(parent),
         ui(new Ui::AddSubActivityDialog) {
     ui->setupUi(this);
 }
@@ -16,7 +16,8 @@ void AddSubActivityDialog::on_AddButton_clicked() {
         ui->NameEdit->setText("INSERISCI SOTTO ATTIVITÀ!!!");
 
     if (getTask() != "" && getTask() != "INSERISCI SOTTO ATTIVITÀ!!!") {
-        controller->setData(getTask(), false);
+        auto subA = new SubActivity();
+        controller->setData(*subA, *activity, getTask(), false);
 
         this->close();
     }

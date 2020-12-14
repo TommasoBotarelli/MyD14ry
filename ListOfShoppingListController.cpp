@@ -21,7 +21,7 @@ void ListOfShoppingListController::getLists(QListWidget &list) {
 
             auto a = new QListWidgetTemplate<ShoppingList>;
 
-            a->set(i);
+            a->set(*i);
             a->setText((*i).getNameList());
 
             list.addItem(a);

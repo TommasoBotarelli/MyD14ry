@@ -4,42 +4,48 @@
 
 #include "ActivityListController.h"
 
-void ActivityListController::setData(QString task, QDate date, QDate deadlineDate, bool completed, QString note) {
-    activity->setTask(task);
-    activity->setDate(date);
-    activity->setDeadlineDate(deadlineDate);
+void ActivityListController::setData(Activity &activity, QString task, QDate date, QDate deadlineDate, bool completed,
+                                     QString note) {
+    activity.setTask(task);
+    activity.setDate(date);
+    activity.setDeadlineDate(deadlineDate);
 
-    activity->setCompleted(completed);
-    activity->setNote(note);
+    activity.setCompleted(completed);
+    activity.setNote(note);
 
 
     activityList->addActivity(activity);
 }
 
-void ActivityListController::remove() {
+void ActivityListController::remove(Activity &activity) {
     activityList->removeActivity(activity);
-    activity = nullptr;
 }
 
-void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {
+void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {       //FIXME
 
-    for (auto i : (activityList->getListOfDay(date))) {
-        if (i != nullptr) {
-            auto a = new QListWidgetTemplate<Activity>;
+    std::list<Activity> aList;
+    activityList->getListOfDay(date, aList);
 
-            a->set(i);
-            a->setText((*i).getTask());
+    for (auto i : aList) {
 
-            if ((*i).isCompleted())
-                a->setCheckState(Qt::Checked);
-            else
-                a->setCheckState(Qt::Unchecked);
+        auto a = new QListWidgetTemplate<Activity>;
 
-            list.addItem(a);
-        }
+        a->set(i);
+        a->setText(i.getTask());
+
+        if (i.isCompleted())
+            a->setCheckState(Qt::Checked);
+        else
+            a->setCheckState(Qt::Unchecked);
+
+        list.addItem(a);
+
     }
 }
 
-void ActivityListController::setActivity(Activity *activity) {
-    ActivityListController::activity = activity;
+void ActivityListController::setData(SubActivity &subA, Activity &activity, QString t, bool c) {
+    subA.setTask(t);
+    subA.setCompleted(c);
+
+    activity.addSubActivity(subA);
 }

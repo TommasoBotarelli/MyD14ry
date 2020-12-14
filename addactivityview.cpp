@@ -23,7 +23,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
         ui->NameEdit->setText("INSERISCI ATTIVITÀ!!!");
 
     if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
-        controller->setData(getTask(), getDate(), getDeadlineDate(), false, getNote());
+        controller->setData(*activity, getTask(), getDate(), getDeadlineDate(), false, getNote());
         detach();
         (*this).close();
     }
@@ -31,29 +31,27 @@ void AddActivityView::on_AddActivityButton_clicked() {
 }
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
-    auto subA = new SubActivity();
 
-    auto c = new ActivityController(activity, subA);
-
-    auto dialog = new AddSubActivityDialog(c);
+    auto dialog = new AddSubActivityDialog(activity, controller);
 
     while (dialog->exec()) {
 
         if (dialog->close()) {
 
             delete dialog;
-            delete c;
         }
     }
 }
 
 void AddActivityView::update() {
     ui->SubActivityListWidget->clear();
+    std::list<SubActivity> listSubA;
+    activity->getSubActivities(listSubA);
 
-    for (auto i : activity->getSubActivities()) {
+    for (auto i : listSubA) {
         auto subA = new QListWidgetTemplate<SubActivity>;
 
-        subA->setText((*i).getTask());
+        subA->setText(i.getTask());
         subA->set(i);
 
         ui->SubActivityListWidget->addItem(subA);

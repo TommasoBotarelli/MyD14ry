@@ -39,7 +39,9 @@ class MainWindow : public QMainWindow, public Observer {
 Q_OBJECT
 
 public:
-    explicit MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL, QWidget *parent = nullptr);
+    explicit MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
+                        ActivityListController *actListC,
+                        QWidget *parent = nullptr);
 
     ~MainWindow() override;
 
@@ -48,6 +50,7 @@ public:
     void attach() override;
 
     void detach() override;
+
 private slots:
 
     void on_actionActivity_triggered();

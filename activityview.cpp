@@ -39,18 +39,14 @@ void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
 }
 
 void ActivityView::on_AddSubactivityButton_clicked() {
-    auto subA = new SubActivity();
 
-    auto actController = new ActivityController(activity, subA);
-
-    auto dialog = new AddSubActivityDialog(actController);
+    auto dialog = new AddSubActivityDialog(activity, controller);
 
     while (dialog->exec()) {
 
         if (dialog->close()) {
 
             delete dialog;
-            delete actController;
         }
     }
 
@@ -58,7 +54,7 @@ void ActivityView::on_AddSubactivityButton_clicked() {
 
 void ActivityView::on_DeleteButton_clicked() {
     detach();
-    controller->remove();
+    controller->remove(*activity);
     this->close();
 }
 
@@ -71,13 +67,15 @@ void ActivityView::update() {
         ui->CompletedCheckBox->setCheckState(Qt::Unchecked);
 
     ui->SubActivityListWidget->clear();
+    std::list<SubActivity> subAList;
+    activity->getSubActivities(subAList);
 
-    for (auto i : activity->getSubActivities()) {
+    for (auto i : subAList) {
         auto subA = new QListWidgetTemplate<SubActivity>;
 
-        subA->setText((*i).getTask());
+        subA->setText(i.getTask());
 
-        if (i->isCompleted())
+        if (i.isCompleted())
             subA->setCheckState(Qt::Checked);
         else
             subA->setCheckState(Qt::Unchecked);

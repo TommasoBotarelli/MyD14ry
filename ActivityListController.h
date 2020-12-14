@@ -10,23 +10,22 @@
 #include "Activity.h"
 #include "ActivityList.h"
 #include "QListWidgetTemplate.h"
+#include "SubActivity.h"
 
 class ActivityListController {
 public:
-    explicit ActivityListController(ActivityList *aL, Activity *a = nullptr) : activityList(aL), activity(a) {}
+    explicit ActivityListController(ActivityList *aL) : activityList(aL) {}
 
-    void setData(QString task, QDate date, QDate deadlineDate, bool completed, QString note);
+    void setData(Activity &activity, QString task, QDate date, QDate deadlineDate, bool completed, QString note);
 
-    void remove();
+    void setData(SubActivity &subA, Activity &activity, QString t, bool c);
+
+    void remove(Activity &activity);
 
     void searchActivityOfDay(QDate date, QListWidget &list);
 
-    void setActivity(Activity *activity);
-
 private:
     ActivityList *activityList;
-
-    Activity *activity;
 };
 
 

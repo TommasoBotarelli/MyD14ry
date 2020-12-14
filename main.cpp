@@ -4,6 +4,8 @@
 #include "Calendar.h"
 #include "ListOfShoppingList.h"
 
+#include "ActivityListController.h"
+
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
@@ -13,7 +15,9 @@ int main(int argc, char *argv[]) {
     auto calendar = new Calendar;
     auto shopList = new ListOfShoppingList;
 
-    MainWindow w(activityList, calendar, shopList);
+    auto actController = new ActivityListController(activityList);
+
+    MainWindow w(activityList, calendar, shopList, actController);
     w.show();
     return a.exec();
 }

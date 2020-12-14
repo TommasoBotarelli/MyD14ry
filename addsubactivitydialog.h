@@ -2,7 +2,8 @@
 #define ADDSUBACTIVITYDIALOG_H
 
 #include <QDialog>
-#include "ActivityController.h"
+#include "ActivityListController.h"
+#include "SubActivity.h"
 #include <QString>
 #include <QWidget>
 
@@ -14,7 +15,7 @@ class AddSubActivityDialog : public QDialog {
 Q_OBJECT
 
 public:
-    explicit AddSubActivityDialog(ActivityController *c, QWidget *parent = nullptr);
+    explicit AddSubActivityDialog(Activity *activity, ActivityListController *c, QWidget *parent = nullptr);
 
     ~AddSubActivityDialog() override;
 
@@ -27,7 +28,9 @@ private slots:
 private:
     Ui::AddSubActivityDialog *ui;
 
-    ActivityController *controller;
+    Activity *activity;
+
+    ActivityListController *controller;
 };
 
 #endif // ADDSUBACTIVITYDIALOG_H

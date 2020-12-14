@@ -64,7 +64,7 @@ void ShoppingListView::update() {
         else
             itemProduct->setCheckState(Qt::Unchecked);
 
-        itemProduct->set(i);
+        itemProduct->set(*i);
 
         ui->ShoppingProductListWidget->addItem(itemProduct);
     }

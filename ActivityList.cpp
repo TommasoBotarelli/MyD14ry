@@ -4,27 +4,22 @@
 
 #include "ActivityList.h"
 
-std::list<Activity *> ActivityList::getActivity() {
-    std::list<Activity *> list;
-
-    for (auto i = activities.begin(); i != activities.end(); ++i)
-        list.push_back(*i);
-
-    return list;
+void ActivityList::getActivity(std::list<Activity> &actList) {         //FIXME
+    for (auto i : activities) {
+        actList.push_back(i);
+    }
 }
 
-void ActivityList::addActivity(Activity *activity) {
-    if (activity != nullptr) {
-        activities.push_back(activity);
-    }
+void ActivityList::addActivity(Activity &activity) {
+    activities.push_back(activity);
+
     notify();
 }
 
-void ActivityList::removeActivity(Activity* activity) {
-    for (auto i :activities){
-        if (&(*i) == &(*activity)){
+void ActivityList::removeActivity(const Activity &activity) {
+    for (auto i = activities.begin(); i != activities.end(); i++) {
+        if (*i == activity) {
             activities.remove(activity);
-            delete activity;
             break;
         }
     }
@@ -44,15 +39,11 @@ void ActivityList::notify() const {
         (*i).update();
 }
 
-std::list<Activity *> &ActivityList::getListOfDay(QDate date) {
-    auto list = new std::list<Activity *>;
-
+void ActivityList::getListOfDay(QDate date, std::list<Activity> &dayList) {     //FIXME
     for (auto i : activities) {
-        if (i->getDate() == date)
-            list->push_back(i);
+        if (i.getDate() == date)
+            dayList.push_back(i);
     }
-
-    return *list;
 }
 
 ActivityList::~ActivityList() {
