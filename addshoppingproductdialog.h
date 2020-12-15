@@ -2,7 +2,7 @@
 #define ADDSHOPPINGPRODUCTDIALOG_H
 
 #include <QDialog>
-#include "ShoppingListController.h"
+#include "ListOfShoppingListController.h"
 
 namespace Ui {
     class AddShoppingProductDialog;
@@ -12,7 +12,7 @@ class AddShoppingProductDialog : public QDialog {
 Q_OBJECT
 
 public:
-    explicit AddShoppingProductDialog(ShoppingListController *slc, QWidget *parent = nullptr);
+    explicit AddShoppingProductDialog(ShoppingList *sl, ListOfShoppingListController *slc, QWidget *parent = nullptr);
 
     ~AddShoppingProductDialog() override;
 
@@ -25,7 +25,9 @@ private slots:
 private:
     Ui::AddShoppingProductDialog *ui;
 
-    ShoppingListController *shopListController;
+    ShoppingList *shopList;
+
+    ListOfShoppingListController *controller;
 };
 
 #endif // ADDSHOPPINGPRODUCTDIALOG_H

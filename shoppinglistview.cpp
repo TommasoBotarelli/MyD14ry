@@ -31,40 +31,37 @@ void ShoppingListView::on_ShoppingProductListWidget_itemChanged(QListWidgetItem 
 }
 
 void ShoppingListView::on_AddShoppingProductButton_clicked() {
-    auto product = new ShoppingProduct();
-
-    auto c = new ShoppingListController(shopList, product);
-
-    auto dialog = new AddShoppingProductDialog(c);
+    auto dialog = new AddShoppingProductDialog(shopList, controller);
 
     while (dialog->exec()) {
         if (dialog->close()) {
             delete dialog;
-            delete c;
         }
     }
 }
 
 void ShoppingListView::on_DeleteButton_clicked() {
     detach();
-    controller->remove();
+    controller->remove(*shopList);
     this->close();
 }
 
 void ShoppingListView::update() {
     ui->ShoppingProductListWidget->clear();
+    std::list<ShoppingProduct> shopP;
+    shopList->getProducts(shopP);
 
-    for (auto i : shopList->getProducts()) {
+    for (auto i : shopP) {
         auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
 
-        itemProduct->setText((*i).getName());
+        itemProduct->setText(i.getName());
 
-        if (i->isCatched())
+        if (i.isCatched())
             itemProduct->setCheckState(Qt::Checked);
         else
             itemProduct->setCheckState(Qt::Unchecked);
 
-        itemProduct->set(*i);
+        itemProduct->set(i);
 
         ui->ShoppingProductListWidget->addItem(itemProduct);
     }

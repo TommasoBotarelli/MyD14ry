@@ -15,20 +15,18 @@
 class ListOfShoppingListController {
 
 public:
-    ListOfShoppingListController(ShoppingList *s, ListOfShoppingList *listOfShopList) : shoppingList(s),
-                                                                                        listOfShoppingList(
-                                                                                                listOfShopList) {}
+    explicit ListOfShoppingListController(ListOfShoppingList *listOfShopList) : listOfShoppingList(listOfShopList) {}
 
-    void setData(QString name);
+    void setData(ShoppingList &shopList, QString name);
 
-    void remove();
+    void setData(ShoppingList &shopList, ShoppingProduct &product, QString name, bool c = false);
+
+    void remove(ShoppingList &shopList);
 
     void getLists(QListWidget &list);
 
 private:
     ListOfShoppingList *listOfShoppingList;
-
-    ShoppingList *shoppingList;
 };
 
 

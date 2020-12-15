@@ -4,27 +4,33 @@
 
 #include "ListOfShoppingListController.h"
 
-void ListOfShoppingListController::setData(QString name) {
-    shoppingList->setNameList(name);
+void ListOfShoppingListController::setData(ShoppingList &shopList, QString name) {
+    shopList.setNameList(name);
 
-    listOfShoppingList->addShoppingList(shoppingList);
+    listOfShoppingList->addShoppingList(shopList);
 }
 
-void ListOfShoppingListController::remove() {
-    listOfShoppingList->removeShoppingList(shoppingList);
-    shoppingList = nullptr;
+void ListOfShoppingListController::remove(ShoppingList &shopList) {
+    listOfShoppingList->removeShoppingList(shopList);
 }
 
 void ListOfShoppingListController::getLists(QListWidget &list) {
-    for (auto i : (listOfShoppingList->getList())) {
-        if (i != nullptr) {
+    std::list<ShoppingList> shopList;
+    listOfShoppingList->getList(shopList);
 
-            auto a = new QListWidgetTemplate<ShoppingList>;
+    for (auto i : shopList) {
+        auto a = new QListWidgetTemplate<ShoppingList>;
 
-            a->set(*i);
-            a->setText((*i).getNameList());
+        a->set(i);
+        a->setText(i.getNameList());
 
-            list.addItem(a);
-        }
+        list.addItem(a);
     }
+}
+
+void ListOfShoppingListController::setData(ShoppingList &shopList, ShoppingProduct &product, QString name, bool c) {
+    product.setName(name);
+    product.setCatched(c);
+
+    shopList.addProduct(product);
 }

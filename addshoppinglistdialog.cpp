@@ -15,16 +15,12 @@ AddShoppingListDialog::~AddShoppingListDialog() {
 }
 
 void AddShoppingListDialog::on_AddShoppingProductButton_clicked() {
-    auto product = new ShoppingProduct();
 
-    auto c = new ShoppingListController(shopList, product);
-
-    auto dialog = new AddShoppingProductDialog(c);
+    auto dialog = new AddShoppingProductDialog(shopList, controller);
 
     while (dialog->exec()) {
         if (dialog->close()) {
             delete dialog;
-            delete c;
         }
     }
 }
@@ -34,7 +30,7 @@ void AddShoppingListDialog::on_AddShoppingListButton_clicked() {
         ui->NameEdit->setText("INSERISCI NOME LISTA!!!");
 
     if (getName() != "INSERISCI NOME LISTA!!!" && getName() != "") {
-        controller->setData(getName());
+        controller->setData(*shopList, getName());
         detach();
         this->close();
     }
@@ -43,12 +39,14 @@ void AddShoppingListDialog::on_AddShoppingListButton_clicked() {
 
 void AddShoppingListDialog::update() {
     ui->ShoppingProductListWidget->clear();
+    std::list<ShoppingProduct> shopP;
+    shopList->getProducts(shopP);
 
-    for (auto i : shopList->getProducts()) {
+    for (auto i : shopP) {
         auto qProduct = new QListWidgetTemplate<ShoppingProduct>;
 
-        qProduct->setText((*i).getName());
-        qProduct->set(*i);
+        qProduct->setText(i.getName());
+        qProduct->set(i);
 
         ui->ShoppingProductListWidget->addItem(qProduct);
     }

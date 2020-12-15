@@ -3,17 +3,16 @@
 
 #include "ListOfShoppingList.h"
 
-void ListOfShoppingList::addShoppingList(ShoppingList *shoppingList) {
+void ListOfShoppingList::addShoppingList(ShoppingList &shoppingList) {
     ShoppingLists.push_back(shoppingList);
     notify();
 }
 
-void ListOfShoppingList::removeShoppingList(ShoppingList *shoppingList) {
+void ListOfShoppingList::removeShoppingList(ShoppingList &shoppingList) {
 
-    for (auto i : ShoppingLists){
-        if (&(*i) == &(*shoppingList)){
+    for (auto i : ShoppingLists) {
+        if (i == shoppingList) {
             ShoppingLists.remove(shoppingList);
-            delete shoppingList;
             break;
         }
     }
@@ -33,13 +32,9 @@ void ListOfShoppingList::notify() const {
         (*i).update();
 }
 
-std::list<ShoppingList *> &ListOfShoppingList::getList() {
-    auto list = new std::list<ShoppingList *>;
-
+void ListOfShoppingList::getList(std::list<ShoppingList> &shopList) {
     for (auto i : ShoppingLists)
-        list->push_back(i);
-
-    return *list;
+        shopList.push_back(i);
 }
 
 ListOfShoppingList::~ListOfShoppingList() {

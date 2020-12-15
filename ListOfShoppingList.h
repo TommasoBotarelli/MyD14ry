@@ -13,9 +13,9 @@
 class ListOfShoppingList : public Subject {
 public:
 
-    void addShoppingList(ShoppingList *shoppingList);
+    void addShoppingList(ShoppingList &shoppingList);
 
-    void removeShoppingList(ShoppingList *shoppingList);
+    void removeShoppingList(ShoppingList &shoppingList);
 
     void addObserver(Observer *o) override;
 
@@ -23,13 +23,13 @@ public:
 
     void notify() const override;
 
-    std::list<ShoppingList *> &getList();
+    void getList(std::list<ShoppingList> &shopList);
 
     ~ListOfShoppingList() override;
 
 private:
 
-    std::list<ShoppingList *> ShoppingLists;
+    std::list<ShoppingList> ShoppingLists;
 
     std::list<Observer *> observers;
 

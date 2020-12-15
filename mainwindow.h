@@ -42,6 +42,7 @@ public:
     explicit MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
                         ActivityListController *actListC,
                         CalendarController *calC,
+                        ListOfShoppingListController *shopLC,
                         QWidget *parent = nullptr);
 
     ~MainWindow() override;

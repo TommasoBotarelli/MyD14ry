@@ -10,22 +10,17 @@ const QString &ShoppingList::getNameList() const {
 }
 
 void ShoppingList::setNameList(const QString &name) {
-    ShoppingList::nameList = name;
+    nameList = name;
 }
 
-std::list<ShoppingProduct *> &ShoppingList::getProducts() {
-    auto list = new std::list<ShoppingProduct *>;
-
-    for (auto i = products.begin(); i != products.end(); ++i)
-        list->push_back(i->get());
-
-    return *list;
+void const ShoppingList::getProducts(std::list<ShoppingProduct> &shopList) {
+    for (auto i : products)
+        shopList.push_back(i);
 }
 
-void ShoppingList::addProduct(ShoppingProduct *product) {
-    if ( product!= nullptr) {
-        products.push_back(std::make_shared<ShoppingProduct>(*product));
-    }
+void ShoppingList::addProduct(ShoppingProduct &product) {
+
+    products.push_back(product);
     notify();
 }
 
@@ -45,5 +40,17 @@ void ShoppingList::notify() const {
 ShoppingList::~ShoppingList() {
     if (!products.empty())
         products.erase(products.begin(), products.end());
+}
+
+bool ShoppingList::operator==(const ShoppingList &compareShopList) {
+    /*std::list<ShoppingProduct> list;
+    compareShopList.getProducts(list);*/
+
+    if (this->getNameList() == compareShopList.getNameList() /*&&       //FIXME
+    this->products.size() == list.size()*/)
+        return true;
+
+    else
+        return false;
 }
 

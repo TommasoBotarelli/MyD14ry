@@ -84,7 +84,7 @@ Activity::~Activity() {
 
 bool Activity::operator==(const Activity &activity) {
 
-    /*std::list<SubActivity> list1;
+    /*std::list<SubActivity> list1;         //FIXME
     std::list<SubActivity> list2;
     activity.getSubActivities(list1);
     this->getSubActivities(list2);*/

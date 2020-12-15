@@ -11,9 +11,7 @@ class ShoppingProduct {
 public:
     ShoppingProduct() = default;
 
-    ShoppingProduct(const ShoppingProduct &original);
-
-    //ShoppingProduct &operator=(const ShoppingProduct &) = delete;
+    ShoppingProduct(const ShoppingProduct &original);       //FIXME va tolto?
 
     const QString &getName() const;
 

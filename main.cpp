@@ -18,8 +18,9 @@ int main(int argc, char *argv[]) {
 
     auto actController = new ActivityListController(activityList);
     auto eventController = new CalendarController(calendar);
+    auto shopListController = new ListOfShoppingListController(shopList);
 
-    MainWindow w(activityList, calendar, shopList, actController, eventController);
+    MainWindow w(activityList, calendar, shopList, actController, eventController, shopListController);
     w.show();
     return a.exec();
 }

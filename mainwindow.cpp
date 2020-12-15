@@ -4,12 +4,14 @@
 MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
                        ActivityListController *actListC,
                        CalendarController *calC,
+                       ListOfShoppingListController *shopLC,
                        QWidget *parent)
         : activityList(actList),
           calendar(cal),
           shopList(sL),
           activityListController(actListC),
           calendarController(calC),
+          shopListController(shopLC),
           QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     attach();
@@ -49,14 +51,11 @@ void MainWindow::on_actionEvent_triggered() {
 void MainWindow::on_actionLista_della_spesa_triggered() {
     auto s = new ShoppingList();
 
-    shopListController = new ListOfShoppingListController(s, shopList);
-
     auto dialog = new AddShoppingListDialog(s, shopListController);
 
     while (dialog->exec()) {
         if (dialog->close()) {
             delete dialog;
-            delete shopListController;
         }
     }
 }
@@ -108,14 +107,11 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
 
-        shopListController = new ListOfShoppingListController(shopListItem->get(), shopList);
-
         auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
 
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
-                delete shopListController;
             }
         }
     }
@@ -137,7 +133,9 @@ void MainWindow::update() {
     }
 
     ui->listWidget_3->clear();
-    if (!shopList->getList().empty()) {
+    std::list<ShoppingList> sList;
+    shopList->getList(sList);
+    if (!sList.empty()) {
         shopListController->getLists(*ui->listWidget_3);
     }
 
