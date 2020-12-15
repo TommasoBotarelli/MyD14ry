@@ -23,10 +23,10 @@ void AddEventDialog::on_AddButton_clicked() {
         ui->NameLineEdit->setText("INSERISCI EVENTO!!!");
 
     if (getTask() != "INSERISCI EVENTO!!!" && getTask() != "") {
-        controller->setData(getTask(), getDate(), getNote(),
+        controller->setData(*event, getTask(), getDate(), getNote(),
                             getStartTime(), getEndTime(), getAllDay());
 
-        (*this).close();
+        this->close();
     }
 }
 

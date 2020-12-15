@@ -12,17 +12,21 @@
 #include "Calendar.h"
 #include "QListWidgetTemplate.h"
 
-class CalendarController{
+class CalendarController {
+
 public:
-    explicit CalendarController(Calendar *c, Event *e = nullptr) : calendar(c), event(e) {}
-    void setData(QString task, QDate date, QString note, QTime startTime, QTime endTime, bool allDay);
+
+    explicit CalendarController(Calendar *c) : calendar(c) {}
+
+    void setData(Event &event, QString task, QDate date, QString note, QTime startTime, QTime endTime, bool allDay);
+
     void searchEventOfDay(QDate date, QListWidget &list);
-    void remove();
+
+    void remove(Event &event);
+
 private:
-    Event* event;
-    Calendar* calendar;
 
-
+    Calendar *calendar;
 };
 
 

@@ -19,6 +19,9 @@ EventView::~EventView() {
 }
 
 void EventView::on_DeleteButton_clicked() {
-    controller->remove();
-    this->close();
+    if (event != nullptr) {
+        controller->remove(*event);
+        event = nullptr;
+        this->close();
+    }
 }

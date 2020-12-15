@@ -10,7 +10,7 @@
 template<typename T>
 class QListWidgetTemplate : public QListWidgetItem {
 public:
-    void set(T &d) {
+    void set(const T &d) {
         data = d;
     }
 
@@ -19,7 +19,6 @@ public:
         p = &data;
         return p;
     }
-
 private:
     T data;
 };

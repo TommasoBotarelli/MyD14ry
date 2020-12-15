@@ -41,6 +41,7 @@ Q_OBJECT
 public:
     explicit MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
                         ActivityListController *actListC,
+                        CalendarController *calC,
                         QWidget *parent = nullptr);
 
     ~MainWindow() override;

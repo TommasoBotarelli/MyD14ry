@@ -3,11 +3,13 @@
 
 MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
                        ActivityListController *actListC,
+                       CalendarController *calC,
                        QWidget *parent)
         : activityList(actList),
           calendar(cal),
           shopList(sL),
           activityListController(actListC),
+          calendarController(calC),
           QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     attach();
@@ -35,14 +37,11 @@ void MainWindow::on_actionActivity_triggered() {
 void MainWindow::on_actionEvent_triggered() {
     auto e = new Event();
 
-    calendarController = new CalendarController(calendar, e);
-
     auto dialog = new AddEventDialog(calendarController, e);
 
     while (dialog->exec()) {
         if (dialog->close()) {
             delete dialog;
-            delete calendarController;
         }
     }
 }
@@ -95,14 +94,11 @@ void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<Event> *eventItem = dynamic_cast<QListWidgetTemplate<Event> * >(item)) {
 
-        calendarController = new CalendarController(calendar, eventItem->get());
-
         auto dialog = new EventView(eventItem->get(), calendarController);
 
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
-                delete calendarController;
             }
         }
     }
@@ -127,16 +123,16 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 
 void MainWindow::update() {
     ui->listWidget->clear();
-
     std::list<Activity> actList;
     activityList->getListOfDay(ui->calendarWidget->selectedDate(), actList);
-
     if (!actList.empty()) {
         activityListController->searchActivityOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget);
     }
 
     ui->listWidget_2->clear();
-    if (!calendar->getEvent().empty()) {
+    std::list<Event> eList;
+    calendar->getListOfDay(ui->calendarWidget->selectedDate(), eList);
+    if (!eList.empty()) {
         calendarController->searchEventOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget_2);
     }
 
@@ -153,10 +149,12 @@ void MainWindow::update() {
 
     while (d != day.daysInMonth()) {
 
-        std::list<Activity> actList;
+        actList.clear();
         activityList->getListOfDay(day, actList);
+        eList.clear();
+        calendar->getListOfDay(day, eList);
 
-        if (!actList.empty() || !calendar->getListOfDay(day).empty())
+        if (!actList.empty() || !eList.empty())
             ui->calendarWidget->setDateTextFormat(day, format);
         else
             ui->calendarWidget->setDateTextFormat(day, defaultFormat);

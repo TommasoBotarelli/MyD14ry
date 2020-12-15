@@ -59,3 +59,15 @@ const QString &Event::getNote() const {
 void Event::setNote(const QString &note) {
     Event::note = note;
 }
+
+bool Event::operator==(const Event &compareEvent) {
+    if (this->getTask() == compareEvent.getTask() &&
+        this->getDate() == compareEvent.getDate() &&
+        this->getNote() == compareEvent.getNote() &&
+        this->getEndTime() == compareEvent.getEndTime() &&
+        this->getStartTime() == compareEvent.getStartTime())
+        return true;
+
+    else
+        return false;
+}
