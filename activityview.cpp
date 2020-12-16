@@ -9,7 +9,6 @@ ActivityView::ActivityView(Activity *a, ActivityListController *c, QWidget *pare
 
     setWindowTitle(activity->getTask());
 
-    ui->DateEdit->setDate(activity->getDate());
     ui->DeadlineDateEdit->setDate(activity->getDeadlineDate());
     ui->NoteEdit->setText(activity->getNote());
 
@@ -103,3 +102,6 @@ void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
 }
 
 
+void ActivityView::on_comboBox_textActivated(const QString &arg1) {
+
+}

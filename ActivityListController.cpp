@@ -4,10 +4,9 @@
 
 #include "ActivityListController.h"
 
-void ActivityListController::setData(Activity &activity, QString task, QDate date, QDate deadlineDate, bool completed,
+void ActivityListController::setData(Activity &activity, QString task, QDate deadlineDate, bool completed,
                                      QString note) {
     activity.setTask(task);
-    activity.setDate(date);
     activity.setDeadlineDate(deadlineDate);
 
     activity.setCompleted(completed);
@@ -21,10 +20,10 @@ void ActivityListController::remove(Activity &activity) {
     activityList->removeActivity(activity);
 }
 
-void ActivityListController::searchActivityOfDay(QDate date, QListWidget &list) {       //FIXME
+void ActivityListController::searchActivity(QListWidget &list) {
 
     std::list<Activity> aList;
-    activityList->getListOfDay(date, aList);
+    activityList->getActivity(aList);
 
     for (auto i : aList) {
 

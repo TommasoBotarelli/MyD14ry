@@ -120,9 +120,9 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::update() {
     ui->listWidget->clear();
     std::list<Activity> actList;
-    activityList->getListOfDay(ui->calendarWidget->selectedDate(), actList);
+    activityList->getActivity(actList);
     if (!actList.empty()) {
-        activityListController->searchActivityOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget);
+        activityListController->searchActivity(*ui->listWidget);
     }
 
     ui->listWidget_2->clear();
@@ -147,12 +147,10 @@ void MainWindow::update() {
 
     while (d != day.daysInMonth()) {
 
-        actList.clear();
-        activityList->getListOfDay(day, actList);
         eList.clear();
         calendar->getListOfDay(day, eList);
 
-        if (!actList.empty() || !eList.empty())
+        if (!eList.empty())
             ui->calendarWidget->setDateTextFormat(day, format);
         else
             ui->calendarWidget->setDateTextFormat(day, defaultFormat);

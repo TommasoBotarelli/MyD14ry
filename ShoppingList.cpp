@@ -3,7 +3,6 @@
 //
 
 #include "ShoppingList.h"
-#include <memory>
 
 const QString &ShoppingList::getNameList() const {
     return nameList;

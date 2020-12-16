@@ -32,6 +32,8 @@ private slots:
 
     void on_CompletedCheckBox_stateChanged(int arg1);
 
+    void on_comboBox_textActivated(const QString &arg1);
+
 public:
     void update() override;
 

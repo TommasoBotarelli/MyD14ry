@@ -3,7 +3,6 @@
 //
 
 #include "Activity.h"
-#include <memory>
 
 
 const QString &Activity::getTask() const {
@@ -17,23 +16,12 @@ void Activity::setTask(const QString &task) {
         Activity::task = task;
 }
 
-const QDate &Activity::getDate() const {
-    return date;
-}
-
-void Activity::setDate(const QDate &date) {
-    Activity::date = date;
-}
-
 const QDate &Activity::getDeadlineDate() const {
     return deadlineDate;
 }
 
 void Activity::setDeadlineDate(const QDate &deadDate) {
-    if (deadDate < Activity::date)
-        Activity::deadlineDate = date;
-    else
-        Activity::deadlineDate = deadDate;
+    deadlineDate = deadDate;
 }
 
 bool Activity::isCompleted() const {
@@ -93,7 +81,6 @@ bool Activity::operator==(const Activity &activity) {
     if (activity.isCompleted() == this->isCompleted() &&
         activity.getTask() == this->getTask() &&
         activity.getNote() == this->getNote() &&
-        activity.getDate() == this->getDate() &&
         activity.getDeadlineDate() == this->getDeadlineDate() /*&&
     list1.size() == list2.size()*/)
         return true;

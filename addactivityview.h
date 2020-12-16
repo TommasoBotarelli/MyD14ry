@@ -44,6 +44,8 @@ private slots:
 
     void on_AddSubActivityButton_clicked();
 
+    void on_categoryComboBox_textActivated(const QString &arg1);
+
 private:
     Ui::AddActivityView *ui;
 

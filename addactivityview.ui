@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>353</width>
-    <height>452</height>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>331</width>
-     <height>421</height>
+     <height>491</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -40,20 +40,6 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="DateLabel">
-          <property name="text">
-           <string>Data</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDateEdit" name="StartDateEdit"/>
-        </item>
-       </layout>
-      </item>
-      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="DeadlineDateLabel">
@@ -66,6 +52,20 @@
          <widget class="QDateEdit" name="DeadlineDateEdit"/>
         </item>
        </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="categoryLabel">
+        <property name="text">
+         <string>Categoria</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="categoryComboBox"/>
       </item>
      </layout>
     </item>

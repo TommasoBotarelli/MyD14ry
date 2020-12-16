@@ -25,10 +25,6 @@ public:
 
     void setTask(const QString &task);
 
-    const QDate &getDate() const;
-
-    void setDate(const QDate &date);
-
     const QDate &getDeadlineDate() const;
 
     void setDeadlineDate(const QDate &deadlineDate);
@@ -57,7 +53,6 @@ public:
 
 private:
     QString task;
-    QDate date;
     QDate deadlineDate;
     bool completed;
     QString note;

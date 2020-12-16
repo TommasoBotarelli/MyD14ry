@@ -6,7 +6,6 @@ AddActivityView::AddActivityView(Activity *a, ActivityListController *actListC, 
         activity(a), controller(actListC), QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
-    ui->StartDateEdit->setDate(QDate::currentDate());
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
     attach();
 }
@@ -23,7 +22,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
         ui->NameEdit->setText("INSERISCI ATTIVITÀ!!!");
 
     if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
-        controller->setData(*activity, getTask(), getDate(), getDeadlineDate(), false, getNote());
+        controller->setData(*activity, getTask(), getDeadlineDate(), false, getNote());
         detach();
         (*this).close();
     }
@@ -66,11 +65,6 @@ void AddActivityView::detach() {
     activity->removeObserver(this);
 }
 
-
-QDate AddActivityView::getDate() {
-    return ui->StartDateEdit->date();
-}
-
 QDate AddActivityView::getDeadlineDate() {
     return ui->DeadlineDateEdit->date();
 }
@@ -83,3 +77,7 @@ QString AddActivityView::getNote() {
     return ui->NoteEdit->toPlainText();
 }
 
+
+void AddActivityView::on_categoryComboBox_textActivated(const QString &arg1) {
+
+}

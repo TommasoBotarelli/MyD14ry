@@ -16,7 +16,7 @@ void ActivityList::addActivity(Activity &activity) {
     notify();
 }
 
-void ActivityList::removeActivity(const Activity &activity) {
+void ActivityList::removeActivity(Activity &activity) {
     for (auto i = activities.begin(); i != activities.end(); i++) {
         if (*i == activity) {
             activities.remove(activity);
@@ -37,13 +37,6 @@ void ActivityList::removeObserver(Observer *o) {
 void ActivityList::notify() const {
     for (auto i : observers)
         (*i).update();
-}
-
-void ActivityList::getListOfDay(QDate date, std::list<Activity> &dayList) {     //FIXME
-    for (auto i : activities) {
-        if (i.getDate() == date)
-            dayList.push_back(i);
-    }
 }
 
 ActivityList::~ActivityList() {
