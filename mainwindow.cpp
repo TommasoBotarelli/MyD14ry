@@ -29,7 +29,7 @@ void MainWindow::on_actionActivity_triggered() {
 
     auto a = new Activity();
 
-    auto dialog = new AddActivityView(a, activityListController);
+    auto dialog = new AddActivityView(activityList, a, activityListController);
 
     while (dialog->exec()) {
         if (dialog->close()) {
@@ -122,11 +122,7 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 
 void MainWindow::update() {
     ui->listWidget->clear();
-    std::list<Activity> actList;
-    activityList->getActivity(actList);
-    if (!actList.empty()) {
-        activityListController->searchActivity(*ui->listWidget);
-    }
+    activityListController->getActivitiesForCategory(*ui->listWidget);
 
     ui->listWidget_2->clear();
     std::list<Event> eList;

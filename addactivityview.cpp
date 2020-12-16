@@ -2,11 +2,12 @@
 #include "ui_addactivityview.h"
 
 
-AddActivityView::AddActivityView(Activity *a, ActivityListController *actListC, QWidget *parent) :
-        activity(a), controller(actListC), QDialog(parent),
+AddActivityView::AddActivityView(ActivityList *aList, Activity *a, ActivityListController *actListC, QWidget *parent) :
+        actList(aList), activity(a), controller(actListC), QDialog(parent),
         ui(new Ui::AddActivityView) {
     ui->setupUi(this);
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
+    updateCategory();
     attach();
 }
 
@@ -22,7 +23,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
         ui->NameEdit->setText("INSERISCI ATTIVITÀ!!!");
 
     if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
-        controller->setData(*activity, getTask(), getDeadlineDate(), false, getNote());
+        controller->setData(getCategory(), *activity, getTask(), getDeadlineDate(), false, getNote());
         detach();
         (*this).close();
     }
@@ -55,6 +56,7 @@ void AddActivityView::update() {
 
         ui->SubActivityListWidget->addItem(subA);
     }
+    updateCategory();
 }
 
 void AddActivityView::attach() {
@@ -83,5 +85,22 @@ void AddActivityView::on_categoryComboBox_textActivated(const QString &arg1) {
 }
 
 void AddActivityView::on_addCategoryButton_clicked() {
+    auto dialog = new AddCategory(controller);
 
+    while (dialog->exec())
+        if (dialog->close()) {
+            delete dialog;
+        }
+}
+
+QString AddActivityView::getCategory() {
+    return ui->categoryComboBox->currentText();
+}
+
+void AddActivityView::updateCategory() {
+    std::list<Category> catList;
+    actList->getCategory(catList);
+
+    for (auto i : catList)
+        ui->categoryComboBox->addItem(i.getName());
 }

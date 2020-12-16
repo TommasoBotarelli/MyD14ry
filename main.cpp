@@ -6,6 +6,7 @@
 
 #include "ActivityListController.h"
 #include "CalendarController.h"
+#include "ListOfShoppingListController.h"
 
 #include <QApplication>
 

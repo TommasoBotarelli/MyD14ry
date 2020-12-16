@@ -13,13 +13,17 @@
 #include <QDate>
 #include "Category.h"
 
-class ActivityList: public Subject {
+class ActivityList : public Subject {
 public:
     void addActivity(Category &c, Activity &activity);
 
-    void getActivity(std::list<Activity> &actList);
+    void addCategory(Category &c);
 
-    void removeActivity(Activity &activity);
+    void removeCategory(Category &c);
+
+    void getCategory(std::list<Category> &catList);
+
+    void removeActivity(Category &c, Activity &activity);
 
     void addObserver(Observer *o) override;
 

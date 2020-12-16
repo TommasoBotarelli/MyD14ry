@@ -22,14 +22,12 @@ public:
 
     void setName(const QString &name);
 
-    bool operator==(Category &c);
+    bool operator==(const Category &c);
 
 private:
     std::list<Activity> activities;
 
     QString name;
-
-    std::list<Observer *> observers;
 };
 
 

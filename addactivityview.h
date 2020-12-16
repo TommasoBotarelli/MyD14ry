@@ -11,6 +11,7 @@
 #include "addsubactivitydialog.h"
 #include "memory"
 #include "QListWidgetTemplate.h"
+#include "addcategory.h"
 
 namespace Ui {
     class AddActivityView;
@@ -20,11 +21,10 @@ class AddActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit AddActivityView(Activity *a, ActivityListController *actListC, QWidget *parent = nullptr);
+    explicit AddActivityView(ActivityList *aList, Activity *a, ActivityListController *actListC,
+                             QWidget *parent = nullptr);
 
     ~AddActivityView() override;
-
-    QDate getDate();
 
     QDate getDeadlineDate();
 
@@ -38,6 +38,10 @@ public:
 
     void detach() override;
 
+    QString getCategory();
+
+    void updateCategory();
+
 private slots:
 
     void on_AddActivityButton_clicked();
@@ -50,6 +54,8 @@ private slots:
 
 private:
     Ui::AddActivityView *ui;
+
+    ActivityList *actList;
 
     Activity *activity;
 

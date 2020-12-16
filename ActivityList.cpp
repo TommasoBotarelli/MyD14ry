@@ -4,34 +4,20 @@
 
 #include "ActivityList.h"
 
-void ActivityList::getActivity(std::list<Activity> &actList) {
-    for (auto i : activities) {
-        actList.push_back(i);
+void ActivityList::getCategory(std::list<Category> &catList) {
+    for (auto i : categories) {
+        catList.push_back(i);
     }
 }
 
 void ActivityList::addActivity(Category &c, Activity &activity) {
-    for (auto i : categories)
-        if (i == c)
-            i.addActivity(activity);
+    c.addActivity(activity);
 
     notify();
 }
 
-void ActivityList::removeActivity(Activity &activity) {
-    std::list<Activity> actList;
-
-    for (auto i : categories) {
-        actList.clear();
-        i.getActivity(actList);
-
-        for (auto l : actList) {
-            if (l == activity) {
-                i.removeActivity(l);
-                break;
-            }
-        }
-    }
+void ActivityList::removeActivity(Category &c, Activity &activity) {
+    c.removeActivity(activity);
 
     notify();
 }
@@ -54,4 +40,16 @@ ActivityList::~ActivityList() {
 
     for (auto i : observers)
         i->detach();
+}
+
+void ActivityList::addCategory(Category &c) {
+    categories.push_back(c);
+
+    notify();
+}
+
+void ActivityList::removeCategory(Category &c) {
+    categories.remove(c);
+
+    notify();
 }

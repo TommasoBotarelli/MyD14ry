@@ -17,7 +17,7 @@ class ActivityListController {
 public:
     explicit ActivityListController(ActivityList *aL) : activityList(aL) {}
 
-    void setData(Category &c, Activity &activity, QString task, QDate deadlineDate, bool completed, QString note);
+    void setData(QString category, Activity &activity, QString task, QDate deadlineDate, bool completed, QString note);
 
     void setData(SubActivity &subA, Activity &activity, QString t, bool c);
 
@@ -25,7 +25,13 @@ public:
 
     void remove(Activity &activity);
 
-    void searchActivity(QListWidget &list);
+    void remove(Category &c);
+
+    Category searchCategory(const QString &name);
+
+    void getActivitiesForCategory(QListWidget &list);
+
+    bool findCategory(QString name);
 
 private:
     ActivityList *activityList;

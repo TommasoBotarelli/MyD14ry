@@ -4,40 +4,65 @@
 
 #include "ActivityListController.h"
 
-void ActivityListController::setData(Category &c, Activity &activity, QString task, QDate deadlineDate, bool completed,
-                                     QString note) {
+void
+ActivityListController::setData(QString category, Activity &activity, QString task, QDate deadlineDate, bool completed,
+                                QString note) {
     activity.setTask(task);
     activity.setDeadlineDate(deadlineDate);
 
     activity.setCompleted(completed);
     activity.setNote(note);
 
+    auto c = searchCategory(category);
 
     activityList->addActivity(c, activity);
 }
 
 void ActivityListController::remove(Activity &activity) {
-    activityList->removeActivity(activity);
+    std::list<Category> catList;
+    activityList->getCategory(catList);
+    std::list<Activity> actList;
+
+    for (auto i : catList) {
+        actList.clear();
+        i.getActivity(actList);
+
+        for (auto l : actList) {
+            if (l == activity) {
+                activityList->removeActivity(i, activity);
+            }
+        }
+
+    }
+
 }
 
-void ActivityListController::searchActivity(QListWidget &list) {
+void ActivityListController::getActivitiesForCategory(QListWidget &list) {
 
-    std::list<Activity> aList;
-    activityList->getActivity(aList);
+    std::list<Activity> actList;
+    std::list<Category> catList;
+    activityList->getCategory(catList);
 
-    for (auto i : aList) {
+    for (auto l : catList) {
+        actList.clear();
+        l.getActivity(actList);
+        list.addItem(l.getName());
 
-        auto a = new QListWidgetTemplate<Activity>;
+        for (auto i : actList) {
 
-        a->set(i);
-        a->setText(i.getTask());
+            auto a = new QListWidgetTemplate<Activity>;
 
-        if (i.isCompleted())
-            a->setCheckState(Qt::Checked);
-        else
-            a->setCheckState(Qt::Unchecked);
+            a->set(i);
+            a->setText(i.getTask());
 
-        list.addItem(a);
+            if (i.isCompleted())
+                a->setCheckState(Qt::Checked);
+            else
+                a->setCheckState(Qt::Unchecked);
+
+            list.addItem(a);
+
+        }
 
     }
 }
@@ -51,4 +76,33 @@ void ActivityListController::setData(SubActivity &subA, Activity &activity, QStr
 
 void ActivityListController::setData(Category &c, QString name) {
     c.setName(name);
+    activityList->addCategory(c);
+}
+
+Category ActivityListController::searchCategory(const QString &name) {
+    std::list<Category> catList;
+    activityList->getCategory(catList);
+
+    for (auto i : catList) {
+        if (i.getName() == name)
+            return i;
+    }
+}
+
+void ActivityListController::remove(Category &c) {
+    activityList->removeCategory(c);
+}
+
+bool ActivityListController::findCategory(QString name) {
+    std::list<Category> catList;
+    activityList->getCategory(catList);
+
+    bool find = false;
+
+    for (auto i : catList) {
+        if (i.getName() == name)
+            find = true;
+    }
+
+    return find;
 }

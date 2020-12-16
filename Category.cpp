@@ -32,11 +32,10 @@ void Category::setName(const QString &name) {
     Category::name = name;
 }
 
-bool Category::operator==(Category &c) {
+bool Category::operator==(const Category &c) {
     if (c.getName() == this->getName())
         return true;
     else
         return false;
-
 }
 
