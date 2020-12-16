@@ -101,7 +101,10 @@ void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
         activity->setCompleted(true);
 }
 
+void ActivityView::on_addCategoryButton_clicked() {
 
-void ActivityView::on_comboBox_textActivated(const QString &arg1) {
+}
+
+void ActivityView::on_categoryComboBox_textActivated(const QString &arg1) {
 
 }

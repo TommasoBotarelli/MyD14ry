@@ -46,6 +46,8 @@ private slots:
 
     void on_categoryComboBox_textActivated(const QString &arg1);
 
+    void on_addCategoryButton_clicked();
+
 private:
     Ui::AddActivityView *ui;
 

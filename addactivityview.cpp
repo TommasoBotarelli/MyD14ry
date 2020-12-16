@@ -81,3 +81,7 @@ QString AddActivityView::getNote() {
 void AddActivityView::on_categoryComboBox_textActivated(const QString &arg1) {
 
 }
+
+void AddActivityView::on_addCategoryButton_clicked() {
+
+}
