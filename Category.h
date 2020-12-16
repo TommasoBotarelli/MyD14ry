@@ -8,16 +8,9 @@
 
 #include <list>
 #include "Activity.h"
-#include "Subject.h"
-#include "Observer.h"
 
-class Category : public Subject {
+class Category {
 public:
-    void addObserver(Observer *o) override;
-
-    void removeObserver(Observer *o) override;
-
-    void notify() const override;
 
     void getActivity(std::list<Activity> &actList);
 
@@ -25,7 +18,11 @@ public:
 
     void removeActivity(Activity &activity);
 
-    ~Category() override = default;
+    const QString &getName() const;
+
+    void setName(const QString &name);
+
+    bool operator==(Category &c);
 
 private:
     std::list<Activity> activities;

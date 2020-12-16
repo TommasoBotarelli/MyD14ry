@@ -13,8 +13,6 @@ void Category::getActivity(std::list<Activity> &actList) {
 
 void Category::addActivity(Activity &activity) {
     activities.push_back(activity);
-
-    notify();
 }
 
 void Category::removeActivity(Activity &activity) {
@@ -24,19 +22,21 @@ void Category::removeActivity(Activity &activity) {
             break;
         }
     }
-    notify();
 }
 
-void Category::addObserver(Observer *o) {
-    observers.push_back(o);
+const QString &Category::getName() const {
+    return name;
 }
 
-void Category::removeObserver(Observer *o) {
-    observers.remove(o);
+void Category::setName(const QString &name) {
+    Category::name = name;
 }
 
-void Category::notify() const {
-    for (auto i : observers)
-        (*i).update();
+bool Category::operator==(Category &c) {
+    if (c.getName() == this->getName())
+        return true;
+    else
+        return false;
+
 }
 

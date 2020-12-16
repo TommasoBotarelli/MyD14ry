@@ -10,19 +10,29 @@ void ActivityList::getActivity(std::list<Activity> &actList) {
     }
 }
 
-void ActivityList::addActivity(Activity &activity) {
-    activities.push_back(activity);
+void ActivityList::addActivity(Category &c, Activity &activity) {
+    for (auto i : categories)
+        if (i == c)
+            i.addActivity(activity);
 
     notify();
 }
 
 void ActivityList::removeActivity(Activity &activity) {
-    for (auto i = activities.begin(); i != activities.end(); i++) {
-        if (*i == activity) {
-            activities.remove(activity);
-            break;
+    std::list<Activity> actList;
+
+    for (auto i : categories) {
+        actList.clear();
+        i.getActivity(actList);
+
+        for (auto l : actList) {
+            if (l == activity) {
+                i.removeActivity(l);
+                break;
+            }
         }
     }
+
     notify();
 }
 
@@ -40,7 +50,7 @@ void ActivityList::notify() const {
 }
 
 ActivityList::~ActivityList() {
-    activities.clear();
+    categories.clear();
 
     for (auto i : observers)
         i->detach();

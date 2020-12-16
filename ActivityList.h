@@ -11,10 +11,11 @@
 #include <list>
 #include<memory>
 #include <QDate>
+#include "Category.h"
 
 class ActivityList: public Subject {
 public:
-    void addActivity(Activity &activity);
+    void addActivity(Category &c, Activity &activity);
 
     void getActivity(std::list<Activity> &actList);
 
@@ -29,7 +30,7 @@ public:
     ~ActivityList() override;
 
 private:
-    std::list<Activity> activities;
+    std::list<Category> categories;
     std::list<Observer *> observers;
 
 };

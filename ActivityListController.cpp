@@ -4,7 +4,7 @@
 
 #include "ActivityListController.h"
 
-void ActivityListController::setData(Activity &activity, QString task, QDate deadlineDate, bool completed,
+void ActivityListController::setData(Category &c, Activity &activity, QString task, QDate deadlineDate, bool completed,
                                      QString note) {
     activity.setTask(task);
     activity.setDeadlineDate(deadlineDate);
@@ -13,7 +13,7 @@ void ActivityListController::setData(Activity &activity, QString task, QDate dea
     activity.setNote(note);
 
 
-    activityList->addActivity(activity);
+    activityList->addActivity(c, activity);
 }
 
 void ActivityListController::remove(Activity &activity) {
@@ -47,4 +47,8 @@ void ActivityListController::setData(SubActivity &subA, Activity &activity, QStr
     subA.setCompleted(c);
 
     activity.addSubActivity(subA);
+}
+
+void ActivityListController::setData(Category &c, QString name) {
+    c.setName(name);
 }
