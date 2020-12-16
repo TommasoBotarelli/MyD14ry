@@ -56,15 +56,18 @@ void AddActivityView::update() {
 
         ui->SubActivityListWidget->addItem(subA);
     }
+
     updateCategory();
 }
 
 void AddActivityView::attach() {
     activity->addObserver(this);
+    actList->addObserver(this);
 }
 
 void AddActivityView::detach() {
     activity->removeObserver(this);
+    actList->addObserver(this);
 }
 
 QDate AddActivityView::getDeadlineDate() {
@@ -77,11 +80,6 @@ QString AddActivityView::getTask() {
 
 QString AddActivityView::getNote() {
     return ui->NoteEdit->toPlainText();
-}
-
-
-void AddActivityView::on_categoryComboBox_textActivated(const QString &arg1) {
-
 }
 
 void AddActivityView::on_addCategoryButton_clicked() {

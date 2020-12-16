@@ -27,7 +27,7 @@ public:
 
     void remove(Category &c);
 
-    Category searchCategory(const QString &name);
+    void searchCategory(Category &c, const QString &name);
 
     void getActivitiesForCategory(QListWidget &list);
 

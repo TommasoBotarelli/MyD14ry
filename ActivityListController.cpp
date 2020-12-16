@@ -13,7 +13,8 @@ ActivityListController::setData(QString category, Activity &activity, QString ta
     activity.setCompleted(completed);
     activity.setNote(note);
 
-    auto c = searchCategory(category);
+    Category c;
+    searchCategory(c, category);
 
     activityList->addActivity(c, activity);
 }
@@ -46,7 +47,9 @@ void ActivityListController::getActivitiesForCategory(QListWidget &list) {
     for (auto l : catList) {
         actList.clear();
         l.getActivity(actList);
-        list.addItem(l.getName());
+        /*auto title = new QListWidgetItem;
+        title->setText(l.getName());
+        list.addItem(title);*/
 
         for (auto i : actList) {
 
@@ -79,13 +82,17 @@ void ActivityListController::setData(Category &c, QString name) {
     activityList->addCategory(c);
 }
 
-Category ActivityListController::searchCategory(const QString &name) {
+void ActivityListController::searchCategory(Category &c, const QString &name) {
     std::list<Category> catList;
     activityList->getCategory(catList);
 
-    for (auto i : catList) {
-        if (i.getName() == name)
-            return i;
+    if (findCategory(name)) {
+        for (auto i : catList) {
+            if (i.getName() == name) {
+                c = i;
+                break;
+            }
+        }
     }
 }
 
