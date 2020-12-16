@@ -4,7 +4,7 @@
 
 #include "ActivityList.h"
 
-void ActivityList::getActivity(std::list<Activity> &actList) {         //FIXME
+void ActivityList::getActivity(std::list<Activity> &actList) {
     for (auto i : activities) {
         actList.push_back(i);
     }

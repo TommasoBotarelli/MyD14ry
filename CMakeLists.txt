@@ -84,7 +84,7 @@ else ()
           addshoppinglistdialog.cpp
           shoppinglistview.h
           shoppinglistview.cpp
-          QListWidgetTemplate.h)
+          QListWidgetTemplate.h Category.cpp Category.h)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

@@ -14,6 +14,9 @@ MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList 
           shopListController(shopLC),
           QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
+    ui->listWidget->addItem("titolo");
+
     attach();
 }
 
