@@ -34,7 +34,7 @@ void ActivityControllerTest::testSetData() {
 
     aC.setData("Test", true);
     QVERIFY ((*activity.getSubActivities().begin())->getTask() == "Test");
-    QVERIFY ((*activity.getSubActivities().begin())->isCompleted());
+    QVERIFY ((activity.getSubActivities().begin())->isCompleted());
 
 }
 

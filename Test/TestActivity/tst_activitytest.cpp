@@ -39,17 +39,11 @@ void ActivityTest::testSetterGetter() {
     activity.setTask("");
     QVERIFY (activity.getTask() == "Attività");
 
-    activity.setDate(QDate::currentDate());
-    QVERIFY (activity.getDate() == QDate::currentDate());
-    QDate date1(20, 5, 20);
-    activity.setDate(date1);
-    QVERIFY (activity.getDate() == date1);
-
     activity.setDeadlineDate(QDate::currentDate());
     QVERIFY (activity.getDeadlineDate() == QDate::currentDate());
     QDate date2(15, 5, 20);
     activity.setDeadlineDate(date2);
-    QVERIFY (activity.getDeadlineDate() == date1);
+    QVERIFY (activity.getDeadlineDate() == date2);
 
     activity.setCompleted(true);
     QVERIFY (activity.isCompleted());
@@ -68,16 +62,19 @@ void ActivityTest::testAddGetSubactivity() {
     SubActivity subB;
     subB.setTask("Studiare inglese");
     subB.setCompleted(false);
+    std::list<SubActivity> list;
 
-    activity.addSubActivity(&subA);
-    activity.addSubActivity(&subB);
-    QVERIFY ((activity.getSubActivities()).size() == 2);
-    QVERIFY ((*activity.getSubActivities().begin())->getTask() == "Pagare bollette");
-    QVERIFY ((*activity.getSubActivities().begin())->isCompleted());
+    activity.addSubActivity(subA);
+    activity.addSubActivity(subB);
+    activity.getSubActivities(list);
 
-    auto i = std::next(activity.getSubActivities().begin(), 1);
-    QVERIFY ((*i)->getTask() == "Studiare inglese");
-    QVERIFY ((*i)->isCompleted() == false);
+    QVERIFY (list.size() == 2);
+    QVERIFY (list.begin()->getTask() == "Pagare bollette");
+    QVERIFY (list.begin()->isCompleted());
+
+    auto i = std::next(list.begin(), 1);
+    QVERIFY ((*i).getTask() == "Studiare inglese");
+    QVERIFY ((*i).isCompleted() == false);
 }
 
 

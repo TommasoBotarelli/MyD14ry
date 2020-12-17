@@ -37,8 +37,8 @@ void TestActivityList::testAddGetActivity() {
     a1.setTask("Attività 1");
     a2.setTask("Attività 2");
 
-    actList.addActivity(&a1);
-    actList.addActivity(&a2);
+    actList.addActivity(a1);
+    actList.addActivity(a2);
 
     QVERIFY (actList.getActivity().size() == 2);
     QVERIFY ((*actList.getActivity().begin())->getTask() == "Attività 1");
