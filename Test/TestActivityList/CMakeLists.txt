@@ -23,6 +23,8 @@ add_executable(TestActivityList
         ../../ActivityList.cpp
         ../../SubActivity.h
         ../../SubActivity.cpp
+        ../../Category.h
+        ../../Category.cpp
         )
 add_test(NAME TestActivityList COMMAND TestActivityList)
 
