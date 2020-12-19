@@ -4,6 +4,7 @@
 #include "../../Activity.h"
 #include "../../ActivityList.h"
 #include "../../ActivityListController.h"
+#include "../../Category.h"
 
 // add necessary includes here
 
@@ -18,11 +19,19 @@ public:
 
 private slots:
 
-    void TestSetData();
+    void TestSetDataAct();
 
-    void TestRemove();
+    void TestSetDataSub();
 
-    void TestSearchActivityOfDay();
+    void TestSetDataCat();
+
+    void TestSearchCategory();
+
+    void TestFindCategory();
+
+    void TestRemoveActivity();
+
+    void TestRemoveCategory();
 
 };
 
@@ -36,47 +45,145 @@ TestActivtyListController::~TestActivtyListController()
 
 }
 
-void TestActivtyListController::TestSetData() {
+void TestActivtyListController::TestSetDataAct() {
     Activity activity;
     ActivityList activityList;
-    ActivityListController alC(&activityList, &activity);
+    ActivityListController alC(&activityList);
+    Category c;
+    std::list<Category> Clist;
+    std::list<Activity> Alist;
 
-    alC.setData("Test",QDate::currentDate(),QDate::currentDate(),true,"TestNOTE");
-    QVERIFY((*activityList.getActivity().begin())->getTask()=="Test");
+    c.setName("categoria");
+    activityList.addCategory(c);
+    activityList.addActivity("categoria",activity);
 
+    alC.setData("categoria",activity,"task",QDate::currentDate(),true,"note");
+
+    activityList.getCategory(Clist);
+    Clist.begin()->getActivity(Alist);
+    QVERIFY(Alist.begin()->getTask()=="task");
+    QVERIFY(Alist.begin()->getDeadlineDate()==QDate::currentDate());
+    QVERIFY(Alist.begin()->isCompleted()==true);
+    QVERIFY(Alist.begin()->getNote()=="note");
 }
 
-void TestActivtyListController::TestSearchActivityOfDay() {
+void TestActivtyListController::TestSetDataSub() {
     Activity activity;
     ActivityList activityList;
-    ActivityListController alC(&activityList, &activity);
-    QListWidget List;
+    ActivityListController alC(&activityList);
+    SubActivity subActivity;
 
-    activity.setDate(QDate::currentDate());
-    activity.setTask("Test");
-    activityList.addActivity(&activity);
+    activity.addSubActivity(subActivity);
+    alC.setData(subActivity,activity,"prova",true);
 
-    alC.searchActivityOfDay(QDate::currentDate(),List);
-    QVERIFY(List.count()==1);
-
+    QVERIFY(subActivity.isCompleted()==true);
+    QVERIFY(subActivity.getTask()=="prova");
 }
 
-void TestActivtyListController::TestRemove(){
-    auto activityList = new ActivityList;
-    auto activity1 = new Activity;
-    auto activity2 = new Activity;
+void TestActivtyListController::TestSetDataCat() {
+    ActivityList activityList;
+    ActivityListController alC(&activityList);
+    Category c;
 
-    activityList->addActivity(activity1);
-    activityList->addActivity(activity2);
+    alC.setData(c,"cat1");
+    QVERIFY(c.getName()=="cat1");
+}
 
-    ActivityListController controller(activityList, activity1);
+void TestActivtyListController::TestSearchCategory() {
+    Activity activity;
+    Activity activity2;
+    ActivityList activityList;
+    ActivityListController alC(&activityList);
+    Category c;
+    Category c2;
+    std::list<Category> Clist;
+    std::list<Activity> Alist;
 
-    controller.remove();
-    QVERIFY(activityList->getActivity().size() == 1);
+    c.setName("cat1");
+    c.setName("cat2");
 
-    controller.setActivity(activity2);
-    controller.remove();
-    QVERIFY(activityList->getActivity().empty());
+    activityList.addCategory(c);
+    activityList.addActivity("cat1",activity);
+    activityList.addCategory(c2);
+    activityList.addActivity("cat2",activity2);
+
+    alC.searchCategory(c2,"cat2");
+    activityList.getCategory(Clist);
+    Clist.begin()->getActivity(Alist);
+    QVERIFY(Clist.begin()->getName()=="cat2");
+}
+
+void TestActivtyListController::TestFindCategory() {
+    Activity activity;
+    Activity activity2;
+    ActivityList activityList;
+    ActivityListController alC(&activityList);
+    bool find=false;
+    Category c;
+    Category c2;
+    std::list<Activity> Alist;
+    std::list<Category> Clist;
+
+    c.setName("cat1");
+    c2.setName("cat2");
+    activityList.addCategory(c);
+    activityList.addCategory(c2);
+
+    find=alC.findCategory("cat2");
+    QVERIFY(find==true);
+}
+
+void TestActivtyListController::TestRemoveActivity(){
+    Activity activity;
+    Activity activity2;
+    ActivityList activityList;
+    ActivityListController alC(&activityList);
+    Category c;
+    std::list<Activity> Alist;
+    std::list<Category> Clist;
+
+    c.setName("categoria");
+    activityList.addCategory(c);
+    activityList.addActivity("categoria",activity);
+    activityList.addActivity("categoria",activity2);
+
+    alC.remove(activity2);
+    activityList.getCategory(Clist);
+    Clist.begin()->getActivity(Alist);
+    QVERIFY(Alist.size()==1);
+
+    Clist.clear();
+    Alist.clear();
+
+    alC.remove(activity);
+    activityList.getCategory(Clist);
+    Clist.begin()->getActivity(Alist);
+    QVERIFY(Alist.empty());
+}
+
+void TestActivtyListController::TestRemoveCategory() {
+    Activity activity;
+    Activity activity2;
+    ActivityList activityList;
+    ActivityListController alC(&activityList);
+    Category c;
+    Category c2;
+    std::list<Category> Clist;
+
+    c.setName("categoria");
+    c2.setName("categoria2");
+    activityList.addCategory(c);
+    activityList.addCategory(c2);
+
+    alC.remove(c2);
+    activityList.getCategory(Clist);
+    QVERIFY(Clist.size()==1);
+
+    Clist.clear();
+
+    alC.remove(c);
+    activityList.getCategory(Clist);
+    QVERIFY(Clist.empty());
 }
 QTEST_MAIN(TestActivtyListController)
 

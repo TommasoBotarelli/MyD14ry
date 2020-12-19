@@ -26,7 +26,9 @@ add_executable(TestActivityListController
        ../../Activity.h
         ../../Activity.cpp
         ../../ActivityListController.h
-        ../../ActivityListController.cpp)
+        ../../ActivityListController.cpp
+        ../../Category.h
+        ../../Category.cpp)
 
 add_test(NAME TestActivityListController COMMAND TestActivityListController)
 
