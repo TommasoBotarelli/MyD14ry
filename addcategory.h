@@ -15,7 +15,7 @@ Q_OBJECT
 public:
     explicit AddCategory(ActivityListController *c, QWidget *parent = nullptr);
 
-    ~AddCategory();
+    ~AddCategory() override;
 
 private slots:
 

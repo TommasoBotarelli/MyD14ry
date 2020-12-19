@@ -10,8 +10,13 @@ void ActivityList::getCategory(std::list<Category> &catList) {
     }
 }
 
-void ActivityList::addActivity(Category &c, Activity &activity) {
-    c.addActivity(activity);
+void ActivityList::addActivity(QString category, Activity &activity) {
+    for (Category &i : categories) {
+        if (i.getName() == category) {
+            i.addActivity(activity);
+            break;
+        }
+    }
 
     notify();
 }

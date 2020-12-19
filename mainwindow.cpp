@@ -14,10 +14,18 @@ MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList 
           shopListController(shopLC),
           QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-
-    ui->listWidget->addItem("titolo");
-
     attach();
+
+    auto c = new Category;
+    c->setName("VARIE");
+    activityList->addCategory(*c);
+
+    auto a = new Activity;
+    a->setTask("Prova");
+    a->setCompleted(false);
+    activityList->addActivity(c->getName(), *a);
+
+    update();
 }
 
 MainWindow::~MainWindow() {
@@ -27,9 +35,9 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_actionActivity_triggered() {
 
-    auto a = new Activity();
+    //auto a = new Activity();
 
-    auto dialog = new AddActivityView(activityList, a, activityListController);
+    auto dialog = new AddActivityView(activityList, activityListController);
 
     while (dialog->exec()) {
         if (dialog->close()) {
@@ -122,7 +130,40 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 
 void MainWindow::update() {
     ui->listWidget->clear();
-    activityListController->getActivitiesForCategory(*ui->listWidget);
+
+    std::list<Activity> actList;
+    std::list<Category> catList;
+
+    activityList->getCategory(catList);
+
+    QFont font;
+    font.setWeight(81);
+
+    for (auto i : catList) {
+        auto title = new QListWidgetItem;
+        title->setText(i.getName());
+        title->setFont(font);
+        title->setBackground(Qt::yellow);
+        ui->listWidget->addItem(title);
+
+        actList.clear();
+        i.getActivity(actList);
+
+        for (auto l : actList) {
+            auto act = new QListWidgetTemplate<Activity>;
+
+            act->set(l);
+            act->setText(l.getTask());
+
+            if (l.isCompleted())
+                act->setCheckState(Qt::Checked);
+            else
+                act->setCheckState(Qt::Unchecked);
+
+            ui->listWidget->addItem(act);
+        }
+
+    }
 
     ui->listWidget_2->clear();
     std::list<Event> eList;

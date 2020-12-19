@@ -13,10 +13,7 @@ ActivityListController::setData(QString category, Activity &activity, QString ta
     activity.setCompleted(completed);
     activity.setNote(note);
 
-    Category c;
-    searchCategory(c, category);
-
-    activityList->addActivity(c, activity);
+    activityList->addActivity(category, activity);
 }
 
 void ActivityListController::remove(Activity &activity) {
@@ -38,7 +35,7 @@ void ActivityListController::remove(Activity &activity) {
 
 }
 
-void ActivityListController::getActivitiesForCategory(QListWidget &list) {
+/*void ActivityListController::getActivitiesForCategory(QListWidget &list) {
 
     std::list<Activity> actList;
     std::list<Category> catList;
@@ -47,11 +44,9 @@ void ActivityListController::getActivitiesForCategory(QListWidget &list) {
     for (auto l : catList) {
         actList.clear();
         l.getActivity(actList);
-        /*auto title = new QListWidgetItem;
-        title->setText(l.getName());
-        list.addItem(title);*/
+        //list.addItem(l.getName());
 
-        for (auto i : actList) {
+        for (const Activity& i : actList) {
 
             auto a = new QListWidgetTemplate<Activity>;
 
@@ -68,7 +63,7 @@ void ActivityListController::getActivitiesForCategory(QListWidget &list) {
         }
 
     }
-}
+}*/
 
 void ActivityListController::setData(SubActivity &subA, Activity &activity, QString t, bool c) {
     subA.setTask(t);
@@ -87,12 +82,16 @@ void ActivityListController::searchCategory(Category &c, const QString &name) {
     activityList->getCategory(catList);
 
     if (findCategory(name)) {
+
         for (auto i : catList) {
+
             if (i.getName() == name) {
                 c = i;
                 break;
             }
+
         }
+
     }
 }
 

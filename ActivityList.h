@@ -15,7 +15,7 @@
 
 class ActivityList : public Subject {
 public:
-    void addActivity(Category &c, Activity &activity);
+    void addActivity(QString category, Activity &activity);
 
     void addCategory(Category &c);
 
@@ -36,7 +36,6 @@ public:
 private:
     std::list<Category> categories;
     std::list<Observer *> observers;
-
 };
 
 

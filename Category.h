@@ -22,7 +22,9 @@ public:
 
     void setName(const QString &name);
 
-    bool operator==(const Category &c);
+    bool const operator==(const Category &c);
+
+    //Category& operator = (Category c);
 
 private:
     std::list<Activity> activities;
