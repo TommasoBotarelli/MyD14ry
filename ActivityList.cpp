@@ -22,7 +22,12 @@ void ActivityList::addActivity(QString category, Activity &activity) {
 }
 
 void ActivityList::removeActivity(Category &c, Activity &activity) {
-    c.removeActivity(activity);
+    for (Category &i : categories) {
+        if (i.getName() == c.getName()) {
+            i.removeActivity(activity);
+            break;
+        }
+    }
 
     notify();
 }
