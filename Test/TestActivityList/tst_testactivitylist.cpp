@@ -83,24 +83,29 @@ void TestActivityList::testAddActivity() {
 void TestActivityList::testRemoveActivity() {
     ActivityList actList;
     Activity a1;
+    a1.setTask("1");
     Activity a2;
+    a2.setTask("2");
     Category c;
     c.setName("categoria");
     std::list<Category> Clist;
     std::list<Activity> Alist;
+    Alist.clear();
+    Clist.clear();
 
     actList.addCategory(c);
 
-    actList.addActivity("categoria",a1);
-    actList.addActivity("categoria",a2);
+    actList.addActivity("categoria", a1);
+    actList.addActivity("categoria", a2);
 
-    actList.removeActivity(c,a1);
+    actList.removeActivity(c, a1);
     actList.getCategory(Clist);
     Clist.begin()->getActivity(Alist);
-    QVERIFY(Alist.size()==1);
+    QVERIFY(Alist.size() == 1);
 
     actList.removeActivity(c,a2);
     Clist.clear();
+    Alist.clear();
     actList.getCategory(Clist);
     Clist.begin()->getActivity(Alist);
 
@@ -110,7 +115,9 @@ void TestActivityList::testRemoveActivity() {
 void TestActivityList::testRemoveCategory() {
     ActivityList actlist;
     Category c;
+    c.setName("1");
     Category c2;
+    c2.setName("2");
     std::list<Category> Clist;
 
     actlist.addCategory(c);

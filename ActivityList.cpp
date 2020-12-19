@@ -5,7 +5,7 @@
 #include "ActivityList.h"
 
 void ActivityList::getCategory(std::list<Category> &catList) {
-    for (auto i : categories) {
+    for (Category &i : categories) {
         catList.push_back(i);
     }
 }

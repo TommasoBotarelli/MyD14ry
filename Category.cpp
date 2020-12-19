@@ -16,12 +16,7 @@ void Category::addActivity(Activity &activity) {
 }
 
 void Category::removeActivity(Activity &activity) {
-    for (Activity &i : activities) {
-        if (i == activity) {
-            activities.remove(activity);
-            break;
-        }
-    }
+    activities.remove(activity);
 }
 
 const QString &Category::getName() const {
