@@ -2,9 +2,9 @@
 #include "ui_addactivityview.h"
 
 
-AddActivityView::AddActivityView(ActivityList *aList, Activity *a, ActivityListController *actListC, QWidget *parent) :
-        actList(aList), activity(a), controller(actListC), QDialog(parent),
-        ui(new Ui::AddActivityView) {
+AddActivityView::AddActivityView(ActivityList *aList, ActivityListController *actListC, QWidget *parent) :
+        actList(aList), controller(actListC), QDialog(parent),
+        ui(new Ui::AddActivityView), activity(new Activity) {
     ui->setupUi(this);
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
     updateCategory();
@@ -96,9 +96,11 @@ QString AddActivityView::getCategory() {
 }
 
 void AddActivityView::updateCategory() {
+    ui->categoryComboBox->clear();
     std::list<Category> catList;
     actList->getCategory(catList);
 
     for (auto i : catList)
         ui->categoryComboBox->addItem(i.getName());
+
 }

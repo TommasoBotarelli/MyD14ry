@@ -32,10 +32,24 @@ void Category::setName(const QString &name) {
     Category::name = name;
 }
 
-bool Category::operator==(const Category &c) {
+bool const Category::operator==(const Category &c) {
     if (c.getName() == this->getName())
         return true;
     else
         return false;
 }
+
+/*Category& Category::operator=(Category c) {
+    if (this != &c){
+        this->setName(c.getName());
+        std::list<Activity> actList;
+        c.getActivity(actList);
+
+        for (auto i : actList){
+            activities.push_back(i);
+        }
+    }
+
+    return *this;
+}*/
 

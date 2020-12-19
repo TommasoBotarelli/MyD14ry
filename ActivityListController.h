@@ -29,7 +29,7 @@ public:
 
     void searchCategory(Category &c, const QString &name);
 
-    void getActivitiesForCategory(QListWidget &list);
+    //void getActivitiesForCategory(QListWidget &list);
 
     bool findCategory(QString name);
 

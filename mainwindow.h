@@ -7,6 +7,7 @@
 #include "Observer.h"
 #include <QTextCharFormat>
 #include "QListWidgetTemplate.h"
+#include "Category.h"
 
 //ATTIVITÀ
 #include "Activity.h"
