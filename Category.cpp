@@ -16,8 +16,8 @@ void Category::addActivity(Activity &activity) {
 }
 
 void Category::removeActivity(Activity &activity) {
-    for (auto i = activities.begin(); i != activities.end(); i++) {
-        if (*i == activity) {
+    for (Activity &i : activities) {
+        if (i == activity) {
             activities.remove(activity);
             break;
         }
