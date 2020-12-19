@@ -20,11 +20,6 @@ MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList 
     c->setName("VARIE");
     activityList->addCategory(*c);
 
-    auto a = new Activity;
-    a->setTask("Prova");
-    a->setCompleted(false);
-    activityList->addActivity(c->getName(), *a);
-
     update();
 }
 
@@ -34,8 +29,6 @@ MainWindow::~MainWindow() {
 
 
 void MainWindow::on_actionActivity_triggered() {
-
-    //auto a = new Activity();
 
     auto dialog = new AddActivityView(activityList, activityListController);
 

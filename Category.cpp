@@ -6,7 +6,7 @@
 
 
 void Category::getActivity(std::list<Activity> &actList) {
-    for (auto i : activities) {
+    for (Activity &i : activities) {
         actList.push_back(i);
     }
 }

@@ -5,8 +5,9 @@
 #include "ActivityListController.h"
 
 void
-ActivityListController::setData(QString category, Activity &activity, QString task, QDate deadlineDate, bool completed,
-                                QString note) {
+ActivityListController::setData(const QString category, Activity &activity, const QString task,
+                                const QDate deadlineDate, bool completed,
+                                const QString note) {
     activity.setTask(task);
     activity.setDeadlineDate(deadlineDate);
 
