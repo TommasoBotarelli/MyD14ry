@@ -17,6 +17,8 @@ public:
 private slots:
     void testSetData();
 
+    void testSetData2();
+
     void testRemove();
 
     void testGetList();
@@ -36,37 +38,52 @@ void TestListOfShoppingListController::testSetData() {
     ListOfShoppingList listOfShoppingList;
     ShoppingList shoppingList;
 
-    ListOfShoppingListController LOSLC(&shoppingList,&listOfShoppingList);
+    ListOfShoppingListController LOSLC(&listOfShoppingList);
 
-    LOSLC.setData("testName");
-    QVERIFY((*listOfShoppingList.getList().begin())->getNameList()=="testName");
+    LOSLC.setData(shoppingList,"name");
+    QVERIFY(shoppingList.getNameList()=="name");
+}
+
+void TestListOfShoppingListController::testSetData2() {
+    ListOfShoppingList listOfShoppingList;
+    ShoppingList shoppingList;
+    ShoppingProduct product;
+    std::list<ShoppingProduct> list;
+
+    ListOfShoppingListController LOSLC(&listOfShoppingList);
+
+    LOSLC.setData(shoppingList,product,"name",false);
+    QVERIFY(product.getName()=="name");
+    QVERIFY(product.isCatched()==false);
 }
 
 void TestListOfShoppingListController::testGetList() {
     ListOfShoppingList listOfShoppingList;
     ShoppingList shoppingList;
     ShoppingList shoppingList1;
-    ListOfShoppingListController LOSLC(&shoppingList,&listOfShoppingList);
+    ListOfShoppingListController LOSLC(&listOfShoppingList);
     QListWidget list;
 
-    listOfShoppingList.addShoppingList(&shoppingList);
-    listOfShoppingList.addShoppingList(&shoppingList1);
+    listOfShoppingList.addShoppingList(shoppingList);
+    listOfShoppingList.addShoppingList(shoppingList1);
 
     LOSLC.getLists(list);
     QVERIFY(list.count()==2);
 
 }
 void TestListOfShoppingListController::testRemove() {
-    auto listOfShoppingList = new ListOfShoppingList;
-    auto shoppingList = new ShoppingList;
+    ListOfShoppingList listOfShoppingList;
+    ShoppingList shoppingList;
+    ShoppingList shoppingList1;
+    std::list<ShoppingList> list;
 
-    ListOfShoppingListController LOSLC(shoppingList, listOfShoppingList);
+    ListOfShoppingListController LOSLC(&listOfShoppingList);
 
-    listOfShoppingList->addShoppingList(shoppingList);
+    listOfShoppingList.addShoppingList(shoppingList);
 
-    LOSLC.remove();
+    LOSLC.remove(shoppingList);
 
-    QVERIFY(listOfShoppingList->getList().empty());
+    QVERIFY(list.empty());
 
 }
 
