@@ -27,23 +27,22 @@ TestShoppingList::~TestShoppingList() {
 
 void TestShoppingList::testAddGetProduct() {
     ShoppingProduct shoppingProduct1;
-    shoppingProduct1.setName("Prodotto 1");
-    ShoppingList shoppingList;
-
-    shoppingList.addProduct(&shoppingProduct1);
-    QVERIFY(shoppingList.getProducts().size() == 1);
-    QVERIFY((*shoppingList.getProducts().begin())->getName() == shoppingProduct1.getName());
-
     ShoppingProduct shoppingProduct2;
-    shoppingProduct2.setName("Prodotto 1");
+    ShoppingList shoppingList;
+    std::list<ShoppingProduct> list;
+    shoppingProduct1.setName("Prodotto 1");
+    shoppingProduct2.setName("Prodotto 2");
 
-    shoppingList.addProduct(&shoppingProduct2);
-    QVERIFY(shoppingList.getProducts().size() == 2);
+    shoppingList.addProduct(shoppingProduct1);
+    shoppingList.addProduct(shoppingProduct2);
+    shoppingList.getProducts(list);
+    QVERIFY(list.size() == 2);
+    QVERIFY(list.begin()->getName() == "Prodotto 1");
 
-    auto i = shoppingList.getProducts().begin();
-    i = std::next(i, 1);
 
-    QVERIFY((*i)->getName() == shoppingProduct2.getName());
+    auto i = std::next(list.begin(), 1);
+
+    QVERIFY((i)->getName() == "Prodotto 2");
 }
 
 QTEST_APPLESS_MAIN(TestShoppingList)
