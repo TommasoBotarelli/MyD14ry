@@ -37,44 +37,54 @@ TestCalendarController::~TestCalendarController()
 void TestCalendarController::testSetData() {
     Event event;
     Calendar calendar;
-    CalendarController CC(&calendar,&event);
+    CalendarController CC(&calendar);
+    std::list<Event> list;
 
     QTime time(10,30);
     QTime time2(12,00);
 
-    CC.setData("Task",QDate::currentDate(),"nota",time,time2,false);
-    QVERIFY((*calendar.getEvent().begin())->getTask()==("Task("+ time.toString()+" - "+time2.toString()+")"));
+    calendar.addEvent(event);
+
+    CC.setData(event,"task",QDate::currentDate(),"note",time,time2,false);
+    list.clear();
+    calendar.getEvent(list);
+    QVERIFY(event.getNote()=="note");
 }
 
 void TestCalendarController::testSearchEventOfDay() {
     Event event;
     Calendar calendar;
-    CalendarController CC(&calendar, &event);
+    CalendarController CC(&calendar);
     QListWidget List;
 
     event.setDate(QDate::currentDate());
     event.setTask("Test");
-    calendar.addEvent(&event);
+    calendar.addEvent(event);
 
     CC.searchEventOfDay(QDate::currentDate(),List);
     QVERIFY(List.count()==1);
 }
 
 void TestCalendarController::testRemove() {
-    auto e1 = new Event();
-    auto e2 = new Event();
+    Event event;
+    Event event2;
+    Calendar calendar;
+    CalendarController CC(&calendar);
+    std::list<Event> list;
 
-    auto c = new Calendar;
-    c->addEvent(e1);
-    c->addEvent(e2);
+    calendar.addEvent(event);
+    calendar.addEvent(event2);
 
-    CalendarController controller1(c, e1);
-    controller1.remove();
-    QVERIFY(c->getEvent().size() == 1);
+    CC.remove(event);
+    list.clear();
+    calendar.getEvent(list);
+    QVERIFY(list.size() == 1);
 
-    CalendarController controller2(c, e2);
-    controller2.remove();
-    QVERIFY(c->getEvent().empty());
+
+    CC.remove(event2);
+    list.clear();
+    calendar.getEvent(list);
+    QVERIFY(list.empty());
 }
 
 QTEST_MAIN(TestCalendarController)
