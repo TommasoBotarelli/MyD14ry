@@ -32,36 +32,44 @@ void TestCalendar::testAddGetEvent() {
     Calendar calendar;
     Event e1;
     Event e2;
+    std::list<Event> list;
 
     e1.setTask("Compleanno");
     e2.setTask("Halloween");
 
-    calendar.addEvent(&e1);
-    calendar.addEvent(&e2);
+    calendar.addEvent(e1);
+    calendar.addEvent(e2);
 
-    QVERIFY(calendar.getEvent().size()==2);
-    QVERIFY((*calendar.getEvent().begin())->getTask()=="Compleanno");
-    auto i = std::next(calendar.getEvent().begin(), 1);
-    QVERIFY ((*i)->getTask() == "Halloween");
+    calendar.getEvent(list);
+
+    QVERIFY(list.size()==2);
+    QVERIFY(list.begin()->getTask()=="Compleanno");
+    auto i = std::next(list.begin(), 1);
+    QVERIFY ((*i).getTask() == "Halloween");
 
 }
 
 void TestCalendar::testRemoveEvent() {
     Calendar calendar;
-    auto e1 = new Event;
-    auto e2 = new Event;
+    Event e1;
+    Event e2;
+    std::list<Event> list;
 
-    e1->setTask("Natale");
-    e2->setTask("Pasqua");
+    e1.setTask("Natale");
+    e2.setTask("Pasqua");
 
     calendar.addEvent(e1);
     calendar.addEvent(e2);
 
     calendar.removeEvent(e1);
-    QVERIFY(calendar.getEvent().size()==1);
+
+    calendar.getEvent(list);
+    QVERIFY(list.size()==1);
 
     calendar.removeEvent(e2);
-    QVERIFY(calendar.getEvent().empty());
+    list.clear();
+    calendar.getEvent(list);
+    QVERIFY(list.empty());
 
 }
 
