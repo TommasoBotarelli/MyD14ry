@@ -9,6 +9,7 @@
 #include "Observer.h"
 #include "ActivityListController.h"
 #include "QListWidgetTemplate.h"
+#include "addcategory.h"
 
 namespace Ui {
     class ActivityView;
@@ -18,7 +19,7 @@ class ActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit ActivityView(Activity *a, ActivityListController *, QWidget *parent = nullptr);
+    explicit ActivityView(ActivityList* actList, Activity *a, ActivityListController *, QWidget *parent = nullptr);
 
     ~ActivityView() override;
 
@@ -34,14 +35,14 @@ private slots:
 
     void on_addCategoryButton_clicked();
 
-    void on_categoryComboBox_textActivated(const QString &arg1);
-
 public:
     void update() override;
 
     void attach() override;
 
     void detach() override;
+
+    void updateCategory();
 
 private:
     Ui::ActivityView *ui;
@@ -51,6 +52,8 @@ private:
     ActivityListController *controller;
 
     Activity *activity;
+
+    ActivityList* activityList;
 };
 
 #endif // ACTIVITYVIEW_H

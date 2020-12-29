@@ -49,6 +49,10 @@ public:
 
     ~Activity() override;
 
+    const QString &getCategory() const;
+
+    void setCategory(const QString &category);
+
     bool operator==(const Activity &activity)const;
 
 private:
@@ -58,6 +62,7 @@ private:
     QString note;
     std::list<SubActivity> subActivities;
     std::list<Observer *> observers;
+    QString category;
 };
 
 

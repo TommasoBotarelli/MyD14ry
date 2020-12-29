@@ -71,7 +71,7 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date) {
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
 
-        auto dialog = new ActivityView(actItem->get(), activityListController);
+        auto dialog = new ActivityView(activityList, actItem->get(), activityListController);
 
         while (dialog->exec()) {
             if (dialog->close()) {

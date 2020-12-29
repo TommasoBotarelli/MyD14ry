@@ -2,8 +2,8 @@
 #include "ui_activityview.h"
 
 
-ActivityView::ActivityView(Activity *a, ActivityListController *c, QWidget *parent) :
-        activity(a), controller(c), QDialog(parent),
+ActivityView::ActivityView(ActivityList* actList, Activity *a, ActivityListController *c, QWidget *parent) :
+        activityList(actList), activity(a), controller(c), QDialog(parent),
         ui(new Ui::ActivityView) {
     ui->setupUi(this);
 
@@ -83,14 +83,18 @@ void ActivityView::update() {
 
         ui->SubActivityListWidget->addItem(subA);
     }
+
+    updateCategory();
 }
 
 void ActivityView::attach() {
     activity->addObserver(this);
+    activityList->addObserver(this);
 }
 
 void ActivityView::detach() {
     activity->removeObserver(this);
+    activityList->removeObserver(this);
 }
 
 void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
@@ -102,9 +106,29 @@ void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
 }
 
 void ActivityView::on_addCategoryButton_clicked() {
+    auto dialog = new AddCategory(controller);
 
+    while (dialog->exec())
+        if (dialog->close()) {
+            delete dialog;
+        }
 }
 
-void ActivityView::on_categoryComboBox_textActivated(const QString &arg1) {
+void ActivityView::updateCategory() {
+    ui->categoryComboBox->clear();
+    std::list<Category> catList;
+    activityList->getCategory(catList);
 
+    for (auto i : catList) {
+        if (i.getName() == activity->getCategory())
+            ui->categoryComboBox->addItem(i.getName());
+    }
+
+    catList.clear();
+    activityList->getCategory(catList);
+
+    for (auto l : catList) {
+        if (l.getName() != activity->getCategory())
+            ui->categoryComboBox->addItem(l.getName());
+    }
 }

@@ -89,6 +89,14 @@ bool Activity::operator==(const Activity &activity)const {
         return false;
 }
 
+const QString &Activity::getCategory() const {
+    return category;
+}
+
+void Activity::setCategory(const QString &category) {
+    Activity::category = category;
+}
+
 
 
 
