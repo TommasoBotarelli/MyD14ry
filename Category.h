@@ -22,7 +22,7 @@ public:
 
     void setName(const QString &name);
 
-    bool const operator==(const Category &c);
+    bool  operator==(const Category &c)const;
 
     //Category& operator = (Category c);
 

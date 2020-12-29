@@ -4,7 +4,7 @@
 
 #include "ShoppingList.h"
 
-const QString &ShoppingList::getNameList() const {
+const QString &ShoppingList::getNameList() const  {
     return nameList;
 }
 
@@ -41,7 +41,7 @@ ShoppingList::~ShoppingList() {
         products.erase(products.begin(), products.end());
 }
 
-bool ShoppingList::operator==(const ShoppingList &compareShopList) {
+ bool ShoppingList::operator==( const ShoppingList &compareShopList)const  {
     /*std::list<ShoppingProduct> list;
     compareShopList.getProducts(list);*/
 

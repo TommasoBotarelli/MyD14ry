@@ -70,7 +70,7 @@ Activity::~Activity() {
     subActivities.clear();
 }
 
-bool Activity::operator==(const Activity &activity) {
+bool Activity::operator==(const Activity &activity)const {
 
     /*std::list<SubActivity> list1;         //FIXME
     std::list<SubActivity> list2;

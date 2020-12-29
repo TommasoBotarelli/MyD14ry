@@ -35,7 +35,7 @@ public:
 
     void setNote(const QString &note);
 
-    bool operator==(const Event &compareEvent);
+    bool operator==(const Event &compareEvent)const;
 
 private:
     QString task;

@@ -8,7 +8,7 @@ void ListOfShoppingList::addShoppingList(ShoppingList &shoppingList) {
     notify();
 }
 
-void ListOfShoppingList::removeShoppingList(ShoppingList &shoppingList) {
+void ListOfShoppingList::removeShoppingList(const ShoppingList &shoppingList) {
 
     for (auto i : ShoppingLists) {
         if (i == shoppingList) {

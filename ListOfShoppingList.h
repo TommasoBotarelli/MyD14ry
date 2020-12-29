@@ -15,7 +15,7 @@ public:
 
     void addShoppingList(ShoppingList &shoppingList);
 
-    void removeShoppingList(ShoppingList &shoppingList);
+    void removeShoppingList(const ShoppingList &shoppingList);
 
     void addObserver(Observer *o) override;
 

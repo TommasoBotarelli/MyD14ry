@@ -27,7 +27,7 @@ void Category::setName(const QString &name) {
     Category::name = name;
 }
 
-bool const Category::operator==(const Category &c) {
+bool  Category::operator==(const Category &c)const  {
     if (c.getName() == this->getName())
         return true;
     else

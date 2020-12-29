@@ -49,7 +49,7 @@ public:
 
     ~Activity() override;
 
-    bool operator==(const Activity &activity);
+    bool operator==(const Activity &activity)const;
 
 private:
     QString task;

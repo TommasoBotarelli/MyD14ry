@@ -31,7 +31,7 @@ public:
 
     void const getProducts(std::list<ShoppingProduct> &shopList);
 
-    bool operator==(const ShoppingList &compareShopList);
+     bool    operator==( const   ShoppingList &compareShopList)const ;
 
     ~ShoppingList() override;
 

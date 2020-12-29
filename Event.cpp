@@ -60,7 +60,7 @@ void Event::setNote(const QString &note) {
     Event::note = note;
 }
 
-bool Event::operator==(const Event &compareEvent) {
+bool Event::operator==(const Event &compareEvent)const {
     if (this->getTask() == compareEvent.getTask() &&
         this->getDate() == compareEvent.getDate() &&
         this->getNote() == compareEvent.getNote() &&
