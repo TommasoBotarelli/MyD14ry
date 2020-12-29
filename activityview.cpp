@@ -115,20 +115,35 @@ void ActivityView::on_addCategoryButton_clicked() {
 }
 
 void ActivityView::updateCategory() {
-    ui->categoryComboBox->clear();
+
+    ui->categoryComboBox->clear();                //FIXME
+
     std::list<Category> catList;
     activityList->getCategory(catList);
 
-    for (auto i : catList) {
-        if (i.getName() == activity->getCategory())
+    for (Category& i : catList) {
+        if (i.getName() == activity->getCategory()){
             ui->categoryComboBox->addItem(i.getName());
+            break;
+        }
     }
 
     catList.clear();
     activityList->getCategory(catList);
 
-    for (auto l : catList) {
+    for (Category& l : catList) {
         if (l.getName() != activity->getCategory())
             ui->categoryComboBox->addItem(l.getName());
     }
+}
+
+void ActivityView::on_categoryComboBox_currentTextChanged(const QString &arg1)
+{
+    activity->setCategory(arg1);
+    updateCategory();
+}
+
+void ActivityView::on_categoryComboBox_currentIndexChanged(int index)
+{
+    //FIXME
 }

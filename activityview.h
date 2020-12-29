@@ -35,6 +35,10 @@ private slots:
 
     void on_addCategoryButton_clicked();
 
+    void on_categoryComboBox_currentTextChanged(const QString &arg1);
+
+    void on_categoryComboBox_currentIndexChanged(int index);
+
 public:
     void update() override;
 

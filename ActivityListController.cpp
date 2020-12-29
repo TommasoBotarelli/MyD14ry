@@ -13,6 +13,7 @@ ActivityListController::setData(const QString category, Activity &activity, cons
 
     activity.setCompleted(completed);
     activity.setNote(note);
+    activity.setCategory(category);
 
     activityList->addActivity(category, activity);
 }
@@ -35,36 +36,6 @@ void ActivityListController::remove(Activity &activity) {
     }
 
 }
-
-/*void ActivityListController::getActivitiesForCategory(QListWidget &list) {
-
-    std::list<Activity> actList;
-    std::list<Category> catList;
-    activityList->getCategory(catList);
-
-    for (auto l : catList) {
-        actList.clear();
-        l.getActivity(actList);
-        //list.addItem(l.getName());
-
-        for (const Activity& i : actList) {
-
-            auto a = new QListWidgetTemplate<Activity>;
-
-            a->set(i);
-            a->setText(i.getTask());
-
-            if (i.isCompleted())
-                a->setCheckState(Qt::Checked);
-            else
-                a->setCheckState(Qt::Unchecked);
-
-            list.addItem(a);
-
-        }
-
-    }
-}*/
 
 void ActivityListController::setData(SubActivity &subA, Activity &activity, QString t, bool c) {
     subA.setTask(t);
