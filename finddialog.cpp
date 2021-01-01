@@ -15,6 +15,7 @@ findDialog::findDialog(ActivityList *actList, Calendar *c, ListOfShoppingList *s
                                           ui(new Ui::findDialog) {
     ui->setupUi(this);
     attach();
+    update();
 }
 
 findDialog::~findDialog() {

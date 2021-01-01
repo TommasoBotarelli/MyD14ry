@@ -24,13 +24,16 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="ActivityTab">
      <attribute name="title">
       <string>Attività</string>
      </attribute>
      <widget class="QListWidget" name="listWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -38,6 +41,12 @@
         <width>271</width>
         <height>431</height>
        </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>

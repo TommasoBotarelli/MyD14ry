@@ -2,9 +2,9 @@
 #include "ui_addactivityview.h"
 
 
-AddActivityView::AddActivityView(ActivityList *aList, ActivityListController *actListC, QWidget *parent) :
+AddActivityView::AddActivityView(ActivityList *aList, Activity *a, ActivityListController *actListC, QWidget *parent) :
         actList(aList), controller(actListC), QDialog(parent),
-        ui(new Ui::AddActivityView), activity(new Activity) {
+        activity(a), ui(new Ui::AddActivityView) {
     ui->setupUi(this);
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
     updateCategory();
@@ -67,7 +67,7 @@ void AddActivityView::attach() {
 
 void AddActivityView::detach() {
     activity->removeObserver(this);
-    actList->addObserver(this);
+    actList->removeObserver(this);
 }
 
 QDate AddActivityView::getDeadlineDate() {

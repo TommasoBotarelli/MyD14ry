@@ -19,9 +19,12 @@ class ActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit ActivityView(ActivityList* actList, Activity *a, ActivityListController *, QWidget *parent = nullptr);
+    explicit ActivityView(ActivityList *actList, Activity *a, ActivityListController *, QWidget *parent = nullptr);
 
     ~ActivityView() override;
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
 

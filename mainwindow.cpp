@@ -30,7 +30,9 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_actionActivity_triggered() {
 
-    auto dialog = new AddActivityView(activityList, activityListController);
+    auto a = new Activity();
+
+    auto dialog = new AddActivityView(activityList, a, activityListController);
 
     while (dialog->exec()) {
         if (dialog->close()) {
@@ -83,7 +85,7 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
 }
 
 void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
-    if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
+    /*if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
 
         if (actItem->checkState() == Qt::Checked)
             actItem->get()->setCompleted(true);
@@ -91,7 +93,7 @@ void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
             actItem->get()->setCompleted(false);
 
         update();
-    }
+    }*/
 }
 
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
@@ -132,11 +134,15 @@ void MainWindow::update() {
     QFont font;
     font.setWeight(81);
 
+    QFont strikethroughFont;
+    strikethroughFont.setStrikeOut(true);
+
     for (auto i : catList) {
         auto title = new QListWidgetItem;
         title->setText(i.getName());
         title->setFont(font);
         title->setBackground(Qt::yellow);
+        title->setFlags(title->flags());
         ui->listWidget->addItem(title);
 
         actList.clear();
@@ -146,12 +152,12 @@ void MainWindow::update() {
             auto act = new QListWidgetTemplate<Activity>;
 
             act->set(l);
+
             act->setText(l.getTask());
 
-            if (l.isCompleted())
-                act->setCheckState(Qt::Checked);
-            else
-                act->setCheckState(Qt::Unchecked);
+            if (act->get()->isCompleted()) {
+                act->setFont(strikethroughFont);
+            }
 
             ui->listWidget->addItem(act);
         }

@@ -14,6 +14,8 @@ ActivityView::ActivityView(ActivityList* actList, Activity *a, ActivityListContr
 
     if (activity->isCompleted())
         ui->CompletedCheckBox->setCheckState(Qt::Checked);
+    if (!activity->isCompleted())
+        ui->CompletedCheckBox->setCheckState(Qt::Unchecked);
 
     attach();
     update();
@@ -52,9 +54,8 @@ void ActivityView::on_AddSubactivityButton_clicked() {
 }
 
 void ActivityView::on_DeleteButton_clicked() {
-    detach();
-    controller->remove(*activity);
     this->close();
+    controller->remove(*activity);
 }
 
 
@@ -103,6 +104,8 @@ void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
 
     if (arg1 == 2)
         activity->setCompleted(true);
+
+    update();
 }
 
 void ActivityView::on_addCategoryButton_clicked() {
@@ -137,13 +140,16 @@ void ActivityView::updateCategory() {
     }
 }
 
-void ActivityView::on_categoryComboBox_currentTextChanged(const QString &arg1)
-{
+void ActivityView::on_categoryComboBox_currentTextChanged(const QString &arg1) {
     activity->setCategory(arg1);
     updateCategory();
 }
 
-void ActivityView::on_categoryComboBox_currentIndexChanged(int index)
-{
+void ActivityView::on_categoryComboBox_currentIndexChanged(int index) {
     //FIXME
+}
+
+void ActivityView::closeEvent(QCloseEvent *event) {
+    this->detach();
+    QDialog::closeEvent(event);
 }
