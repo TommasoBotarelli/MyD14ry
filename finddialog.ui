@@ -17,34 +17,33 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>90</y>
      <width>361</width>
-     <height>411</height>
+     <height>401</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="findLineEdit">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>30</y>
-     <width>261</width>
-     <height>25</height>
+     <y>10</y>
+     <width>361</width>
+     <height>61</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QPushButton" name="findButton">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>30</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cerca</string>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Inserisci oggetto da ricercare:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="findLineEdit"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

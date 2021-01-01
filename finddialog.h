@@ -42,11 +42,11 @@ public:
 
 private slots:
 
-    void on_findButton_clicked();
-
     void on_findLineEdit_textChanged(const QString &arg1);
 
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_listWidget_itemChanged(QListWidgetItem *item);
 
 private:
     Ui::findDialog *ui;

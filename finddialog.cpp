@@ -22,10 +22,6 @@ findDialog::~findDialog() {
     delete ui;
 }
 
-void findDialog::on_findButton_clicked() {
-    update();           //FIXME NON SERVE LA VISTA VIENE AGGIORNATA QUANDO CAMBIO IL TESTO
-}
-
 void findDialog::on_findLineEdit_textChanged(const QString &arg1) {
     update();
 }
@@ -126,6 +122,12 @@ void findDialog::update() {
                 auto actitem = new QListWidgetTemplate<Activity>;
                 actitem->set(l);
                 actitem->setText(l.getTask());
+
+                if (l.isCompleted())
+                    actitem->setCheckState(Qt::Checked);
+                else
+                    actitem->setCheckState(Qt::Unchecked);
+
                 ui->listWidget->addItem(actitem);
                 ui->listWidget->setCurrentItem(actitem);
             }
@@ -240,4 +242,20 @@ bool findDialog::isSimilar(QString a, QString b, qreal percentage, int n, Qt::Ca
         return (percentage < (100 * hits / (a.length() - (n - 1))));
     else
         return (percentage < (100 * hits / (b.length() - (n - 1))));
+}
+
+void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
+    if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> * >(item)) {
+        if (actItem->checkState() == Qt::Checked)
+            actItem->get()->setCompleted(true);
+        if (actItem->checkState() == Qt::Unchecked)
+            actItem->get()->setCompleted(false);
+    }
+
+    if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
+        if (shopProductItem->checkState() == Qt::Checked)
+            shopProductItem->get()->setCatched(true);
+        if (shopProductItem->checkState() == Qt::Unchecked)
+            shopProductItem->get()->setCatched(false);
+    }
 }
