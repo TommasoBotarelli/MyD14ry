@@ -205,10 +205,17 @@ void MainWindow::detach() {
     shopList->removeObserver(this);
 }
 
-void MainWindow::on_RefreshButton_clicked() {
+void MainWindow::on_calendarWidget_currentPageChanged(int year, int month) {
     update();
 }
 
-void MainWindow::on_calendarWidget_currentPageChanged(int year, int month) {
-    update();
+void MainWindow::on_findButton_clicked() {
+    auto dialog = new findDialog(activityList, calendar, shopList, activityListController, calendarController,
+                                 shopListController);
+
+    while (dialog->exec()) {
+        if (dialog->close())
+            delete dialog;
+    }
+
 }

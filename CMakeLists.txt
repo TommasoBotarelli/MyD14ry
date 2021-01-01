@@ -88,7 +88,9 @@ else ()
           Category.cpp
           Category.h
           addcategory.cpp
-          addcategory.h)
+          addcategory.h
+          finddialog.h
+          finddialog.cpp)
 endif ()
 
 target_link_libraries(MyD14ry PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

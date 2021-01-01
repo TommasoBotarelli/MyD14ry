@@ -8,6 +8,7 @@
 #include <QTextCharFormat>
 #include "QListWidgetTemplate.h"
 #include "Category.h"
+#include "finddialog.h"
 
 //ATTIVITÀ
 #include "Activity.h"
@@ -72,9 +73,9 @@ private slots:
 
     void on_listWidget_3_itemDoubleClicked(QListWidgetItem *item);
 
-    void on_RefreshButton_clicked();
-
     void on_calendarWidget_currentPageChanged(int year, int month);
+
+    void on_findButton_clicked();
 
 private:
     Ui::MainWindow *ui;

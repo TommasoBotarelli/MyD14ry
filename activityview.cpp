@@ -116,7 +116,7 @@ void ActivityView::on_addCategoryButton_clicked() {
 
 void ActivityView::updateCategory() {
 
-    ui->categoryComboBox->clear();                //FIXME
+    //ui->categoryComboBox->clear();                //FIXME
 
     std::list<Category> catList;
     activityList->getCategory(catList);

@@ -85,17 +85,17 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="RefreshButton">
+   <widget class="QPushButton" name="findButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>700</x>
       <y>10</y>
-      <width>71</width>
+      <width>89</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>Refresh</string>
+     <string>Cerca</string>
     </property>
    </widget>
   </widget>
