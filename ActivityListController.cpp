@@ -14,6 +14,23 @@ ActivityListController::setData(const QString category, Activity &activity, cons
     activity.setCompleted(completed);
     activity.setNote(note);
     activity.setCategory(category);
+    activity.setCount(0);
+
+    std::list<Category> catList;
+    std::list<Activity> actList;
+    activityList->getCategory(catList);
+
+    for (auto i : catList) {
+        actList.clear();
+        i.getActivity(actList);
+
+        for (auto l : actList) {
+            if (l == activity) {
+                int count = activity.getCount();
+                activity.setCount(count + 1);
+            }
+        }
+    }
 
     activityList->addActivity(category, activity);
 }

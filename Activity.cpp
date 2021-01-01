@@ -72,17 +72,11 @@ Activity::~Activity() {
 
 bool Activity::operator==(const Activity &activity)const {
 
-    /*std::list<SubActivity> list1;         //FIXME
-    std::list<SubActivity> list2;
-    activity.getSubActivities(list1);
-    this->getSubActivities(list2);*/
-
-
     if (activity.isCompleted() == this->isCompleted() &&
         activity.getTask() == this->getTask() &&
         activity.getNote() == this->getNote() &&
-        activity.getDeadlineDate() == this->getDeadlineDate() /*&&
-    list1.size() == list2.size()*/)
+        activity.getDeadlineDate() == this->getDeadlineDate() &&
+        activity.getCount() == this->getCount())
         return true;
 
     else
@@ -95,6 +89,14 @@ const QString &Activity::getCategory() const {
 
 void Activity::setCategory(const QString &category) {
     Activity::category = category;
+}
+
+int Activity::getCount() const {
+    return count;
+}
+
+void Activity::setCount(int count) {
+    Activity::count = count;
 }
 
 

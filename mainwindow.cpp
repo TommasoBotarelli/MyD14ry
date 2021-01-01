@@ -85,9 +85,9 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
     if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
 
-        if (actItem->checkState() == 2)
+        if (actItem->checkState() == Qt::Checked)
             actItem->get()->setCompleted(true);
-        else if (actItem->checkState() == 0)
+        if (actItem->checkState() == Qt::Unchecked)
             actItem->get()->setCompleted(false);
 
         update();

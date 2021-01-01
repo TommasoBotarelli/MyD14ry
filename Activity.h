@@ -53,7 +53,7 @@ public:
 
     void setCategory(const QString &category);
 
-    bool operator==(const Activity &activity)const;
+    bool operator==(const Activity &activity) const;
 
 private:
     QString task;
@@ -63,6 +63,11 @@ private:
     std::list<SubActivity> subActivities;
     std::list<Observer *> observers;
     QString category;
+    int count;
+public:
+    int getCount() const;
+
+    void setCount(int count);
 };
 
 
