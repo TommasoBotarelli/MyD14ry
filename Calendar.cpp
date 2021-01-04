@@ -5,20 +5,21 @@
 #include "Calendar.h"
 
 
-void Calendar::addEvent(Event &event) {
+void Calendar::addEvent(std::shared_ptr<Event> event) {
     Events.push_back(event);
     notify();
 }
 
-void Calendar::getEvent(std::list<Event> &list) {
-    for (auto i : Events)
+void Calendar::getEvent(std::list<std::shared_ptr<Event>> &list) {
+    for (const auto &i : Events)
         list.push_back(i);
 }
 
-void Calendar::removeEvent(Event &event) {
+void Calendar::removeEvent(std::shared_ptr<Event> event) {
     for (auto i : Events) {
         if (i == event) {
             Events.remove(event);
+            event.reset();
             break;
         }
     }
@@ -38,11 +39,10 @@ void Calendar::notify() const {
         (*i).update();
 }
 
-void Calendar::getListOfDay(QDate date, std::list<Event> &eList) {
-    for (auto i : Events)
-        if (i.getDate() == date)
+void Calendar::getListOfDay(QDate date, std::list<std::shared_ptr<Event>> &eList) {
+    for (const auto &i : Events)
+        if (i->getDate() == date)
             eList.push_back(i);
-
 }
 
 

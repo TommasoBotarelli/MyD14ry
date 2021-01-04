@@ -5,17 +5,17 @@
 #include "Category.h"
 
 
-void Category::getActivity(std::list<Activity> &actList) {
-    for (Activity &i : activities) {
+void Category::getActivity(std::list<std::shared_ptr<Activity>> &actList) {
+    for (auto i : activities) {
         actList.push_back(i);
     }
 }
 
-void Category::addActivity(Activity &activity) {
+void Category::addActivity(std::shared_ptr<Activity> activity) {
     activities.push_back(activity);
 }
 
-void Category::removeActivity(Activity &activity) {
+void Category::removeActivity(std::shared_ptr<Activity> activity) {
     activities.remove(activity);
 }
 
@@ -33,18 +33,3 @@ bool  Category::operator==(const Category &c)const  {
     else
         return false;
 }
-
-/*Category& Category::operator=(Category c) {
-    if (this != &c){
-        this->setName(c.getName());
-        std::list<Activity> actList;
-        c.getActivity(actList);
-
-        for (auto i : actList){
-            activities.push_back(i);
-        }
-    }
-
-    return *this;
-}*/
-

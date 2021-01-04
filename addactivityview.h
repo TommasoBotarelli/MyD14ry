@@ -21,7 +21,7 @@ class AddActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit AddActivityView(ActivityList *aList, Activity *a, ActivityListController *actListC,
+    explicit AddActivityView(ActivityList *aList, std::shared_ptr<Activity> a, ActivityListController *actListC,
                              QWidget *parent = nullptr);
 
     ~AddActivityView() override;
@@ -55,7 +55,7 @@ private:
 
     ActivityList *actList;
 
-    Activity *activity;
+    std::shared_ptr<Activity> activity;
 
     ActivityListController *controller;
 };

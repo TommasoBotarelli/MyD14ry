@@ -17,13 +17,14 @@ class ActivityListController {
 public:
     explicit ActivityListController(ActivityList *aL) : activityList(aL) {}
 
-    void setData(QString category, Activity &activity, QString task, QDate deadlineDate, bool completed, QString note);
+    void setData(QString category, std::shared_ptr<Activity> activity, QString task, QDate deadlineDate, bool completed,
+                 QString note);
 
-    void setData(SubActivity &subA, Activity &activity, QString t, bool c);
+    void setData(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> activity, QString t, bool c);
 
     void setData(Category &c, QString name);
 
-    void remove(Activity &activity);
+    void remove(std::shared_ptr<Activity> activity);
 
     void remove(Category &c);
 

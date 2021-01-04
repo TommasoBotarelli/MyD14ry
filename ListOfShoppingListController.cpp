@@ -18,7 +18,7 @@ void ListOfShoppingListController::getLists(QListWidget &list) {
     std::list<ShoppingList> shopList;
     listOfShoppingList->getList(shopList);
 
-    for (auto i : shopList) {
+    for (const auto &i : shopList) {
         auto a = new QListWidgetTemplate<ShoppingList>;
 
         a->set(i);

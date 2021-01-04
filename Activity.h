@@ -37,9 +37,9 @@ public:
 
     void setNote(const QString &note);
 
-    void getSubActivities(std::list<SubActivity> &subAList);
+    void getSubActivities(std::list<std::shared_ptr<SubActivity>> &subAList) const;
 
-    void addSubActivity(SubActivity &subActivity);
+    void addSubActivity(std::shared_ptr<SubActivity> subActivity);
 
     void addObserver(Observer *o) override;
 
@@ -53,21 +53,28 @@ public:
 
     void setCategory(const QString &category);
 
+    int getCount() const;
+
+    void setCount(int count);
+
     bool operator==(const Activity &activity) const;
 
 private:
     QString task;
-    QDate deadlineDate;
-    bool completed;
-    QString note;
-    std::list<SubActivity> subActivities;
-    std::list<Observer *> observers;
-    QString category;
-    int count;
-public:
-    int getCount() const;
 
-    void setCount(int count);
+    QDate deadlineDate;
+
+    bool completed;
+
+    QString note;
+
+    std::list<std::shared_ptr<SubActivity>> subActivities;
+
+    std::list<Observer *> observers;
+
+    QString category;
+
+    int count;
 };
 
 

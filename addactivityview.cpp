@@ -2,7 +2,8 @@
 #include "ui_addactivityview.h"
 
 
-AddActivityView::AddActivityView(ActivityList *aList, Activity *a, ActivityListController *actListC, QWidget *parent) :
+AddActivityView::AddActivityView(ActivityList *aList, std::shared_ptr<Activity> a, ActivityListController *actListC,
+                                 QWidget *parent) :
         actList(aList), controller(actListC), QDialog(parent),
         activity(a), ui(new Ui::AddActivityView) {
     ui->setupUi(this);
@@ -23,7 +24,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
         ui->NameEdit->setText("INSERISCI ATTIVITÀ!!!");
 
     if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
-        controller->setData(getCategory(), *activity, getTask(), getDeadlineDate(), false, getNote());
+        controller->setData(getCategory(), activity, getTask(), getDeadlineDate(), false, getNote());
         detach();
         (*this).close();
     }
@@ -32,7 +33,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
 
-    auto dialog = new AddSubActivityDialog(activity, controller);
+    auto dialog = new AddSubActivityDialog(activity, controller); //FIXME
 
     while (dialog->exec()) {
 
@@ -45,13 +46,13 @@ void AddActivityView::on_AddSubActivityButton_clicked() {
 
 void AddActivityView::update() {
     ui->SubActivityListWidget->clear();
-    std::list<SubActivity> listSubA;
+    std::list<std::shared_ptr<SubActivity>> listSubA;
     activity->getSubActivities(listSubA);
 
     for (auto i : listSubA) {
         auto subA = new QListWidgetTemplate<SubActivity>;
 
-        subA->setText(i.getTask());
+        subA->setText(i->getTask());
         subA->set(i);
 
         ui->SubActivityListWidget->addItem(subA);

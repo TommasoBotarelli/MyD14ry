@@ -12,7 +12,7 @@ class AddEventDialog : public QDialog {
 Q_OBJECT
 
 public:
-    explicit AddEventDialog(CalendarController *c, Event *e, QWidget *parent = nullptr);
+    explicit AddEventDialog(CalendarController *c, std::shared_ptr<Event> e, QWidget *parent = nullptr);
 
     const QString getTask();
 
@@ -39,7 +39,7 @@ private:
 
     CalendarController *controller;
 
-    Event *event;
+    std::shared_ptr<Event> event;
 };
 
 #endif // ADDEVENTDIALOG_H

@@ -19,7 +19,8 @@ class ActivityView : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit ActivityView(ActivityList *actList, Activity *a, ActivityListController *, QWidget *parent = nullptr);
+    explicit ActivityView(ActivityList *actList, std::shared_ptr<Activity> a, ActivityListController *,
+                          QWidget *parent = nullptr);
 
     ~ActivityView() override;
 
@@ -58,7 +59,7 @@ private:
 
     ActivityListController *controller;
 
-    Activity *activity;
+    std::shared_ptr<Activity> activity;
 
     ActivityList* activityList;
 };

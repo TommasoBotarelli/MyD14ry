@@ -18,11 +18,12 @@ public:
 
     explicit CalendarController(Calendar *c) : calendar(c) {}
 
-    void setData(Event &event, QString task, QDate date, QString note, QTime startTime, QTime endTime, bool allDay);
+    void setData(std::shared_ptr<Event> event, QString task, QDate date, QString note, QTime startTime, QTime endTime,
+                 bool allDay);
 
     void searchEventOfDay(QDate date, QListWidget &list);
 
-    void remove(Event &event);
+    void remove(std::shared_ptr<Event> event);
 
 private:
 

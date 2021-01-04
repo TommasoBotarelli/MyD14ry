@@ -15,7 +15,8 @@ class AddSubActivityDialog : public QDialog {
 Q_OBJECT
 
 public:
-    explicit AddSubActivityDialog(Activity *activity, ActivityListController *c, QWidget *parent = nullptr);
+    explicit AddSubActivityDialog(std::shared_ptr<Activity> activity, ActivityListController *c,
+                                  QWidget *parent = nullptr);
 
     ~AddSubActivityDialog() override;
 
@@ -28,7 +29,7 @@ private slots:
 private:
     Ui::AddSubActivityDialog *ui;
 
-    Activity *activity;
+    std::shared_ptr<Activity> activity;
 
     ActivityListController *controller;
 };

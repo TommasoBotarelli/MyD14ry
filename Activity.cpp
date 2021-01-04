@@ -40,13 +40,13 @@ void Activity::setNote(const QString &note) {
     Activity::note = note;
 }
 
-void Activity::getSubActivities(std::list<SubActivity> &subAList) {   //FIXME
+void Activity::getSubActivities(std::list<std::shared_ptr<SubActivity>> &subAList) const {
     for (auto i : subActivities) {
         subAList.push_back(i);
     }
 }
 
-void Activity::addSubActivity(SubActivity &subActivity) {
+void Activity::addSubActivity(std::shared_ptr<SubActivity> subActivity) {
 
     subActivities.push_back(subActivity);
 

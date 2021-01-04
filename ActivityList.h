@@ -15,7 +15,7 @@
 
 class ActivityList : public Subject {
 public:
-    void addActivity(QString category, Activity &activity);
+    void addActivity(QString category, std::shared_ptr<Activity> activity);
 
     void addCategory(Category &c);
 
@@ -23,7 +23,7 @@ public:
 
     void getCategory(std::list<Category> &catList);
 
-    void removeActivity(Category &c, Activity &activity);
+    void removeActivity(Category &c, std::shared_ptr<Activity> activity);
 
     void addObserver(Observer *o) override;
 

@@ -2,7 +2,8 @@
 #include "ui_activityview.h"
 
 
-ActivityView::ActivityView(ActivityList* actList, Activity *a, ActivityListController *c, QWidget *parent) :
+ActivityView::ActivityView(ActivityList *actList, std::shared_ptr<Activity> a, ActivityListController *c,
+                           QWidget *parent) :
         activityList(actList), activity(a), controller(c), QDialog(parent),
         ui(new Ui::ActivityView) {
     ui->setupUi(this);
@@ -41,7 +42,7 @@ void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
 
 void ActivityView::on_AddSubactivityButton_clicked() {
 
-    auto dialog = new AddSubActivityDialog(activity, controller);
+    auto dialog = new AddSubActivityDialog(activity, controller);         //FIXME
 
     while (dialog->exec()) {
 
@@ -55,7 +56,7 @@ void ActivityView::on_AddSubactivityButton_clicked() {
 
 void ActivityView::on_DeleteButton_clicked() {
     this->close();
-    controller->remove(*activity);
+    controller->remove(activity);
 }
 
 
@@ -67,15 +68,15 @@ void ActivityView::update() {
         ui->CompletedCheckBox->setCheckState(Qt::Unchecked);
 
     ui->SubActivityListWidget->clear();
-    std::list<SubActivity> subAList;
+    std::list<std::shared_ptr<SubActivity>> subAList;
     activity->getSubActivities(subAList);
 
     for (auto i : subAList) {
         auto subA = new QListWidgetTemplate<SubActivity>;
 
-        subA->setText(i.getTask());
+        subA->setText(i->getTask());
 
-        if (i.isCompleted())
+        if (i->isCompleted())
             subA->setCheckState(Qt::Checked);
         else
             subA->setCheckState(Qt::Unchecked);

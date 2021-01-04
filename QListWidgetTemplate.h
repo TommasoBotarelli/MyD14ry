@@ -9,18 +9,18 @@
 
 template<typename T>
 class QListWidgetTemplate : public QListWidgetItem {
+
 public:
-    void set(const T &d) {
+    void set(std::shared_ptr<T> d) {
         data = d;
     }
 
-    T *get() {
-        T *p;
-        p = &data;
-        return p;
+    std::shared_ptr<T> get() {
+        return data;
     }
+
 private:
-    T data;
+    std::shared_ptr<T> data;
 };
 
 

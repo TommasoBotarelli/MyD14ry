@@ -1,8 +1,10 @@
 #include "addeventdialog.h"
+
+#include <utility>
 #include "ui_addeventdialog.h"
 
-AddEventDialog::AddEventDialog(CalendarController *c, Event *e, QWidget *parent) :
-        controller(c), event(e), QDialog(parent),
+AddEventDialog::AddEventDialog(CalendarController *c, std::shared_ptr<Event> e, QWidget *parent) :
+        controller(c), event(std::move(e)), QDialog(parent),
         ui(new Ui::AddEventDialog) {
     ui->setupUi(this);
 
@@ -23,7 +25,7 @@ void AddEventDialog::on_AddButton_clicked() {
         ui->NameLineEdit->setText("INSERISCI EVENTO!!!");
 
     if (getTask() != "INSERISCI EVENTO!!!" && getTask() != "") {
-        controller->setData(*event, getTask(), getDate(), getNote(),
+        controller->setData(event, getTask(), getDate(), getNote(),
                             getStartTime(), getEndTime(), getAllDay());
 
         this->close();

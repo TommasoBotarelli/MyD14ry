@@ -15,23 +15,23 @@
 class Calendar : public Subject{
 public:
 
-    void addEvent(Event &event);
+    void addEvent(std::shared_ptr<Event> event);
 
-    void getEvent(std::list<Event> &list);
+    void getEvent(std::list<std::shared_ptr<Event>> &list);
 
-    void removeEvent(Event &event);
+    void removeEvent(std::shared_ptr<Event> event);
 
     void removeObserver(Observer *o) override;
 
     void addObserver(Observer *o) override;
 
-    void getListOfDay(QDate date, std::list<Event> &eList);
+    void getListOfDay(QDate date, std::list<std::shared_ptr<Event>> &eList);
 
     void notify() const override;
 
 private:
 
-    std::list<Event> Events;
+    std::list<std::shared_ptr<Event>> Events;
 
     std::list<Observer *> observers;
 

@@ -30,7 +30,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_actionActivity_triggered() {
 
-    auto a = new Activity();
+    std::shared_ptr<Activity> a(new Activity);
 
     auto dialog = new AddActivityView(activityList, a, activityListController);
 
@@ -43,7 +43,7 @@ void MainWindow::on_actionActivity_triggered() {
 }
 
 void MainWindow::on_actionEvent_triggered() {
-    auto e = new Event();
+    std::shared_ptr<Event> e(new Event);
 
     auto dialog = new AddEventDialog(calendarController, e);
 
@@ -85,7 +85,7 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
 }
 
 void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
-    /*if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
+    if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> *>(item)) {
 
         if (actItem->checkState() == Qt::Checked)
             actItem->get()->setCompleted(true);
@@ -93,7 +93,7 @@ void MainWindow::on_listWidget_itemChanged(QListWidgetItem *item) {
             actItem->get()->setCompleted(false);
 
         update();
-    }*/
+    }
 }
 
 void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
@@ -113,7 +113,7 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
 
-        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
+        auto dialog = new ShoppingListView(shopListItem->get().get(), shopListController);  //FIXME
 
         while (dialog->exec()) {
             if (dialog->close()) {
@@ -126,7 +126,7 @@ void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::update() {
     ui->listWidget->clear();
 
-    std::list<Activity> actList;
+    std::list<std::shared_ptr<Activity>> actList;
     std::list<Category> catList;
 
     activityList->getCategory(catList);
@@ -148,14 +148,14 @@ void MainWindow::update() {
         actList.clear();
         i.getActivity(actList);
 
-        for (auto l : actList) {
+        for (const auto &l : actList) {
             auto act = new QListWidgetTemplate<Activity>;
 
             act->set(l);
 
-            act->setText(l.getTask());
+            act->setText(l->getTask());
 
-            if (act->get()->isCompleted()) {
+            if (l->isCompleted()) {
                 act->setFont(strikethroughFont);
             }
 
@@ -165,7 +165,7 @@ void MainWindow::update() {
     }
 
     ui->listWidget_2->clear();
-    std::list<Event> eList;
+    std::list<std::shared_ptr<Event>> eList;
     calendar->getListOfDay(ui->calendarWidget->selectedDate(), eList);
     if (!eList.empty()) {
         calendarController->searchEventOfDay(ui->calendarWidget->selectedDate(), *ui->listWidget_2);

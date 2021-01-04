@@ -10,7 +10,7 @@ void ActivityList::getCategory(std::list<Category> &catList) {
     }
 }
 
-void ActivityList::addActivity(QString category, Activity &activity) {
+void ActivityList::addActivity(QString category, std::shared_ptr<Activity> activity) {
     for (Category &i : categories) {
         if (i.getName() == category) {
             i.addActivity(activity);
@@ -21,10 +21,11 @@ void ActivityList::addActivity(QString category, Activity &activity) {
     notify();
 }
 
-void ActivityList::removeActivity(Category &c, Activity &activity) {
+void ActivityList::removeActivity(Category &c, std::shared_ptr<Activity> activity) {
     for (Category &i : categories) {
         if (i.getName() == c.getName()) {
             i.removeActivity(activity);
+            activity.reset();
             break;
         }
     }

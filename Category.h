@@ -12,22 +12,20 @@
 class Category {
 public:
 
-    void getActivity(std::list<Activity> &actList);
+    void getActivity(std::list<std::shared_ptr<Activity>> &actList);
 
-    void addActivity(Activity &activity);
+    void addActivity(std::shared_ptr<Activity> activity);
 
-    void removeActivity(Activity &activity);
+    void removeActivity(std::shared_ptr<Activity> activity);
 
     const QString &getName() const;
 
     void setName(const QString &name);
 
-    bool  operator==(const Category &c)const;
-
-    //Category& operator = (Category c);
+    bool operator==(const Category &c) const;
 
 private:
-    std::list<Activity> activities;
+    std::list<std::shared_ptr<Activity>> activities;
 
     QString name;
 };

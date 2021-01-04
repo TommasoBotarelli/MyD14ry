@@ -13,7 +13,7 @@ class EventView : public QDialog {
 Q_OBJECT
 
 public:
-    explicit EventView(Event *e, CalendarController *c, QWidget *parent = nullptr);
+    explicit EventView(std::shared_ptr<Event> e, CalendarController *c, QWidget *parent = nullptr);
 
     ~EventView() override;
 
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::EventView *ui;
 
-    Event *event;
+    std::shared_ptr<Event> event;
 
     CalendarController *controller;
 };
