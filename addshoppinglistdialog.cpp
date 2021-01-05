@@ -42,7 +42,7 @@ void AddShoppingListDialog::update() {
     std::list<ShoppingProduct> shopP;
     shopList->getProducts(shopP);
 
-    for (auto i : shopP) {
+    for (auto &i : shopP) {
         auto qProduct = new QListWidgetTemplate<ShoppingProduct>;
 
         qProduct->setText(i.getName());

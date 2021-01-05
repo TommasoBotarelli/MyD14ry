@@ -5,13 +5,13 @@
 #include "ActivityList.h"
 
 void ActivityList::getCategory(std::list<Category> &catList) {
-    for (Category &i : categories) {
+    for (auto &i : categories) {
         catList.push_back(i);
     }
 }
 
 void ActivityList::addActivity(QString category, Activity &activity) {
-    for (Category &i : categories) {
+    for (auto &i : categories) {
         if (i.getName() == category) {
             i.addActivity(activity);
             break;
@@ -22,7 +22,7 @@ void ActivityList::addActivity(QString category, Activity &activity) {
 }
 
 void ActivityList::removeActivity(Category &c, Activity &activity) {
-    for (Category &i : categories) {
+    for (auto &i : categories) {
         if (i.getName() == c.getName()) {
             i.removeActivity(activity);
             break;

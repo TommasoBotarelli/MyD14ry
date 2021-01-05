@@ -48,7 +48,7 @@ void AddActivityView::update() {
     std::list<SubActivity> listSubA;
     activity->getSubActivities(listSubA);
 
-    for (auto i : listSubA) {
+    for (auto &i : listSubA) {
         auto subA = new QListWidgetTemplate<SubActivity>;
 
         subA->setText(i.getTask());
@@ -100,7 +100,7 @@ void AddActivityView::updateCategory() {
     std::list<Category> catList;
     actList->getCategory(catList);
 
-    for (auto i : catList)
+    for (auto &i : catList)
         ui->categoryComboBox->addItem(i.getName());
 
 }

@@ -29,9 +29,9 @@ public:
 
     void addProduct(ShoppingProduct &product);
 
-    void const getProducts(std::list<ShoppingProduct> &shopList);
+    void getProducts(std::list<ShoppingProduct> &shopList) const;
 
-     bool    operator==( const   ShoppingList &compareShopList)const ;
+    bool operator==(const ShoppingList &compareShopList) const;
 
     ~ShoppingList() override;
 

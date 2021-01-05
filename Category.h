@@ -24,8 +24,6 @@ public:
 
     bool  operator==(const Category &c)const;
 
-    //Category& operator = (Category c);
-
 private:
     std::list<Activity> activities;
 

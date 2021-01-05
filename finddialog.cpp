@@ -72,7 +72,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
             if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(list.currentItem())) {
                 shopListItem->get()->getProducts(shoppingProductList);
 
-                for (auto i : shoppingProductList) {
+                for (auto &i : shoppingProductList) {
 
                     if (shopProductItem->get()->getName() == i.getName()) {
                         auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
@@ -107,7 +107,7 @@ void findDialog::update() {
     ui->listWidget->addItem(paragraph1);
 
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         actList.clear();
         i.getActivity(actList);
 
@@ -118,7 +118,7 @@ void findDialog::update() {
         ui->listWidget->addItem(title);
         ui->listWidget->setCurrentItem(title);
 
-        for (auto l : actList) {
+        for (auto &l : actList) {
             if (isSimilar(l.getTask(), name)) {
                 auto actitem = new QListWidgetTemplate<Activity>;
                 actitem->set(l);
@@ -149,7 +149,7 @@ void findDialog::update() {
     std::list<Event> eventList;
     calendar->getEvent(eventList);
 
-    for (auto j : eventList) {
+    for (auto &j : eventList) {
         if (isSimilar(j.getTask(), name)) {
             auto eventitem = new QListWidgetTemplate<Event>;
             eventitem->set(j);
@@ -167,7 +167,7 @@ void findDialog::update() {
     std::list<ShoppingList> shopList;
     listOfShoppingList->getList(shopList);
 
-    for (auto k : shopList) {
+    for (auto &k : shopList) {
         if (isSimilar(k.getNameList(), name)) {
             auto shopListitem = new QListWidgetTemplate<ShoppingList>;
             shopListitem->set(k);
@@ -186,11 +186,11 @@ void findDialog::update() {
     listOfShoppingList->getList(shopList);
     std::list<ShoppingProduct> shopProductList;
 
-    for (auto y : shopList) {
+    for (auto &y : shopList) {
         shopProductList.clear();
         y.getProducts(shopProductList);
 
-        for (auto q : shopProductList) {
+        for (auto &q : shopProductList) {
 
             if (isSimilar(q.getName(), name)) {
 

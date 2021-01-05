@@ -12,8 +12,8 @@ void ShoppingList::setNameList(const QString &name) {
     nameList = name;
 }
 
-void const ShoppingList::getProducts(std::list<ShoppingProduct> &shopList) {
-    for (auto i : products)
+void ShoppingList::getProducts(std::list<ShoppingProduct> &shopList) const {
+    for (auto &i : products)
         shopList.push_back(i);
 }
 

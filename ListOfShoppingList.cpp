@@ -10,7 +10,7 @@ void ListOfShoppingList::addShoppingList(ShoppingList &shoppingList) {
 
 void ListOfShoppingList::removeShoppingList(const ShoppingList &shoppingList) {
 
-    for (auto i : ShoppingLists) {
+    for (auto &i : ShoppingLists) {
         if (i == shoppingList) {
             ShoppingLists.remove(shoppingList);
             break;
@@ -33,7 +33,7 @@ void ListOfShoppingList::notify() const {
 }
 
 void ListOfShoppingList::getList(std::list<ShoppingList> &shopList) {
-    for (auto i : ShoppingLists)
+    for (auto &i : ShoppingLists)
         shopList.push_back(i);
 }
 

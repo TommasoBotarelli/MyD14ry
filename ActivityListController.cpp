@@ -20,11 +20,11 @@ ActivityListController::setData(const QString category, Activity &activity, cons
     std::list<Activity> actList;
     activityList->getCategory(catList);
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         actList.clear();
         i.getActivity(actList);
 
-        for (auto l : actList) {
+        for (auto &l : actList) {
             if (l == activity) {
                 int count = activity.getCount();
                 activity.setCount(count + 1);
@@ -40,11 +40,11 @@ void ActivityListController::remove(Activity &activity) {
     activityList->getCategory(catList);
     std::list<Activity> actList;
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         actList.clear();
         i.getActivity(actList);
 
-        for (auto l : actList) {
+        for (auto &l : actList) {
             if (l == activity) {
                 activityList->removeActivity(i, activity);
             }
@@ -72,7 +72,7 @@ void ActivityListController::searchCategory(Category &c, const QString &name) {
 
     if (findCategory(name)) {
 
-        for (auto i : catList) {
+        for (auto &i : catList) {
 
             if (i.getName() == name) {
                 c = i;
@@ -94,7 +94,7 @@ bool ActivityListController::findCategory(QString name) {
 
     bool find = false;
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         if (i.getName() == name)
             find = true;
     }

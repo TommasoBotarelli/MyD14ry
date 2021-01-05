@@ -137,7 +137,7 @@ void MainWindow::update() {
     QFont strikethroughFont;
     strikethroughFont.setStrikeOut(true);
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         auto title = new QListWidgetItem;
         title->setText(i.getName());
         title->setFont(font);
@@ -148,7 +148,7 @@ void MainWindow::update() {
         actList.clear();
         i.getActivity(actList);
 
-        for (auto l : actList) {
+        for (auto &l : actList) {
             auto act = new QListWidgetTemplate<Activity>;
 
             act->set(l);

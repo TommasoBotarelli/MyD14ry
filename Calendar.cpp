@@ -11,12 +11,12 @@ void Calendar::addEvent(Event &event) {
 }
 
 void Calendar::getEvent(std::list<Event> &list) {
-    for (auto i : Events)
+    for (auto &i : Events)
         list.push_back(i);
 }
 
 void Calendar::removeEvent(Event &event) {
-    for (auto i : Events) {
+    for (auto &i : Events) {
         if (i == event) {
             Events.remove(event);
             break;
@@ -39,7 +39,7 @@ void Calendar::notify() const {
 }
 
 void Calendar::getListOfDay(QDate date, std::list<Event> &eList) {
-    for (auto i : Events)
+    for (auto &i : Events)
         if (i.getDate() == date)
             eList.push_back(i);
 

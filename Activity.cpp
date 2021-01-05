@@ -41,7 +41,7 @@ void Activity::setNote(const QString &note) {
 }
 
 void Activity::getSubActivities(std::list<SubActivity> &subAList) {   //FIXME
-    for (auto i : subActivities) {
+    for (auto &i : subActivities) {
         subAList.push_back(i);
     }
 }
@@ -62,7 +62,7 @@ void Activity::removeObserver(Observer *o) {
 }
 
 void Activity::notify() const {
-    for (auto i : observers)
+    for (auto &i : observers)
         (*i).update();
 }
 

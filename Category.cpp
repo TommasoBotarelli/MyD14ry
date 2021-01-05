@@ -6,7 +6,7 @@
 
 
 void Category::getActivity(std::list<Activity> &actList) {
-    for (Activity &i : activities) {
+    for (auto &i : activities) {
         actList.push_back(i);
     }
 }
@@ -33,18 +33,3 @@ bool  Category::operator==(const Category &c)const  {
     else
         return false;
 }
-
-/*Category& Category::operator=(Category c) {
-    if (this != &c){
-        this->setName(c.getName());
-        std::list<Activity> actList;
-        c.getActivity(actList);
-
-        for (auto i : actList){
-            activities.push_back(i);
-        }
-    }
-
-    return *this;
-}*/
-
