@@ -1,8 +1,9 @@
 #include "addshoppinglistdialog.h"
 #include "ui_addshoppinglistdialog.h"
 
-AddShoppingListDialog::AddShoppingListDialog(ShoppingList *sL, ListOfShoppingListController *c, QWidget *parent) :
-        shopList(sL), controller(c), QDialog(parent),
+AddShoppingListDialog::AddShoppingListDialog(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c,
+                                             QWidget *parent) :
+        shopList(std::move(sL)), controller(c), QDialog(parent),
         ui(new Ui::AddShoppingListDialog) {
     ui->setupUi(this);
     attach();
@@ -30,7 +31,7 @@ void AddShoppingListDialog::on_AddShoppingListButton_clicked() {
         ui->NameEdit->setText("INSERISCI NOME LISTA!!!");
 
     if (getName() != "INSERISCI NOME LISTA!!!" && getName() != "") {
-        controller->setData(*shopList, getName());
+        controller->setData(shopList, getName());
         detach();
         this->close();
     }
@@ -39,13 +40,13 @@ void AddShoppingListDialog::on_AddShoppingListButton_clicked() {
 
 void AddShoppingListDialog::update() {
     ui->ShoppingProductListWidget->clear();
-    std::list<ShoppingProduct> shopP;
+    std::list<std::shared_ptr<ShoppingProduct>> shopP;
     shopList->getProducts(shopP);
 
-    for (auto i : shopP) {
+    for (auto &i : shopP) {
         auto qProduct = new QListWidgetTemplate<ShoppingProduct>;
 
-        qProduct->setText(i.getName());
+        qProduct->setText(i->getName());
         qProduct->set(i);
 
         ui->ShoppingProductListWidget->addItem(qProduct);

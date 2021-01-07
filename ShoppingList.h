@@ -27,11 +27,11 @@ public:
 
     void setNameList(const QString &nameList);
 
-    void addProduct(ShoppingProduct &product);
+    void addProduct(std::shared_ptr<ShoppingProduct> product);
 
-    void const getProducts(std::list<ShoppingProduct> &shopList);
+    void getProducts(std::list<std::shared_ptr<ShoppingProduct>> &shopList) const;
 
-     bool    operator==( const   ShoppingList &compareShopList)const ;
+    bool operator==(const ShoppingList &compareShopList) const;
 
     ~ShoppingList() override;
 
@@ -39,7 +39,7 @@ private:
 
     QString nameList;
     std::list<Observer *> observers;
-    std::list<ShoppingProduct> products;
+    std::list<std::shared_ptr<ShoppingProduct>> products;
 
 };
 

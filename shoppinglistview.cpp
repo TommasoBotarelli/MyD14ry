@@ -1,8 +1,8 @@
 #include "shoppinglistview.h"
 #include "ui_shoppinglistview.h"
 
-ShoppingListView::ShoppingListView(ShoppingList *sL, ListOfShoppingListController *c, QWidget *parent) :
-        shopList(sL), controller(c), QDialog(parent),
+ShoppingListView::ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c, QWidget *parent) :
+        shopList(std::move(sL)), controller(c), QDialog(parent),
         ui(new Ui::ShoppingListView) {
     ui->setupUi(this);
 
@@ -42,21 +42,21 @@ void ShoppingListView::on_AddShoppingProductButton_clicked() {
 
 void ShoppingListView::on_DeleteButton_clicked() {
     detach();
-    controller->remove(*shopList);
+    controller->remove(shopList);
     this->close();
 }
 
 void ShoppingListView::update() {
     ui->ShoppingProductListWidget->clear();
-    std::list<ShoppingProduct> shopP;
+    std::list<std::shared_ptr<ShoppingProduct>> shopP;
     shopList->getProducts(shopP);
 
     for (auto i : shopP) {
         auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
 
-        itemProduct->setText(i.getName());
+        itemProduct->setText(i->getName());
 
-        if (i.isCatched())
+        if (i->isCatched())
             itemProduct->setCheckState(Qt::Checked);
         else
             itemProduct->setCheckState(Qt::Unchecked);

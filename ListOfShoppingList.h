@@ -13,9 +13,9 @@
 class ListOfShoppingList : public Subject {
 public:
 
-    void addShoppingList(ShoppingList &shoppingList);
+    void addShoppingList(std::shared_ptr<ShoppingList> shoppingList);
 
-    void removeShoppingList(const ShoppingList &shoppingList);
+    void removeShoppingList(std::shared_ptr<ShoppingList> &shoppingList);
 
     void addObserver(Observer *o) override;
 
@@ -23,13 +23,13 @@ public:
 
     void notify() const override;
 
-    void getList(std::list<ShoppingList> &shopList);
+    void getList(std::list<std::shared_ptr<ShoppingList>> &shopList);
 
     ~ListOfShoppingList() override;
 
 private:
 
-    std::list<ShoppingList> ShoppingLists;
+    std::list<std::shared_ptr<ShoppingList>> ShoppingLists;
 
     std::list<Observer *> observers;
 

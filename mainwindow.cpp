@@ -55,7 +55,7 @@ void MainWindow::on_actionEvent_triggered() {
 }
 
 void MainWindow::on_actionLista_della_spesa_triggered() {
-    auto s = new ShoppingList();
+    std::shared_ptr<ShoppingList> s(new ShoppingList);
 
     auto dialog = new AddShoppingListDialog(s, shopListController);
 
@@ -113,7 +113,7 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
 
-        auto dialog = new ShoppingListView(shopListItem->get().get(), shopListController);  //FIXME
+        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);  //FIXME
 
         while (dialog->exec()) {
             if (dialog->close()) {
@@ -172,7 +172,7 @@ void MainWindow::update() {
     }
 
     ui->listWidget_3->clear();
-    std::list<ShoppingList> sList;
+    std::list<std::shared_ptr<ShoppingList>> sList;
     shopList->getList(sList);
     if (!sList.empty()) {
         shopListController->getLists(*ui->listWidget_3);

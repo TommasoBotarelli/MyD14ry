@@ -1,9 +1,10 @@
 #include "addshoppingproductdialog.h"
 #include "ui_addshoppingproductdialog.h"
 
-AddShoppingProductDialog::AddShoppingProductDialog(ShoppingList *sl, ListOfShoppingListController *slc, QWidget *parent)
+AddShoppingProductDialog::AddShoppingProductDialog(std::shared_ptr<ShoppingList> sl, ListOfShoppingListController *slc,
+                                                   QWidget *parent)
         :
-        shopList(sl), controller(slc), QDialog(parent),
+        shopList(std::move(sl)), controller(slc), QDialog(parent),
         ui(new Ui::AddShoppingProductDialog) {
     ui->setupUi(this);
 }
@@ -17,8 +18,8 @@ void AddShoppingProductDialog::on_AddButton_clicked() {
         ui->NameEdit->setText("INSERISCI PRODOTTO!!!");
 
     if (getNameProduct() != "" && getNameProduct() != "INSERISCI PRODOTTO!!!") {
-        auto p = new ShoppingProduct();
-        controller->setData(*shopList, *p, getNameProduct());
+        std::shared_ptr<ShoppingProduct> p(new ShoppingProduct);
+        controller->setData(shopList, p, getNameProduct());
 
         this->close();
     }

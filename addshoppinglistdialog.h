@@ -16,7 +16,8 @@ class AddShoppingListDialog : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit AddShoppingListDialog(ShoppingList *sL, ListOfShoppingListController *c, QWidget *parent = nullptr);
+    explicit AddShoppingListDialog(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c,
+                                   QWidget *parent = nullptr);
 
     ~AddShoppingListDialog() override;
 
@@ -37,7 +38,7 @@ private slots:
 private:
     Ui::AddShoppingListDialog *ui;
 
-    ShoppingList *shopList;
+    std::shared_ptr<ShoppingList> shopList;
 
     ListOfShoppingListController *controller;
 };

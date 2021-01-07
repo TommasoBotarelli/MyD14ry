@@ -12,12 +12,12 @@ void ShoppingList::setNameList(const QString &name) {
     nameList = name;
 }
 
-void const ShoppingList::getProducts(std::list<ShoppingProduct> &shopList) {
-    for (auto i : products)
+void ShoppingList::getProducts(std::list<std::shared_ptr<ShoppingProduct>> &shopList) const {
+    for (auto &i : products)
         shopList.push_back(i);
 }
 
-void ShoppingList::addProduct(ShoppingProduct &product) {
+void ShoppingList::addProduct(std::shared_ptr<ShoppingProduct> product) {
 
     products.push_back(product);
     notify();

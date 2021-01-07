@@ -3,14 +3,14 @@
 
 #include "ListOfShoppingList.h"
 
-void ListOfShoppingList::addShoppingList(ShoppingList &shoppingList) {
+void ListOfShoppingList::addShoppingList(std::shared_ptr<ShoppingList> shoppingList) {
     ShoppingLists.push_back(shoppingList);
     notify();
 }
 
-void ListOfShoppingList::removeShoppingList(const ShoppingList &shoppingList) {
+void ListOfShoppingList::removeShoppingList(std::shared_ptr<ShoppingList> &shoppingList) {
 
-    for (auto i : ShoppingLists) {
+    for (auto &i : ShoppingLists) {
         if (i == shoppingList) {
             ShoppingLists.remove(shoppingList);
             break;
@@ -32,8 +32,8 @@ void ListOfShoppingList::notify() const {
         (*i).update();
 }
 
-void ListOfShoppingList::getList(std::list<ShoppingList> &shopList) {
-    for (auto i : ShoppingLists)
+void ListOfShoppingList::getList(std::list<std::shared_ptr<ShoppingList>> &shopList) {
+    for (auto &i : ShoppingLists)
         shopList.push_back(i);
 }
 

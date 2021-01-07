@@ -61,7 +61,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
         QListWidget list;
         list.clear();
-        std::list<ShoppingProduct> shoppingProductList;
+        std::list<std::shared_ptr<ShoppingProduct>> shoppingProductList;
         shopListController->getLists(list);
 
         for (int index = 0; index != list.count(); index++) {
@@ -72,9 +72,9 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
             if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(list.currentItem())) {
                 shopListItem->get()->getProducts(shoppingProductList);
 
-                for (auto i : shoppingProductList) {
+                for (auto &i : shoppingProductList) {
 
-                    if (shopProductItem->get()->getName() == i.getName()) {
+                    if (shopProductItem->get()->getName() == i->getName()) {
                         auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
 
                         while (dialog->exec()) {
@@ -95,7 +95,7 @@ void findDialog::update() {
 
     QString name = ui->findLineEdit->text();
     std::list<Category> catList;
-    std::list<Activity> actList;
+    std::list<std::shared_ptr<Activity>> actList;
     activityList->getCategory(catList);
     QFont font;
     font.setWeight(81);
@@ -118,13 +118,13 @@ void findDialog::update() {
         ui->listWidget->addItem(title);
         ui->listWidget->setCurrentItem(title);
 
-        for (auto l : actList) {
-            if (isSimilar(l.getTask(), name)) {
+        for (auto &l : actList) {
+            if (isSimilar(l->getTask(), name)) {
                 auto actitem = new QListWidgetTemplate<Activity>;
                 actitem->set(l);
-                actitem->setText(l.getTask());
+                actitem->setText(l->getTask());
 
-                if (l.isCompleted())
+                if (l->isCompleted())
                     actitem->setCheckState(Qt::Checked);
                 else
                     actitem->setCheckState(Qt::Unchecked);
@@ -146,14 +146,14 @@ void findDialog::update() {
     paragraph2->setBackground(Qt::yellow);
     ui->listWidget->addItem(paragraph2);
 
-    std::list<Event> eventList;
+    std::list<std::shared_ptr<Event>> eventList;
     calendar->getEvent(eventList);
 
-    for (auto j : eventList) {
-        if (isSimilar(j.getTask(), name)) {
+    for (auto &j : eventList) {
+        if (isSimilar(j->getTask(), name)) {
             auto eventitem = new QListWidgetTemplate<Event>;
             eventitem->set(j);
-            eventitem->setText(j.getTask());
+            eventitem->setText(j->getTask());
             ui->listWidget->addItem(eventitem);
         }
     }
@@ -164,14 +164,14 @@ void findDialog::update() {
     paragraph3->setBackground(Qt::yellow);
     ui->listWidget->addItem(paragraph3);
 
-    std::list<ShoppingList> shopList;
+    std::list<std::shared_ptr<ShoppingList>> shopList;
     listOfShoppingList->getList(shopList);
 
-    for (auto k : shopList) {
-        if (isSimilar(k.getNameList(), name)) {
+    for (auto &k : shopList) {
+        if (isSimilar(k->getNameList(), name)) {
             auto shopListitem = new QListWidgetTemplate<ShoppingList>;
             shopListitem->set(k);
-            shopListitem->setText(k.getNameList());
+            shopListitem->setText(k->getNameList());
             ui->listWidget->addItem(shopListitem);
         }
     }
@@ -184,21 +184,21 @@ void findDialog::update() {
 
     shopList.clear();
     listOfShoppingList->getList(shopList);
-    std::list<ShoppingProduct> shopProductList;
+    std::list<std::shared_ptr<ShoppingProduct>> shopProductList;
 
-    for (auto y : shopList) {
+    for (auto &y : shopList) {
         shopProductList.clear();
-        y.getProducts(shopProductList);
+        y->getProducts(shopProductList);
 
-        for (auto q : shopProductList) {
+        for (auto &q : shopProductList) {
 
-            if (isSimilar(q.getName(), name)) {
+            if (isSimilar(q->getName(), name)) {
 
                 auto shopProductitem = new QListWidgetTemplate<ShoppingProduct>;
                 shopProductitem->set(q);
-                shopProductitem->setText(q.getName());
+                shopProductitem->setText(q->getName());
 
-                if (q.isCatched())
+                if (q->isCatched())
                     shopProductitem->setCheckState(Qt::Checked);
                 else
                     shopProductitem->setCheckState(Qt::Unchecked);
