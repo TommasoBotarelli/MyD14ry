@@ -260,3 +260,8 @@ void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
             shopProductItem->get()->setCatched(false);
     }
 }
+
+void findDialog::closeEvent(QCloseEvent *event) {
+    detach();
+    QDialog::closeEvent(event);
+}

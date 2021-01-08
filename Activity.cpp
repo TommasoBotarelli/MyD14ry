@@ -30,6 +30,8 @@ bool Activity::isCompleted() const {
 
 void Activity::setCompleted(bool completed) {
     Activity::completed = completed;
+
+    notify();
 }
 
 const QString &Activity::getNote() const {
@@ -46,7 +48,7 @@ void Activity::getSubActivities(std::list<std::shared_ptr<SubActivity>> &subALis
     }
 }
 
-void Activity::addSubActivity(std::shared_ptr<SubActivity> subActivity) {
+void Activity::addSubActivity(std::shared_ptr<SubActivity> &subActivity) {
 
     subActivities.push_back(subActivity);
 
@@ -89,6 +91,8 @@ const QString &Activity::getCategory() const {
 
 void Activity::setCategory(const QString &category) {
     Activity::category = category;
+
+    notify();
 }
 
 int Activity::getCount() const {

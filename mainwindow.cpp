@@ -34,6 +34,8 @@ void MainWindow::on_actionActivity_triggered() {
 
     auto dialog = new AddActivityView(activityList, a, activityListController);
 
+    a->addObserver(this);
+
     while (dialog->exec()) {
         if (dialog->close()) {
             delete dialog;
@@ -75,6 +77,8 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
 
         auto dialog = new ActivityView(activityList, actItem->get(), activityListController);
 
+        actItem->get()->addObserver(this);
+
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
@@ -104,6 +108,7 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
+                update();
             }
         }
     }
@@ -220,8 +225,9 @@ void MainWindow::on_findButton_clicked() {
                                  shopListController);
 
     while (dialog->exec()) {
-        if (dialog->close())
+        if (dialog->close()) {
             delete dialog;
+        }
     }
 
 }

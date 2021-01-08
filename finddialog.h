@@ -23,11 +23,11 @@ class findDialog : public QDialog, public Observer {
 Q_OBJECT
 
 public:
-    explicit findDialog(ActivityList *actList, Calendar *c, ListOfShoppingList *shopList,
-                        ActivityListController *c1,
-                        CalendarController *calendarController,
-                        ListOfShoppingListController *c2,
-                        QWidget *parent = nullptr);
+    findDialog(ActivityList *actList, Calendar *c, ListOfShoppingList *shopList,
+               ActivityListController *c1,
+               CalendarController *calendarController,
+               ListOfShoppingListController *c2,
+               QWidget *parent = nullptr);
 
     ~findDialog();
 
@@ -39,6 +39,9 @@ public:
 
     bool isSimilar(QString a, QString b, qreal percentage = 80, int n = 2,
                    Qt::CaseSensitivity caseSense = Qt::CaseInsensitive);
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
 

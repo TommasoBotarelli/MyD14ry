@@ -39,7 +39,7 @@ public:
 
     void getSubActivities(std::list<std::shared_ptr<SubActivity>> &subAList) const;
 
-    void addSubActivity(std::shared_ptr<SubActivity> subActivity);
+    void addSubActivity(std::shared_ptr<SubActivity> &subActivity);
 
     void addObserver(Observer *o) override;
 
