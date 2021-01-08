@@ -19,7 +19,6 @@ findDialog::findDialog(ActivityList *actList, Calendar *c, ListOfShoppingList *s
 }
 
 findDialog::~findDialog() {
-    detach();
     delete ui;
 }
 
@@ -107,7 +106,7 @@ void findDialog::update() {
     ui->listWidget->addItem(paragraph1);
 
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         actList.clear();
         i.getActivity(actList);
 

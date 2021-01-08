@@ -22,7 +22,7 @@ void ActivityList::addActivity(QString category, std::shared_ptr<Activity> activ
 }
 
 void ActivityList::removeActivity(Category &c, std::shared_ptr<Activity> activity) {
-    for (Category &i : categories) {
+    for (auto &i : categories) {
         if (i.getName() == c.getName()) {
             i.removeActivity(activity);
             activity.reset();

@@ -25,11 +25,11 @@ Q_OBJECT
 public:
     findDialog(ActivityList *actList, Calendar *c, ListOfShoppingList *shopList,
                ActivityListController *c1,
-               CalendarController *calendarController,
-               ListOfShoppingListController *c2,
+               CalendarController *c2,
+               ListOfShoppingListController *c3,
                QWidget *parent = nullptr);
 
-    ~findDialog();
+    ~findDialog() override;
 
     void update() override;
 
