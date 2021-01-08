@@ -34,6 +34,8 @@ public:
 
     bool findCategory(QString name);
 
+    void modifyCategory(const QString &oldCategory, const QString &newCategory, std::shared_ptr<Activity>);
+
 private:
     ActivityList *activityList;
 };

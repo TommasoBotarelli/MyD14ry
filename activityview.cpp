@@ -18,6 +18,8 @@ ActivityView::ActivityView(ActivityList *actList, std::shared_ptr<Activity> a, A
     if (!activity->isCompleted())
         ui->CompletedCheckBox->setCheckState(Qt::Unchecked);
 
+    this->category = a->getCategory();
+
     attach();
     update();
 }
@@ -142,8 +144,8 @@ void ActivityView::updateCategory() {
 }
 
 void ActivityView::on_categoryComboBox_currentTextChanged(const QString &arg1) {
-    activity->setCategory(arg1);
-    updateCategory();
+    this->category = arg1;
+    controller->modifyCategory(activity->getCategory(), category, activity);
 }
 
 void ActivityView::on_categoryComboBox_currentIndexChanged(int index) {

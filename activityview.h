@@ -61,7 +61,9 @@ private:
 
     std::shared_ptr<Activity> activity;
 
-    ActivityList* activityList;
+    ActivityList *activityList;
+
+    QString category;
 };
 
 #endif // ACTIVITYVIEW_H

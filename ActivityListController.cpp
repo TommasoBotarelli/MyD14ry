@@ -16,21 +16,21 @@ ActivityListController::setData(const QString category, std::shared_ptr<Activity
     activity->setCategory(category);
     activity->setCount(0);
 
-    /*std::list<Category> catList;
+    std::list<Category> catList;
     std::list<std::shared_ptr<Activity>> actList;
     activityList->getCategory(catList);
 
-    for (auto i : catList) {
+    for (auto &i : catList) {
         actList.clear();
         i.getActivity(actList);
 
-        for (auto l : actList) {
+        for (auto &l : actList) {
             if (l == activity) {
-                int count = activity.getCount();
+                int count = activity->getCount();
                 activity->setCount(count + 1);
             }
         }
-    }*/         //FIXME
+    }       //FIXME
 
     activityList->addActivity(category, activity);
 }
@@ -101,4 +101,21 @@ bool ActivityListController::findCategory(QString name) {
     }
 
     return find;
+}
+
+void ActivityListController::modifyCategory(const QString &oldCategory, const QString &newCategory,
+                                            std::shared_ptr<Activity> activity) {
+    if (oldCategory != newCategory) {
+        activityList->addActivity(newCategory, activity);
+
+        std::list<Category> catList;
+        activityList->getCategory(catList);
+
+        for (auto &i : catList) {
+            if (i.getName() == oldCategory)
+                activityList->removeActivity(i, activity);
+        }
+
+        activity->setCategory(newCategory);
+    }
 }
