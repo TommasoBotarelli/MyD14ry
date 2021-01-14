@@ -1,5 +1,5 @@
 #include "file_h/addshoppinglistdialog.h"
-#include "../ui_addshoppinglistdialog.h"
+#include "../file_ui/ui_addshoppinglistdialog.h"
 
 AddShoppingListDialog::AddShoppingListDialog(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c,
                                              QWidget *parent) :

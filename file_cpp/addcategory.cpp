@@ -1,5 +1,5 @@
 #include "file_h/addcategory.h"
-#include "../ui_addcategory.h"
+#include "../file_ui/ui_addcategory.h"
 
 AddCategory::AddCategory(ActivityListController *c, QWidget *parent) :
         controller(c), QDialog(parent),

@@ -1,5 +1,5 @@
 #include "file_h/finddialog.h"
-#include "../ui_finddialog.h"
+#include "../file_ui/ui_finddialog.h"
 
 findDialog::findDialog(ActivityList *actList, Calendar *c, ListOfShoppingList *shopList,
                        ActivityListController *c1,

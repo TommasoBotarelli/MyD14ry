@@ -1,5 +1,5 @@
 #include "file_h/addsubactivitydialog.h"
-#include "../ui_addsubactivitydialog.h"
+#include "../file_ui/ui_addsubactivitydialog.h"
 
 AddSubActivityDialog::AddSubActivityDialog(std::shared_ptr<Activity> act, ActivityListController *c, QWidget *parent) :
         activity(act), controller(c), QDialog(parent),

@@ -1,7 +1,7 @@
 #include "file_h/addeventdialog.h"
 
 #include <utility>
-#include "../ui_addeventdialog.h"
+#include "../file_ui/ui_addeventdialog.h"
 
 AddEventDialog::AddEventDialog(CalendarController *c, std::shared_ptr<Event> e, QWidget *parent) :
         controller(c), event(std::move(e)), QDialog(parent),

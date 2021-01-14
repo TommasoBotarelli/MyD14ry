@@ -32,14 +32,14 @@ if (ANDROID)
           main.cpp
           file_cpp/mainwindow.cpp
           file_h/mainwindow.h
-          mainwindow.ui
+          file_ui/mainwindow.ui
           )
 else ()
   add_executable(MyD14ry
           main.cpp
           file_cpp/mainwindow.cpp
           file_h/mainwindow.h
-          mainwindow.ui
+          file_ui/mainwindow.ui
           file_cpp/Activity.cpp
           file_h/Activity.h
           file_h/Subject.h

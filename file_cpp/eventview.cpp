@@ -1,5 +1,5 @@
 #include "file_h/eventview.h"
-#include "../ui_eventview.h"
+#include "../file_ui/ui_eventview.h"
 
 EventView::EventView(std::shared_ptr<Event> e, CalendarController *c, QWidget *parent) :
         event(std::move(e)), controller(c), QDialog(parent),

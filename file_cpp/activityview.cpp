@@ -1,5 +1,5 @@
 #include "../file_h/activityview.h"
-#include "../ui_activityview.h"
+#include "../file_ui/ui_activityview.h"
 
 
 ActivityView::ActivityView(ActivityList *actList, std::shared_ptr<Activity> a, ActivityListController *c,

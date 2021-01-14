@@ -1,5 +1,5 @@
 #include "file_h/mainwindow.h"
-#include "../ui_mainwindow.h"
+#include "../file_ui/ui_mainwindow.h"
 
 MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
                        ActivityListController *actListC,

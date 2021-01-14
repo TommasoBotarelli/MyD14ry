@@ -1,5 +1,5 @@
 #include "file_h/shoppinglistview.h"
-#include "../ui_shoppinglistview.h"
+#include "../file_ui/ui_shoppinglistview.h"
 
 ShoppingListView::ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c, QWidget *parent) :
         shopList(std::move(sL)), controller(c), QDialog(parent),
