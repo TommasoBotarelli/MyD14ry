@@ -30,11 +30,11 @@ public:
 
     void searchCategory(Category &c, const QString &name);
 
-    //void getActivitiesForCategory(QListWidget &list);
-
     bool findCategory(QString name);
 
     void modifyCategory(const QString &oldCategory, const QString &newCategory, std::shared_ptr<Activity>);
+
+    void removeSubActivity(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> act);
 
 private:
     ActivityList *activityList;

@@ -103,6 +103,12 @@ void Activity::setCount(int count) {
     Activity::count = count;
 }
 
+void Activity::removeSubActivity(std::shared_ptr<SubActivity> subA) {
+    subActivities.remove(std::move(subA));
+
+    notify();
+}
+
 
 
 

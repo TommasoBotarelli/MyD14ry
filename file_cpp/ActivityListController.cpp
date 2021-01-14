@@ -119,3 +119,7 @@ void ActivityListController::modifyCategory(const QString &oldCategory, const QS
         activity->setCategory(newCategory);
     }
 }
+
+void ActivityListController::removeSubActivity(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> act) {
+    act->removeSubActivity(subA);
+}

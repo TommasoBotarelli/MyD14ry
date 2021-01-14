@@ -59,6 +59,8 @@ public:
 
     bool operator==(const Activity &activity) const;
 
+    void removeSubActivity(std::shared_ptr<SubActivity> subA);
+
 private:
     QString task;
 

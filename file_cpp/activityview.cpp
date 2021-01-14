@@ -154,3 +154,9 @@ void ActivityView::closeEvent(QCloseEvent *event) {
     this->detach();
     QDialog::closeEvent(event);
 }
+
+void ActivityView::on_DeleteSubActivity_clicked() {
+    if (QListWidgetTemplate<SubActivity> *subAitem = dynamic_cast<QListWidgetTemplate<SubActivity> *>(ui->SubActivityListWidget->currentItem())) {
+        controller->removeSubActivity(subAitem->get(), activity);
+    }
+}

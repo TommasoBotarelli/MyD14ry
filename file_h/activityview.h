@@ -42,6 +42,8 @@ private slots:
 
     void on_categoryComboBox_currentIndexChanged(int index);
 
+    void on_DeleteSubActivity_clicked();
+
 public:
     void update() override;
 
