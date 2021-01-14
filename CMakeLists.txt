@@ -54,8 +54,6 @@ else ()
           ShoppingList.h
           ActivityListController.cpp
           ActivityListController.h
-          ActivityController.cpp
-          ActivityController.h
           ActivityList.cpp
           ActivityList.h
           ListOfShoppingList.cpp
@@ -74,8 +72,6 @@ else ()
           addeventdialog.cpp
           eventview.h
           eventview.cpp
-          ShoppingListController.cpp
-          ShoppingListController.h
           ListOfShoppingListController.cpp
           ListOfShoppingListController.h
           addshoppingproductdialog.h

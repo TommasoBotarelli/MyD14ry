@@ -29,6 +29,8 @@ public:
 
     void addProduct(std::shared_ptr<ShoppingProduct> product);
 
+    void removeProduct(std::shared_ptr<ShoppingProduct> product);
+
     void getProducts(std::list<std::shared_ptr<ShoppingProduct>> &shopList) const;
 
     bool operator==(const ShoppingList &compareShopList) const;

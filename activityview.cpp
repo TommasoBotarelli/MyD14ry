@@ -107,8 +107,6 @@ void ActivityView::on_CompletedCheckBox_stateChanged(int arg1) {
 
     if (arg1 == 2)
         activity->setCompleted(true);
-
-    update();
 }
 
 void ActivityView::on_addCategoryButton_clicked() {

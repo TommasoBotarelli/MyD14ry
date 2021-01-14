@@ -45,11 +45,20 @@ ShoppingList::~ShoppingList() {
     /*std::list<ShoppingProduct> list;
     compareShopList.getProducts(list);*/
 
-    if (this->getNameList() == compareShopList.getNameList() /*&&       //FIXME
+     if (this->getNameList() == compareShopList.getNameList() /*&&       //FIXME
     this->products.size() == list.size()*/)
-        return true;
+         return true;
 
-    else
-        return false;
+     else
+         return false;
+ }
+
+void ShoppingList::removeProduct(std::shared_ptr<ShoppingProduct> product) {
+    for (auto &i : products) {
+        if (product == i) {
+            products.remove(product);
+            notify();
+        }
+    }
 }
 

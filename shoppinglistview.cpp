@@ -51,7 +51,7 @@ void ShoppingListView::update() {
     std::list<std::shared_ptr<ShoppingProduct>> shopP;
     shopList->getProducts(shopP);
 
-    for (auto i : shopP) {
+    for (auto &i : shopP) {
         auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
 
         itemProduct->setText(i->getName());
