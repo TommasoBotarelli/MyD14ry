@@ -1,6 +1,6 @@
 #include <QtTest>
-#include "../../ShoppingProduct.h"
-#include "../../ShoppingList.h"
+#include "file_h/ShoppingProduct.h"
+#include "file_h/ShoppingList.h"
 
 // add necessary includes here
 

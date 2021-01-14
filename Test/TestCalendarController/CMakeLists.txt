@@ -19,12 +19,12 @@ enable_testing(true)
 
 add_executable(TestCalendarController
         tst_testcalendarcontroller.cpp
-        ../../Event.h
-        ../../Event.cpp
-        ../../Calendar.h
-        ../../Calendar.cpp
-        ../../CalendarController.h
-        ../../CalendarController.cpp
+        ../../file_h/Event.h
+        ../../file_cpp/Event.cpp
+        ../../file_h/Calendar.h
+        ../../file_cpp/Calendar.cpp
+        ../../file_h/CalendarController.h
+        ../../file_cpp/CalendarController.cpp
         )
 
 

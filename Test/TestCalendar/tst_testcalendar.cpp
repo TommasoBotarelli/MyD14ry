@@ -1,15 +1,15 @@
 #include <QtTest>
-#include "../../Event.h"
-#include "../../Calendar.h"
+#include "file_h/Event.h"
+#include "file_h/Calendar.h"
 
 // add necessary includes here
 
-class TestCalendar : public QObject
-{
+class TestCalendar : public QObject {
     Q_OBJECT
 
 public:
     TestCalendar();
+
     ~TestCalendar() override;
 
 private slots:

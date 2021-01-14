@@ -19,16 +19,16 @@ enable_testing(true)
 
 add_executable(TestActivityListController
         tst_testactivtylistcontroller.cpp
-        ../../SubActivity.h
-        ../../SubActivity.cpp
-       ../../ActivityList.h
-       ../../ActivityList.cpp
-       ../../Activity.h
-        ../../Activity.cpp
-        ../../ActivityListController.h
-        ../../ActivityListController.cpp
-        ../../Category.h
-        ../../Category.cpp)
+        ../../file_h/SubActivity.h
+        ../../file_cpp/SubActivity.cpp
+        ../../file_h/ActivityList.h
+        ../../file_cpp/ActivityList.cpp
+        ../../file_h/Activity.h
+        ../../file_cpp/Activity.cpp
+        ../../file_h/ActivityListController.h
+        ../../file_cpp/ActivityListController.cpp
+        ../../file_h/Category.h
+        ../../file_cpp/Category.cpp)
 
 add_test(NAME TestActivityListController COMMAND TestActivityListController)
 

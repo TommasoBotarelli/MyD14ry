@@ -17,14 +17,14 @@ enable_testing(true)
 
 add_executable(TestActivityList
         tst_testactivitylist.cpp
-        ../../Activity.h
-        ../../Activity.cpp
-        ../../ActivityList.h
-        ../../ActivityList.cpp
-        ../../SubActivity.h
-        ../../SubActivity.cpp
-        ../../Category.h
-        ../../Category.cpp
+        ../../file_h/Activity.h
+        ../../file_cpp/Activity.cpp
+        ../../file_h/ActivityList.h
+        ../../file_cpp/ActivityList.cpp
+        ../../file_h/SubActivity.h
+        ../../file_cpp/SubActivity.cpp
+        ../../file_h/Category.h
+        ../../file_cpp/Category.cpp
         )
 add_test(NAME TestActivityList COMMAND TestActivityList)
 

@@ -1,13 +1,13 @@
 #include <QtTest>
-#include "../../Activity.h"
-#include "../../ActivityList.h"
-#include "../../SubActivity.h"
-#include "../../Category.h"
+#include "file_h/Activity.h"
+#include "file_h/ActivityList.h"
+#include "file_h/SubActivity.h"
+#include "file_h/Category.h"
 
 // add necessary includes here
 
 class TestActivityList : public QObject {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     TestActivityList();

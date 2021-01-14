@@ -1,17 +1,16 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "../../Event.h"
-#include "../../Calendar.h"
-#include "../../CalendarController.h"
+#include "file_h/Event.h"
+#include "file_h/Calendar.h"
+#include "file_h/CalendarController.h"
 
 
 
 // add necessary includes here
 
-class TestCalendarController : public QObject
-{
-    Q_OBJECT
+class TestCalendarController : public QObject {
+Q_OBJECT
 
 public:
     TestCalendarController();

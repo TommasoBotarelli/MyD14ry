@@ -2,7 +2,7 @@
 #include <QDate>
 #include <QString>
 #include <QTime>
-#include "../../Event.h"
+#include "file_h/Event.h"
 
 // add necessary includes here
 

@@ -17,10 +17,10 @@ enable_testing(true)
 
 add_executable(TestCalendar
         tst_testcalendar.cpp
-        ../../Event.h
-        ../../Event.cpp
-        ../../Calendar.h
-        ../../Calendar.cpp)
+        ../../file_h/Event.h
+        ../../file_cpp/Event.cpp
+        ../../file_h/Calendar.h
+        ../../file_cpp/Calendar.cpp)
 
 
 

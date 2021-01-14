@@ -1,16 +1,16 @@
 #include <QtTest>
-#include "../../ShoppingList.h"
-#include "../../ShoppingProduct.h"
-#include "../../ListOfShoppingList.h"
+#include "file_h/ShoppingList.h"
+#include "file_h/ShoppingProduct.h"
+#include "file_h/ListOfShoppingList.h"
 
 // add necessary includes here
 
-class TestListOfShoppingList : public QObject
-{
+class TestListOfShoppingList : public QObject {
     Q_OBJECT
 
 public:
     TestListOfShoppingList();
+
     ~TestListOfShoppingList();
 
 private slots:

@@ -1,15 +1,14 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "../../Activity.h"
-#include "../../ActivityList.h"
-#include "../../ActivityListController.h"
-#include "../../Category.h"
+#include "file_h/Activity.h"
+#include "file_h/ActivityList.h"
+#include "file_h/ActivityListController.h"
+#include "file_h/Category.h"
 
 // add necessary includes here
 
-class TestActivtyListController : public QObject
-{
+class TestActivtyListController : public QObject {
 Q_OBJECT
 
 public:

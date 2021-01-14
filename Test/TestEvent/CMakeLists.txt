@@ -17,8 +17,8 @@ enable_testing(true)
 
 add_executable(TestEvent
         tst_testevent.cpp
-        ../../Event.h
-        ../../Event.cpp
+        ../../file_h/Event.h
+        ../../file_cpp/Event.cpp
 
         )
 

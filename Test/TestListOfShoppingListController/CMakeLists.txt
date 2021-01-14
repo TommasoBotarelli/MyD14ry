@@ -19,14 +19,14 @@ enable_testing(true)
 
 add_executable(TestListOfShoppingListController
         tst_testlistofshoppinglistcontroller.cpp
-        ../../ListOfShoppingListController.cpp
-        ../../ListOfShoppingListController.h
-        ../../ShoppingList.cpp
-        ../../ShoppingList.h
-        ../../ShoppingProduct.cpp
-        ../../ShoppingProduct.h
-        ../../ListOfShoppingList.cpp
-        ../../ListOfShoppingList.h)
+        ../../file_cpp/ListOfShoppingListController.cpp
+        ../../file_h/ListOfShoppingListController.h
+        ../../file_cpp/ShoppingList.cpp
+        ../../file_h/ShoppingList.h
+        ../../file_cpp/ShoppingProduct.cpp
+        ../../file_h/ShoppingProduct.h
+        ../../file_cpp/ListOfShoppingList.cpp
+        ../../file_h/ListOfShoppingList.h)
 add_test(NAME TestListOfShoppingListController COMMAND TestListOfShoppingListController)
 
 target_link_libraries(TestListOfShoppingListController PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)

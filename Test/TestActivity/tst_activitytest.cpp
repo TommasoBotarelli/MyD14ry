@@ -1,14 +1,14 @@
 #include <QtTest>
 #include <QString>
 #include <QDate>
-#include "../../Activity.h"
-#include "../../SubActivity.h"
+#include "file_h/Activity.h"
+#include "file_h/SubActivity.h"
 
 
 // add necessary includes here
 
 class ActivityTest : public QObject {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     ActivityTest();

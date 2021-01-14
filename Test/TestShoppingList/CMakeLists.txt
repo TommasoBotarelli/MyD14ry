@@ -16,10 +16,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing(true)
 
 add_executable(TestShoppingList tst_testshoppinglist.cpp
-        ../../ShoppingProduct.h
-        ../../ShoppingProduct.cpp
-        ../../ShoppingList.h
-        ../../ShoppingList.cpp
+        ../../file_h/ShoppingProduct.h
+        ../../file_cpp/ShoppingProduct.cpp
+        ../../file_h/ShoppingList.h
+        ../../file_cpp/ShoppingList.cpp
         )
 
 add_test(NAME TestShoppingList COMMAND TestShoppingList)
