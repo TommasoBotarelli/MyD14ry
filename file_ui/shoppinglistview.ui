@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>281</width>
-    <height>457</height>
+    <width>315</width>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>9</x>
      <y>10</y>
-     <width>261</width>
-     <height>431</height>
+     <width>301</width>
+     <height>491</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -41,6 +41,13 @@
      <widget class="QPushButton" name="AddShoppingProductButton">
       <property name="text">
        <string>Aggiungi prodotto</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="deleteProductButton">
+      <property name="text">
+       <string>Elimina prodotto</string>
       </property>
      </widget>
     </item>

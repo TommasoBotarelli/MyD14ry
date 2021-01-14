@@ -36,6 +36,8 @@ private slots:
 
     void on_ShoppingProductListWidget_itemChanged(QListWidgetItem *item);
 
+    void on_deleteProductButton_clicked();
+
 private:
     Ui::ShoppingListView *ui;
 

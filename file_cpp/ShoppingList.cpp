@@ -54,11 +54,7 @@ ShoppingList::~ShoppingList() {
  }
 
 void ShoppingList::removeProduct(std::shared_ptr<ShoppingProduct> product) {
-    for (auto &i : products) {
-        if (product == i) {
-            products.remove(product);
-            notify();
-        }
-    }
+    products.remove(product);
+    notify();
 }
 

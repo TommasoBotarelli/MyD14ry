@@ -35,3 +35,8 @@ void ListOfShoppingListController::setData(std::shared_ptr<ShoppingList> &shopLi
 
     shopList->addProduct(product);
 }
+
+void
+ListOfShoppingListController::removeProduct(std::shared_ptr<ShoppingProduct> sP, std::shared_ptr<ShoppingList> sL) {
+    sL->removeProduct(std::move(sP));
+}

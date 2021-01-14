@@ -7,9 +7,10 @@
 
 #include "ShoppingList.h"
 #include "ListOfShoppingList.h"
+#include "QListWidgetTemplate.h"
 #include <QString>
 #include <QListWidget>
-#include "QListWidgetTemplate.h"
+#include "ShoppingProduct.h"
 
 
 class ListOfShoppingListController {
@@ -25,6 +26,8 @@ public:
     void remove(std::shared_ptr<ShoppingList> shopList);
 
     void getLists(QListWidget &list);
+
+    void removeProduct(std::shared_ptr<ShoppingProduct> sP, std::shared_ptr<ShoppingList> sL);
 
 private:
     ListOfShoppingList *listOfShoppingList;

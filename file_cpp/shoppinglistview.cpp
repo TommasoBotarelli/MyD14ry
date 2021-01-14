@@ -1,8 +1,8 @@
-#include "file_h/shoppinglistview.h"
+#include "../file_h/shoppinglistview.h"
 #include "../file_ui/ui_shoppinglistview.h"
 
 ShoppingListView::ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c, QWidget *parent) :
-        shopList(std::move(sL)), controller(c), QDialog(parent),
+        shopList(sL), controller(c), QDialog(parent),
         ui(new Ui::ShoppingListView) {
     ui->setupUi(this);
 
@@ -73,4 +73,10 @@ void ShoppingListView::attach() {
 
 void ShoppingListView::detach() {
     shopList->removeObserver(this);
+}
+
+void ShoppingListView::on_deleteProductButton_clicked() {
+    if (QListWidgetTemplate<ShoppingProduct> *itemProduct = dynamic_cast <QListWidgetTemplate<ShoppingProduct> *>(ui->ShoppingProductListWidget->currentItem())) {
+        controller->removeProduct(itemProduct->get(), shopList);
+    }
 }
