@@ -35,9 +35,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
                 delete dialog;
             }
         }
-    }
-
-    if (QListWidgetTemplate<Event> *eventItem = dynamic_cast<QListWidgetTemplate<Event> * >(item)) {
+    } else if (QListWidgetTemplate<Event> *eventItem = dynamic_cast<QListWidgetTemplate<Event> * >(item)) {
         auto dialog = new EventView(eventItem->get(), calendarController);
 
         while (dialog->exec()) {
@@ -45,9 +43,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
                 delete dialog;
             }
         }
-    }
-
-    if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
+    } else if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
         auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
 
         while (dialog->exec()) {
@@ -55,9 +51,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
                 delete dialog;
             }
         }
-    }
-
-    if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
+    } else if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
         QListWidget list;
         list.clear();
         std::list<std::shared_ptr<ShoppingProduct>> shoppingProductList;
@@ -106,7 +100,7 @@ void findDialog::update() {
     ui->listWidget->addItem(paragraph1);
 
 
-    for (auto &i : catList) {
+    for (auto i : catList) {
         actList.clear();
         i.getActivity(actList);
 
@@ -117,7 +111,7 @@ void findDialog::update() {
         ui->listWidget->addItem(title);
         ui->listWidget->setCurrentItem(title);
 
-        for (auto &l : actList) {
+        for (const auto &l : actList) {
             if (isSimilar(l->getTask(), name)) {
                 auto actitem = new QListWidgetTemplate<Activity>;
                 actitem->set(l);

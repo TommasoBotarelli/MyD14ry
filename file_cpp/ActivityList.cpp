@@ -25,7 +25,6 @@ void ActivityList::removeActivity(Category &c, std::shared_ptr<Activity> activit
     for (auto &i : categories) {
         if (i.getName() == c.getName()) {
             i.removeActivity(activity);
-            activity.reset();
             break;
         }
     }
