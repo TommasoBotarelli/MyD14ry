@@ -118,7 +118,9 @@ void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item) {
 void MainWindow::on_listWidget_3_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
 
-        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);  //FIXME
+        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
+
+        shopListItem->get()->addObserver(this);
 
         while (dialog->exec()) {
             if (dialog->close()) {

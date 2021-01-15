@@ -37,10 +37,14 @@ public:
 
     ~ShoppingList() override;
 
+    int getCountProduct();
+
 private:
 
     QString nameList;
+
     std::list<Observer *> observers;
+
     std::list<std::shared_ptr<ShoppingProduct>> products;
 
 };
