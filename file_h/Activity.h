@@ -77,6 +77,12 @@ private:
     QString category;
 
     int count;
+
+    bool hasDeadlineDate;
+public:
+    bool isHasDeadlineDate() const;
+
+    void setHasDeadlineDate(bool hasDeadlineDate);
 };
 
 

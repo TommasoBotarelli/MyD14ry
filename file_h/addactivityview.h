@@ -49,6 +49,8 @@ private slots:
 
     void on_addCategoryButton_clicked();
 
+    void on_DeadlineCheckBox_stateChanged(int arg1);
+
 private:
     Ui::AddActivityView *ui;
 

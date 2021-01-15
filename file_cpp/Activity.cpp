@@ -109,6 +109,14 @@ void Activity::removeSubActivity(std::shared_ptr<SubActivity> subA) {
     notify();
 }
 
+bool Activity::isHasDeadlineDate() const {
+    return hasDeadlineDate;
+}
+
+void Activity::setHasDeadlineDate(bool hasDeadlineDate) {
+    Activity::hasDeadlineDate = hasDeadlineDate;
+}
+
 
 
 

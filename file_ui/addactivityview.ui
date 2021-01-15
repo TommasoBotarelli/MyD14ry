@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>353</width>
-    <height>514</height>
+    <width>408</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>331</width>
-     <height>491</height>
+     <width>391</width>
+     <height>571</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -42,9 +42,9 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="DeadlineDateLabel">
+         <widget class="QCheckBox" name="DeadlineCheckBox">
           <property name="text">
-           <string>Data di scadenza:</string>
+           <string>Data di scadenza</string>
           </property>
          </widget>
         </item>

@@ -18,6 +18,11 @@ ActivityView::ActivityView(ActivityList *actList, std::shared_ptr<Activity> a, A
     if (!activity->isCompleted())
         ui->CompletedCheckBox->setCheckState(Qt::Unchecked);
 
+    if (activity->isHasDeadlineDate()) {
+        ui->DeadlineDateEdit->setEnabled(true);
+    } else
+        ui->DeadlineDateEdit->setEnabled(false);
+
     this->category = a->getCategory();
 
     attach();

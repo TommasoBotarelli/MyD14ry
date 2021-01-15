@@ -1,4 +1,4 @@
-#include "file_h/addactivityview.h"
+#include "../file_h/addactivityview.h"
 #include "../file_ui/ui_addactivityview.h"
 
 
@@ -9,6 +9,7 @@ AddActivityView::AddActivityView(ActivityList *aList, std::shared_ptr<Activity> 
     ui->setupUi(this);
     ui->DeadlineDateEdit->setDate(QDate::currentDate());
     updateCategory();
+    on_DeadlineCheckBox_stateChanged(0);
     attach();
 }
 
@@ -72,7 +73,13 @@ void AddActivityView::detach() {
 }
 
 QDate AddActivityView::getDeadlineDate() {
-    return ui->DeadlineDateEdit->date();
+    QDate date(0, 1, 1);
+
+    if (activity->isHasDeadlineDate()) {
+        return ui->DeadlineDateEdit->date();
+    } else {
+        return date;
+    }
 }
 
 QString AddActivityView::getTask() {
@@ -103,5 +110,20 @@ void AddActivityView::updateCategory() {
 
     for (auto i : catList)
         ui->categoryComboBox->addItem(i.getName());
+
+}
+
+void AddActivityView::on_DeadlineCheckBox_stateChanged(int arg1) {
+    if (arg1 == 0) {
+        ui->DeadlineDateEdit->setEnabled(false);
+
+        activity->setHasDeadlineDate(false);
+    }
+
+    if (arg1 == 2) {
+        ui->DeadlineDateEdit->setEnabled(true);
+
+        activity->setHasDeadlineDate(true);
+    }
 
 }
