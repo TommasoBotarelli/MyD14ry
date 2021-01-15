@@ -30,6 +30,8 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
     if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> * >(item)) {
         auto dialog = new ActivityView(activityList, actItem->get(), actListController);
 
+        actItem->get()->addObserver(this);
+
         while (dialog->exec()) {
             if (dialog->close()) {
                 delete dialog;
@@ -244,9 +246,7 @@ void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
             actItem->get()->setCompleted(true);
         if (actItem->checkState() == Qt::Unchecked)
             actItem->get()->setCompleted(false);
-    }
-
-    if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
+    } else if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
         if (shopProductItem->checkState() == Qt::Checked)
             shopProductItem->get()->setCatched(true);
         if (shopProductItem->checkState() == Qt::Unchecked)

@@ -1,4 +1,4 @@
-#include "file_h/addshoppingproductdialog.h"
+#include "../file_h/addshoppingproductdialog.h"
 #include "../file_ui/ui_addshoppingproductdialog.h"
 
 AddShoppingProductDialog::AddShoppingProductDialog(std::shared_ptr<ShoppingList> sl, ListOfShoppingListController *slc,
@@ -27,4 +27,12 @@ void AddShoppingProductDialog::on_AddButton_clicked() {
 
 QString AddShoppingProductDialog::getNameProduct() {
     return ui->NameEdit->text();
+}
+
+void AddShoppingProductDialog::on_AddCategoryButton_clicked() {
+
+}
+
+void AddShoppingProductDialog::on_CategorycomboBox_currentTextChanged(const QString &arg1) {
+
 }

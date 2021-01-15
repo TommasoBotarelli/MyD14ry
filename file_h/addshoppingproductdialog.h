@@ -23,6 +23,10 @@ private slots:
 
     void on_AddButton_clicked();
 
+    void on_AddCategoryButton_clicked();
+
+    void on_CategorycomboBox_currentTextChanged(const QString &arg1);
+
 private:
     Ui::AddShoppingProductDialog *ui;
 
