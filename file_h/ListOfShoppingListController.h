@@ -29,6 +29,8 @@ public:
 
     void removeProduct(std::shared_ptr<ShoppingProduct> sP, std::shared_ptr<ShoppingList> sL);
 
+    void setCatched(std::shared_ptr<ShoppingList> sL, std::shared_ptr<ShoppingProduct> sP, bool catched);
+
 private:
     ListOfShoppingList *listOfShoppingList;
 };

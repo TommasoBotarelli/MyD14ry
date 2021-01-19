@@ -40,3 +40,9 @@ void
 ListOfShoppingListController::removeProduct(std::shared_ptr<ShoppingProduct> sP, std::shared_ptr<ShoppingList> sL) {
     sL->removeProduct(std::move(sP));
 }
+
+void ListOfShoppingListController::setCatched(std::shared_ptr<ShoppingList> sL, std::shared_ptr<ShoppingProduct> sP,
+                                              bool catched) {
+    sP->setCatched(catched);
+    sL->notify();
+}

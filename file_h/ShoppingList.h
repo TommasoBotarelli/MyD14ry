@@ -12,7 +12,6 @@
 #include "Subject.h"
 #include "ShoppingProduct.h"
 
-
 class ShoppingList : public Subject {
 public:
     ShoppingList() = default;
