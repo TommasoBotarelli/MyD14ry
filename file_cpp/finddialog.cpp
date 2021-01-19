@@ -91,6 +91,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
 
 void findDialog::update() {
     ui->listWidget->clear();
+    int count = 0;
 
     QString name = ui->findLineEdit->text();
     std::list<Category> catList;
@@ -130,6 +131,7 @@ void findDialog::update() {
 
                 ui->listWidget->addItem(actitem);
                 ui->listWidget->setCurrentItem(actitem);
+                count++;
             }
         }
 
@@ -138,6 +140,13 @@ void findDialog::update() {
             delete ui->listWidget->currentItem();
         }
     }
+
+    ui->listWidget->setCurrentItem(paragraph1);
+
+    if (count == 0)
+        delete ui->listWidget->currentItem();
+
+    count = 0;
 
     auto paragraph2 = new QListWidgetItem;
     paragraph2->setText("EVENTI");
@@ -154,8 +163,17 @@ void findDialog::update() {
             eventitem->set(j);
             eventitem->setText(j->getTask());
             ui->listWidget->addItem(eventitem);
+            count++;
         }
     }
+
+    ui->listWidget->setCurrentItem(paragraph2);
+
+    if (count == 0)
+        delete ui->listWidget->currentItem();
+
+    count = 0;
+
 
     auto paragraph3 = new QListWidgetItem;
     paragraph3->setText("LISTE");
@@ -172,8 +190,16 @@ void findDialog::update() {
             shopListitem->set(k);
             shopListitem->setText(k->getNameList() + "     " + "(" + QString::number(k->getCountProduct()) + ")");
             ui->listWidget->addItem(shopListitem);
+            count++;
         }
     }
+
+    ui->listWidget->setCurrentItem(paragraph3);
+
+    if (count == 0)
+        delete ui->listWidget->currentItem();
+
+    count = 0;
 
     auto paragraph4 = new QListWidgetItem;
     paragraph4->setText("PRODOTTI");
@@ -203,12 +229,16 @@ void findDialog::update() {
                     shopProductitem->setCheckState(Qt::Unchecked);
 
                 ui->listWidget->addItem(shopProductitem);
+                count++;
 
             }
         }
     }
 
+    ui->listWidget->setCurrentItem(paragraph4);
 
+    if (count == 0)
+        delete ui->listWidget->currentItem();
 }
 
 void findDialog::attach() {
