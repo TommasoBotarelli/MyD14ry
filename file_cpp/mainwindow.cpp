@@ -186,7 +186,7 @@ void MainWindow::update() {
     QDate day(ui->calendarWidget->yearShown(), ui->calendarWidget->monthShown(), 1);
     QTextCharFormat format;
     QTextCharFormat defaultFormat;
-    format.setBackground(Qt::green);
+    format.setBackground(Qt::yellow);
     int d = day.day();
 
     while (d != day.daysInMonth()) {
@@ -201,6 +201,41 @@ void MainWindow::update() {
 
         day.setDate(ui->calendarWidget->yearShown(), ui->calendarWidget->monthShown(), d++);
     }
+
+    actList.clear();
+    catList.clear();
+    activityList->getCategory(catList);
+
+    QTextCharFormat deadLineFormat;
+    deadLineFormat.setFontUnderline(true);
+    deadLineFormat.setFontWeight(87);
+
+    QTextCharFormat specialFormat;
+    specialFormat.setFontWeight(87);
+    specialFormat.setFontUnderline(true);
+    specialFormat.setBackground(Qt::yellow);
+
+    for ( auto& i : catList) {
+        i.getActivity(actList);
+
+        for(const auto &a : actList){
+
+            if(a->isHasDeadlineDate()){
+
+                if(a->getDeadlineDate().month() == ui->calendarWidget->monthShown()){
+
+                    if(ui->calendarWidget->dateTextFormat (a->getDeadlineDate())  ==  format) {
+
+                        ui->calendarWidget->setDateTextFormat(a->getDeadlineDate(), specialFormat);
+
+                    }
+                    else
+                        ui->calendarWidget->setDateTextFormat(a->getDeadlineDate(), deadLineFormat);
+                }
+            }
+        }
+    }
+
 
 }
 
