@@ -58,3 +58,11 @@ void ShoppingList::removeProduct(std::shared_ptr<ShoppingProduct> product) {
     notify();
 }
 
+int ShoppingList::getCountProduct() {
+    int countProduct = 0;
+    for (const auto &i : products) {
+        if (!i->isCatched())
+            countProduct++;
+    }
+    return countProduct;
+}

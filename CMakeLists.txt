@@ -48,10 +48,10 @@ else ()
           file_h/SubActivity.h
           file_cpp/Event.cpp
           file_h/Event.h
-          file_cpp/ShoppingProduct.cpp
-          file_h/ShoppingProduct.h
           file_cpp/ShoppingList.cpp
           file_h/ShoppingList.h
+          file_cpp/ShoppingProduct.cpp
+          file_h/ShoppingProduct.h
           file_cpp/ActivityListController.cpp
           file_h/ActivityListController.h
           file_cpp/ActivityList.cpp

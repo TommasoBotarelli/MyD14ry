@@ -6,12 +6,11 @@
 #define MYD14RY_SHOPPINGPRODUCT_H
 
 #include <QString>
+#include <memory>
 
 class ShoppingProduct {
 public:
     ShoppingProduct() = default;
-
-    ShoppingProduct(const ShoppingProduct &original);       //FIXME va tolto?
 
     const QString &getName() const;
 
@@ -27,7 +26,6 @@ private:
     QString name;
 
     bool catched;
-
 };
 
 

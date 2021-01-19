@@ -12,7 +12,6 @@
 #include "Subject.h"
 #include "ShoppingProduct.h"
 
-
 class ShoppingList : public Subject {
 public:
     ShoppingList() = default;
@@ -37,10 +36,14 @@ public:
 
     ~ShoppingList() override;
 
+    int getCountProduct();
+
 private:
 
     QString nameList;
+
     std::list<Observer *> observers;
+
     std::list<std::shared_ptr<ShoppingProduct>> products;
 
 };

@@ -22,11 +22,9 @@ void ShoppingListView::on_ShoppingProductListWidget_itemChanged(QListWidgetItem 
     if (QListWidgetTemplate<ShoppingProduct> *itemProduct = dynamic_cast <QListWidgetTemplate<ShoppingProduct> *>(item)) {
 
         if (itemProduct->checkState() == 2)
-            itemProduct->get()->setCatched(true);
+            controller->setCatched(shopList, itemProduct->get(), true);
         else if (itemProduct->checkState() == 0)
-            itemProduct->get()->setCatched(false);
-
-        update();
+            controller->setCatched(shopList, itemProduct->get(), true);
     }
 }
 
