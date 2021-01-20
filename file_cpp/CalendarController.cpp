@@ -7,15 +7,8 @@
 void CalendarController::setData(std::shared_ptr<Event> event, QString task, QDate date, QString note, QTime startTime,
                                  QTime endTime,
                                  bool allDay) {
-    QTime start(0, 0);
-    QTime end(23, 59);
 
-    if (startTime == start && endTime == end)
-        event->setTask(task + "(Tutto il giorno)");
-    else
-        event->setTask(task + "(" + startTime.toString() + " - " + endTime.toString() + ")");
-
-
+    event->setTask(task);
     event->setDate(date);
     event->setNote(note);
     event->setStartTime(startTime);
@@ -34,7 +27,12 @@ void CalendarController::searchEventOfDay(QDate date, QListWidget &list) {
         auto a = new QListWidgetTemplate<Event>;
 
         a->set(i);
-        a->setText(i->getTask());
+
+        if (i->isAllDay())
+            a->setText(i->getTask() + "  (Tutto il giorno)");
+        else
+            a->setText(i->getTask() + "  (" + i->getStartTime().toString("hh:mm") + " - " +
+                       i->getEndTime().toString("hh:mm") + ")");
 
         list.addItem(a);
     }

@@ -24,7 +24,7 @@ void ShoppingListView::on_ShoppingProductListWidget_itemChanged(QListWidgetItem 
         if (itemProduct->checkState() == 2)
             controller->setCatched(shopList, itemProduct->get(), true);
         else if (itemProduct->checkState() == 0)
-            controller->setCatched(shopList, itemProduct->get(), true);
+            controller->setCatched(shopList, itemProduct->get(), false);
     }
 }
 
