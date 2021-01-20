@@ -161,7 +161,13 @@ void findDialog::update() {
         if (isSimilar(j->getTask(), name)) {
             auto eventitem = new QListWidgetTemplate<Event>;
             eventitem->set(j);
-            eventitem->setText(j->getTask());
+
+            if (j->isAllDay())
+                eventitem->setText(j->getTask() + "  (Tutto il giorno)");
+            else
+                eventitem->setText(j->getTask() + "  (" + j->getStartTime().toString("hh:mm") + " - " +
+                                   j->getEndTime().toString("hh:mm") + ")");
+
             ui->listWidget->addItem(eventitem);
             count++;
         }
