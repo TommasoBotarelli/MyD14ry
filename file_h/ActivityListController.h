@@ -26,7 +26,7 @@ public:
 
     void remove(std::shared_ptr<Activity> activity);
 
-    void remove(Category &c);
+    void remove(QString category);
 
     void searchCategory(Category &c, const QString &name);
 

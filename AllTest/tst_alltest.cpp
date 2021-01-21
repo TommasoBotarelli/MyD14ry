@@ -42,27 +42,27 @@ void AllTest::test_Activity() {
     Activity activity;
 
     activity.setTask("TestTask");
-    activity.setDeadlineDate(QDate::currentDate());
-    activity.setCompleted(true);
-    activity.setNote("ciao");
-    activity.setHasDeadlineDate(true);
+activity.setDeadlineDate(QDate::currentDate());
+activity.setCompleted(true);
+activity.setNote("ciao");
+activity.setHasDeadlineDate(true);
 
-    std::shared_ptr<SubActivity> subA(new SubActivity("Pulire", true));
-    std::shared_ptr<SubActivity> subB(new SubActivity("Studiare", false));
+std::shared_ptr<SubActivity> subA(new SubActivity("Pulire", true));
+std::shared_ptr<SubActivity> subB(new SubActivity("Studiare", false));
 
-    std::list<std::shared_ptr<SubActivity>> list;
+std::list<std::shared_ptr<SubActivity>> list;
 
-    activity.addSubActivity(subA);
-    activity.addSubActivity(subB);
-    activity.getSubActivities(list);
+activity.addSubActivity("Pulire", true);
+activity.addSubActivity("Studiare", false);
+activity.getSubActivities(list);
 
-    QVERIFY(list.size() == 2);
-    QVERIFY(subA->getTask() == "Pulire");
-    QVERIFY(subA->isCompleted());
+QVERIFY(list.size() == 2);
+QVERIFY(subA->getTask() == "Pulire");
+QVERIFY(subA->isCompleted());
 
-    auto i = std::next(list.begin(), 1);
-    QVERIFY ((*i)->getTask() == "Studiare");
-    QVERIFY (!(*i)->isCompleted());
+auto i = std::next(list.begin(), 1);
+QVERIFY ((*i)->getTask() == "Studiare");
+QVERIFY (!(*i)->isCompleted());
 
     activity.removeSubActivity(subA);
     list.clear();
