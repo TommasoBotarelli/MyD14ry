@@ -1,4 +1,4 @@
-#include "file_h/mainwindow.h"
+#include "../file_h/mainwindow.h"
 #include "../file_ui/ui_mainwindow.h"
 
 MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
@@ -272,4 +272,9 @@ void MainWindow::on_findButton_clicked() {
         }
     }
 
+}
+
+void MainWindow::on_pushButtonDeleteCategory_clicked() {
+    if (QListWidgetTemplate<Category> *catItem = dynamic_cast<QListWidgetTemplate<Category> *>(ui->listWidget->currentItem()))
+        activityListController->remove(catItem->text());
 }
