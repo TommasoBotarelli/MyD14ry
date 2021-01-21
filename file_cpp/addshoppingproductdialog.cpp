@@ -14,15 +14,19 @@ AddShoppingProductDialog::~AddShoppingProductDialog() {
 }
 
 void AddShoppingProductDialog::on_AddButton_clicked() {
-    if (getNameProduct() == "")
-        ui->NameEdit->setText("INSERISCI PRODOTTO!!!");
 
-    if (getNameProduct() != "" && getNameProduct() != "INSERISCI PRODOTTO!!!") {
-        std::shared_ptr<ShoppingProduct> p(new ShoppingProduct);
-        controller->setData(shopList, p, getNameProduct());
+    QString name = getNameProduct();
 
-        this->close();
-    }
+    if (getNameProduct().replace(" ", "") != "") {
+
+        if (name != "Inserire nome prodotto") {
+            std::shared_ptr<ShoppingProduct> p(new ShoppingProduct);
+            controller->setData(shopList, p, name);
+
+            this->close();
+        }
+    } else
+        ui->NameEdit->setText("Inserire nome prodotto");
 }
 
 QString AddShoppingProductDialog::getNameProduct() {

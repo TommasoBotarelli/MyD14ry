@@ -18,15 +18,13 @@ AddEventDialog::~AddEventDialog() {
 }
 
 void AddEventDialog::on_AddButton_clicked() {
-    if (ui->AllDayCheckBox->isChecked())
-        on_AllDayCheckBox_stateChanged(2);
 
     QString name = getTask();
 
     if (getTask().replace(" ", "") != "") {
 
         if (name != "Inserire evento") {
-            controller->setData(event, getTask(), getDate(), getNote(),
+            controller->setData(event, name, getDate(), getNote(),
                                 getStartTime(), getEndTime(), getAllDay());
 
             this->close();
