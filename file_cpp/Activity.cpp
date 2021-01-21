@@ -2,7 +2,7 @@
 // Created by tommaso on 23/10/20.
 //
 
-#include "../../file_h/Activity.h"
+#include "../file_h/Activity.h"
 
 
 const QString &Activity::getTask() const {
