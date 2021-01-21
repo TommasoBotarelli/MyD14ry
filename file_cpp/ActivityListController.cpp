@@ -2,7 +2,7 @@
 // Created by tommaso on 24/10/20.
 //
 
-#include "file_h/ActivityListController.h"
+#include "../file_h/ActivityListController.h"
 
 void
 ActivityListController::setData(const QString category, std::shared_ptr<Activity> activity, const QString task,

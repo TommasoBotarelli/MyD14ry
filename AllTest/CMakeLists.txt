@@ -17,10 +17,20 @@ enable_testing(true)
 
 add_executable(AllTest
         tst_alltest.cpp
-        ../../file_h/Activity.h
-        ../../file_cpp/Activity.cpp
-        ../../file_h/SubActivity.h
-        ../../file_cpp/SubActivity.cpp
+        ../file_h/Activity.h
+        ../file_cpp/Activity.cpp
+        ../file_h/ActivityList.h
+        ../file_cpp/ActivityList.cpp
+        ../file_h/ActivityListController.h
+        ../file_cpp/ActivityListController.cpp
+        ../file_h/Calendar.h
+        ../file_cpp/Calendar.cpp
+        ../file_h/Category.h
+        ../file_cpp/Category.cpp
+        ../file_h/Event.h
+        ../file_cpp/Event.cpp
+        ../file_h/SubActivity.h
+        ../file_cpp/SubActivity.cpp
         )
 add_test(NAME AllTest COMMAND AllTest)
 

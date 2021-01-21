@@ -2,7 +2,7 @@
 // Created by Tommaso on 24/10/2020.
 //
 
-#include "file_h/ActivityList.h"
+#include "../file_h/ActivityList.h"
 
 void ActivityList::getCategory(std::list<Category> &catList) {
     for (Category &i : categories) {
