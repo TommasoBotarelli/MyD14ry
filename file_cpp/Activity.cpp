@@ -73,19 +73,6 @@ Activity::~Activity() {
     subActivities.clear();
 }
 
-/*bool Activity::operator==(const Activity &activity)const {
-
-    if (activity.isCompleted() == this->isCompleted() &&
-        activity.getTask() == this->getTask() &&
-        activity.getNote() == this->getNote() &&
-        activity.getDeadlineDate() == this->getDeadlineDate() &&
-        activity.getCount() == this->getCount())
-        return true;
-
-    else
-        return false;
-}*/
-
 const QString &Activity::getCategory() const {
     return category;
 }

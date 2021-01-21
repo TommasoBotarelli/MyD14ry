@@ -145,7 +145,7 @@ void MainWindow::update() {
     strikethroughFont.setStrikeOut(true);
 
     for (auto i : catList) {
-        auto title = new QListWidgetItem;
+        auto title = new QListWidgetTemplate<Category>;
         title->setText(i.getName());
         title->setFont(font);
         title->setBackground(Qt::yellow);

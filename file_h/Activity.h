@@ -57,8 +57,6 @@ public:
 
     void setCount(int count);
 
-    //bool operator==(const Activity &activity) const;
-
     void removeSubActivity(std::shared_ptr<SubActivity> subA);
 
     bool isHasDeadlineDate() const;
