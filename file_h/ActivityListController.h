@@ -36,6 +36,7 @@ public:
 
     void removeSubActivity(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> act);
 
+
 private:
     ActivityList *activityList;
 };

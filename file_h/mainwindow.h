@@ -77,6 +77,8 @@ private slots:
 
     void on_findButton_clicked();
 
+    void on_pushButtonDeleteCategory_clicked();
+
 private:
     Ui::MainWindow *ui;
 

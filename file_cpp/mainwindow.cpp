@@ -1,4 +1,4 @@
-#include "file_h/mainwindow.h"
+#include "../file_h/mainwindow.h"
 #include "../file_ui/ui_mainwindow.h"
 
 MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList *sL,
@@ -272,4 +272,20 @@ void MainWindow::on_findButton_clicked() {
         }
     }
 
+}
+
+void MainWindow::on_pushButtonDeleteCategory_clicked()
+{
+    std::list<Category> catList;
+    std::list<std::shared_ptr<Activity>> actList;
+    std::shared_ptr<Activity>act;
+
+    if(QListWidgetTemplate<Category> *cat=dynamic_cast <QListWidgetTemplate<Category> *>(ui->listWidget->currentItem()))
+    for ( auto& i : catList) {
+
+        if(cat->text()==i.getName()){
+            activityListController->remove(i);
+        }
+
+    }
 }

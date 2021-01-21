@@ -20,7 +20,7 @@
       <x>10</x>
       <y>40</y>
       <width>291</width>
-      <height>481</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -39,7 +39,7 @@
         <x>10</x>
         <y>10</y>
         <width>271</width>
-        <height>431</height>
+        <height>381</height>
        </rect>
       </property>
       <property name="editTriggers">
@@ -105,6 +105,19 @@
     </property>
     <property name="text">
      <string>Cerca</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonDeleteCategory">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>460</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Elimina Categoria</string>
     </property>
    </widget>
   </widget>
