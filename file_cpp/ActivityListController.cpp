@@ -81,7 +81,27 @@ void ActivityListController::searchCategory(Category &c, const QString &name) {
 }
 
 void ActivityListController::remove(Category &c) {
-    activityList->removeCategory(c);
+
+    if(c.getName() != "VARIE"){
+
+        std::list<std::shared_ptr<Activity>> actList;
+        c.getActivity(actList);
+
+        if(actList.empty()){
+            activityList->removeCategory(c);
+        }
+
+        else{
+
+            for(auto &i : actList){
+                modifyCategory(c.getName(),"VARIE",i);
+            }
+
+        }
+
+
+
+    }
 }
 
 bool ActivityListController::findCategory(QString name) {
