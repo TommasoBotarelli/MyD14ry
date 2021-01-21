@@ -2,7 +2,7 @@
 // Created by marco on 23/10/20.
 //
 
-#include "file_h/SubActivity.h"
+#include "../../file_h/SubActivity.h"
 
 
 void SubActivity::setTask(const QString &t) {
