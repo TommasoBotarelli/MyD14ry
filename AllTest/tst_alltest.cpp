@@ -117,6 +117,7 @@ void AllTest::testActivityList() {
         QVERIFY(list.size() == 1);
         count++;
     }
+    QVERIFY(count == 2);
 }
 
 void AllTest::test_Event() {
@@ -172,6 +173,7 @@ void AllTest::test_Calendar() {
     QVERIFY(list.empty());
 
 }
+
 
 void AllTest::setActivity(std::shared_ptr<Activity> &act, const QString &name, const QDate &deadlineDate,
                           const QString &category,
