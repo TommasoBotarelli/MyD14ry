@@ -20,6 +20,8 @@ MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList 
     c->setName("VARIE");
     activityList->addCategory(*c);
 
+    ui->calendarWidget->setSelectedDate(QDate::currentDate());
+
     update();
 }
 
@@ -161,6 +163,11 @@ void MainWindow::update() {
             act->set(l);
 
             act->setText(l->getTask());
+
+            if (l->isHasDeadlineDate()){
+                if (ui->calendarWidget->selectedDate() == l->getDeadlineDate())
+                    act->setBackground(Qt::red);
+            }
 
             if (l->isCompleted()) {
                 act->setFont(strikethroughFont);

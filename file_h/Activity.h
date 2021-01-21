@@ -61,6 +61,10 @@ public:
 
     void removeSubActivity(std::shared_ptr<SubActivity> subA);
 
+    bool isHasDeadlineDate() const;
+
+    void setHasDeadlineDate(bool hasDeadlineDate);
+
 private:
     QString task;
 
@@ -79,10 +83,6 @@ private:
     int count;
 
     bool hasDeadlineDate;
-public:
-    bool isHasDeadlineDate() const;
-
-    void setHasDeadlineDate(bool hasDeadlineDate);
 };
 
 
