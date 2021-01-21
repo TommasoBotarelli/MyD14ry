@@ -12,6 +12,8 @@
 class Category {
 public:
 
+    explicit Category(QString n) : name(n) {};
+
     void getActivity(std::list<std::shared_ptr<Activity>> &actList);
 
     void addActivity(std::shared_ptr<Activity> activity);

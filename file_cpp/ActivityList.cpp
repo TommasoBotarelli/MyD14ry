@@ -52,8 +52,10 @@ ActivityList::~ActivityList() {
         i->detach();
 }
 
-void ActivityList::addCategory(Category &c) {
-    categories.push_back(c);
+void ActivityList::addCategory(const QString &name) {
+    Category newCategory(name);
+
+    categories.push_back(newCategory);
 
     notify();
 }

@@ -16,9 +16,7 @@ void AddSubActivityDialog::on_AddButton_clicked() {
         ui->NameEdit->setText("INSERISCI SOTTO ATTIVITÀ!!!");
 
     if (getTask() != "" && getTask() != "INSERISCI SOTTO ATTIVITÀ!!!") {
-        std::shared_ptr<SubActivity> subA(new SubActivity);
-        controller->setData(subA, activity, getTask(), false);
-
+        controller->addSubActivity(activity, getTask(), false);
         this->close();
     }
 }

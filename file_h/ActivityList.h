@@ -17,7 +17,7 @@ class ActivityList : public Subject {
 public:
     void addActivity(QString category, std::shared_ptr<Activity> activity);
 
-    void addCategory(Category &c);
+    void addCategory(const QString &name);
 
     void removeCategory(Category &c);
 

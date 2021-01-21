@@ -16,9 +16,7 @@ MainWindow::MainWindow(ActivityList *actList, Calendar *cal, ListOfShoppingList 
     ui->setupUi(this);
     attach();
 
-    auto c = new Category;
-    c->setName("VARIE");
-    activityList->addCategory(*c);
+    activityListController->addCategory("VARIE");
 
     ui->calendarWidget->setSelectedDate(QDate::currentDate());
 

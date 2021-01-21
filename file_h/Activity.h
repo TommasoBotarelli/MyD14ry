@@ -39,7 +39,7 @@ public:
 
     void getSubActivities(std::list<std::shared_ptr<SubActivity>> &subAList) const;
 
-    void addSubActivity(std::shared_ptr<SubActivity> &subActivity);
+    void addSubActivity(const QString &name, bool c);
 
     void addObserver(Observer *o) override;
 
@@ -57,7 +57,7 @@ public:
 
     void setCount(int count);
 
-    bool operator==(const Activity &activity) const;
+    //bool operator==(const Activity &activity) const;
 
     void removeSubActivity(std::shared_ptr<SubActivity> subA);
 

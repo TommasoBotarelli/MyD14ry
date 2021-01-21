@@ -54,17 +54,12 @@ void ActivityListController::remove(std::shared_ptr<Activity> activity) {
 
 }
 
-void ActivityListController::setData(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> activity, QString t,
-                                     bool c) {
-    subA->setTask(t);
-    subA->setCompleted(c);
-
-    activity->addSubActivity(subA);
+void ActivityListController::addSubActivity(std::shared_ptr<Activity> activity, QString t, bool c) {
+    activity->addSubActivity(t, c);
 }
 
-void ActivityListController::setData(Category &c, QString name) {
-    c.setName(name);
-    activityList->addCategory(c);
+void ActivityListController::addCategory(QString name) {
+    activityList->addCategory(name);
 }
 
 void ActivityListController::searchCategory(Category &c, const QString &name) {

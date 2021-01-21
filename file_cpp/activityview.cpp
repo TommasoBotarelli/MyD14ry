@@ -78,7 +78,7 @@ void ActivityView::update() {
     std::list<std::shared_ptr<SubActivity>> subAList;
     activity->getSubActivities(subAList);
 
-    for (auto i : subAList) {
+    for (auto &i : subAList) {
         auto subA = new QListWidgetTemplate<SubActivity>;
 
         subA->setText(i->getTask());

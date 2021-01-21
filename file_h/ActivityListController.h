@@ -20,9 +20,9 @@ public:
     void setData(QString category, std::shared_ptr<Activity> activity, QString task, QDate deadlineDate, bool completed,
                  QString note);
 
-    void setData(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> activity, QString t, bool c);
+    void addSubActivity(std::shared_ptr<Activity> activity, QString t, bool c);
 
-    void setData(Category &c, QString name);
+    void addCategory(QString name);
 
     void remove(std::shared_ptr<Activity> activity);
 

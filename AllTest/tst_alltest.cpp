@@ -7,6 +7,7 @@
 #include "../file_h/Activity.h"
 #include "../file_h/SubActivity.h"
 #include "../file_h/ActivityList.h"
+#include "../file_h/Category.h"
 
 class AllTest : public QObject {
 Q_OBJECT
@@ -88,10 +89,15 @@ void AllTest::testActivityList() {
     std::shared_ptr<Activity> activity1(new Activity);
     std::shared_ptr<Activity> activity2(new Activity);
 
-    setActivity(activity1, "Prova1", QDate::currentDate());
-    setActivity(activity2, "Prova1", QDate::currentDate());
+    Category category1;
+    Category category2;
 
 
+    setActivity(activity1, "Prova1", QDate::currentDate(), "Categoria 1");
+    setActivity(activity2, "Prova2", QDate::currentDate(), "Categoria 2");
+
+    ActivityList actList;
+    actList.addActivity(activity1);
 }
 
 void AllTest::setActivity(std::shared_ptr<Activity> &act, QString name, QDate deadlineDate, QString category,

@@ -48,9 +48,10 @@ void Activity::getSubActivities(std::list<std::shared_ptr<SubActivity>> &subALis
     }
 }
 
-void Activity::addSubActivity(std::shared_ptr<SubActivity> &subActivity) {
+void Activity::addSubActivity(const QString &name, bool c) {
 
-    subActivities.push_back(subActivity);
+    std::shared_ptr<SubActivity> subA(new SubActivity(name, c));
+    subActivities.push_back(subA);
 
     notify();
 }
@@ -72,7 +73,7 @@ Activity::~Activity() {
     subActivities.clear();
 }
 
-bool Activity::operator==(const Activity &activity)const {
+/*bool Activity::operator==(const Activity &activity)const {
 
     if (activity.isCompleted() == this->isCompleted() &&
         activity.getTask() == this->getTask() &&
@@ -83,7 +84,7 @@ bool Activity::operator==(const Activity &activity)const {
 
     else
         return false;
-}
+}*/
 
 const QString &Activity::getCategory() const {
     return category;

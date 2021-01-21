@@ -12,9 +12,7 @@ class SubActivity {
 
 public:
 
-    SubActivity() = default;
-
-    SubActivity(const SubActivity &original);
+    SubActivity(QString name, bool c = false) : task(name), completed(c) {};
 
     ~SubActivity() = default;
 
