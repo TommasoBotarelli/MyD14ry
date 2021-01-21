@@ -15,7 +15,10 @@ AddCategory::~AddCategory() {
 void AddCategory::on_addCategoryButton_clicked() {
     if (controller->findCategory(ui->lineEdit->text())) {
         ui->lineEdit->setText("Nome della lista già utilizzato");
-    } else {
+    } else if (ui->lineEdit->text().isEmpty()) {
+        ui->lineEdit->setText("Inserisci nome categoria");
+    } else if (ui->lineEdit->text() != "Nome della lista già utilizzato"
+               && ui->lineEdit->text() != "Inserisci nome categoria") {
         controller->addCategory(ui->lineEdit->text());
         this->close();
     }
