@@ -13,13 +13,18 @@ AddCategory::~AddCategory() {
 }
 
 void AddCategory::on_addCategoryButton_clicked() {
-    if (controller->findCategory(ui->lineEdit->text())) {
-        ui->lineEdit->setText("Nome della lista già utilizzato");
-    } else if (ui->lineEdit->text().isEmpty()) {
+    QString name = ui->lineEdit->text();
+
+    if (ui->lineEdit->text().replace(" ", "") != "") {
+
+        if (controller->findCategory(name)) {
+            ui->lineEdit->setText("Nome della lista già utilizzato");
+        } else if (ui->lineEdit->text() != "Nome della lista già utilizzato"
+                   && ui->lineEdit->text() != "Inserisci nome categoria") {
+            controller->addCategory(ui->lineEdit->text());
+            this->close();
+        }
+    } else
         ui->lineEdit->setText("Inserisci nome categoria");
-    } else if (ui->lineEdit->text() != "Nome della lista già utilizzato"
-               && ui->lineEdit->text() != "Inserisci nome categoria") {
-        controller->addCategory(ui->lineEdit->text());
-        this->close();
-    }
+
 }
