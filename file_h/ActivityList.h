@@ -5,7 +5,7 @@
 #ifndef MYD14RY_ACTIVITYLIST_H
 #define MYD14RY_ACTIVITYLIST_H
 #include "Observer.h"
-#include "file_h/Activity.h"
+#include "Activity.h"
 #include "Subject.h"
 #include "SubActivity.h"
 #include <list>

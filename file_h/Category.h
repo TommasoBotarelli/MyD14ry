@@ -7,7 +7,7 @@
 
 
 #include <list>
-#include "file_h/Activity.h"
+#include "Activity.h"
 
 class Category {
 public:

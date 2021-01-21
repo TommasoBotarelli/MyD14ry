@@ -2,22 +2,28 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QDate>
-#include "../../file_h/Activity.h"
-#include "../../file_h/SubActivity.h"
 
-// add necessary includes here
+//ATTIVITÀ
+#include "../file_h/Activity.h"
+#include "../file_h/SubActivity.h"
+#include "../file_h/ActivityList.h"
 
-class AllTest : public QObject
-{
-    Q_OBJECT
+class AllTest : public QObject {
+Q_OBJECT
 
 public:
     AllTest();
+
     ~AllTest();
+
+    void setActivity(std::shared_ptr<Activity> &act, QString name, QDate deadlineDate,
+                     QString category = "VARIE", bool completed = false);
 
 private slots:
 
     void test_Activity();
+
+    void testActivityList();
 
 };
 
@@ -31,28 +37,25 @@ AllTest::~AllTest()
 
 }
 
-void AllTest::test_Activity(){
+void AllTest::test_Activity() {
     Activity activity;
-    std::shared_ptr<SubActivity> subA;
-    std::shared_ptr<SubActivity> subB;
-    std::list<std::shared_ptr<SubActivity>> list;
 
     activity.setTask("TestTask");
-    QVERIFY (activity.getTask() == "TestTask");
-
     activity.setDeadlineDate(QDate::currentDate());
-    QVERIFY (activity.getDeadlineDate() == QDate::currentDate());
-
     activity.setCompleted(true);
-    QVERIFY (activity.isCompleted());
-
     activity.setNote("ciao");
-    QVERIFY (activity.getNote() == "ciao");
+    activity.setHasDeadlineDate(true);
+
+    std::shared_ptr<SubActivity> subA(new SubActivity);
+    std::shared_ptr<SubActivity> subB(new SubActivity);
 
     subA->setTask("Pulire");
     subA->setCompleted(true);
+
     subB->setTask("Studiare");
     subB->setCompleted(false);
+
+    std::list<std::shared_ptr<SubActivity>> list;
 
     activity.addSubActivity(subA);
     activity.addSubActivity(subB);
@@ -64,16 +67,40 @@ void AllTest::test_Activity(){
 
     auto i = std::next(list.begin(), 1);
     QVERIFY ((*i)->getTask() == "Studiare");
-    QVERIFY ((*i)->isCompleted() == false);
+    QVERIFY (!(*i)->isCompleted());
 
     activity.removeSubActivity(subA);
-    QVERIFY(list.size()==1);
+    list.clear();
+    activity.getSubActivities(list);
+    QVERIFY(list.size() == 1);
+
     activity.removeSubActivity(subB);
+    list.clear();
+    activity.getSubActivities(list);
     QVERIFY(list.empty());
 
     activity.setCategory("categoria");
-    QVERIFY(activity.getCategory()=="categoria");
+    QVERIFY(activity.getCategory() == "categoria");
 
+}
+
+void AllTest::testActivityList() {
+    std::shared_ptr<Activity> activity1(new Activity);
+    std::shared_ptr<Activity> activity2(new Activity);
+
+    setActivity(activity1, "Prova1", QDate::currentDate());
+    setActivity(activity2, "Prova1", QDate::currentDate());
+
+
+}
+
+void AllTest::setActivity(std::shared_ptr<Activity> &act, QString name, QDate deadlineDate, QString category,
+                          bool completed) {
+    act->setTask(name);
+    act->setDeadlineDate(deadlineDate);
+    act->setCategory(category);
+    act->setCompleted(completed);
+    act->setHasDeadlineDate(true);
 }
 
 QTEST_MAIN(AllTest)
