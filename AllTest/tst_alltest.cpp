@@ -2,6 +2,8 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QDate>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 //ATTIVITÀ
 #include "../file_h/Activity.h"
@@ -89,7 +91,6 @@ QVERIFY (!(*i)->isCompleted());
 
     activity.setCategory("categoria");
     QVERIFY(activity.getCategory() == "categoria");
-
 }
 
 void AllTest::testActivityList() {
@@ -181,11 +182,12 @@ void AllTest::test_Calendar() {
 }
 
 void AllTest::test_CalendarController() {
-    std::shared_ptr<Event> event;
-    std::shared_ptr<Event> event2;
+    std::shared_ptr<Event> event(new Event);
+    std::shared_ptr<Event> event2(new Event);
     Calendar calendar;
     CalendarController CC(&calendar);
     std::list<std::shared_ptr<Event>> list;
+    QListWidget Qlist;
     QDate date(2020,05,27);
     QDate date2(2020,07,12);
     QTime time1(10,30);
@@ -193,9 +195,8 @@ void AllTest::test_CalendarController() {
 
     calendar.addEvent(event);
     calendar.addEvent(event2);
-    CC.setData(event,"task",date,"note",time1,time2,true);
+    CC.setData(event,"task",date,"note",time1,time2,false);
     CC.setData(event2,"task2",date2,"note2",time1,time2,true);
-    list.clear();
     calendar.getEvent(list);
 
     QVERIFY(event->getTask()=="task");
@@ -205,16 +206,10 @@ void AllTest::test_CalendarController() {
     QVERIFY(event->getEndTime()==time2);
     QVERIFY(event->isAllDay()==false);
 
-    CC.searchEventOfDay(date,list);
-    QVERIFY(list.size()==1);
-
-    CC.remove(event);
+    for(auto &i: list){
+        calendar.removeEvent(i);
+    }
     list.clear();
-    calendar.getEvent(list);
-    QVERIFY(list.size()==1);
-    CC.remove(event2);
-    list.clear();
-    calendar.getEvent(list);
     QVERIFY(list.empty());
 }
 

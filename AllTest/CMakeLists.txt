@@ -4,6 +4,8 @@ project(AllTest LANGUAGES CXX)
 
 
 find_package(Qt5Test REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -33,8 +35,9 @@ add_executable(AllTest
         ../file_cpp/Event.cpp
         ../file_h/SubActivity.h
         ../file_cpp/SubActivity.cpp
+        ../file_h/QListWidgetTemplate.h
         )
 add_test(NAME AllTest COMMAND AllTest)
 
-target_link_libraries(AllTest PRIVATE Qt5::Test)
+target_link_libraries(AllTest PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)
 
