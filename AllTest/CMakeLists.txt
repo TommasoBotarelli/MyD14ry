@@ -38,6 +38,5 @@ add_executable(AllTest
         )
 add_test(NAME AllTest COMMAND AllTest)
 
-target_link_libraries(AllTest PRIVATE Qt5::Test)
 target_link_libraries(AllTest PRIVATE Qt5::Test Qt${QT_VERSION_MAJOR}::Widgets)
 

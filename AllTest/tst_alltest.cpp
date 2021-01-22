@@ -2,6 +2,8 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QDate>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 //ATTIVITÀ
 #include "../file_h/Activity.h"
@@ -26,9 +28,7 @@ public:
     void setActivity(std::shared_ptr<Activity> &act, const QString &name, const QDate &deadlineDate,
                      const QString &category = "VARIE", bool completed = false);
 
-    void
-    setEvent(std::shared_ptr<Event> &event, QString task, QDate currentdate, const QTime startTime, const QTime endTime,
-             QString note, bool completed);
+    void setEvent(std::shared_ptr<Event> &event,QString task,QDate currentdate,const QTime startTime,const QTime endTime,QString note,bool completed);
 
 private slots:
 
@@ -43,6 +43,8 @@ private slots:
     void test_Calendar();
 
     void test_CalendarController();
+
+    void test_Category();
 
 };
 
@@ -171,8 +173,8 @@ void AllTest::test_Calendar() {
 }
 
 void AllTest::test_CalendarController() {
-    std::shared_ptr<Event> event;
-    std::shared_ptr<Event> event2;
+    std::shared_ptr<Event> event(new Event);
+    std::shared_ptr<Event> event2(new Event);
     Calendar calendar;
     CalendarController CC(&calendar);
     std::list<std::shared_ptr<Event>> list;
@@ -183,7 +185,7 @@ void AllTest::test_CalendarController() {
 
     calendar.addEvent(event);
     calendar.addEvent(event2);
-    CC.setData(event,"task",date,"note",time1,time2,true);
+    CC.setData(event,"task",date,"note",time1,time2,false);
     CC.setData(event2,"task2",date2,"note2",time1,time2,true);
     list.clear();
     calendar.getEvent(list);
@@ -195,15 +197,32 @@ void AllTest::test_CalendarController() {
     QVERIFY(event->getEndTime()==time2);
     QVERIFY(event->isAllDay()==false);
 
-    QVERIFY(list.size()==1);
+    for(auto &i: list){
+        calendar.removeEvent(i);
+    }
+    list.clear();
+    QVERIFY(list.empty());
+}
 
-    CC.remove(event);
+void AllTest::test_Category() {
+    Category category("categoria");
+    std::shared_ptr<Activity> activity(new Activity);
+    std::shared_ptr<Activity> activity2(new Activity);
+    std::list<std::shared_ptr<Activity>> list;
+
+    category.setName("categoria");
+    QVERIFY(category.getName()=="categoria");
+
+    category.addActivity(activity);
+    category.addActivity(activity2);
+    category.getActivity(list);
+
+    QVERIFY(list.size()==2);
+
+    for(auto &i: list){
+        category.removeActivity(i);
+    }
     list.clear();
-    calendar.getEvent(list);
-    QVERIFY(list.size()==1);
-    CC.remove(event2);
-    list.clear();
-    calendar.getEvent(list);
     QVERIFY(list.empty());
 }
 
