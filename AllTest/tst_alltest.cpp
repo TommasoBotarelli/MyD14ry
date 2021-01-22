@@ -12,6 +12,7 @@
 //EVENTI
 #include "../file_h/Event.h"
 #include "../file_h/Calendar.h"
+#include "../file_h/CalendarController.h"
 
 class AllTest : public QObject {
 Q_OBJECT
@@ -35,6 +36,8 @@ private slots:
     void test_Event();
 
     void test_Calendar();
+
+    void test_CalendarController();
 
 };
 
@@ -175,6 +178,44 @@ void AllTest::test_Calendar() {
     calendar.getEvent(list);
     QVERIFY(list.empty());
 
+}
+
+void AllTest::test_CalendarController() {
+    std::shared_ptr<Event> event;
+    std::shared_ptr<Event> event2;
+    Calendar calendar;
+    CalendarController CC(&calendar);
+    std::list<std::shared_ptr<Event>> list;
+    QDate date(2020,05,27);
+    QDate date2(2020,07,12);
+    QTime time1(10,30);
+    QTime time2(11,05);
+
+    calendar.addEvent(event);
+    calendar.addEvent(event2);
+    CC.setData(event,"task",date,"note",time1,time2,true);
+    CC.setData(event2,"task2",date2,"note2",time1,time2,true);
+    list.clear();
+    calendar.getEvent(list);
+
+    QVERIFY(event->getTask()=="task");
+    QVERIFY(event->getDate()==date);
+    QVERIFY(event->getNote()=="note");
+    QVERIFY(event->getStartTime()==time1);
+    QVERIFY(event->getEndTime()==time2);
+    QVERIFY(event->isAllDay()==false);
+
+    CC.searchEventOfDay(date,list);
+    QVERIFY(list.size()==1);
+
+    CC.remove(event);
+    list.clear();
+    calendar.getEvent(list);
+    QVERIFY(list.size()==1);
+    CC.remove(event2);
+    list.clear();
+    calendar.getEvent(list);
+    QVERIFY(list.empty());
 }
 
 

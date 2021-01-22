@@ -2,7 +2,7 @@
 // Created by Tommaso on 29/10/2020.
 //
 
-#include "file_h/CalendarController.h"
+#include "../file_h/CalendarController.h"
 
 void CalendarController::setData(std::shared_ptr<Event> event, QString task, QDate date, QString note, QTime startTime,
                                  QTime endTime,

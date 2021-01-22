@@ -7,8 +7,8 @@
 
 #include <QString>
 #include <QListWidget>
-#include "file_h/Activity.h"
-#include "file_h/ActivityList.h"
+#include "../file_h/Activity.h"
+#include "../file_h/ActivityList.h"
 #include "QListWidgetTemplate.h"
 #include "SubActivity.h"
 #include "Category.h"
