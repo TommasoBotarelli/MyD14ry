@@ -35,7 +35,6 @@ add_executable(AllTest
         ../file_cpp/Event.cpp
         ../file_h/SubActivity.h
         ../file_cpp/SubActivity.cpp
-        ../file_h/QListWidgetTemplate.h
         )
 add_test(NAME AllTest COMMAND AllTest)
 

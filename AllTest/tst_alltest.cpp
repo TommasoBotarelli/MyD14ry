@@ -10,6 +10,7 @@
 #include "../file_h/SubActivity.h"
 #include "../file_h/ActivityList.h"
 #include "../file_h/Category.h"
+#include "../file_h/ActivityListController.h"
 
 //EVENTI
 #include "../file_h/Event.h"
@@ -33,7 +34,9 @@ private slots:
 
     void test_Activity();
 
-    void testActivityList();
+    void test_ActivityList();
+
+    void test_ActivityListController();
 
     void test_Event();
 
@@ -56,48 +59,34 @@ AllTest::~AllTest()
 }
 
 void AllTest::test_Activity() {
-    Activity activity;
+    std::shared_ptr<Activity> activity(new Activity());
 
-    activity.setTask("TestTask");
-activity.setDeadlineDate(QDate::currentDate());
-activity.setCompleted(true);
-activity.setNote("ciao");
-activity.setHasDeadlineDate(true);
+    setActivity(activity, "prova", QDate(1, 1, 1));
 
-std::shared_ptr<SubActivity> subA(new SubActivity("Pulire", true));
-std::shared_ptr<SubActivity> subB(new SubActivity("Studiare", false));
+    std::list<std::shared_ptr<SubActivity>> list;
 
-std::list<std::shared_ptr<SubActivity>> list;
+    activity->addSubActivity("Pulire", true);
+    activity->addSubActivity("Studiare", false);
 
-activity.addSubActivity("Pulire", true);
-activity.addSubActivity("Studiare", false);
-activity.getSubActivities(list);
+    activity->getSubActivities(list);
 
-QVERIFY(list.size() == 2);
-QVERIFY(subA->getTask() == "Pulire");
-QVERIFY(subA->isCompleted());
+    QVERIFY(list.begin()->get()->getTask() == "Pulire");
 
-auto i = std::next(list.begin(), 1);
-QVERIFY ((*i)->getTask() == "Studiare");
-QVERIFY (!(*i)->isCompleted());
+    QVERIFY(list.size() == 2);
 
-    activity.removeSubActivity(subA);
+    for (auto &i : list) {
+        activity->removeSubActivity(i);
+    }
+
     list.clear();
-    activity.getSubActivities(list);
-    QVERIFY(list.size() == 1);
+    activity->getSubActivities(list);
+    QVERIFY(list.size() == 0);
 
-    activity.removeSubActivity(subB);
-    list.clear();
-    activity.getSubActivities(list);
-    QVERIFY(list.empty());
-
-    activity.setCategory("categoria");
-    QVERIFY(activity.getCategory() == "categoria");
 }
 
-void AllTest::testActivityList() {
-    std::shared_ptr<Activity> activity1(new Activity);
-    std::shared_ptr<Activity> activity2(new Activity);
+void AllTest::test_ActivityList() {
+    std::shared_ptr<Activity> activity1(new Activity());
+    std::shared_ptr<Activity> activity2(new Activity());
 
     ActivityList actList;
 
@@ -189,7 +178,6 @@ void AllTest::test_CalendarController() {
     Calendar calendar;
     CalendarController CC(&calendar);
     std::list<std::shared_ptr<Event>> list;
-    QListWidget Qlist;
     QDate date(2020,05,27);
     QDate date2(2020,07,12);
     QTime time1(10,30);
@@ -199,6 +187,7 @@ void AllTest::test_CalendarController() {
     calendar.addEvent(event2);
     CC.setData(event,"task",date,"note",time1,time2,false);
     CC.setData(event2,"task2",date2,"note2",time1,time2,true);
+    list.clear();
     calendar.getEvent(list);
 
     QVERIFY(event->getTask()=="task");
@@ -237,6 +226,7 @@ void AllTest::test_Category() {
     QVERIFY(list.empty());
 }
 
+
 void AllTest::setActivity(std::shared_ptr<Activity> &act, const QString &name, const QDate &deadlineDate,
                           const QString &category,
                           bool completed) {
@@ -256,6 +246,49 @@ void AllTest::setEvent(std::shared_ptr<Event> &event,QString task,QDate currentd
     event->setAllDay(completed);
 }
 
+void AllTest::test_ActivityListController() {
+    auto actList = new ActivityList;
+    ActivityListController actListController(actList);
+
+    std::list<Category> catList;
+
+    std::shared_ptr<Activity> activity1(new Activity());
+    std::shared_ptr<Activity> activity2(new Activity());
+
+    setActivity(activity1, "TEST 1 ", QDate(2000, 02, 02));
+    setActivity(activity2, "TEST 2", QDate(2000, 02, 02));
+
+    actListController.addCategory("Categoria 1");
+    actListController.addCategory("Categoria 2");
+
+    actList->getCategory(catList);
+    QVERIFY(catList.size() == 2);
+
+    actListController.remove("Categoria 1");
+    catList.clear();
+    actList->getCategory(catList);
+    QVERIFY(catList.size() == 1);
+
+    actListController.remove("Categoria 2");
+    catList.clear();
+    actList->getCategory(catList);
+    QVERIFY(catList.size() == 0);
+
+    actListController.addCategory("Categoria 3");
+    actListController.addCategory("Categoria 4");
+
+    std::shared_ptr<Activity> activity3(new Activity());
+    actListController.setData("Categoria 3", activity3, "TEST", QDate(2000, 02, 02), true, "note");
+
+    actListController.modifyCategory("Categoria 3", "Categoria 4", activity3);
+    QVERIFY(activity3->getCategory() == "Categoria 4");
+
+    actListController.remove("Categoria 3");
+    catList.clear();
+    actList->getCategory(catList);
+
+    QVERIFY(catList.size() == 1);
+}
 
 
 QTEST_MAIN(AllTest)
