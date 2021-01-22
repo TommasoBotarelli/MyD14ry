@@ -126,6 +126,7 @@ void AllTest::test_Event() {
     QTime time2(11,05);
 
     event.setTask("task");
+    event.setNote("note");
     event.setDate(QDate::currentDate());
     event.setStartTime(time1);
     event.setEndTime(time2);
@@ -160,15 +161,17 @@ void AllTest::test_Calendar() {
     QVERIFY((*list.begin())->getTask()=="task");
     QVERIFY((*list.begin())->getNote()=="note");
     auto i=std::next(list.begin(),1);
-    QVERIFY((*list.begin())->getTask()=="task2");
-    QVERIFY((*list.begin())->getNote()=="note2");
+    QVERIFY((*i)->getTask()=="task2");
+    QVERIFY((*i)->getNote()=="note2");
 
 
     calendar.removeEvent(event);
+    list.clear();
     calendar.getEvent(list);
     QVERIFY(list.size()==1);
 
     calendar.removeEvent(event2);
+    list.clear();
     calendar.getEvent(list);
     QVERIFY(list.empty());
 

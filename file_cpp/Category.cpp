@@ -2,7 +2,7 @@
 // Created by tommaso on 16/12/20.
 //
 
-#include "file_h/Category.h"
+#include "../file_h/Category.h"
 
 
 void Category::getActivity(std::list<std::shared_ptr<Activity>> &actList) {

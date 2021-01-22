@@ -21,8 +21,7 @@ add_executable(AllTest
         ../file_cpp/Activity.cpp
         ../file_h/ActivityList.h
         ../file_cpp/ActivityList.cpp
-        ../file_h/ActivityListController.h
-        ../file_cpp/ActivityListController.cpp
+
         ../file_h/Calendar.h
         ../file_cpp/Calendar.cpp
         ../file_h/Category.h

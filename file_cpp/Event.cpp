@@ -2,7 +2,7 @@
 // Created by marco on 23/10/20.
 //
 
-#include "file_h/Event.h"
+#include "../file_h/Event.h"
 
 const QString &Event::getTask() const {
     return task;

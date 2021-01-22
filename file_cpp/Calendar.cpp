@@ -2,7 +2,7 @@
 // Created by marco on 24/10/20.
 //
 
-#include "file_h/Calendar.h"
+#include "../file_h/Calendar.h"
 
 
 void Calendar::addEvent(std::shared_ptr<Event> event) {
