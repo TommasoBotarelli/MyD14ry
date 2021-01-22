@@ -27,14 +27,19 @@ void AddShoppingListDialog::on_AddShoppingProductButton_clicked() {
 }
 
 void AddShoppingListDialog::on_AddShoppingListButton_clicked() {
-    if (getName() == "")
-        ui->NameEdit->setText("INSERISCI NOME LISTA!!!");
 
-    if (getName() != "INSERISCI NOME LISTA!!!" && getName() != "") {
-        controller->setData(shopList, getName());
-        detach();
-        this->close();
-    }
+    QString name = getName();
+
+    if (getName().replace(" ", "") != "") {
+
+        if (name != "Inserire nome lista") {
+            controller->setData(shopList, name);
+            detach();
+            this->close();
+        }
+    } else
+        ui->NameEdit->setText("Inserire nome lista");
+
 
 }
 

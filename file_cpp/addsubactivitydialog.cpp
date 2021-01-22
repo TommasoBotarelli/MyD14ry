@@ -12,13 +12,16 @@ AddSubActivityDialog::~AddSubActivityDialog() {
 }
 
 void AddSubActivityDialog::on_AddButton_clicked() {
-    if (getTask() == "")
-        ui->NameEdit->setText("INSERISCI SOTTO ATTIVITÀ!!!");
+    QString name = getTask();
 
-    if (getTask() != "" && getTask() != "INSERISCI SOTTO ATTIVITÀ!!!") {
-        controller->addSubActivity(activity, getTask(), false);
-        this->close();
-    }
+    if (getTask().replace(" ", "") != "") {
+
+        if (name != "Inserire nome sotto attività") {
+            controller->addSubActivity(activity, name, false);
+            this->close();
+        }
+    } else
+        ui->NameEdit->setText("Inserire nome sotto attività");
 }
 
 QString AddSubActivityDialog::getTask() {

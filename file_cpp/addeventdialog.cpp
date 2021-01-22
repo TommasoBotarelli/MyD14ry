@@ -18,18 +18,20 @@ AddEventDialog::~AddEventDialog() {
 }
 
 void AddEventDialog::on_AddButton_clicked() {
-    if (ui->AllDayCheckBox->isChecked())
-        on_AllDayCheckBox_stateChanged(2);
 
-    if (getTask() == "")
-        ui->NameLineEdit->setText("INSERISCI EVENTO!!!");
+    QString name = getTask();
 
-    if (getTask() != "INSERISCI EVENTO!!!" && getTask() != "") {
-        controller->setData(event, getTask(), getDate(), getNote(),
-                            getStartTime(), getEndTime(), getAllDay());
+    if (getTask().replace(" ", "") != "") {
 
-        this->close();
-    }
+        if (name != "Inserire evento") {
+            controller->setData(event, name, getDate(), getNote(),
+                                getStartTime(), getEndTime(), getAllDay());
+
+            this->close();
+        }
+    } else
+        ui->NameLineEdit->setText("Inserire evento");
+
 }
 
 void AddEventDialog::on_AllDayCheckBox_stateChanged(int arg1) {
@@ -45,7 +47,7 @@ void AddEventDialog::on_AllDayCheckBox_stateChanged(int arg1) {
         event->setAllDay(false);
 }
 
-const QString AddEventDialog::getTask() {
+QString AddEventDialog::getTask() {
     return ui->NameLineEdit->text();
 }
 

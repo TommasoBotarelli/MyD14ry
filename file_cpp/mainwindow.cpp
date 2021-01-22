@@ -68,6 +68,17 @@ void MainWindow::on_actionLista_della_spesa_triggered() {
     }
 }
 
+void MainWindow::on_actionCategoria_triggered() {
+    auto dialog = new AddCategory(activityListController);
+
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+        }
+    }
+    update();
+}
+
 void MainWindow::on_calendarWidget_clicked(const QDate &date) {
     update();
 }

@@ -14,7 +14,7 @@ Q_OBJECT
 public:
     explicit AddEventDialog(CalendarController *c, std::shared_ptr<Event> e, QWidget *parent = nullptr);
 
-    const QString getTask();
+    QString getTask();
 
     const QDate getDate();
 

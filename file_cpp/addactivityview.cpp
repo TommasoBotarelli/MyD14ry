@@ -21,14 +21,16 @@ AddActivityView::~AddActivityView() {
 
 void AddActivityView::on_AddActivityButton_clicked() {
 
-    if (getTask() == "")
-        ui->NameEdit->setText("INSERISCI ATTIVITÀ!!!");
+    QString name = getTask();
 
-    if (getTask() != "INSERISCI ATTIVITÀ!!!" && getTask() != "") {
-        controller->setData(getCategory(), activity, getTask(), getDeadlineDate(), false, getNote());
-        detach();
-        (*this).close();
-    }
+    if (getTask().replace(" ", "") != "") {
+        if (name != "Inserire nome attività") {
+            controller->setData(getCategory(), activity, name, getDeadlineDate(), false, getNote());
+            detach();
+            (*this).close();
+        }
+    } else
+        ui->NameEdit->setText("Inserire nome attività");
 
 }
 

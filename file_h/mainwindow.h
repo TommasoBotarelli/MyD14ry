@@ -9,6 +9,7 @@
 #include "QListWidgetTemplate.h"
 #include "Category.h"
 #include "finddialog.h"
+#include "addcategory.h"
 
 //ATTIVITÀ
 #include "file_h/Activity.h"
@@ -78,6 +79,8 @@ private slots:
     void on_findButton_clicked();
 
     void on_pushButtonDeleteCategory_clicked();
+
+    void on_actionCategoria_triggered();
 
 private:
     Ui::MainWindow *ui;
