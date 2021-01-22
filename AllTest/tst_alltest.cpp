@@ -41,6 +41,8 @@ private slots:
 
     void test_CalendarController();
 
+    void test_Category();
+
 };
 
 AllTest::AllTest()
@@ -213,6 +215,27 @@ void AllTest::test_CalendarController() {
     QVERIFY(list.empty());
 }
 
+void AllTest::test_Category() {
+    Category category("categoria");
+    std::shared_ptr<Activity> activity(new Activity);
+    std::shared_ptr<Activity> activity2(new Activity);
+    std::list<std::shared_ptr<Activity>> list;
+
+    category.setName("categoria");
+    QVERIFY(category.getName()=="categoria");
+
+    category.addActivity(activity);
+    category.addActivity(activity2);
+    category.getActivity(list);
+
+    QVERIFY(list.size()==2);
+
+    for(auto &i: list){
+        category.removeActivity(i);
+    }
+    list.clear();
+    QVERIFY(list.empty());
+}
 
 void AllTest::setActivity(std::shared_ptr<Activity> &act, const QString &name, const QDate &deadlineDate,
                           const QString &category,
