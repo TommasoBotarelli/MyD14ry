@@ -287,6 +287,9 @@ void MainWindow::on_findButton_clicked() {
 
 void MainWindow::on_pushButtonDeleteCategory_clicked() {
     if (QListWidgetTemplate<Category> *catItem = dynamic_cast<QListWidgetTemplate<Category> *>(ui->listWidget->currentItem())) {
-        activityListController->remove(catItem->text());
+        if (catItem->text() != "VARIE") {
+            auto dialog = new AlertWindow(activityListController, catItem->text());
+            dialog->exec();
+        }
     }
 }

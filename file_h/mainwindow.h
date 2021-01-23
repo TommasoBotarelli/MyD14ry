@@ -10,7 +10,7 @@
 #include "Category.h"
 #include "finddialog.h"
 #include "addcategory.h"
-#include "../alertwindow.h"
+#include "alertwindow.h"
 
 //ATTIVITÀ
 #include "file_h/Activity.h"

@@ -2,6 +2,7 @@
 #define ALERTWINDOW_H
 
 #include <QDialog>
+#include "../file_h/ActivityListController.h"
 
 namespace Ui {
     class AlertWindow;
@@ -11,13 +12,9 @@ class AlertWindow : public QDialog {
 Q_OBJECT
 
 public:
-    explicit AlertWindow(QWidget *parent = nullptr);
+    explicit AlertWindow(ActivityListController *c, QString cat, QWidget *parent = nullptr);
 
     ~AlertWindow();
-
-    bool getCancel() {
-        return cancel;
-    };
 
 private slots:
 
@@ -28,7 +25,9 @@ private slots:
 private:
     Ui::AlertWindow *ui;
 
-    bool cancel;
+    ActivityListController *controller;
+
+    QString category;
 };
 
 #endif // ALERTWINDOW_H

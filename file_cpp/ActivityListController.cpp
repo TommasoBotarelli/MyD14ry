@@ -80,7 +80,7 @@ void ActivityListController::searchCategory(Category &c, const QString &name) {
     }
 }
 
-void ActivityListController::remove(QString category) {
+void ActivityListController::removeAndMoveActivity(QString category) {
     if (category != "VARIE") {
         std::list<Category> catList;
         std::list<std::shared_ptr<Activity>> actList;
@@ -138,4 +138,27 @@ void ActivityListController::modifyCategory(const QString &oldCategory, const QS
 
 void ActivityListController::removeSubActivity(std::shared_ptr<SubActivity> subA, std::shared_ptr<Activity> act) {
     act->removeSubActivity(subA);
+}
+
+void ActivityListController::removeCategoryAndActivity(QString category) {
+    if (category != "VARIE") {
+        std::list<Category> catList;
+        std::list<std::shared_ptr<Activity>> actList;
+
+        activityList->getCategory(catList);
+
+        for (auto &j : catList) {
+
+            if (j.getName() == category) {
+                j.getActivity(actList);
+
+                if (!actList.empty()) {
+                    for (auto &i : actList)
+                        remove(i);
+                }
+
+                activityList->removeCategory(j);
+            }
+        }
+    }
 }
