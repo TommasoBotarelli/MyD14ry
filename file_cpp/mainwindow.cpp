@@ -288,8 +288,23 @@ void MainWindow::on_findButton_clicked() {
 void MainWindow::on_pushButtonDeleteCategory_clicked() {
     if (QListWidgetTemplate<Category> *catItem = dynamic_cast<QListWidgetTemplate<Category> *>(ui->listWidget->currentItem())) {
         if (catItem->text() != "VARIE") {
-            auto dialog = new AlertWindow(activityListController, catItem->text());
-            dialog->exec();
+            std::list<std::shared_ptr<Activity>> actList;
+            std::list<Category> catList;
+            activityList->getCategory(catList);
+
+            for (auto &i : catList) {
+
+                if (i.getName() == catItem->text()) {
+                    i.getActivity(actList);
+
+                    if (actList.empty()) {
+                        activityListController->removeCategoryAndActivity(catItem->text());
+                    } else {
+                        auto dialog = new AlertWindow(activityListController, catItem->text());
+                        dialog->exec();
+                    }
+                }
+            }
         }
     }
 }

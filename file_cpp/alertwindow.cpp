@@ -5,6 +5,7 @@ AlertWindow::AlertWindow(ActivityListController *c, QString cat, QWidget *parent
         controller(c), category(cat), QDialog(parent),
         ui(new Ui::AlertWindow) {
     ui->setupUi(this);
+    setWindowTitle("Elimina categoria");
 }
 
 AlertWindow::~AlertWindow() {
