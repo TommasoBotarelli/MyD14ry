@@ -17,6 +17,11 @@
 #include "../file_h/Calendar.h"
 #include "../file_h/CalendarController.h"
 
+//SHOPPING_LIST
+#include "../file_h/ListOfShoppingListController.h"
+#include "../file_h/ListOfShoppingList.h"
+#include "../file_h/ShoppingList.h"
+
 class AllTest : public QObject {
 Q_OBJECT
 
@@ -217,12 +222,14 @@ void AllTest::test_Category() {
     category.addActivity(activity2);
     category.getActivity(list);
 
-    QVERIFY(list.size()==2);
+    QVERIFY(list.size() == 2);
 
-    for(auto &i: list){
+    for (auto &i: list) {
         category.removeActivity(i);
     }
     list.clear();
+
+    category.getActivity(list);
     QVERIFY(list.empty());
 }
 
@@ -264,12 +271,12 @@ void AllTest::test_ActivityListController() {
     actList->getCategory(catList);
     QVERIFY(catList.size() == 2);
 
-    actListController.remove("Categoria 1");
+    actListController.removeAndMoveActivity("Categoria 1");
     catList.clear();
     actList->getCategory(catList);
     QVERIFY(catList.size() == 1);
 
-    actListController.remove("Categoria 2");
+    actListController.removeAndMoveActivity("Categoria 2");
     catList.clear();
     actList->getCategory(catList);
     QVERIFY(catList.size() == 0);
@@ -283,7 +290,7 @@ void AllTest::test_ActivityListController() {
     actListController.modifyCategory("Categoria 3", "Categoria 4", activity3);
     QVERIFY(activity3->getCategory() == "Categoria 4");
 
-    actListController.remove("Categoria 3");
+    actListController.removeAndMoveActivity("Categoria 3");
     catList.clear();
     actList->getCategory(catList);
 
