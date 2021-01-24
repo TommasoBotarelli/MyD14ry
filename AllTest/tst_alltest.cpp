@@ -21,6 +21,7 @@
 #include "../file_h/ListOfShoppingListController.h"
 #include "../file_h/ListOfShoppingList.h"
 #include "../file_h/ShoppingList.h"
+#include "../file_h/ShoppingProduct.h"
 
 class AllTest : public QObject {
 Q_OBJECT
@@ -50,6 +51,8 @@ private slots:
     void test_CalendarController();
 
     void test_Category();
+
+    void test_ListOfShoppigList();
 
 };
 
@@ -295,6 +298,36 @@ void AllTest::test_ActivityListController() {
     actList->getCategory(catList);
 
     QVERIFY(catList.size() == 1);
+}
+
+void AllTest::test_ListOfShoppigList() {
+    std::shared_ptr<ShoppingList> shopList1(new ShoppingList);
+    std::shared_ptr<ShoppingList> shopList2(new ShoppingList);
+
+    ListOfShoppingList listShopList;
+
+    std::list<std::shared_ptr<ShoppingList>> tempList;
+
+    listShopList.addShoppingList(shopList1);
+    listShopList.addShoppingList(shopList2);
+
+    listShopList.getList(tempList);
+
+    QVERIFY(tempList.size() == 2);
+
+    listShopList.removeShoppingList(shopList2);
+
+    tempList.clear();
+    listShopList.getList(tempList);
+
+    QVERIFY(tempList.size() == 1);
+
+    listShopList.removeShoppingList(shopList1);
+
+    tempList.clear();
+    listShopList.getList(tempList);
+
+    QVERIFY(tempList.empty());
 }
 
 

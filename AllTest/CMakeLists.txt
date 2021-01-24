@@ -35,6 +35,14 @@ add_executable(AllTest
         ../file_cpp/Event.cpp
         ../file_h/SubActivity.h
         ../file_cpp/SubActivity.cpp
+        ../file_h/ListOfShoppingList.h
+        ../file_cpp/ListOfShoppingList.cpp
+        ../file_h/ShoppingList.h
+        ../file_cpp/ShoppingList.cpp
+        ../file_h/ListOfShoppingListController.h
+        ../file_cpp/ListOfShoppingListController.cpp
+        ../file_h/ShoppingProduct.h
+        ../file_cpp/ShoppingProduct.cpp
         )
 add_test(NAME AllTest COMMAND AllTest)
 

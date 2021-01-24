@@ -2,7 +2,7 @@
 // Created by marco on 07/11/20.
 //
 
-#include "file_h/ListOfShoppingListController.h"
+#include "../file_h/ListOfShoppingListController.h"
 
 void ListOfShoppingListController::setData(std::shared_ptr<ShoppingList> &shopList, QString name) {
     shopList->setNameList(name);

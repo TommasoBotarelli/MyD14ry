@@ -2,7 +2,7 @@
 // Created by tommaso on 23/10/20.
 //
 
-#include "file_h/ShoppingList.h"
+#include "../file_h/ShoppingList.h"
 
 const QString &ShoppingList::getNameList() const  {
     return nameList;

@@ -1,7 +1,7 @@
 //
 // Created by marco on 24/10/20.
 
-#include "file_h/ListOfShoppingList.h"
+#include "../file_h/ListOfShoppingList.h"
 
 void ListOfShoppingList::addShoppingList(std::shared_ptr<ShoppingList> shoppingList) {
     ShoppingLists.push_back(shoppingList);
