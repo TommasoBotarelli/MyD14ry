@@ -56,6 +56,8 @@ private slots:
 
     void test_ShoppingList();
 
+    void test_ListOfShoppingListController();
+
 };
 
 AllTest::AllTest()
@@ -238,6 +240,51 @@ void AllTest::test_Category() {
     QVERIFY(list.empty());
 }
 
+
+void AllTest::test_ListOfShoppingListController() {
+    ListOfShoppingList listOfShoppingList;
+    ListOfShoppingListController listOfShoppingListController(&listOfShoppingList);
+    std::shared_ptr<ShoppingList> shoplist(new ShoppingList);
+    std::shared_ptr<ShoppingList> shoplist2(new ShoppingList);
+    std::shared_ptr<ShoppingProduct> shoProd(new ShoppingProduct);
+    std::shared_ptr<ShoppingProduct> shoProd2(new ShoppingProduct);
+    std::list<std::shared_ptr<ShoppingList>> list;
+    std::list<std::shared_ptr<ShoppingProduct>> list1;
+
+    listOfShoppingListController.setData(shoplist,"name list");
+    listOfShoppingListController.setData(shoplist2,"name list 2");
+    listOfShoppingList.getList(list);
+    QVERIFY((*list.begin())->getNameList()=="name list");
+
+    listOfShoppingListController.setData(shoplist,shoProd,"name prod",false);
+    QVERIFY(shoProd->getName()=="name prod");
+    QVERIFY(shoProd->isCatched()==false);
+    listOfShoppingListController.setData(shoplist,shoProd2,"name prod 2",true);
+    QVERIFY(shoProd2->getName()=="name prod 2");
+    QVERIFY(shoProd2->isCatched());
+
+    listOfShoppingListController.setCatched(shoplist,shoProd,true);
+    QVERIFY(shoProd->isCatched());
+
+    listOfShoppingListController.removeProduct(shoProd,shoplist);
+    list1.clear();
+    shoplist->getProducts(list1);
+    QVERIFY(list1.size()==1);
+    listOfShoppingListController.removeProduct(shoProd2,shoplist);
+    list1.clear();
+    shoplist->getProducts(list1);
+    QVERIFY(list1.empty());
+
+    QVERIFY(list.size()==2);
+    listOfShoppingListController.remove(shoplist);
+    list.clear();
+    listOfShoppingList.getList(list);
+    QVERIFY(list.size()==1);
+    listOfShoppingList.removeShoppingList(shoplist2);
+    list.clear();
+    listOfShoppingList.getList(list);
+    QVERIFY(list.empty());
+}
 
 void AllTest::setActivity(std::shared_ptr<Activity> &act, const QString &name, const QDate &deadlineDate,
                           const QString &category,
