@@ -6,7 +6,7 @@
 #define MYD14RY_QLISTWIDGETTEMPLATE_H
 
 #include <QListWidgetItem>
-
+#include <memory>
 template<typename T>
 class QListWidgetTemplate : public QListWidgetItem {
 

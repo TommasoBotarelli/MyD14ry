@@ -43,6 +43,7 @@ add_executable(AllTest
         ../file_cpp/ListOfShoppingListController.cpp
         ../file_h/ShoppingProduct.h
         ../file_cpp/ShoppingProduct.cpp
+        ../file_h/QListWidgetTemplate.h
         )
 add_test(NAME AllTest COMMAND AllTest)
 
