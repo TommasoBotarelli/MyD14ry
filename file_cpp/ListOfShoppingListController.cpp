@@ -28,12 +28,8 @@ void ListOfShoppingListController::getLists(QListWidget &list) {
     }
 }
 
-void ListOfShoppingListController::setData(std::shared_ptr<ShoppingList> &shopList,
-                                           std::shared_ptr<ShoppingProduct> &product, QString name, bool c) {
-    product->setName(name);
-    product->setCatched(c);
-
-    shopList->addProduct(product);
+void ListOfShoppingListController::addProduct(std::shared_ptr<ShoppingList> &shopList, QString name, bool c) {
+    shopList->addProduct(name, c);
 }
 
 void

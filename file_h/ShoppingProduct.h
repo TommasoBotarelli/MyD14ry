@@ -10,7 +10,7 @@
 
 class ShoppingProduct {
 public:
-    ShoppingProduct() = default;
+    explicit ShoppingProduct(QString n, bool c = false) : name(n), catched(c) {};
 
     const QString &getName() const;
 

@@ -20,8 +20,7 @@ void AddShoppingProductDialog::on_AddButton_clicked() {
     if (getNameProduct().replace(" ", "") != "") {
 
         if (name != "Inserire nome prodotto") {
-            std::shared_ptr<ShoppingProduct> p(new ShoppingProduct);
-            controller->setData(shopList, p, name);
+            controller->addProduct(shopList, name);
 
             this->close();
         }
