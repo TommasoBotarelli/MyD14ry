@@ -54,6 +54,8 @@ private slots:
 
     void test_ListOfShoppigList();
 
+    void test_ShoppingList();
+
 };
 
 AllTest::AllTest()
@@ -330,6 +332,37 @@ void AllTest::test_ListOfShoppigList() {
     QVERIFY(tempList.empty());
 }
 
+void AllTest::test_ShoppingList(){
+   std::shared_ptr<ShoppingList> shopList (new ShoppingList());
+  std::list<std::shared_ptr<ShoppingProduct>> ShopList;
+
+  shopList->setNameList("Lista 1");
+  QVERIFY(shopList->getNameList()=="Lista 1");
+
+  std::shared_ptr<ShoppingProduct> product1 (new ShoppingProduct());
+  std::shared_ptr<ShoppingProduct> product2 (new ShoppingProduct());
+  std::shared_ptr<ShoppingProduct> product3 (new ShoppingProduct());
+
+  shopList->addProduct(product1);
+  shopList->addProduct(product2);
+  shopList->addProduct(product3);
+
+  shopList->getProducts(ShopList);
+
+  QVERIFY(ShopList.size() == 3);
+
+  QVERIFY(shopList->getCountProduct()==3);
+
+
+    for (auto &i :ShopList) {
+        shopList->removeProduct(i);
+    }
+
+    ShopList.clear();
+    shopList->getProducts(ShopList);
+    QVERIFY(ShopList.size() == 0);
+    QVERIFY(shopList->getCountProduct()==0);
+}
 
 QTEST_MAIN(AllTest)
 
