@@ -38,8 +38,6 @@ private slots:
 
     void on_addCategoryButton_clicked();
 
-    void on_categoryComboBox_currentTextChanged(const QString &arg1);
-
     void on_DeleteSubActivity_clicked();
 
 public:

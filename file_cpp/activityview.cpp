@@ -125,13 +125,13 @@ void ActivityView::on_addCategoryButton_clicked() {
 
 void ActivityView::updateCategory() {
 
-    //ui->categoryComboBox->clear();                //FIXME
+    ui->categoryComboBox->clear();
 
     std::list<Category> catList;
     activityList->getCategory(catList);
 
-    for (Category& i : catList) {
-        if (i.getName() == activity->getCategory()){
+    for (Category &i : catList) {
+        if (i.getName() == activity->getCategory()) {
             ui->categoryComboBox->addItem(i.getName());
             break;
         }
@@ -140,18 +140,15 @@ void ActivityView::updateCategory() {
     catList.clear();
     activityList->getCategory(catList);
 
-    for (Category& l : catList) {
+    for (Category &l : catList) {
         if (l.getName() != activity->getCategory())
             ui->categoryComboBox->addItem(l.getName());
     }
 }
 
-void ActivityView::on_categoryComboBox_currentTextChanged(const QString &arg1) {
-    this->category = arg1;
-    controller->modifyCategory(activity->getCategory(), category, activity);
-}
-
 void ActivityView::closeEvent(QCloseEvent *event) {
+    this->category = ui->categoryComboBox->currentText();
+    controller->modifyCategory(activity->getCategory(), category, activity);
     this->detach();
     QDialog::closeEvent(event);
 }
