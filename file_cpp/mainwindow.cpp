@@ -300,13 +300,16 @@ void MainWindow::on_pushButtonDeleteCategory_clicked() {
                     i.getActivity(actList);
 
                     if (actList.empty()) {
-                        activityListController->removeCategoryAndActivity(catItem->text());
+                        activityListController->removeCategoryAndActivity(i.getName());
+                        break;
                     } else {
                         auto dialog = new AlertWindow(activityListController, catItem->text());
                         dialog->exec();
+                        break;
                     }
                 }
             }
         }
+        update();
     }
 }
