@@ -61,6 +61,8 @@ void MainWindow::on_actionLista_della_spesa_triggered() {
 
     auto dialog = new AddShoppingListDialog(s, shopListController);
 
+    s->addObserver(this);
+
     while (dialog->exec()) {
         if (dialog->close()) {
             delete dialog;
