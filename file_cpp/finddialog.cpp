@@ -287,10 +287,25 @@ void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
         if (actItem->checkState() == Qt::Unchecked)
             actItem->get()->setCompleted(false);
     } else if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
-        if (shopProductItem->checkState() == Qt::Checked)
-            shopProductItem->get()->setCatched(true);
-        if (shopProductItem->checkState() == Qt::Unchecked)
-            shopProductItem->get()->setCatched(false);
+        std::list<std::shared_ptr<ShoppingList>> shopList;
+        std::list<std::shared_ptr<ShoppingProduct>> productList;
+        listOfShoppingList->getList(shopList);
+
+        for (auto &i : shopList) {
+            productList.clear();
+            i->getProducts(productList);
+
+            for (auto &j : productList) {
+                if (j == shopProductItem->get()) {
+
+                    if (shopProductItem->checkState() == Qt::Checked)
+                        shopListController->setCatched(i, shopProductItem->get(), true);
+
+                    else if (shopProductItem->checkState() == Qt::Unchecked)
+                        shopListController->setCatched(i, shopProductItem->get(), false);
+                }
+            }
+        }
     }
 }
 
