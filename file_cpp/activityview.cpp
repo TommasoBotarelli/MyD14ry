@@ -49,7 +49,7 @@ void ActivityView::on_SubActivityListWidget_itemChanged(QListWidgetItem *item) {
 
 void ActivityView::on_AddSubactivityButton_clicked() {
 
-    auto dialog = new AddSubActivityDialog(activity, controller);         //FIXME
+    auto dialog = new AddSubActivityDialog(activity, controller);
 
     while (dialog->exec()) {
 
@@ -149,10 +149,6 @@ void ActivityView::updateCategory() {
 void ActivityView::on_categoryComboBox_currentTextChanged(const QString &arg1) {
     this->category = arg1;
     controller->modifyCategory(activity->getCategory(), category, activity);
-}
-
-void ActivityView::on_categoryComboBox_currentIndexChanged(int index) {
-    //FIXME
 }
 
 void ActivityView::closeEvent(QCloseEvent *event) {

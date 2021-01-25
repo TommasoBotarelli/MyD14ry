@@ -45,13 +45,8 @@ ShoppingList::~ShoppingList() {
 }
 
  bool ShoppingList::operator==( const ShoppingList &compareShopList)const  {
-    /*std::list<ShoppingProduct> list;
-    compareShopList.getProducts(list);*/
-
-     if (this->getNameList() == compareShopList.getNameList() /*&&       //FIXME
-    this->products.size() == list.size()*/)
+     if (this->getNameList() == compareShopList.getNameList())
          return true;
-
      else
          return false;
  }

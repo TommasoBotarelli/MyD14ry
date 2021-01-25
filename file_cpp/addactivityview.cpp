@@ -36,7 +36,7 @@ void AddActivityView::on_AddActivityButton_clicked() {
 
 void AddActivityView::on_AddSubActivityButton_clicked() {
 
-    auto dialog = new AddSubActivityDialog(activity, controller); //FIXME
+    auto dialog = new AddSubActivityDialog(activity, controller);
 
     while (dialog->exec()) {
 

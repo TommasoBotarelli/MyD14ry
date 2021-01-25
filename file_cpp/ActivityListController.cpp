@@ -30,7 +30,7 @@ ActivityListController::setData(const QString category, std::shared_ptr<Activity
                 activity->setCount(count + 1);
             }
         }
-    }       //FIXME
+    }
 
     activityList->addActivity(category, activity);
 }

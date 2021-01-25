@@ -40,8 +40,6 @@ private slots:
 
     void on_categoryComboBox_currentTextChanged(const QString &arg1);
 
-    void on_categoryComboBox_currentIndexChanged(int index);
-
     void on_DeleteSubActivity_clicked();
 
 public:
