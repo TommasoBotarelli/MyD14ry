@@ -244,42 +244,48 @@ void AllTest::test_Category() {
 void AllTest::test_ListOfShoppingListController() {
     ListOfShoppingList listOfShoppingList;
     ListOfShoppingListController listOfShoppingListController(&listOfShoppingList);
-    std::shared_ptr<ShoppingList> shoplist(new ShoppingList);
+
+    std::shared_ptr<ShoppingList> shoplist1(new ShoppingList);
     std::shared_ptr<ShoppingList> shoplist2(new ShoppingList);
-    std::shared_ptr<ShoppingProduct> shoProd(new ShoppingProduct);
-    std::shared_ptr<ShoppingProduct> shoProd2(new ShoppingProduct);
+
     std::list<std::shared_ptr<ShoppingList>> list;
-    std::list<std::shared_ptr<ShoppingProduct>> list1;
+    std::list<std::shared_ptr<ShoppingProduct>> tempListProduct;
 
-    listOfShoppingListController.setData(shoplist,"name list");
-    listOfShoppingListController.setData(shoplist2,"name list 2");
+    listOfShoppingListController.setData(shoplist1, "name list");
+    listOfShoppingListController.setData(shoplist2, "name list 2");
+
     listOfShoppingList.getList(list);
-    QVERIFY((*list.begin())->getNameList()=="name list");
 
-    listOfShoppingListController.setData(shoplist,shoProd,"name prod",false);
-    QVERIFY(shoProd->getName()=="name prod");
-    QVERIFY(shoProd->isCatched()==false);
-    listOfShoppingListController.setData(shoplist,shoProd2,"name prod 2",true);
-    QVERIFY(shoProd2->getName()=="name prod 2");
-    QVERIFY(shoProd2->isCatched());
+    QVERIFY(list.size() == 2);
 
-    listOfShoppingListController.setCatched(shoplist,shoProd,true);
-    QVERIFY(shoProd->isCatched());
+    listOfShoppingListController.addProduct(shoplist1, "name prod 1");
+    tempListProduct.clear();
+    shoplist1->getProducts(tempListProduct);
+    QVERIFY(tempListProduct.size() == 1);
 
-    listOfShoppingListController.removeProduct(shoProd,shoplist);
-    list1.clear();
-    shoplist->getProducts(list1);
-    QVERIFY(list1.size()==1);
-    listOfShoppingListController.removeProduct(shoProd2,shoplist);
-    list1.clear();
-    shoplist->getProducts(list1);
-    QVERIFY(list1.empty());
+    listOfShoppingListController.removeProduct(*tempListProduct.begin(), shoplist1);
+    tempListProduct.clear();
+    shoplist1->getProducts(tempListProduct);
+    QVERIFY(tempListProduct.empty());
 
-    QVERIFY(list.size()==2);
-    listOfShoppingListController.remove(shoplist);
+    listOfShoppingListController.addProduct(shoplist2, "name prod 2");
+    tempListProduct.clear();
+    shoplist2->getProducts(tempListProduct);
+    QVERIFY(tempListProduct.size() == 1);
+
+    listOfShoppingListController.setCatched(shoplist2, *(tempListProduct.begin()), true);
+    QVERIFY((*tempListProduct.begin())->isCatched());
+
+    listOfShoppingListController.removeProduct(*(tempListProduct.begin()), shoplist2);
+    tempListProduct.clear();
+    shoplist2->getProducts(tempListProduct);
+    QVERIFY(tempListProduct.empty());
+
+    QVERIFY(list.size() == 2);
+    listOfShoppingListController.remove(shoplist1);
     list.clear();
     listOfShoppingList.getList(list);
-    QVERIFY(list.size()==1);
+    QVERIFY(list.size() == 1);
     listOfShoppingList.removeShoppingList(shoplist2);
     list.clear();
     listOfShoppingList.getList(list);
@@ -379,36 +385,32 @@ void AllTest::test_ListOfShoppigList() {
     QVERIFY(tempList.empty());
 }
 
-void AllTest::test_ShoppingList(){
-   std::shared_ptr<ShoppingList> shopList (new ShoppingList());
-  std::list<std::shared_ptr<ShoppingProduct>> ShopList;
+void AllTest::test_ShoppingList() {
+    std::shared_ptr<ShoppingList> shopList(new ShoppingList());
+    std::list<std::shared_ptr<ShoppingProduct>> tempListProduct;
 
-  shopList->setNameList("Lista 1");
-  QVERIFY(shopList->getNameList()=="Lista 1");
+    shopList->setNameList("Lista 1");
+    QVERIFY(shopList->getNameList() == "Lista 1");
 
-  std::shared_ptr<ShoppingProduct> product1 (new ShoppingProduct());
-  std::shared_ptr<ShoppingProduct> product2 (new ShoppingProduct());
-  std::shared_ptr<ShoppingProduct> product3 (new ShoppingProduct());
+    shopList->addProduct("product1", true);
+    shopList->addProduct("product2", false);
+    shopList->addProduct("product3", true);
 
-  shopList->addProduct(product1);
-  shopList->addProduct(product2);
-  shopList->addProduct(product3);
+    shopList->getProducts(tempListProduct);
 
-  shopList->getProducts(ShopList);
+    QVERIFY(tempListProduct.size() == 3);
 
-  QVERIFY(ShopList.size() == 3);
-
-  QVERIFY(shopList->getCountProduct()==3);
+    QVERIFY(shopList->getCountProduct() == 1);
 
 
-    for (auto &i :ShopList) {
+    for (auto &i : tempListProduct) {
         shopList->removeProduct(i);
     }
 
-    ShopList.clear();
-    shopList->getProducts(ShopList);
-    QVERIFY(ShopList.size() == 0);
-    QVERIFY(shopList->getCountProduct()==0);
+    tempListProduct.clear();
+    shopList->getProducts(tempListProduct);
+    QVERIFY(tempListProduct.size() == 0);
+    QVERIFY(shopList->getCountProduct() == 0);
 }
 
 QTEST_MAIN(AllTest)
