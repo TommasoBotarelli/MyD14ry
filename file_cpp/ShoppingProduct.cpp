@@ -19,3 +19,15 @@ bool ShoppingProduct::isCatched() const {
 void ShoppingProduct::setCatched(bool c) {
     catched = c;
 }
+
+const QString &ShoppingProduct::getCategory() const {
+    return category;
+}
+
+void ShoppingProduct::setCategory(const QString &category) {
+    ShoppingProduct::category = category;
+}
+
+bool ShoppingProduct::isCategoryIsSet() const {
+    return categoryIsSet;
+}

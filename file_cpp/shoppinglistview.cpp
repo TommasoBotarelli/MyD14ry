@@ -1,8 +1,9 @@
 #include "../file_h/shoppinglistview.h"
 #include "../file_ui/ui_shoppinglistview.h"
 
-ShoppingListView::ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c, QWidget *parent) :
-        shopList(sL), controller(c), QDialog(parent),
+ShoppingListView::ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c,
+                                   ListOfShoppingList *lsl, QWidget *parent) :
+        shopList(sL), controller(c), listOfShoppingList(lsl), QDialog(parent),
         ui(new Ui::ShoppingListView) {
     ui->setupUi(this);
 
@@ -29,7 +30,7 @@ void ShoppingListView::on_ShoppingProductListWidget_itemChanged(QListWidgetItem 
 }
 
 void ShoppingListView::on_AddShoppingProductButton_clicked() {
-    auto dialog = new AddShoppingProductDialog(shopList, controller);
+    auto dialog = new AddShoppingProductDialog(shopList, controller, listOfShoppingList);
 
     while (dialog->exec()) {
         if (dialog->close()) {

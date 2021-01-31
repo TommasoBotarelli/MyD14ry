@@ -25,6 +25,12 @@ public:
 
     void getList(std::list<std::shared_ptr<ShoppingList>> &shopList);
 
+    void addCategory(QString &cat);
+
+    void getCategory(std::list<QString> &catList);
+
+    void removeCategory(QString &cat);
+
     ~ListOfShoppingList() override;
 
 private:
@@ -32,6 +38,8 @@ private:
     std::list<std::shared_ptr<ShoppingList>> ShoppingLists;
 
     std::list<Observer *> observers;
+
+    std::list<QString> categories;
 
 };
 

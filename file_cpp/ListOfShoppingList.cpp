@@ -44,3 +44,27 @@ ListOfShoppingList::~ListOfShoppingList() {
         i->detach();
 }
 
+void ListOfShoppingList::addCategory(QString &cat) {
+    bool found = false;
+
+    for (auto &i : categories) {
+        if (i == cat)
+            found = true;
+    }
+
+    if (!found)
+        categories.push_back(cat);
+
+    notify();
+}
+
+void ListOfShoppingList::getCategory(std::list<QString> &catList) {
+    for (auto &i : categories)
+        catList.push_back(i);
+}
+
+void ListOfShoppingList::removeCategory(QString &cat) {
+    categories.remove(cat);
+    notify();
+}
+

@@ -17,9 +17,9 @@ void ShoppingList::getProducts(std::list<std::shared_ptr<ShoppingProduct>> &shop
         shopList.push_back(i);
 }
 
-void ShoppingList::addProduct(QString product, bool c) {
+void ShoppingList::addProduct(QString &product, QString &cat, bool setCategory) {
 
-    std::shared_ptr<ShoppingProduct> p(new ShoppingProduct(product, c));
+    std::shared_ptr<ShoppingProduct> p(new ShoppingProduct(product, cat, setCategory));
 
     products.push_back(p);
 

@@ -10,7 +10,9 @@
 
 class ShoppingProduct {
 public:
-    explicit ShoppingProduct(QString n, bool c = false) : name(n), catched(c) {};
+    explicit ShoppingProduct(QString n, QString cat, bool catBool, bool c = false) : name(n), category(cat),
+                                                                                     categoryIsSet(catBool),
+                                                                                     catched(c) {};
 
     const QString &getName() const;
 
@@ -26,6 +28,17 @@ private:
     QString name;
 
     bool catched;
+
+    QString category;
+
+    bool categoryIsSet;
+
+public:
+    const QString &getCategory() const;
+
+    void setCategory(const QString &category);
+
+    bool isCategoryIsSet() const;
 };
 
 

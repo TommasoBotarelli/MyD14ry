@@ -18,6 +18,7 @@ Q_OBJECT
 
 public:
     explicit ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c,
+                              ListOfShoppingList *lsl,
                               QWidget *parent = nullptr);
 
     void update() override;
@@ -46,6 +47,8 @@ private:
     ListOfShoppingListController *controller;
 
     std::shared_ptr<ShoppingList> shopList;
+
+    ListOfShoppingList *listOfShoppingList;
 };
 
 #endif // SHOPPINGLISTVIEW_H

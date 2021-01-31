@@ -40,7 +40,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="CategoryLabel">
+       <widget class="QCheckBox" name="CategoryCheckBox">
         <property name="text">
          <string>Categoria:</string>
         </property>

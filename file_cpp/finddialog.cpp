@@ -46,7 +46,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
             }
         }
     } else if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(item)) {
-        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
+        auto dialog = new ShoppingListView(shopListItem->get(), shopListController, listOfShoppingList);
 
         shopListItem->get()->addObserver(this);
 
@@ -72,7 +72,7 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
                 for (auto &i : shoppingProductList) {
 
                     if (shopProductItem->get()->getName() == i->getName()) {
-                        auto dialog = new ShoppingListView(shopListItem->get(), shopListController);
+                        auto dialog = new ShoppingListView(shopListItem->get(), shopListController, listOfShoppingList);
 
                         shopListItem->get()->addObserver(this);
 

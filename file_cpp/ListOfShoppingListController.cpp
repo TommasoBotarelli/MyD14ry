@@ -28,8 +28,9 @@ void ListOfShoppingListController::getLists(QListWidget &list) {
     }
 }
 
-void ListOfShoppingListController::addProduct(std::shared_ptr<ShoppingList> &shopList, QString name, bool c) {
-    shopList->addProduct(name, c);
+void ListOfShoppingListController::addProduct(std::shared_ptr<ShoppingList> &shopList, QString &name, QString &cat,
+                                              bool setCategory, bool c) {
+    shopList->addProduct(name, cat, setCategory);
 }
 
 void
@@ -41,4 +42,12 @@ void ListOfShoppingListController::setCatched(std::shared_ptr<ShoppingList> sL, 
                                               bool catched) {
     sP->setCatched(catched);
     sL->notify();
+}
+
+void ListOfShoppingListController::addCategory(QString &cat) {
+    listOfShoppingList->addCategory(cat);
+}
+
+void ListOfShoppingListController::removeCategory(QString &cat) {
+    listOfShoppingList->removeCategory(cat);
 }
