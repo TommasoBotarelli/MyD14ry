@@ -48,8 +48,28 @@ void ListOfShoppingListController::addCategory(QString cat) {
     listOfShoppingList->addCategory(cat);
 }
 
-void ListOfShoppingListController::removeCategory(QString &cat) {
+void ListOfShoppingListController::removeCategory(QString cat) {
+    std::list<std::shared_ptr<ShoppingProduct>> shopP;
+    std::list<std::shared_ptr<ShoppingList>> shopList;
+
+    listOfShoppingList->getList(shopList);
+
+    for (auto &i : shopList) {
+        shopP.clear();
+        i->getProducts(shopP);
+
+        for (auto &j : shopP) {
+
+            if (j->getCategory() == cat) {
+                j->setCategoryIsSet(false);
+            }
+
+        }
+
+    }
+
     listOfShoppingList->removeCategory(cat);
+
 }
 
 bool ListOfShoppingListController::findCategory(const QString &name) {

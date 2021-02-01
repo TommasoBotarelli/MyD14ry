@@ -32,6 +32,8 @@ private:
     QString category;
 
     bool categoryIsSet;
+public:
+    void setCategoryIsSet(bool categoryIsSet);
 
 public:
     const QString &getCategory() const;

@@ -39,6 +39,8 @@ private slots:
 
     void on_deleteProductButton_clicked();
 
+    void on_deleteCategoryButton_clicked();
+
 private:
     Ui::ShoppingListView *ui;
 

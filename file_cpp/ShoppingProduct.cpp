@@ -31,3 +31,8 @@ void ShoppingProduct::setCategory(const QString &category) {
 bool ShoppingProduct::isCategoryIsSet() const {
     return categoryIsSet;
 }
+
+void ShoppingProduct::setCategoryIsSet(bool categoryIsSet) {
+    ShoppingProduct::categoryIsSet = categoryIsSet;
+    category = "";
+}

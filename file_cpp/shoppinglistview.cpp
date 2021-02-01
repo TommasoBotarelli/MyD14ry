@@ -115,7 +115,7 @@ void ShoppingListView::update() {
         }
 
         if (count != 0) {
-            categoryParagraph->setText(i + "   " + "(" + QString::number(countProduct) + ")");
+            categoryParagraph->setText(i + " ~ " + "(" + QString::number(countProduct) + ")");
         } else {
             delete ui->ShoppingProductListWidget->currentItem();
         }
@@ -124,14 +124,27 @@ void ShoppingListView::update() {
 
 void ShoppingListView::attach() {
     shopList->addObserver(this);
+    listOfShoppingList->addObserver(this);
 }
 
 void ShoppingListView::detach() {
     shopList->removeObserver(this);
+    listOfShoppingList->removeObserver(this);
 }
 
 void ShoppingListView::on_deleteProductButton_clicked() {
     if (QListWidgetTemplate<ShoppingProduct> *itemProduct = dynamic_cast <QListWidgetTemplate<ShoppingProduct> *>(ui->ShoppingProductListWidget->currentItem())) {
         controller->removeProduct(itemProduct->get(), shopList);
+    }
+}
+
+void ShoppingListView::on_deleteCategoryButton_clicked() {
+    if (auto catItem = dynamic_cast<QListWidgetItem *> (ui->ShoppingProductListWidget->currentItem())) {
+        QString name = catItem->text();
+        int endIndex = name.count();
+        int startIndex = name.indexOf(QRegExp(" ~ "));
+        name.replace(startIndex, endIndex, "");
+
+        controller->removeCategory(name);
     }
 }

@@ -52,6 +52,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="deleteCategoryButton">
+      <property name="text">
+       <string>Elimina categoria</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="DeleteButton">
       <property name="text">
        <string>Elimina lista della spesa</string>

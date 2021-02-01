@@ -33,7 +33,7 @@ public:
 
     void addCategory(QString cat);
 
-    void removeCategory(QString &cat);
+    void removeCategory(QString cat);
 
     bool findCategory(const QString &name);
 
