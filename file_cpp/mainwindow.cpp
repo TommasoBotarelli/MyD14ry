@@ -81,6 +81,19 @@ void MainWindow::on_actionCategoria_triggered() {
     update();
 }
 
+void MainWindow::on_actionCategoria_di_prodotti_triggered() {
+    auto dialog = new addProductCategory(shopListController);
+
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+        }
+    }
+
+    update();
+}
+
+
 void MainWindow::on_calendarWidget_clicked(const QDate &date) {
     update();
 }

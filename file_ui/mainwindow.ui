@@ -138,6 +138,7 @@
     <addaction name="actionEvent"/>
     <addaction name="actionLista_della_spesa"/>
     <addaction name="actionCategoria"/>
+    <addaction name="actionCategoria_di_prodotti"/>
    </widget>
    <addaction name="menuAdd"/>
   </widget>
@@ -159,7 +160,12 @@
   </action>
   <action name="actionCategoria">
    <property name="text">
-    <string>Categoria</string>
+    <string>Categoria di attività</string>
+   </property>
+  </action>
+  <action name="actionCategoria_di_prodotti">
+   <property name="text">
+    <string>Categoria di prodotti</string>
    </property>
   </action>
  </widget>

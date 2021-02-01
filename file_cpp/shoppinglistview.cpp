@@ -56,9 +56,30 @@ void ShoppingListView::update() {
     std::list<QString> catList;
     listOfShoppingList->getCategory(catList);
 
+
+    shopList->getProducts(shopP);
+    for (auto &delu : shopP) {
+        if (!delu->isCategoryIsSet()) {
+            auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
+
+            itemProduct->setText(delu->getName());
+
+            if (delu->isCatched())
+                itemProduct->setCheckState(Qt::Checked);
+            else
+                itemProduct->setCheckState(Qt::Unchecked);
+
+            itemProduct->set(delu);
+
+            ui->ShoppingProductListWidget->addItem(itemProduct);
+        }
+    }
+
     int count;
+    int countProduct;
 
     for (auto &i : catList) {
+        countProduct = 0;
         count = 0;
         auto categoryParagraph = new QListWidgetItem(i);
 
@@ -82,8 +103,10 @@ void ShoppingListView::update() {
 
                 if (j->isCatched())
                     itemProduct->setCheckState(Qt::Checked);
-                else
+                else {
                     itemProduct->setCheckState(Qt::Unchecked);
+                    countProduct++;
+                }
 
                 itemProduct->set(j);
 
@@ -91,11 +114,11 @@ void ShoppingListView::update() {
             }
         }
 
-        if (count == 0) {
+        if (count != 0) {
+            categoryParagraph->setText(i + "   " + "(" + QString::number(countProduct) + ")");
+        } else {
             delete ui->ShoppingProductListWidget->currentItem();
         }
-
-
     }
 }
 

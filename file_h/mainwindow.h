@@ -83,6 +83,8 @@ private slots:
 
     void on_actionCategoria_triggered();
 
+    void on_actionCategoria_di_prodotti_triggered();
+
 private:
     Ui::MainWindow *ui;
 
