@@ -18,15 +18,20 @@ AddShoppingProductDialog::~AddShoppingProductDialog() {
 }
 
 void AddShoppingProductDialog::on_AddButton_clicked() {
-
     QString name = getNameProduct();
 
     if (getNameProduct().replace(" ", "") != "") {
 
-        if (name != "Inserire nome prodotto") {
-            controller->addProduct(shopList, name, ui->CategorycomboBox->currentText(), setCategory);
-
-            this->close();
+        if (setCategory) {
+            if (name != "Inserire nome prodotto" && ui->CategorycomboBox->currentText() != "") {
+                controller->addProduct(shopList, name, ui->CategorycomboBox->currentText(), setCategory);
+                this->close();
+            }
+        } else {
+            if (name != "Inserire nome prodotto") {
+                controller->addProduct(shopList, name, "", setCategory);
+                this->close();
+            }
         }
     } else
         ui->NameEdit->setText("Inserire nome prodotto");
