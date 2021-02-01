@@ -47,22 +47,55 @@ void ShoppingListView::on_DeleteButton_clicked() {
 
 void ShoppingListView::update() {
     ui->ShoppingProductListWidget->clear();
+
+    QFont font;
+    font.setWeight(81);
+
     std::list<std::shared_ptr<ShoppingProduct>> shopP;
-    shopList->getProducts(shopP);
 
-    for (auto &i : shopP) {
-        auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
+    std::list<QString> catList;
+    listOfShoppingList->getCategory(catList);
 
-        itemProduct->setText(i->getName());
+    int count;
 
-        if (i->isCatched())
-            itemProduct->setCheckState(Qt::Checked);
-        else
-            itemProduct->setCheckState(Qt::Unchecked);
+    for (auto &i : catList) {
+        count = 0;
+        auto categoryParagraph = new QListWidgetItem(i);
 
-        itemProduct->set(i);
+        categoryParagraph->setFont(font);
+        categoryParagraph->setBackground(Qt::yellow);
 
-        ui->ShoppingProductListWidget->addItem(itemProduct);
+        ui->ShoppingProductListWidget->addItem(categoryParagraph);
+        ui->ShoppingProductListWidget->setCurrentItem(categoryParagraph);
+
+        shopP.clear();
+        shopList->getProducts(shopP);
+
+        for (auto &j : shopP) {
+            if (j->getCategory() == i) {
+
+                count++;
+
+                auto itemProduct = new QListWidgetTemplate<ShoppingProduct>;
+
+                itemProduct->setText(j->getName());
+
+                if (j->isCatched())
+                    itemProduct->setCheckState(Qt::Checked);
+                else
+                    itemProduct->setCheckState(Qt::Unchecked);
+
+                itemProduct->set(j);
+
+                ui->ShoppingProductListWidget->addItem(itemProduct);
+            }
+        }
+
+        if (count == 0) {
+            delete ui->ShoppingProductListWidget->currentItem();
+        }
+
+
     }
 }
 
