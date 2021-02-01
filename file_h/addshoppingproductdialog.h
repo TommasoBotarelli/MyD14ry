@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "ListOfShoppingListController.h"
 #include "Observer.h"
+#include "addproductcategory.h"
 
 namespace Ui {
     class AddShoppingProductDialog;
@@ -33,8 +34,6 @@ private slots:
 
     void on_AddCategoryButton_clicked();
 
-    void on_CategorycomboBox_currentTextChanged(const QString &arg1);
-
     void on_CategoryCheckBox_stateChanged(int arg1);
 
 protected:
@@ -46,8 +45,6 @@ private:
     std::shared_ptr<ShoppingList> shopList;
 
     ListOfShoppingListController *controller;
-
-    QString category;
 
     ListOfShoppingList *listOfShoppingList;
 

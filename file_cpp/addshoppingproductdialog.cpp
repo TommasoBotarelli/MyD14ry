@@ -5,7 +5,7 @@ AddShoppingProductDialog::AddShoppingProductDialog(std::shared_ptr<ShoppingList>
                                                    ListOfShoppingList *lsl,
                                                    QWidget *parent)
         :
-        shopList(std::move(sl)), controller(slc), listOfShoppingList(lsl), category(""), setCategory(false),
+        shopList(std::move(sl)), controller(slc), listOfShoppingList(lsl), setCategory(false),
         QDialog(parent),
         ui(new Ui::AddShoppingProductDialog) {
     ui->setupUi(this);
@@ -24,7 +24,7 @@ void AddShoppingProductDialog::on_AddButton_clicked() {
     if (getNameProduct().replace(" ", "") != "") {
 
         if (name != "Inserire nome prodotto") {
-            controller->addProduct(shopList, name, category, setCategory);
+            controller->addProduct(shopList, name, ui->CategorycomboBox->currentText(), setCategory);
 
             this->close();
         }
@@ -37,11 +37,14 @@ QString AddShoppingProductDialog::getNameProduct() {
 }
 
 void AddShoppingProductDialog::on_AddCategoryButton_clicked() {
+    auto dialog = new addProductCategory(controller);
 
-}
+    while (dialog->exec()) {
+        if (dialog->close()) {
+            delete dialog;
+        }
+    }
 
-void AddShoppingProductDialog::on_CategorycomboBox_currentTextChanged(const QString &arg1) {
-    category = arg1;
     update();
 }
 
@@ -49,22 +52,15 @@ void AddShoppingProductDialog::update() {
     if (setCategory) {
         ui->CategorycomboBox->setEnabled(true);
         ui->AddCategoryButton->setEnabled(true);
+
         ui->CategorycomboBox->clear();
 
         std::list<QString> catList;
         listOfShoppingList->getCategory(catList);
 
-        for (auto &i : catList) {
-            if (category != "" && category == i)
-                ui->CategorycomboBox->addItem(i);
-        }
+        for (auto &l : catList)
+            ui->CategorycomboBox->addItem(l);
 
-        catList.clear();
-
-        for (auto &l : catList) {
-            if (category != l)
-                ui->CategorycomboBox->addItem(l);
-        }
     } else {
         ui->CategorycomboBox->setEnabled(false);
         ui->AddCategoryButton->setEnabled(false);

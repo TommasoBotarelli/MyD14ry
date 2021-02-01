@@ -21,7 +21,7 @@ public:
     void setData(std::shared_ptr<ShoppingList> &shopList, QString name);
 
     void
-    addProduct(std::shared_ptr<ShoppingList> &shopList, QString &name, QString &cat, bool setCategory, bool c = false);
+    addProduct(std::shared_ptr<ShoppingList> &shopList, QString &name, QString cat, bool setCategory, bool c = false);
 
     void remove(std::shared_ptr<ShoppingList> shopList);
 
@@ -31,9 +31,11 @@ public:
 
     void setCatched(std::shared_ptr<ShoppingList> sL, std::shared_ptr<ShoppingProduct> sP, bool catched);
 
-    void addCategory(QString &cat);
+    void addCategory(QString cat);
 
     void removeCategory(QString &cat);
+
+    bool findCategory(const QString &name);
 
 private:
     ListOfShoppingList *listOfShoppingList;
