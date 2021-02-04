@@ -56,34 +56,28 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
             }
         }
     } else if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
-        QListWidget list;
-        list.clear();
-        std::list<std::shared_ptr<ShoppingProduct>> shoppingProductList;
-        shopListController->getLists(list);
+        std::list<std::shared_ptr<ShoppingList>> shopList;
+        std::list<std::shared_ptr<ShoppingProduct>> productList;
+        listOfShoppingList->getList(shopList);
 
-        for (int index = 0; index != list.count(); index++) {
+        for (auto &v : shopList) {
+            productList.clear();
+            v->getProducts(productList);
 
-            shoppingProductList.clear();
-            list.setCurrentRow(index);
+            for (auto &z : productList) {
+                if (z == shopProductItem->get()) {
 
-            if (QListWidgetTemplate<ShoppingList> *shopListItem = dynamic_cast<QListWidgetTemplate<ShoppingList> * >(list.currentItem())) {
-                shopListItem->get()->getProducts(shoppingProductList);
+                    v->addObserver(this);
 
-                for (auto &i : shoppingProductList) {
+                    auto dialog = new ShoppingListView(v, shopListController, listOfShoppingList);
 
-                    if (shopProductItem->get()->getName() == i->getName()) {
-                        auto dialog = new ShoppingListView(shopListItem->get(), shopListController, listOfShoppingList);
-
-                        shopListItem->get()->addObserver(this);
-
-                        while (dialog->exec()) {
-                            if (dialog->close()) {
-                                delete dialog;
-                            }
+                    while (dialog->exec()) {
+                        if (dialog->close()) {
+                            delete dialog;
+                            update();
                         }
                     }
                 }
-
             }
         }
     }
@@ -118,7 +112,7 @@ void findDialog::update() {
         ui->listWidget->addItem(title);
         ui->listWidget->setCurrentItem(title);
 
-        for (const auto &l : actList) {
+        for (auto &l : actList) {
             if (isSimilar(l->getTask(), name)) {
                 auto actitem = new QListWidgetTemplate<Activity>;
                 actitem->set(l);
@@ -145,6 +139,58 @@ void findDialog::update() {
 
     if (count == 0)
         delete ui->listWidget->currentItem();
+
+    auto paragraph5 = new QListWidgetItem;
+    paragraph5->setText("CATEGORIE DI ATTIVITÀ");
+    paragraph5->setFont(font);
+    paragraph5->setBackground(Qt::yellow);
+    ui->listWidget->addItem(paragraph5);
+
+    catList.clear();
+    activityList->getCategory(catList);
+
+    int activityCount;
+    count = 0;
+
+    for (auto &i : catList) {
+        if (isSimilar(i.getName(), name)) {
+            count++;
+
+            actList.clear();
+            i.getActivity(actList);
+            auto title = new QListWidgetItem;
+            title->setText(i.getName());
+            title->setFont(font);
+            ui->listWidget->addItem(title);
+
+            activityCount = 0;
+
+            for (auto &e : actList) {
+                auto actitem2 = new QListWidgetTemplate<Activity>;
+                actitem2->set(e);
+                actitem2->setText(e->getTask());
+
+                if (e->isCompleted())
+                    actitem2->setCheckState(Qt::Checked);
+                else
+                    actitem2->setCheckState(Qt::Unchecked);
+
+                ui->listWidget->addItem(actitem2);
+                ui->listWidget->setCurrentItem(actitem2);
+                activityCount++;
+            }
+
+            if (activityCount == 0)
+                ui->listWidget->addItem("Nessuna attività presente");
+        }
+
+    }
+
+    ui->listWidget->setCurrentItem(paragraph5);
+
+    if (count == 0)
+        delete ui->listWidget->currentItem();
+
 
     count = 0;
 
@@ -231,7 +277,7 @@ void findDialog::update() {
 
                 if (q->isCatched())
                     shopProductitem->setCheckState(Qt::Checked);
-                else
+                else if (!q->isCatched())
                     shopProductitem->setCheckState(Qt::Unchecked);
 
                 ui->listWidget->addItem(shopProductitem);
@@ -246,57 +292,65 @@ void findDialog::update() {
     if (count == 0)
         delete ui->listWidget->currentItem();
 
-    auto paragraph5 = new QListWidgetItem;
-    paragraph5->setText("CATEGORIE DI ATTIVITÀ");
-    paragraph5->setFont(font);
-    paragraph5->setBackground(Qt::yellow);
-    ui->listWidget->addItem(paragraph5);
 
-    catList.clear();
-    activityList->getCategory(catList);
+    auto paragraph6 = new QListWidgetItem;
+    paragraph6->setText("CATEGORIE DI PRODOTTI");
+    paragraph6->setFont(font);
+    paragraph6->setBackground(Qt::yellow);
+    ui->listWidget->addItem(paragraph6);
 
-    int activityCount;
     count = 0;
 
-    for (auto &i : catList) {
-        if (isSimilar(i.getName(), name)) {
-            count++;
+    std::list<QString> catProductList;
+    listOfShoppingList->getCategory(catProductList);
 
-            actList.clear();
-            i.getActivity(actList);
+    int countProduct = 0;
+
+    for (auto &t : catProductList) {
+        if (isSimilar(t, name)) {
+            count++;
+            shopList.clear();
+            listOfShoppingList->getList(shopList);
+
             auto title = new QListWidgetItem;
-            title->setText(i.getName());
+            title->setText(t);
             title->setFont(font);
             ui->listWidget->addItem(title);
 
-            activityCount = 0;
+            for (auto &q : shopList) {
+                shopProductList.clear();
+                q->getProducts(shopProductList);
 
-            for (auto &e : actList) {
-                auto actitem = new QListWidgetTemplate<Activity>;
-                actitem->set(e);
-                actitem->setText(e->getTask());
+                for (auto &a : shopProductList) {
 
-                if (e->isCompleted())
-                    actitem->setCheckState(Qt::Checked);
-                else
-                    actitem->setCheckState(Qt::Unchecked);
+                    if (a->getCategory() == t) {
 
-                ui->listWidget->addItem(actitem);
-                ui->listWidget->setCurrentItem(actitem);
-                activityCount++;
+                        auto shopProductitem2 = new QListWidgetTemplate<ShoppingProduct>;
+                        shopProductitem2->set(a);
+                        shopProductitem2->setText(a->getName());
+
+                        if (a->isCatched())
+                            shopProductitem2->setCheckState(Qt::Checked);
+                        else
+                            shopProductitem2->setCheckState(Qt::Unchecked);
+
+                        ui->listWidget->addItem(shopProductitem2);
+
+                        countProduct++;
+                    }
+                }
             }
 
-            if (activityCount == 0)
-                ui->listWidget->addItem("Nessuna attività presente");
-        }
+            if (countProduct == 0)
+                ui->listWidget->addItem("Nessun prodotto presente");
 
+        }
     }
 
-    ui->listWidget->setCurrentItem(paragraph5);
+    ui->listWidget->setCurrentItem(paragraph6);
 
     if (count == 0)
         delete ui->listWidget->currentItem();
-
 }
 
 void findDialog::attach() {
@@ -336,7 +390,7 @@ void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
     if (QListWidgetTemplate<Activity> *actItem = dynamic_cast<QListWidgetTemplate<Activity> * >(item)) {
         if (actItem->checkState() == Qt::Checked)
             actItem->get()->setCompleted(true);
-        if (actItem->checkState() == Qt::Unchecked)
+        else if (actItem->checkState() == Qt::Unchecked)
             actItem->get()->setCompleted(false);
     } else if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
         std::list<std::shared_ptr<ShoppingList>> shopList;
@@ -355,6 +409,8 @@ void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
 
                     else if (shopProductItem->checkState() == Qt::Unchecked)
                         shopListController->setCatched(i, shopProductItem->get(), false);
+
+                    break;
                 }
             }
         }

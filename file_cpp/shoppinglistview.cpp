@@ -3,7 +3,7 @@
 
 ShoppingListView::ShoppingListView(std::shared_ptr<ShoppingList> sL, ListOfShoppingListController *c,
                                    ListOfShoppingList *lsl, QWidget *parent) :
-        shopList(sL), controller(c), listOfShoppingList(lsl), QDialog(parent),
+        shopList(std::move(sL)), controller(c), listOfShoppingList(lsl), QDialog(parent),
         ui(new Ui::ShoppingListView) {
     ui->setupUi(this);
 
@@ -147,4 +147,9 @@ void ShoppingListView::on_deleteCategoryButton_clicked() {
 
         controller->removeCategory(name);
     }
+}
+
+void ShoppingListView::closeEvent(QCloseEvent *event) {
+    detach();
+    QDialog::closeEvent(event);
 }
