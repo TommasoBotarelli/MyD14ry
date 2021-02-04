@@ -245,6 +245,58 @@ void findDialog::update() {
 
     if (count == 0)
         delete ui->listWidget->currentItem();
+
+    auto paragraph5 = new QListWidgetItem;
+    paragraph5->setText("CATEGORIE DI ATTIVITÀ");
+    paragraph5->setFont(font);
+    paragraph5->setBackground(Qt::yellow);
+    ui->listWidget->addItem(paragraph5);
+
+    catList.clear();
+    activityList->getCategory(catList);
+
+    int activityCount;
+    count = 0;
+
+    for (auto &i : catList) {
+        if (isSimilar(i.getName(), name)) {
+            count++;
+
+            actList.clear();
+            i.getActivity(actList);
+            auto title = new QListWidgetItem;
+            title->setText(i.getName());
+            title->setFont(font);
+            ui->listWidget->addItem(title);
+
+            activityCount = 0;
+
+            for (auto &e : actList) {
+                auto actitem = new QListWidgetTemplate<Activity>;
+                actitem->set(e);
+                actitem->setText(e->getTask());
+
+                if (e->isCompleted())
+                    actitem->setCheckState(Qt::Checked);
+                else
+                    actitem->setCheckState(Qt::Unchecked);
+
+                ui->listWidget->addItem(actitem);
+                ui->listWidget->setCurrentItem(actitem);
+                activityCount++;
+            }
+
+            if (activityCount == 0)
+                ui->listWidget->addItem("Nessuna attività presente");
+        }
+
+    }
+
+    ui->listWidget->setCurrentItem(paragraph5);
+
+    if (count == 0)
+        delete ui->listWidget->currentItem();
+
 }
 
 void findDialog::attach() {
