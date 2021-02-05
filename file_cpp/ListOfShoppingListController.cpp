@@ -28,7 +28,7 @@ void ListOfShoppingListController::getLists(QListWidget &list) {
     }
 }
 
-void ListOfShoppingListController::addProduct(std::shared_ptr<ShoppingList> &shopList, QString &name, QString cat,
+void ListOfShoppingListController::addProduct(std::shared_ptr<ShoppingList> &shopList, QString name, QString cat,
                                               bool setCategory, bool c) {
     shopList->addProduct(name, cat, setCategory);
 }

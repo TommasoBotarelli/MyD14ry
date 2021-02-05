@@ -258,7 +258,7 @@ void AllTest::test_ListOfShoppingListController() {
 
     QVERIFY(list.size() == 2);
 
-    listOfShoppingListController.addProduct(shoplist1, "name prod 1");
+    listOfShoppingListController.addProduct(shoplist1, "name prod 1", "", false);
     tempListProduct.clear();
     shoplist1->getProducts(tempListProduct);
     QVERIFY(tempListProduct.size() == 1);
@@ -268,7 +268,7 @@ void AllTest::test_ListOfShoppingListController() {
     shoplist1->getProducts(tempListProduct);
     QVERIFY(tempListProduct.empty());
 
-    listOfShoppingListController.addProduct(shoplist2, "name prod 2");
+    listOfShoppingListController.addProduct(shoplist2, "name prod 2", "", false);
     tempListProduct.clear();
     shoplist2->getProducts(tempListProduct);
     QVERIFY(tempListProduct.size() == 1);
@@ -392,15 +392,15 @@ void AllTest::test_ShoppingList() {
     shopList->setNameList("Lista 1");
     QVERIFY(shopList->getNameList() == "Lista 1");
 
-    shopList->addProduct("product1", true);
-    shopList->addProduct("product2", false);
-    shopList->addProduct("product3", true);
+    shopList->addProduct("product1", "", false);
+    shopList->addProduct("product2", "", false);
+    shopList->addProduct("product3", "", false, true);
 
     shopList->getProducts(tempListProduct);
 
     QVERIFY(tempListProduct.size() == 3);
 
-    QVERIFY(shopList->getCountProduct() == 1);
+    QVERIFY(shopList->getCountProduct() == 2);
 
 
     for (auto &i : tempListProduct) {

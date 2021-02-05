@@ -26,7 +26,7 @@ public:
 
     void setNameList(const QString &nameList);
 
-    void addProduct(QString &product, QString &cat, bool c);
+    void addProduct(QString product, QString cat, bool category, bool c = false);
 
     void removeProduct(std::shared_ptr<ShoppingProduct> product);
 

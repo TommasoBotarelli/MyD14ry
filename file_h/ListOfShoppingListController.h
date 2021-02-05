@@ -21,7 +21,7 @@ public:
     void setData(std::shared_ptr<ShoppingList> &shopList, QString name);
 
     void
-    addProduct(std::shared_ptr<ShoppingList> &shopList, QString &name, QString cat, bool setCategory, bool c = false);
+    addProduct(std::shared_ptr<ShoppingList> &shopList, QString name, QString cat, bool setCategory, bool c = false);
 
     void remove(std::shared_ptr<ShoppingList> shopList);
 
