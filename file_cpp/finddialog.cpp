@@ -55,31 +55,6 @@ void findDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
                 delete dialog;
             }
         }
-    } else if (QListWidgetTemplate<ShoppingProduct> *shopProductItem = dynamic_cast<QListWidgetTemplate<ShoppingProduct> * >(item)) {
-        std::list<std::shared_ptr<ShoppingList>> shopList;
-        std::list<std::shared_ptr<ShoppingProduct>> productList;
-        listOfShoppingList->getList(shopList);
-
-        for (auto &v : shopList) {
-            productList.clear();
-            v->getProducts(productList);
-
-            for (auto &z : productList) {
-                if (z == shopProductItem->get()) {
-
-                    v->addObserver(this);
-
-                    auto dialog = new ShoppingListView(v, shopListController, listOfShoppingList);
-
-                    while (dialog->exec()) {
-                        if (dialog->close()) {
-                            delete dialog;
-                            update();
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -100,6 +75,7 @@ void findDialog::update() {
     paragraph1->setBackground(Qt::yellow);
     ui->listWidget->addItem(paragraph1);
 
+    int countParagraph = 0;
 
     for (auto i : catList) {
         actList.clear();
@@ -110,7 +86,8 @@ void findDialog::update() {
         title->setFont(font);
 
         ui->listWidget->addItem(title);
-        ui->listWidget->setCurrentItem(title);
+
+        count = 0;
 
         for (auto &l : actList) {
             if (isSimilar(l->getTask(), name)) {
@@ -124,20 +101,21 @@ void findDialog::update() {
                     actitem->setCheckState(Qt::Unchecked);
 
                 ui->listWidget->addItem(actitem);
-                ui->listWidget->setCurrentItem(actitem);
+
                 count++;
+                countParagraph++;
             }
         }
 
-        if (ui->listWidget->currentItem() != nullptr && ui->listWidget->currentItem()->text() == title->text()) {
-            ui->listWidget->removeItemWidget(ui->listWidget->currentItem());
+        ui->listWidget->setCurrentItem(title);
+
+        if (count == 0)
             delete ui->listWidget->currentItem();
-        }
     }
 
     ui->listWidget->setCurrentItem(paragraph1);
 
-    if (count == 0)
+    if (countParagraph == 0)
         delete ui->listWidget->currentItem();
 
     auto paragraph5 = new QListWidgetItem;
@@ -263,13 +241,24 @@ void findDialog::update() {
     listOfShoppingList->getList(shopList);
     std::list<std::shared_ptr<ShoppingProduct>> shopProductList;
 
+    int countProduct = 0;
+
     for (auto &y : shopList) {
+        countProduct = 0;
+
         shopProductList.clear();
         y->getProducts(shopProductList);
+
+        auto shopListitem1 = new QListWidgetTemplate<ShoppingList>;
+        shopListitem1->set(y);
+        shopListitem1->setText("--> " + y->getNameList() + "     " + "(" + QString::number(y->getCountProduct()) + ")");
+        ui->listWidget->addItem(shopListitem1);
 
         for (auto &q : shopProductList) {
 
             if (isSimilar(q->getName(), name)) {
+
+                countProduct++;
 
                 auto shopProductitem = new QListWidgetTemplate<ShoppingProduct>;
                 shopProductitem->set(q);
@@ -285,6 +274,11 @@ void findDialog::update() {
 
             }
         }
+        ui->listWidget->setCurrentItem(shopListitem1);
+
+        if (countProduct == 0)
+            delete ui->listWidget->currentItem();
+
     }
 
     ui->listWidget->setCurrentItem(paragraph4);
@@ -304,7 +298,8 @@ void findDialog::update() {
     std::list<QString> catProductList;
     listOfShoppingList->getCategory(catProductList);
 
-    int countProduct = 0;
+    countProduct = 0;
+    int countForList = 0;
 
     for (auto &t : catProductList) {
         if (isSimilar(t, name)) {
@@ -313,17 +308,27 @@ void findDialog::update() {
             listOfShoppingList->getList(shopList);
 
             auto title = new QListWidgetItem;
-            title->setText(t);
+            title->setText(t.toUpper());
             title->setFont(font);
             ui->listWidget->addItem(title);
 
             for (auto &q : shopList) {
+                countForList = 0;
+
                 shopProductList.clear();
                 q->getProducts(shopProductList);
+
+                auto shopListitem2 = new QListWidgetTemplate<ShoppingList>;
+                shopListitem2->set(q);
+                shopListitem2->setText(
+                        "--> " + q->getNameList() + "     " + "(" + QString::number(q->getCountProduct()) + ")");
+                ui->listWidget->addItem(shopListitem2);
 
                 for (auto &a : shopProductList) {
 
                     if (a->getCategory() == t) {
+
+                        countForList++;
 
                         auto shopProductitem2 = new QListWidgetTemplate<ShoppingProduct>;
                         shopProductitem2->set(a);
@@ -339,6 +344,11 @@ void findDialog::update() {
                         countProduct++;
                     }
                 }
+
+                ui->listWidget->setCurrentItem(shopListitem2);
+
+                if (countForList == 0)
+                    delete ui->listWidget->currentItem();
             }
 
             if (countProduct == 0)
@@ -409,6 +419,8 @@ void findDialog::on_listWidget_itemChanged(QListWidgetItem *item) {
 
                     else if (shopProductItem->checkState() == Qt::Unchecked)
                         shopListController->setCatched(i, shopProductItem->get(), false);
+
+                    update();
 
                     break;
                 }
